@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AsignaturaController;
 use App\Http\Controllers\CargoController;
+use App\Http\Controllers\ProfessionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ Route::get('/', function () {
 });
 
 Route::resource('cargos', CargoController::class);
+Route::resource('professions', ProfessionController::class);
 Route::resource('asignaturas', AsignaturaController::class);
 
 Auth::routes();
