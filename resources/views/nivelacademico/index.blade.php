@@ -1,4 +1,4 @@
-
+{{-- @extends('adminlte::page') --}}
 @section('title', 'Dashboard')
 
 @section('content_header')
@@ -20,25 +20,26 @@
 
     @endif
     <br>
-    <a href="{{ url('profession/create') }}" class="btn btn-success"> Nueva Profesion </a>
+    <a href="{{ url('nivelacademic/create') }}" class="btn btn-success"> Nuevo Nivel academico </a>
     <br>
     <br>
     <table class="table table-dark">
         <thead class="thead-light">
-            <tr>Profesiones</th>
+            <tr>
+                <th>Niveles Academicos</th>
                 <th>Acciones</th>
             </tr>
         </thead>
 
         <tbody>
 
-            @foreach ($professions as $profession)
+            @foreach ($niveles_academicos as $niveles_academico)
 
                 <tr>
-                    <td>{{ $profession->descripcion }}</td>
-                    <td><a href="{{ url('/profession/' . $profession->id . '/edit') }}" class="btn btn-info">
+                    <td>{{ $niveles_academico->descripcion }}</td>
+                    <td><a href="{{ url('/nivelacademic/' . $niveles_academico->id . '/edit') }}" class="btn btn-info">
                             Editar </a>|
-                        <form action="{{ url('/profession/' . $profession->id) }}" method="post" class="d-inline">
+                        <form action="{{ url('/nivelacademic/' . $niveles_academico->id) }}" method="post" class="d-inline">
                             @csrf
                             {{ method_field('DELETE') }}
                             <input type="submit" onclick="return confirm('Estas seguro de eliminar este registro?')"
@@ -50,7 +51,7 @@
             @endforeach
         </tbody>
     </table>
-    {!! $professions->links() !!}
+    {!! $niveles_academicos->links() !!}
 </div>
 @endsection
 

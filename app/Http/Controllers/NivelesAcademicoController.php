@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profession;
+use App\Models\Niveles_academico;
 use Illuminate\Http\Request;
 
-class ProfessionController extends Controller
+class NivelesAcademicoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ProfessionController extends Controller
      */
     public function index()
     {
-        $datos['professions'] = Profession::paginate(10);
-        return view('profession/index',$datos);
+        $datos['niveles_academicos']= Niveles_academico::paginate(10);
+        return view('nivelacademico/index',$datos);
     }
 
     /**
@@ -25,7 +25,7 @@ class ProfessionController extends Controller
      */
     public function create()
     {
-        return view('profession/create');
+        return view('nivelacademico/create');
     }
 
     /**
@@ -36,18 +36,16 @@ class ProfessionController extends Controller
      */
     public function store(Request $request)
     {
-        $datos = request()->except('_token');
-        Profession::insert($datos);
-        return redirect('profession/')->with('mensaje', 'Carrera agregado con exito');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Profession  $profession
+     * @param  \App\Models\Niveles_academico  $niveles_academico
      * @return \Illuminate\Http\Response
      */
-    public function show(Profession $profession)
+    public function show(Niveles_academico $niveles_academico)
     {
         //
     }
@@ -55,23 +53,22 @@ class ProfessionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Profession  $profession
+     * @param  \App\Models\Niveles_academico  $niveles_academico
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Niveles_academico $niveles_academico)
     {
-        $datos = Profession::findOrFail($id);
-        return view('profession/edit',compact('datos'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Profession  $profession
+     * @param  \App\Models\Niveles_academico  $niveles_academico
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profession $profession)
+    public function update(Request $request, Niveles_academico $niveles_academico)
     {
         //
     }
@@ -79,10 +76,10 @@ class ProfessionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Profession  $profession
+     * @param  \App\Models\Niveles_academico  $niveles_academico
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profession $profession)
+    public function destroy(Niveles_academico $niveles_academico)
     {
         //
     }

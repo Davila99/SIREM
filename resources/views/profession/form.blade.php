@@ -1,4 +1,3 @@
-{{--  <h1>{{ $titulo }} Carrera</h1>  --}}
 
 @if (count($errors) > 0)
     <div class="alert alert-danger" role="alert">
@@ -11,12 +10,10 @@
 @endif
 
 <div class="form-group">
-    <label for="descripcion">Nombre del Cargo:</label><br>
+    <label for="descripcion">Nombre de la profesion:</label><br>
     <input type="text" class="form-control" id="descripcion" name="descripcion"
         value="{{ isset($datos->descripcion) ? $datos->descripcion : old('descripcion') }}"><br>
 </div>
 
-
-
 <input type="submit" value="Guardar" class="btn btn-success">
-<button type="button" class="btn btn-secondary"><a href="{{ url('professions/') }}"> Regresar </a></button>
+<button type="button" class="btn btn-secondary"><a href="{{ url('profession/') }}"> Regresar </a></button>
