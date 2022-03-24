@@ -76,7 +76,7 @@ class NivelesAcademicoController extends Controller
         $datos = request()->except(['_token', '_method']);
         Niveles_academico::where('id', '=', $id)->update($datos);
         $datos = Niveles_academico::findOrFail($id);
-        return view('nivelacademico/index', compact('datos'));
+        return view('nivelacademico.edit', compact('datos'));
     }
 
     /**

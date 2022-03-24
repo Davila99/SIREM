@@ -71,9 +71,12 @@ class ProfessionController extends Controller
      * @param  \App\Models\Profession  $profession
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profession $profession)
+    public function update(Request $request,$id)
     {
-        //
+        $datos = request()->except(['_token', '_method']);
+        Profession::where('id', '=', $id)->update($datos);
+        $datos = Profession::findOrFail($id);
+        return view('profession.edit', compact('datos'));
     }
 
     /**
@@ -82,8 +85,9 @@ class ProfessionController extends Controller
      * @param  \App\Models\Profession  $profession
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profession $profession)
+    public function destroy($id)
     {
-        //
+        Profession::destroy($id);
+    return redirect('profession')->with('mensaje', 'Prefesion eliminado con exito');
     }
 }
