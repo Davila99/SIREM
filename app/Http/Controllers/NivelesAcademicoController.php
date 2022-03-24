@@ -14,8 +14,8 @@ class NivelesAcademicoController extends Controller
      */
     public function index()
     {
-        $datos['niveles_academicos']= Niveles_academico::paginate(10);
-        return view('nivelacademico/index',$datos);
+        $datos['niveles_academicos'] = Niveles_academico::paginate(10);
+        return view('nivelacademico/index', $datos);
     }
 
     /**
@@ -36,7 +36,9 @@ class NivelesAcademicoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = request()->except('_token');
+        Niveles_academico::insert($datos);
+        return redirect('nivelacademic')->with('mensaje', 'Nivel academico agregado con exito');
     }
 
     /**
@@ -56,9 +58,10 @@ class NivelesAcademicoController extends Controller
      * @param  \App\Models\Niveles_academico  $niveles_academico
      * @return \Illuminate\Http\Response
      */
-    public function edit(Niveles_academico $niveles_academico)
+    public function edit($id)
     {
-        //
+        $datos = Niveles_academico::findOrFail($id);
+        return view('nivelacademico/edit', compact('datos'));
     }
 
     /**
@@ -68,9 +71,12 @@ class NivelesAcademicoController extends Controller
      * @param  \App\Models\Niveles_academico  $niveles_academico
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Niveles_academico $niveles_academico)
+    public function update(Request $request, $id)
     {
-        //
+        $datos = request()->except(['_token', '_method']);
+        Niveles_academico::where('id', '=', $id)->update($datos);
+        $datos = Niveles_academico::findOrFail($id);
+        return view('nivelacademico/index', compact('datos'));
     }
 
     /**
@@ -79,8 +85,9 @@ class NivelesAcademicoController extends Controller
      * @param  \App\Models\Niveles_academico  $niveles_academico
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Niveles_academico $niveles_academico)
+    public function destroy($id)
     {
-        //
+        Niveles_academico::destroy($id);
+    return redirect('nivelacademic')->with('mensaje', 'Nivel academico eliminado con exito');
     }
 }
