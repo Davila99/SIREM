@@ -38,7 +38,7 @@ class CargoController extends Controller
     {
         $datos = request()->except('_token');
         Cargo::insert($datos);
-        return redirect('cargos/')->with('mensaje', 'Carrera agregado con exito');
+        return redirect('cargos/')->with('mensaje', 'Grado agregado con exito');
     }
 
     /**

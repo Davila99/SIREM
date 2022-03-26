@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tipo_Matricula;
-use App\Http\Requests\StoreTipo_MatriculaRequest;
-use App\Http\Requests\UpdateTipo_MatriculaRequest;
 
+use Illuminate\Http\Request;
 class TipoMatriculaController extends Controller
 {
     /**
@@ -15,7 +14,8 @@ class TipoMatriculaController extends Controller
      */
     public function index()
     {
-        //
+        $datos['tipo__matriculas'] =  Tipo_Matricula::paginate(10);
+        return view('tipoMatricula/index', $datos);
     }
 
     /**
@@ -25,7 +25,7 @@ class TipoMatriculaController extends Controller
      */
     public function create()
     {
-        //
+        return view('tipoMatricula/create');
     }
 
     /**
@@ -34,9 +34,11 @@ class TipoMatriculaController extends Controller
      * @param  \App\Http\Requests\StoreTipo_MatriculaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTipo_MatriculaRequest $request)
+    public function store(Request $request)
     {
-        //
+        $datos = request()->except('_token');
+        Tipo_Matricula::insert($datos);
+        return redirect('tmatricula/')->with('mensaje','tipo de matricula agregada');
     }
 
     /**
@@ -56,9 +58,10 @@ class TipoMatriculaController extends Controller
      * @param  \App\Models\Tipo_Matricula  $tipo_Matricula
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tipo_Matricula $tipo_Matricula)
+    public function edit($id)
     {
-        //
+        $datos = Tipo_Matricula::findOrFail($id);
+        return view('tipoMatricula/edit', compact('datos'));
     }
 
     /**
@@ -68,9 +71,14 @@ class TipoMatriculaController extends Controller
      * @param  \App\Models\Tipo_Matricula  $tipo_Matricula
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTipo_MatriculaRequest $request, Tipo_Matricula $tipo_Matricula)
+    public function update(Request $request, $id)
     {
-        //
+        $datos = request()->except(['_token', '_method']);
+
+        Tipo_Matricula::where('id', '=', $id)->update($datos);
+
+        $datos = Tipo_Matricula::findOrFail($id);
+        return view('tipoMatricula.edit', compact('datos'));
     }
 
     /**
@@ -79,8 +87,9 @@ class TipoMatriculaController extends Controller
      * @param  \App\Models\Tipo_Matricula  $tipo_Matricula
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tipo_Matricula $tipo_Matricula)
+    public function destroy($id)
     {
-        //
+        Tipo_Matricula::destroy($id);
+        return redirect('tmatricula/')->with('mensaje', 'Cargos eliminado con exito');
     }
 }

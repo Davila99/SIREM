@@ -6,6 +6,7 @@ use App\Http\Controllers\CortesEvaluativoController;
 use App\Http\Controllers\GradoController;
 use App\Http\Controllers\NivelesAcademicoController;
 use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\TipoMatriculaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::resource('grados', GradoController::class);
 Route::resource('profession', ProfessionController::class);
 Route::resource('asignaturas', AsignaturaController::class);
 Route::resource('cevaluativos', CortesEvaluativoController::class);
+Route::resource('tmatricula', TipoMatriculaController::class);
 
 Auth::routes();
 
