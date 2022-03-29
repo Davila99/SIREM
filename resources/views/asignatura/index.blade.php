@@ -1,11 +1,8 @@
-{{-- @extends('adminlte::page') --}}
+@extends('adminlte::page')
 @section('title', 'Dashboard')
 
 @section('content_header')
 @stop
-
-@section('content')
-@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -53,7 +50,7 @@
     </table>
     {!! $asignaturas->links() !!}
 </div>
-@endsection
+
 
 @stop
 
