@@ -1,15 +1,13 @@
-@section('title', 'Dashboard')
+ @extends('adminlte::page')
+ @section('title', 'Dashboard')
 
-@section('content_header')
-@stop
+ @section('content_header')
+ @stop
 
-@section('content')
-@extends('layouts.app')
+ @section('content')
+     <div class="container">
 
-@section('content')
-<div class="container">
-
-    @if (Session::has('mensaje'))
+         @if (Session::has('mensaje'))
         <div class="alert alert-success" role="alert" class="text-center">
             {{ Session::get('mensaje') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="close">
@@ -32,13 +30,13 @@
 
         <tbody>
 
-            @foreach ($cevaluativos as $cevaluativo)
+            @foreach ($cortes_evaluativos as $cortes_evaluativo)
 
                 <tr>
-                    <td>{{ $cevaluativo->descripcion }}</td>
-                    <td><a href="{{ url('/cevaluativos/' . $cevaluativo->id . '/edit') }}" class="btn btn-info">
+                    <td>{{ $cortes_evaluativo->descripcion }}</td>
+                    <td><a href="{{ url('/cevaluativos/' . $cortes_evaluativo->id . '/edit') }}" class="btn btn-info">
                             Editar </a>|
-                        <form action="{{ url('/cevaluativos/' . $cevaluativo->id) }}" method="post" class="d-inline">
+                        <form action="{{ url('/cevaluativos/' . $cortes_evaluativo->id) }}" method="post" class="d-inline">
                             @csrf
                             {{ method_field('DELETE') }}
                             <input type="submit" onclick="return confirm('Estas seguro de eliminar este registro?')"
@@ -50,9 +48,8 @@
             @endforeach
         </tbody>
     </table>
-    {!! $cevaluativos->links() !!}
+    {!! $cortes_evaluativos->links() !!}
 </div>
-@endsection
 
 @stop
 

@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'SIREM',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -50,7 +50,7 @@ return [
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'SIREM',
 
     /*
     |--------------------------------------------------------------------------
@@ -228,7 +228,7 @@ return [
         // Navbar items:
         [
             'type'         => 'navbar-search',
-            'text'         => 'search',
+            'text'         => 'Busqueda',
             'topnav_right' => true,
         ],
         [
@@ -310,7 +310,7 @@ return [
         ],
         [
             'text'       => 'warning',
-            'icon_color' => 'yellow',
+            'icon_color' => 'amarillo',
             'url'        => '#',
         ],
         [
