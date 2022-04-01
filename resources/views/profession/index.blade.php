@@ -4,8 +4,6 @@
 @section('content_header')
 @stop
 
-@section('content')
-@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -52,7 +50,6 @@
     </table>
     {!! $professions->links() !!}
 </div>
-@endsection
 
 @stop
 
