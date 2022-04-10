@@ -14,9 +14,9 @@ return [
     |
     */
 
-    'title' => 'SIREM',
-    'title_prefix' => '',
-    'title_postfix' => '',
+    'title' => '',
+    'title_prefix' => '  ',
+    'title_postfix' => '| Sirem',
 
     /*
     |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -45,8 +45,8 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>SIREM</b>',
+    'logo_img' => 'logos/logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -65,11 +65,11 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
-    'usermenu_header_class' => 'bg-primary',
+    'usermenu_header' => true,
+    'usermenu_header_class' => 'bg-secundary',
     'usermenu_image' => false,
-    'usermenu_desc' => false,
-    'usermenu_profile_url' => false,
+    'usermenu_desc' => true,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -85,8 +85,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -102,7 +102,7 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
+    'classes_auth_card' => 'card-outline card-secundary',
     'classes_auth_header' => '',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
@@ -122,14 +122,14 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => '',
+    'classes_brand' => 'bg-blue',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_topnav' => 'navbar-blue navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -146,7 +146,7 @@ return [
     */
 
     'sidebar_mini' => 'lg',
-    'sidebar_collapse' => false,
+    'sidebar_collapse' => true,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
     'sidebar_collapse_remember_no_transition' => true,
@@ -167,8 +167,8 @@ return [
     |
     */
 
-    'right_sidebar' => false,
-    'right_sidebar_icon' => 'fas fa-cogs',
+    'right_sidebar' => true,
+    'right_sidebar_icon' => 'fas fa-cog',
     'right_sidebar_theme' => 'dark',
     'right_sidebar_slide' => true,
     'right_sidebar_push' => true,
@@ -247,17 +247,70 @@ return [
             'can'  => 'manage-blog',
         ],
         [
+        'text' => 'Menu',
+        'icon' => 'fas fa-home',
+        'submenu'=>[
+            [
+                'text' => 'Cargo',
+                'route'  => 'cargos.index',
+                'icon' => 'fas fa-check',
+                'icon_color' => 'primary',
+            ],
+            [
+                'text' => 'Asignaturas',
+                'route'  => 'asignaturas.index',
+                'icon' => 'fas fa-check',
+                'icon_color' => 'primary',
+            ],
+            [
+                'text' => 'Cortes-Evaluativos',
+                'route'  => 'cevaluativos.index',
+                'icon' => 'fas fa-check',
+                'icon_color' => 'primary',
+            ],
+            [
+                'text' => 'Grados',
+                'route'  => 'grados.index',
+                'icon' => 'fas fa-check',
+                'icon_color' => 'primary',
+            ],
+            [
+                'text' => 'Nivel Academico',
+                'route'  => 'nivelacademic.index',
+                'icon' => 'fas fa-check',
+                'icon_color' => 'primary',
+            ],
+            [
+                'text' => 'Profesion',
+                'route'  => 'profession.index',
+                'icon' => 'fas fa-check',
+                'icon_color' => 'primary',
+            ],
+            [
+                'text' => 'Tipo de Matricula',
+                'route'  => 'tmatricula.index',
+                'icon' => 'fas fa-check',
+                'icon_color' => 'primary',
+            ],
+
+        ]
+        ],
+
+
+
+        [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
-            'label_color' => 'success',
+            'label_color' => 'danger',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'Configuracion de la Cuenta'],
         [
-            'text' => 'profile',
+            'text' => 'perfil',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
+            'icon_color' => 'success',
         ],
         [
             'text' => 'change_password',

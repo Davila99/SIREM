@@ -1,5 +1,5 @@
  @extends('adminlte::page')
- @section('title', 'Dashboard')
+ @section('title', 'Cortes')
 
  @section('content_header')
  @stop
@@ -17,7 +17,7 @@
 
     @endif
     <br>
-    <a href="{{ url('cevaluativos/create') }}" class="btn btn-success"> Nuevo Cargo </a>
+    <a href="{{ url('cevaluativos/create') }}" class="btn btn-success"> Nuevo Corte </a>
     <br>
     <br>
     <table class="table table-dark">
