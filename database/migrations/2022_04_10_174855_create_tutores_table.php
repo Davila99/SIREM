@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('tutores', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->string('cedula');
+            $table->string('telefono');
+            $table->string('professions_id')->foreign('professions_id')
+            ->references('id')->on('professions')
+            ->onDelete('set null');
             $table->timestamps();
         });
     }

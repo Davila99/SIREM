@@ -15,7 +15,12 @@ class TutoreController extends Controller
      */
     public function index()
     {
-        return view ('tutores.index');
+        $datos['tutores'] = Tutore::query()
+        ->with(['professions'])
+        ->orderBy('nombre', 'asc')
+        ->paginate(3);
+
+    return view('tutores/index', $datos);
     }
 
     /**
@@ -25,7 +30,8 @@ class TutoreController extends Controller
      */
     public function create()
     {
-        //
+        $tutore = Tutore::all();
+        return view('tutores/create',compact('tutore'));
     }
 
     /**
