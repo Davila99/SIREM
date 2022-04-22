@@ -3,6 +3,7 @@
 use App\Http\Controllers\AsignaturaController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\CortesEvaluativoController;
+use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\GradoController;
 use App\Http\Controllers\NivelesAcademicoController;
 use App\Http\Controllers\ProfessionController;
@@ -32,6 +33,7 @@ Route::resource('profession', ProfessionController::class);
 Route::resource('asignaturas', AsignaturaController::class);
 Route::resource('cevaluativos', CortesEvaluativoController::class);
 Route::resource('tmatricula', TipoMatriculaController::class);
+Route::resource('empleados', EmpleadoController::class);
 
 Auth::routes();
 
