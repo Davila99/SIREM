@@ -15,7 +15,7 @@ return [
     */
 
     'title' => '',
-    'title_prefix' => '  ',
+    'title_prefix' => '',
     'title_postfix' => '| Sirem',
 
     /*
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => true,
+    'use_ico_only' => false,
     'use_full_favicon' => false,
 
     /*
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>SIREM</b>',
-    'logo_img' => 'logos/logo.png',
+    'logo' => '<b>Mantle O</b>f Grace',
+    'logo_img' => 'favicons/favicons/adminlte/dist/img/AdminLTELogo.jpg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'SIREM',
+    'logo_img_alt' => '',
 
     /*
     |--------------------------------------------------------------------------
@@ -66,8 +66,8 @@ return [
 
     'usermenu_enabled' => true,
     'usermenu_header' => true,
-    'usermenu_header_class' => 'bg-secundary',
-    'usermenu_image' => false,
+    'usermenu_header_class' => 'bg-primary',
+    'usermenu_image' => true,
     'usermenu_desc' => true,
     'usermenu_profile_url' => true,
 
@@ -102,7 +102,7 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-secundary',
+    'classes_auth_card' => 'card-outline card-primary',
     'classes_auth_header' => '',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
@@ -122,14 +122,14 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => 'bg-blue',
+    'classes_brand' => '',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-blue navbar-light',
+    'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -145,8 +145,8 @@ return [
     |
     */
 
-    'sidebar_mini' => 'lg',
-    'sidebar_collapse' => true,
+    'sidebar_mini' => 'true',
+    'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
     'sidebar_collapse_remember_no_transition' => true,
@@ -235,7 +235,7 @@ return [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-
+        
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
@@ -247,70 +247,66 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-        'text' => 'Menu',
-        'icon' => 'fas fa-home',
-        'submenu'=>[
-            [
-                'text' => 'Cargo',
-                'route'  => 'cargos.index',
-                'icon' => 'fas fa-check',
-                'icon_color' => 'primary',
-            ],
-            [
-                'text' => 'Asignaturas',
-                'route'  => 'asignaturas.index',
-                'icon' => 'fas fa-check',
-                'icon_color' => 'primary',
-            ],
-            [
-                'text' => 'Cortes-Evaluativos',
-                'route'  => 'cevaluativos.index',
-                'icon' => 'fas fa-check',
-                'icon_color' => 'primary',
-            ],
-            [
-                'text' => 'Grados',
-                'route'  => 'grados.index',
-                'icon' => 'fas fa-check',
-                'icon_color' => 'primary',
-            ],
-            [
-                'text' => 'Nivel Academico',
-                'route'  => 'nivelacademic.index',
-                'icon' => 'fas fa-check',
-                'icon_color' => 'primary',
-            ],
-            [
-                'text' => 'Profesion',
-                'route'  => 'profession.index',
-                'icon' => 'fas fa-check',
-                'icon_color' => 'primary',
-            ],
-            [
-                'text' => 'Tipo de Matricula',
-                'route'  => 'tmatricula.index',
-                'icon' => 'fas fa-check',
-                'icon_color' => 'primary',
-            ],
-
-        ]
+            'text' => 'Dashboard',
+            'url'  => 'home',
+            'icon' => 'fas fa-fw fa-home',
+            'label' => 'INITIATION',
+            'label_color' => 'primary',
         ],
-
-
-
+        [
+            'text'    => 'Menu',
+            'icon'    => 'fas fa-solid fa-bars',
+            'submenu' => [
+                [
+                    'text'    => 'Cargo',
+                    'route'     => 'cargos.index',
+                    'icon' => 'fas fa-solid fa-address-book',
+                ],
+                [
+                    'text' => 'Asignaturas',
+                    'route'  => 'asignaturas.index',
+                    'icon' => 'fas fa-solid fa-book',
+                ],
+                [
+                    'text' => 'Cortes-Evaluativos',
+                    'route'  => 'cevaluativos.index',
+                    'icon' => 'fas fa-solid fa-copyright',
+                ],
+                [
+                    'text' => 'Grados',
+                    'route'  => 'grados.index',
+                    'icon' => 'fas fa-solid fa-user-graduate',
+                ],
+                [
+                    'text' => 'Nivel Academico',
+                    'route'  => 'nivelacademic.index',
+                    'icon' => 'fas fa-graduation-cap',
+                ],
+                [
+                    'text' => 'Profesion',
+                    'route'  => 'profession.index',
+                    'icon' => 'fas fa-solid fa-user-tie',
+                    'icon' => 'fas fa-solid fa-briefcase',
+                ],
+                [
+                    'text' => 'Tipo de Matricula',
+                    'route'  => 'tmatricula.index',
+                    'icon' => 'fas fa-solid fa-file-signature',
+                ],
+            ],
+        ],
         [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
-            'label_color' => 'danger',
+            'label_color' => 'success',
         ],
-        ['header' => 'Configuracion de la Cuenta'],
+        ['header' => 'CONFIGURACION DE CUENTA'],
         [
-            'text' => 'perfil',
+            'text' => 'profile',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
-            'icon_color' => 'success',
         ],
         [
             'text' => 'change_password',
@@ -458,8 +454,8 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'asset' => true,
+                    'location' => 'vendor/sweetalert2/sweetalert2.all.min.js',
                 ],
             ],
         ],

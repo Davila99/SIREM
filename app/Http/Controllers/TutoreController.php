@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tutore;
-use App\Http\Requests\StoreTutoreRequest;
-use App\Http\Requests\UpdateTutoreRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TutoreController extends Controller
 {
@@ -20,7 +20,7 @@ class TutoreController extends Controller
         ->orderBy('nombre', 'asc')
         ->paginate(3);
 
-    return view('tutores/index', $datos);
+    return view('tutores/index', $datos,$datos);
     }
 
     /**
@@ -40,11 +40,30 @@ class TutoreController extends Controller
      * @param  \App\Http\Requests\StoreTutoreRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTutoreRequest $request)
+    public function store(Request $request)
     {
-        //
+        $campos =
+        [
+            'nombre' => 'required|string|max:100',
+            'apellido' => 'required|string|max:100',
+            'telefono' => 'required|string|max:12',
+            'cedula' => 'required|string|max:16',
+
+        ];
+    $mensaje = [
+        'required' => 'El :attribute es requerido',
+        'cedula.required' => 'La cedula es requerida'
+    ];
+
+    $this->validate($request, $campos, $mensaje);
+    $datos = request()->except('_token');
+    if ($request->hasFile('cedula')) {
+        $datos['cedula'] = $request->file('cedula')->store('uploads', 'public');
     }
 
+    Tutore::insert($datos);
+    return redirect('tutore/')->with('mensaje', 'Tutor agregado con exito');
+}
     /**
      * Display the specified resource.
      *
@@ -62,9 +81,10 @@ class TutoreController extends Controller
      * @param  \App\Models\Tutore  $tutore
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tutore $tutore)
+    public function edit($id)
     {
-        //
+        $datos = Tutore::findOrFail($id);
+        return view('tutores/edit', compact('datos'));
     }
 
     /**
@@ -74,10 +94,43 @@ class TutoreController extends Controller
      * @param  \App\Models\Tutore  $tutore
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTutoreRequest $request, Tutore $tutore)
+    public function update(Request $request, $id)
     {
-        //
+        $campos =
+        [
+            'nombre' => 'required|string|max:100',
+            'apellido' => 'required|string|max:100',
+            'telefono' => 'required|string|max:12',
+            'cedula' => 'required|string|max:16',
+
+        ];
+
+    $mensaje = [
+        'required' => 'El :attribute es requerido',
+
+    ];
+    if ($request->hasFile('cedula')) {
+        $campos = ['cedula' => 'required|max:10000'];
+        $mensaje = ['cedula.required' => 'La cedula  es requerida'];
     }
+    $this->validate($request, $campos, $mensaje);
+
+    //excluimos el token y la infromacion de method
+    $datos = request()->except(['_token', '_method']);
+
+    //condicionamos y comparamos que esi el id que estamos enviando
+    if ($request->hasFile('cedula')) {
+        $tutore = Tutore::findOrFail($id);
+
+        Storage::delete('public/' . $tutore->cedula);
+        $datos['cedula'] = $request->file('cedula')->store('uploads', 'public');
+    }
+    //es identico al que esta en los resgitros de la base de datos y guarda los nuevos cambios
+    Tutore::where('id', '=', $id)->update($datos);
+    $datos = Tutore::findOrFail($id);
+
+    return view('tutores.edit', compact('datos'));
+}
 
     /**
      * Remove the specified resource from storage.
@@ -85,8 +138,9 @@ class TutoreController extends Controller
      * @param  \App\Models\Tutore  $tutore
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tutore $tutore)
+    public function destroy($id)
     {
-        //
+            Tutore::destroy($id);
+        return redirect('tutores/')->with('mensaje', 'Tutor Eliminado con exito');
     }
 }

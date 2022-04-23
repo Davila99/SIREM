@@ -1,4 +1,7 @@
+@section('title', 'Dashboard')
 @extends('layouts.app')
+
+@section('plugins.Sweetalert2', true)
 
 @section('content')
 <div class="container">
@@ -20,4 +23,17 @@
         </div>
     </div>
 </div>
-@endsection
+@stop 
+
+@section('css')
+<link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+<script> 
+Swal.fire(
+    'Good job!',
+    'You clicked the button!',
+    'success') 
+    </script>
+@stop

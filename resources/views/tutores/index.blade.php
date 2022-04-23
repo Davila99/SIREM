@@ -61,7 +61,7 @@
                         <td>{{ $tutore->apellido }}</td>
                         <td>{{ $tutore->cedula }}</td>
                         <td>{{ $tutore->telefono }}</td>
-                        <td>{{ $tutore->professions}}</td>
+                        <td>{{ $tutore->professions->descripcion}}</td>
                         <td><a href="{{ url('/tutores/' . $tutore->id . '/edit') }}" class="btn btn-info">
                                 Editar </a>|
                             <form action="{{ url('/tutores/' . $tutore->id) }}" method="post" class="d-inline">
