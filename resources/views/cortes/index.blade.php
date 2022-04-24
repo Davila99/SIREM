@@ -1,5 +1,5 @@
  @extends('adminlte::page')
- @section('title', 'Dashboard')
+ @section('title', 'Cortes')
 
  @section('content_header')
  @stop
@@ -27,7 +27,22 @@
                  </tr>
              </thead>
 
+<<<<<<< HEAD
              <tbody>
+=======
+    @endif
+    <br>
+    <a href="{{ url('cevaluativos/create') }}" class="btn btn-success"> Nuevo Corte </a>
+    <br>
+    <br>
+    <table class="table table-dark">
+        <thead class="thead-light">
+            <tr>
+                <th>Cortes Evaluativos</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+>>>>>>> 17de8d147e35659e9fc16aef629ae31080114d94
 
                  @foreach ($cortes_evaluativos as $cortes_evaluativo)
                      <tr>

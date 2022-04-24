@@ -1,11 +1,11 @@
- @extends('adminlte::page') 
-    @section('title', 'Dashboard')
+ @extends('adminlte::page')
+    @section('title', 'cargos')
 
     @section('content_header')
     @stop
 
     @section('content')
-    
+
 
 
 
