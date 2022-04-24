@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AsignaturaController;
 use App\Http\Controllers\CargoController;
+use App\Http\Controllers\ConsanguiniedadeController;
 use App\Http\Controllers\CortesEvaluativoController;
 use App\Http\Controllers\GradoController;
 use App\Http\Controllers\NivelesAcademicoController;
@@ -34,6 +35,8 @@ Route::resource('asignaturas', AsignaturaController::class);
 Route::resource('cevaluativos', CortesEvaluativoController::class);
 Route::resource('tmatricula', TipoMatriculaController::class);
 Route::resource('tutores', TutoreController::class);
+Route::resource('consanguiniedades', ConsanguiniedadeController::class);
+
 
 Auth::routes();
 
