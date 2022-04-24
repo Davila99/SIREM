@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\AsignaturaController;
 use App\Http\Controllers\CargoController;
+use App\Http\Controllers\ConsanguiniedadeController;
 use App\Http\Controllers\CortesEvaluativoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\GradoController;
 use App\Http\Controllers\NivelesAcademicoController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\TipoMatriculaController;
+use App\Http\Controllers\TutoreController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +35,13 @@ Route::resource('profession', ProfessionController::class);
 Route::resource('asignaturas', AsignaturaController::class);
 Route::resource('cevaluativos', CortesEvaluativoController::class);
 Route::resource('tmatricula', TipoMatriculaController::class);
+<<<<<<< HEAD
 Route::resource('empleados', EmpleadoController::class);
+=======
+Route::resource('tutores', TutoreController::class);
+Route::resource('consanguiniedades', ConsanguiniedadeController::class);
+
+>>>>>>> a3c6025dc04cbe1ae45e5867692535bfc367fd8f
 
 Auth::routes();
 
