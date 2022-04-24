@@ -14,7 +14,8 @@ class ConsanguiniedadeController extends Controller
      */
     public function index()
     {
-        //
+        $datos['consanguiniedad'] = Consanguiniedade::paginate(10);
+        return view('consanguiniedad/index', $datos);
     }
 
     /**
@@ -24,7 +25,7 @@ class ConsanguiniedadeController extends Controller
      */
     public function create()
     {
-        //
+        return view('consanguiniedad/create');
     }
 
     /**
@@ -35,7 +36,9 @@ class ConsanguiniedadeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = request()->except('_token');
+        Consanguiniedade::insert($datos);
+        return redirect('consanguiniedades/')->with('mensaje', ' agregado con exito');
     }
 
     /**
@@ -55,9 +58,10 @@ class ConsanguiniedadeController extends Controller
      * @param  \App\Models\Consanguiniedade  $consanguiniedade
      * @return \Illuminate\Http\Response
      */
-    public function edit(Consanguiniedade $consanguiniedade)
+    public function edit($id)
     {
-        //
+        $datos = Consanguiniedade::findOrFail($id);
+        return view('consanguiniedad/edit', compact('datos'));
     }
 
     /**
@@ -67,9 +71,14 @@ class ConsanguiniedadeController extends Controller
      * @param  \App\Models\Consanguiniedade  $consanguiniedade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Consanguiniedade $consanguiniedade)
+    public function update(Request $request,$id)
     {
-        //
+        $datos = request()->except(['_token', '_method']);
+
+        Consanguiniedade::where('id', '=', $id)->update($datos);
+
+        $datos = Consanguiniedade::findOrFail($id);
+        return view('consanguiniedad.edit', compact('datos'));
     }
 
     /**
@@ -78,8 +87,9 @@ class ConsanguiniedadeController extends Controller
      * @param  \App\Models\Consanguiniedade  $consanguiniedade
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Consanguiniedade $consanguiniedade)
+    public function destroy($id)
     {
-        //
+        Consanguiniedade::destroy($id);
+        return redirect('consanguiniedades/')->with('mensaje', ' eliminada con exito');
     }
 }
