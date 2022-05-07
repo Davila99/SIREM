@@ -15,12 +15,15 @@ return new class extends Migration
     {
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombres');
             $table->string('apellidos');
             $table->string('fecha_nacimiento');
             $table->string('direccion');
             $table->string('tutor_id')->foreign('tutor_id')
             ->references('id')->on('tutores')
+            ->onDelete('set null');
+            $table->string('sexo_id')->foreign('sexo_id')
+            ->references('id')->on('sexos')
             ->onDelete('set null');
             $table->timestamps();
         });
