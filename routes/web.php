@@ -4,6 +4,7 @@ use App\Http\Controllers\AsignaturaController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ConsanguiniedadeController;
 use App\Http\Controllers\CortesEvaluativoController;
+use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\GradoController;
 use App\Http\Controllers\NivelesAcademicoController;
 use App\Http\Controllers\ProfessionController;
@@ -34,9 +35,16 @@ Route::resource('profession', ProfessionController::class);
 Route::resource('asignaturas', AsignaturaController::class);
 Route::resource('cevaluativos', CortesEvaluativoController::class);
 Route::resource('tmatricula', TipoMatriculaController::class);
+<<<<<<< HEAD
 Route::resource('tutores', TutoreController::class);
+<<<<<<< HEAD
 Route::resource('consanguiniedades', ConsanguiniedadeController::class);
 
+=======
+=======
+Route::resource('empleados', EmpleadoController::class);
+>>>>>>> 49c46ea18a66839f6df4fe1f119ebaa49a8fafe9
+>>>>>>> devadminlte
 
 Auth::routes();
 

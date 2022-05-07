@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('asignaturas', function (Blueprint $table) {
+        Schema::create('sexos', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('user_edit_id')->nullable()->constrained('users');
-            $table->foreignId('user_delete_id')->nullable()->constrained('users');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asignaturas');
+        Schema::dropIfExists('sexos');
     }
 };
