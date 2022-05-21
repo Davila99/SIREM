@@ -16,7 +16,8 @@ class TutoreController extends Controller
     public function index()
     {
         $datos['tutores'] = Tutore::query()
-        ->with(['professions'])
+        ->with(['tutores'])
+        ->with(['tutores'])
         ->orderBy('nombre', 'asc')
         ->paginate(3);
 

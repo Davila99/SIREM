@@ -15,7 +15,13 @@ class EstudianteController extends Controller
      */
     public function index()
     {
-        return view('estudiante/index');
+        $datos['estudiantes'] = Estudiante::query()
+        ->with(['tutores'])
+        ->with(['sexos'])
+        ->orderBy('nombres', 'asc')
+        ->paginate(3);
+
+    return view('estudiante/index', $datos,$datos);
     }
 
     /**
