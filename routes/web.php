@@ -40,6 +40,9 @@ Route::resource('tutores', TutoreController::class);
 Route::resource('consanguiniedades', ConsanguiniedadeController::class);
 Route::resource('empleados', EmpleadoController::class);
 Route::resource('estudiantes', EstudianteController::class);
+Route::resource('empleados', EmpleadoController::class);
+Route::resource('tutores', TutoreController::class);
+Route::resource('consanguiniedades', ConsanguiniedadeController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

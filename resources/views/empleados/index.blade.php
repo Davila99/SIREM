@@ -67,7 +67,7 @@
                         <td>{{ $empleado->direccion }}</td>
                         <td>{{ $empleado->email }}</td>
                         <td>{{ $empleado->fecha_ingreso }}</td>
-                        {{-- <td>{{ $empleado->cargos->descripcion }}</td> --}}
+                        <td>{{ $empleado->cargos->descripcion }}</td>
 
 
                         <td><a href="{{ url('/empleados/' . $empleado->id . '/edit') }}" class="btn btn-info">
