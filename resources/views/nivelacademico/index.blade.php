@@ -1,9 +1,5 @@
- @extends('adminlte::page')
-<<<<<<< HEAD
- @section('title', 'Dashboard')
-=======
+@extends('adminlte::page')
 @section('title', 'Nivel-Academico')
->>>>>>> 17de8d147e35659e9fc16aef629ae31080114d94
 
  @section('content_header')
  @stop

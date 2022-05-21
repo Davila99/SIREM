@@ -20,7 +20,8 @@
         <br>
         <table class="table table-dark">
             <thead class="thead-light">
-                <tr>Profesiones</th>
+                <tr>
+                    <th>Profesiones</th>
                     <th>Acciones</th>
                 </tr>
             </thead>

@@ -25,9 +25,6 @@ return new class extends Migration
             $table->integer('sexo_id')->foreign('sexo_id')
             ->references('id')->on('sexos')
             ->onDelete('sexos');
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('user_edit_id')->nullable()->constrained('users');
-            $table->foreignId('user_delete_id')->nullable()->constrained('users');
             $table->timestamps();
         });
     }

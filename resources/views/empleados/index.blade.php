@@ -60,16 +60,13 @@
                 @foreach ($empleados as $empleado)
                         <td>{{ $empleado->nombres }}</td>
                         <td>{{ $empleado->apellidos }}</td>
-                        <td>{{ $empleado->correo }}</td>
                         <td>{{ $empleado->telefono }}</td>
                         <td>{{ $empleado->fecha_nacimiento }}</td>
-                        {{-- <td>{{ $empleado->niveles_academicos->descripcion }}</td> --}}
+                        <td>{{ $empleado->niveles_academicos->descripcion }}</td>
                         <td>{{ $empleado->direccion }}</td>
                         <td>{{ $empleado->email }}</td>
                         <td>{{ $empleado->fecha_ingreso }}</td>
                         <td>{{ $empleado->cargos->descripcion }}</td>
-
-
                         <td><a href="{{ url('/empleados/' . $empleado->id . '/edit') }}" class="btn btn-info">
                                 Editar </a>|
                             <form action="{{ url('/empleados/' . $empleado->id) }}" method="post" class="d-inline">

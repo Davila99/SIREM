@@ -16,9 +16,6 @@ return new class extends Migration
         Schema::create('cargos', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('user_edit_id')->nullable()->constrained('users');
-            $table->foreignId('user_delete_id')->nullable()->constrained('users');
             $table->timestamps();
         });
     }
