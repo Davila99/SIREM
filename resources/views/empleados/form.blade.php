@@ -35,7 +35,7 @@
     <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"
         value="{{ isset($datos->fecha_nacimiento) ? $datos->fecha_nacimiento : old('fecha_nacimiento') }}"><br>
 </div>
-{{-- <div class="form-group">
+<div class="form-group">
     <label for="niveles_academicos">Nivel Academico:</label><br>
     <select class="form-control @error('niveles_academicos_id') is-invalid @enderror"
      name="niveles_academicos"
@@ -50,7 +50,7 @@
      @endforeach
      @endisset
 
-</div> --}}
+</div>
 <div class="form-group">
     <label for="direccion">Direccion:</label><br>
     <input type="text" class="form-control" id="direccion" name="direccion"

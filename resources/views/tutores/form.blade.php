@@ -1,5 +1,4 @@
 
-
 @if (count($errors) > 0)
     <div class="alert alert-danger" role="alert">
         <ul>
@@ -39,7 +38,7 @@
     <br>
     <select class="form-control @error('professions_id') is-invalid @enderror"
      name="professions_id"
-     id="profession">
+     id="professions">
 
      <option value="" selected disabled>--Seleccione--</option>
 

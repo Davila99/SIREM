@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profession;
 use App\Models\Tutore;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -16,8 +17,7 @@ class TutoreController extends Controller
     public function index()
     {
         $datos['tutores'] = Tutore::query()
-        ->with(['tutores'])
-        ->with(['tutores'])
+        ->with(['professions'])
         ->orderBy('nombre', 'asc')
         ->paginate(3);
 
@@ -31,8 +31,8 @@ class TutoreController extends Controller
      */
     public function create()
     {
-        $tutore = Tutore::all();
-        return view('tutores/create',compact('tutore'));
+        $professions = Profession::all();
+        return view('tutores/create',compact('professions'));
     }
 
     /**
@@ -63,7 +63,7 @@ class TutoreController extends Controller
     }
 
     Tutore::insert($datos);
-    return redirect('tutore/')->with('mensaje', 'Tutor agregado con exito');
+    return redirect('tutores/')->with('mensaje', 'Tutor agregado con exito');
 }
     /**
      * Display the specified resource.
