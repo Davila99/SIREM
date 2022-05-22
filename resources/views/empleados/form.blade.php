@@ -1,5 +1,4 @@
 
-
 @if (count($errors) > 0)
     <div class="alert alert-danger" role="alert">
         <ul>
@@ -11,14 +10,14 @@
 @endif
 
 <div class="form-group">
-    <label for="nombre">Nombre:</label><br>
-    <input type="text" class="form-control" id="nombre" name="nombre"
-        value="{{ isset($datos->nombre) ? $datos->nombre : old('nombre') }}"><br>
+    <label for="nombres">Nombre:</label><br>
+    <input type="text" class="form-control" id="nombres" name="nombres"
+        value="{{ isset($datos->nombres) ? $datos->nombres : old('nombres') }}"><br>
 </div>
 <div class="form-group">
-    <label for="apellido">Apellido:</label><br>
-    <input type="text" class="form-control" id="apellido" name="apellido"
-        value="{{ isset($datos->apellido) ? $datos->apellido : old('apellido')}}"><br>
+    <label for="apellidos">Apellido:</label><br>
+    <input type="text" class="form-control" id="apellidos" name="apellidos"
+        value="{{ isset($datos->apellidos) ? $datos->apellidos : old('apellidos')}}"><br>
 </div>
 <div class="form-group">
     <label for="telefono">Telefono:</label><br>
@@ -36,17 +35,17 @@
         value="{{ isset($datos->fecha_nacimiento) ? $datos->fecha_nacimiento : old('fecha_nacimiento') }}"><br>
 </div>
 <div class="form-group">
-    <label for="niveles_academicos">Nivel Academico:</label><br>
-    <select class="form-control @error('niveles_academicos_id') is-invalid @enderror"
-     name="niveles_academicos"
+    <label for="nivelacademico">Nivel Academico:</label><br>
+    <select class="form-control @error('nivel_academico_id') is-invalid @enderror"
+     name="nivel_academico_id"
      id="niveles_academicos">
 
      <option value="" selected disabled>--Seleccione--</option>
      @isset($niveles_academicos)
      @foreach ($niveles_academicos as $nivelacademico )
-        <option value="{{$niveles_academicos->id }}"
-            {{ old('niveles_academicos_id') == $niveles_academicos->id ? 'selected' : '' }}
-            >{{ $niveles_academicos->descripcion}}</option>
+        <option value="{{$nivelacademico->id }}"
+            {{ old('nivel_academico_id') == $nivelacademico->id ? 'selected' : '' }}
+            >{{ $nivelacademico->descripcion}}</option>
      @endforeach
      @endisset
 
@@ -70,21 +69,20 @@
 
 
 <div class="form-group">
-    <label for="cargos">Cargo:</label><br>
-    <select class="form-control @error('cargo_id') is-invalid @enderror"
-     name="cargo_id"
+    <label for="cargo">Cargo:</label><br>
+    <select class="form-control @error('cargos_id') is-invalid @enderror"
+     name="cargos_id"
      id="cargo">
-
      <option value="" selected disabled>--Seleccione--</option>
      @isset($cargos)
      @foreach ($cargos as $cargo )
         <option value="{{$cargo->id }}"
             {{ old('cargo_id') == $cargo->id ? 'selected' : '' }}
-            >{{ $cargos->descripcion}}</option>
+            >{{ $cargo->descripcion}}</option>
      @endforeach
      @endisset
 
 </div>
 
 <input type="submit" value="Guardar" class="btn btn-success">
-<button type="button" class="btn btn-secondary"><a href="{{ url('estudiante/') }}"> Regresar </a></button>
+<button type="button" class="btn btn-secondary"><a href="{{ url('empleados/') }}"> Regresar </a></button>

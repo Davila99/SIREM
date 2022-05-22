@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Empleado;
-use App\Http\Requests\StoreEmpleadoRequest;
-use App\Http\Requests\UpdateEmpleadoRequest;
-use App\Models\Cargo;
-use App\Models\Niveles_academico;
 
+use App\Models\Cargo;
+use App\Models\Empleado;
+use App\Models\Niveles_academico;
+use Illuminate\Http\Request;
 class EmpleadoController extends Controller
 {
     /**
@@ -18,11 +17,11 @@ class EmpleadoController extends Controller
     public function index()
     {
         $datos['empleados'] = Empleado::query()
-        ->with(['nivel_academico'])
-        ->with(['cargos'])
-        ->paginate(3);
+            ->with(['nivel_academico'])
+            ->with(['cargos'])
+            ->paginate(3);
 
-    return view('empleados/index', $datos,$datos);
+        return view('empleados/index', $datos, $datos);
     }
 
     /**
@@ -32,39 +31,22 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
+        $niveles_academicos = Niveles_academico::all();
         $cargos = Cargo::all();
-
-        return view('empleados/create',compact('cargos'));
+        return view('empleados/create', compact('niveles_academicos'), compact('cargos'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreEmpleadoRequest  $request
+     * @param  \App\Http\Requests\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEmpleadoRequest $request)
-    {/**
-        $campos =
-        [
-            'nombre' => 'required|string|max:100',
-            'apellido' => 'required|string|max:100',
-            'email' => 'required|email',
-            'telefono' => 'required|string|max:100',
-
-
-        ];
-    $mensaje = [
-        'required' => 'El :attribute es requerido',
-    ];
-
-    $this->validate($request, $campos, $mensaje);
-    $datos = request()->except('_token');
-
-
-
-    Empleado::insert($datos);
-    return redirect('empleado/')->with('mensaje', 'Estudiante agregado con exito');*/
+    public function store(Request $request)
+    {
+        $datos = request()->except('_token');
+        Empleado::insert($datos);
+        return redirect('empleados/')->with('mensaje', 'Empleado agregado con exito');
     }
 
     /**
@@ -84,7 +66,7 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Empleado $id)
+    public function edit($id)
     {
         $datos = Empleado::findOrFail($id);
         return view('empleados/edit', compact('datos'));
@@ -97,32 +79,11 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEmpleadoRequest $request, Empleado $id)
+    public function update(Request $request, $id)
     {
-        $campos =
-            [
-                'nombre' => 'required|string|max:100',
-                'apellido' => 'required|string|max:100',
-                'correo' => 'required|email',
-                'telefono' => 'required|string|max:100',
-
-            ];
-
-        $mensaje = [
-            'required' => 'El :attribute es requerido',
-
-        ];
-
-        $this->validate($request, $campos, $mensaje);
-
-        //excluimos el token y la infromacion de method
         $datos = request()->except(['_token', '_method']);
-
-
-
         Empleado::where('id', '=', $id)->update($datos);
         $datos = Empleado::findOrFail($id);
-
         return view('empleados.edit', compact('datos'));
     }
 
@@ -132,12 +93,9 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empleado $id)
+    public function destroy($id)
     {
-        $empleado = Empleado::findOrFail($id);
-
-
-
-        return redirect('empleados/')->with('mensaje', 'Estudiante Eliminado con exito');
+        Empleado::destroy($id);
+        return redirect('empleados/')->with('mensaje', 'Empleado Eliminado con exito');
     }
 }

@@ -62,12 +62,13 @@
                         <td>{{ $empleado->apellidos }}</td>
                         <td>{{ $empleado->telefono }}</td>
                         <td>{{ $empleado->fecha_nacimiento }}</td>
-                        <td>{{ $empleado->niveles_academicos->descripcion }}</td>
+                        <td>{{ $empleado->cedula }}</td>
+                        <td>{{ $empleado->nivel_academico->descripcion }}</td>
                         <td>{{ $empleado->direccion }}</td>
                         <td>{{ $empleado->email }}</td>
                         <td>{{ $empleado->fecha_ingreso }}</td>
                         <td>{{ $empleado->cargos->descripcion }}</td>
-                        <td><a href="{{ url('/empleados/' . $empleado->id . '/edit') }}" class="btn btn-info">
+                        <td><a href="{{ url('/empleados/' .$empleado->id.'/edit') }}" class="btn btn-info">
                                 Editar </a>|
                             <form action="{{ url('/empleados/' . $empleado->id) }}" method="post" class="d-inline">
                                 @csrf
