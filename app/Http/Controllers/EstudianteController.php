@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
-use App\Http\Requests\StoreEstudianteRequest;
-use App\Http\Requests\UpdateEstudianteRequest;
-
+use App\Models\Sexo;
+use App\Models\Tutore;
+use Illuminate\Http\Request;
 class EstudianteController extends Controller
 {
     /**
@@ -16,12 +16,10 @@ class EstudianteController extends Controller
     public function index()
     {
         $datos['estudiantes'] = Estudiante::query()
-        ->with(['tutores'])
-        ->with(['sexos'])
-        ->orderBy('nombres', 'asc')
-        ->paginate(3);
-
-    return view('estudiante/index', $datos,$datos);
+        ->with(['tutor'])
+        ->with(['sexo'])
+        ->paginate(5);
+        return view('estudiante/index', $datos);
     }
 
     /**
@@ -31,7 +29,9 @@ class EstudianteController extends Controller
      */
     public function create()
     {
-        //
+        $tutores = Tutore::all();
+        $sexos = Sexo::all();
+        return view('estudiante/create',compact('tutores'),compact('sexos'));
     }
 
     /**
@@ -40,9 +40,11 @@ class EstudianteController extends Controller
      * @param  \App\Http\Requests\StoreEstudianteRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEstudianteRequest $request)
+    public function store(Request $request)
     {
-        //
+        $datos = request()->except('_token');
+        Estudiante::insert($datos);
+        return redirect('estudiantes/')->with('mensaje', 'Estudiante agregado con exito');
     }
 
     /**
@@ -62,9 +64,10 @@ class EstudianteController extends Controller
      * @param  \App\Models\Estudiante  $estudiante
      * @return \Illuminate\Http\Response
      */
-    public function edit(Estudiante $estudiante)
+    public function edit($id)
     {
-        //
+        $datos = Estudiante::findOrFail($id);
+        return view('estudiante/edit', compact('datos'));
     }
 
     /**
@@ -74,9 +77,12 @@ class EstudianteController extends Controller
      * @param  \App\Models\Estudiante  $estudiante
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEstudianteRequest $request, Estudiante $estudiante)
+    public function update(Request $request, $id)
     {
-        //
+        $datos = request()->except(['_token', '_method']);
+        Estudiante::where('id', '=', $id)->update($datos);
+        $datos = Estudiante::findOrFail($id);
+        return view('estudiante.edit', compact('datos'));
     }
 
     /**
@@ -85,8 +91,9 @@ class EstudianteController extends Controller
      * @param  \App\Models\Estudiante  $estudiante
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Estudiante $estudiante)
+    public function destroy($id)
     {
-        //
+        Estudiante::destroy($id);
+        return redirect('estudiantes/')->with('mensaje', 'Estudiante eliminado con exito');
     }
 }

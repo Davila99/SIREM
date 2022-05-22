@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Sexo;
+use App\Models\Tutore;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Estudiante extends Model
 {
     use HasFactory;
-    public function tutores()
+    public function tutor()
     {
         return $this->belongsTo(Tutore::class);
     }
-    public function sexos()
+    public function sexo()
     {
         return $this->belongsTo(Sexo::class);
     }

@@ -2,6 +2,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
+
 @stop
 
 @section('content')
@@ -33,7 +34,7 @@
             </div>
 
             <br>
-        <a href="{{ url('tutores/create') }}" class="btn btn-success"> Nuevo Tutor </a>
+        <a href="{{ url('estudiantes/create') }}" class="btn btn-success"> Nuevo Estudiante </a>
         <br>
         <br>
         <table class="table table-dark">
@@ -46,8 +47,6 @@
                     <th>Tutor</th>
                     <th>Sexo</th>
                     <th>Acciones</th>
-
-
                 </tr>
             </thead>
 
@@ -60,8 +59,8 @@
                         <td>{{ $estudiante->apellidos}}</td>
                         <td>{{ $estudiante->fecha_nacimiento }}</td>
                         <td>{{ $estudiante->direccion }}</td>
-                        <td>{{ $estudiante->tutores->nombre}}</td>
-                        <td>{{ $estudiante->sexos->descripcion}}</td>
+                        <td>{{ $estudiante->tutor->nombre}}</td>
+                        <td>{{ $estudiante->sexo->descripcion}}</td>
                         <td><a href="{{ url('/estudiantes/' . $estudiante->id . '/edit') }}" class="btn btn-info">
                                 Editar </a>|
                             <form action="{{ url('/estudiantes/' . $estudiante->id) }}" method="post" class="d-inline">
@@ -71,7 +70,6 @@
                                     class="btn btn-danger" value="eliminar">
                             </form>
                         </td>
-
                     </tr>
                 @endforeach
             </tbody>
