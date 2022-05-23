@@ -67,7 +67,9 @@ class EstudianteController extends Controller
     public function edit($id)
     {
         $datos = Estudiante::findOrFail($id);
-        return view('estudiante/edit', compact('datos'));
+        $tutores = Tutore::all();
+        $sexos = Sexo::all();
+        return view('estudiante/edit',["datos"=>$datos,"tutores"=>$tutores,"sexos"=>$sexos]);
     }
 
     /**
