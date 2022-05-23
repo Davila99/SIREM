@@ -23,7 +23,7 @@
     <table class="table table-dark">
         <thead class="thead-light">
             <tr>
-                <th>Cargos</th>
+                <th>Asignaturas</th>
                 <th>Acciones</th>
             </tr>
         </thead>

@@ -17,13 +17,13 @@
 
     @endif
     <br>
-    <a href="{{ url('consanguiniedades/create') }}" class="btn btn-success"> Nuevo Asignatura </a>
+    <a href="{{ url('consanguiniedades/create') }}" class="btn btn-success"> Nuevo Consanguiniedad </a>
     <br>
     <br>
     <table class="table table-dark">
         <thead class="thead-light">
             <tr>
-                <th>Cargos</th>
+                <th>  Consanguiniedades</th>
                 <th>Acciones</th>
             </tr>
         </thead>

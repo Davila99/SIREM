@@ -18,13 +18,13 @@
 
     @endif
     <br>
-    <a href="{{ url('tmatricula/create') }}" class="btn btn-success"> Nuevo Cargo </a>
+    <a href="{{ url('tmatricula/create') }}" class="btn btn-success"> Nuevo Tipo de Matricula </a>
     <br>
     <br>
     <table class="table table-dark">
         <thead class="thead-light">
             <tr>
-                <th>tipoMatricula</th>
+                <th>Tipo Matricula</th>
                 <th>Acciones</th>
             </tr>
         </thead>

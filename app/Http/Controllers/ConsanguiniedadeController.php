@@ -14,7 +14,7 @@ class ConsanguiniedadeController extends Controller
      */
     public function index()
     {
-        $datos['consanguiniedad'] = Consanguiniedade::paginate(10);
+        $datos['consanguiniedades'] = Consanguiniedade::paginate(10);
         return view('consanguiniedad/index', $datos);
     }
 

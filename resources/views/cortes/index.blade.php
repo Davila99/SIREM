@@ -16,7 +16,7 @@
              </div>
          @endif
          <br>
-         <a href="{{ url('cevaluativos/create') }}" class="btn btn-success"> Nuevo Cargo </a>
+         <a href="{{ url('cevaluativos/create') }}" class="btn btn-success"> Nuevo Corte </a>
          <br>
          <br>
          <table class="table table-dark">

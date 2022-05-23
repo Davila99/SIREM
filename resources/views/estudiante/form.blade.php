@@ -34,49 +34,48 @@
             value="{{ isset($datos->direccion) ? $datos->direccion : old('direccion') }}"><br>
     </div>
 
-<table class="table table-dark">
-    <thead class="thead-light">
-        <tr>
-            <th>Tutor</th>
-            <th>Sexo</th>
-        </tr>
-    </thead>
- <tbody>
-    <tr>
-        <th>
-            <div class="form-group">
-                <select class="form-control @error('tutor_id') is-invalid @enderror" name="tutor_id" id="tutor">
-        
-                    <option value=""  disabled>--Seleccione--</option>
-                    @isset($tutores)
-                        @foreach ($tutores as $tutor)
-                            <option value="{{ $tutor->id }}" {{ $datos->tutor_id == $tutor->id ? 'selected' : '' }}>
-                                {{ $tutor->nombre }}</option>
-                        @endforeach
-                    @endisset
-            </div>
-        </th>
-        <th>
-              
-    <div class="form-group">
-        <select class="form-control @error('sexo_id') is-invalid @enderror" name="sexo_id" id="sexo">
+    <table class="table table-dark">
+        <thead class="thead-light">
+            <tr>
+                <th>Tutor</th>
+                <th>Sexo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    <div class="form-group">
+                        <select class="form-control @error('tutor_id') is-invalid @enderror" name="tutor_id" id="tutor">
 
-            <option value="" selected disabled>--Seleccione--</option>
-            @isset($sexos)
-                @foreach ($sexos as $sexo)
-                    <option value="{{ $sexo->id }}" {{ old('sexo_id') == $sexo->id ? 'selected' : '' }}>
-                        {{ $sexo->descripcion }}</option>
-                @endforeach
-            @endisset
-    </div>
-        </th>
-    </tr>
- </tbody>
+                            <option value="" disabled>--Seleccione--</option>
+                            @isset($tutores)
+                                @foreach ($tutores as $tutor)
+                                    <option value="{{ $tutor->id }}"
+                                        {{ $datos->tutor_id == $tutor->id ? 'selected' : '' }}>
+                                        {{ $tutor->nombre }}</option>
+                                @endforeach
+                            @endisset
+                    </div>
+                </th>
+                <th>
 
+                    <div class="form-group">
+                        <select class="form-control @error('sexo_id') is-invalid @enderror" name="sexo_id" id="sexo">
 
-</table>
+                            <option value="" selected disabled>--Seleccione--</option>
+                            @isset($sexos)
+                                @foreach ($sexos as $sexo)
+                                    <option value="{{ $sexo->id }}"
+                                        {{ old('sexo_id') == $sexo->id ? 'selected' : '' }}>
+                                        {{ $sexo->descripcion }}</option>
+                                @endforeach
+                            @endisset
+                    </div>
+                </th>
+            </tr>
+        </tbody>
 
-
+    </table>
 
     <input type="submit" value="Guardar" class="btn btn-success">
-    <button type="button" class="btn btn-secondary"><a href="{{ url('estudiantes/') }}"> Regresar </a></button>
+    <a type="button" class="btn btn-primary" href="{{ url('estudiantes/') }}"> Regresar </a>

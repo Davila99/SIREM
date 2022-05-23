@@ -287,6 +287,11 @@ return [
 
                 ],
                 [
+                    'text' => 'Consanguinidades',
+                    'route'  => 'consanguiniedades.index',
+                    'icon' => 'fas fa-solid fa-file-signature',
+                ],
+                [
                     'text' => 'Tipo de Matricula',
                     'route'  => 'tmatricula.index',
                     'icon' => 'fas fa-solid fa-file-signature',

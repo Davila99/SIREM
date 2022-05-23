@@ -18,4 +18,5 @@
 
 
 <input type="submit" value="Guardar" class="btn btn-success">
-<button type="button" class="btn btn-secondary"><a href="{{ url('nivelacademic/') }}"> Regresar </a></button>
+<a  type="button" class="btn btn-primary" href="{{ url('nivelacademic/') }}"> Regresar </a>
+
