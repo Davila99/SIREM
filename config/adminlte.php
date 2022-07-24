@@ -250,6 +250,9 @@ return [
             'text' => 'Dashboard',
             'url'  => 'home',
             'icon' => 'fas fa-fw fa-home',
+            'label' => '',
+            'label_color' => 'primary',
+
         ],
         [
             'text'    => 'Menu',
@@ -287,15 +290,11 @@ return [
 
                 ],
                 [
-                    'text' => 'Consanguinidades',
-                    'route'  => 'consanguiniedades.index',
-                    'icon' => 'fas fa-solid fa-file-signature',
-                ],
-                [
                     'text' => 'Tipo de Matricula',
                     'route'  => 'tmatricula.index',
                     'icon' => 'fas fa-solid fa-file-signature',
                 ],
+                
             ],
         ],
         [
@@ -313,7 +312,16 @@ return [
             'route'         => 'tutores.index',
             'icon' => 'fas fa-solid fa-briefcase',
         ],
-
+        [
+            'text'        => 'Asignturas Docentes',
+            'route'         => 'asignaturadoc.index',
+            'icon' => 'fas fa-solid fa-signature',
+        ],
+        [
+            'text'        => 'Grupos',
+            'route'         => 'asignaturadoc.index',
+            'icon' => 'fas fa-brands fa-glide',
+        ],
         ['header' => 'CONFIGURACION DE CUENTA'],
         [
             'text' => 'Usuario',
@@ -364,22 +372,6 @@ return [
         //     ],
         // ],
 
-        // ['header' => 'labels'],
-        // [
-        //     'text'       => 'important',
-        //     'icon_color' => 'red',
-        //     'url'        => '#',
-        // ],
-        // [
-        //     'text'       => 'warning',
-        //     'icon_color' => 'amarillo',
-        //     'url'        => '#',
-        // ],
-        // [
-        //     'text'       => 'information',
-        //     'icon_color' => 'cyan',
-        //     'url'        => '#',
-        // ],
     ],
 
     /*
