@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\AsignaturaController;
 use App\Http\Controllers\AsignaturaDocenteController;
+use App\Http\Controllers\CalificacionesController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ConsanguiniedadeController;
 use App\Http\Controllers\CortesEvaluativoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\GradoController;
+use App\Http\Controllers\GruposController;
 use App\Http\Controllers\NivelesAcademicoController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\TipoMatriculaController;
@@ -45,6 +47,8 @@ Route::resource('empleados', EmpleadoController::class);
 Route::resource('tutores', TutoreController::class);
 Route::resource('consanguiniedades', ConsanguiniedadeController::class);
 Route::resource('asignaturadoc', AsignaturaDocenteController::class);
+Route::resource('grupose', GruposController::class);
+Route::resource('calificacionese', CalificacionesController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
