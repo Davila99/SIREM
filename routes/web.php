@@ -8,6 +8,7 @@ use App\Http\Controllers\CortesEvaluativoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\GradoController;
+use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\NivelesAcademicoController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\TipoMatriculaController;
@@ -45,6 +46,7 @@ Route::resource('empleados', EmpleadoController::class);
 Route::resource('tutores', TutoreController::class);
 Route::resource('consanguiniedades', ConsanguiniedadeController::class);
 Route::resource('asignaturadoc', AsignaturaDocenteController::class);
+Route::resource('matriculas', MatriculaController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -313,6 +313,11 @@ return [
             'icon' => 'fas fa-solid fa-briefcase',
         ],
         [
+            'text'        => 'Matriculas',
+            'route'         => 'matriculas.index',
+            'icon' => 'fas fa-solid fa-briefcase',
+        ],
+        [
             'text'        => 'Asignturas Docentes',
             'route'         => 'asignaturadoc.index',
             'icon' => 'fas fa-solid fa-signature',

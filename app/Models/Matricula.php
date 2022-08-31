@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Matricula extends Model
 {
     use HasFactory;
+    public function estudiante()
+    {
+        return $this->belongsTo(Estudiante::class);
+    }
+    public function tipo_matricula()
+    {
+        return $this->belongsTo(Tipo_Matricula::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+ 
 }
