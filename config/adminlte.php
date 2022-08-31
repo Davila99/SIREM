@@ -325,7 +325,7 @@ return [
         [
             'text'        => 'Calificaciones',
             'route'         => 'calificacionese.index',
-            'icon' => 'fas fa-brands fa-glide',
+            'icon' => 'fas fa-solid fa-book',
         ],
         ['header' => 'CONFIGURACION DE CUENTA'],
         [
