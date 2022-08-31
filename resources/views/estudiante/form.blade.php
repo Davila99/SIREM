@@ -50,15 +50,17 @@
                             <option value="" disabled>--Seleccione--</option>
                             @isset($tutores)
                                 @foreach ($tutores as $tutor)
-                                    <option value="{{ $tutor->id }}"
+                                    {{-- <option value="{{ $tutor->id }}"
                                         {{ $datos->tutor_id == $tutor->id ? 'selected' : '' }}>
-                                        {{ $tutor->nombre }}</option>
+                                        {{ $tutor->nombre }}</option> --}}
+                                        <option value="{{$tutor->id }}"
+                                            {{ old('tutor_id') == $tutor->id ? 'selected' : '' }}
+                                            >{{ $tutor->nombre}}</option>
                                 @endforeach
                             @endisset
                     </div>
                 </th>
                 <th>
-
                     <div class="form-group">
                         <select class="form-control @error('sexo_id') is-invalid @enderror" name="sexo_id" id="sexo">
 
