@@ -322,6 +322,11 @@ return [
             'route'         => 'grupose.index',
             'icon' => 'fas fa-brands fa-glide',
         ],
+        [
+            'text'        => 'Calificaciones',
+            'route'         => 'calificacionese.index',
+            'icon' => 'fas fa-brands fa-glide',
+        ],
         ['header' => 'CONFIGURACION DE CUENTA'],
         [
             'text' => 'Usuario',
