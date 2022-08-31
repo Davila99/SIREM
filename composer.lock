@@ -997,6 +997,7 @@
         },
         {
             "name": "laravel/framework",
+
             "version": "v9.7.0",
             "source": {
                 "type": "git",
@@ -1173,6 +1174,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+
             "time": "2022-04-05T15:07:51+00:00"
 
         },
@@ -1302,6 +1304,7 @@
         },
         {
             "name": "laravel/tinker",
+
             "version": "v2.7.2",
             "source": {
                 "type": "git",
@@ -1622,6 +1625,7 @@
         },
         {
             "name": "league/flysystem",
+
             "version": "3.0.15",
             "source": {
                 "type": "git",
@@ -1632,7 +1636,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/3b71cd136dc0331ee87b636b25f4ee339368c718",
                 "reference": "3b71cd136dc0331ee87b636b25f4ee339368c718",
-
                 "shasum": ""
             },
             "require": {
@@ -1771,7 +1774,6 @@
         },
         {
             "name": "monolog/monolog",
-
             "version": "2.5.0",
             "source": {
                 "type": "git",
@@ -6509,6 +6511,7 @@
         },
         {
             "name": "phpunit/phpunit",
+
             "version": "9.5.20",
             "source": {
                 "type": "git",
@@ -7705,6 +7708,7 @@
         },
         {
             "name": "spatie/ignition",
+
             "version": "1.2.7",
             "source": {
                 "type": "git",
@@ -7772,6 +7776,7 @@
                     "type": "github"
                 }
             ],
+
             "time": "2022-03-29T08:48:34+00:00"
         },
         {
@@ -7863,6 +7868,7 @@
                     "type": "github"
                 }
             ],
+
             "time": "2022-04-01T21:01:58+00:00"
 
         },

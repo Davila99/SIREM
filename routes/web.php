@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AsignaturaController;
+use App\Http\Controllers\AsignaturaDocenteController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ConsanguiniedadeController;
 use App\Http\Controllers\CortesEvaluativoController;
@@ -43,6 +44,7 @@ Route::resource('estudiantes', EstudianteController::class);
 Route::resource('empleados', EmpleadoController::class);
 Route::resource('tutores', TutoreController::class);
 Route::resource('consanguiniedades', ConsanguiniedadeController::class);
+Route::resource('asignaturadoc', AsignaturaDocenteController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
