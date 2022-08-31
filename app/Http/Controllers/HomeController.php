@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estudiante;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $datos['estudiantes'] = Estudiante::query()
+        ->with(['tutor'])
+        ->with(['sexo'])
+        ->paginate(5);
+        return view('estudiante/index', $datos);
     }
 }
