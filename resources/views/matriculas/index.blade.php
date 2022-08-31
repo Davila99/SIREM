@@ -34,7 +34,7 @@
             </div>
 
             <br>
-        <a href="{{ url('estudiantes/create') }}" class="btn btn-success"> Nuevo Estudiante </a>
+        <a href="{{ url('matriculas/create') }}" class="btn btn-success"> Nueva Matricula </a>
         <br>
         <br>
         <table class="table table-dark">
