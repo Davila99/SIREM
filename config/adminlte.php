@@ -324,7 +324,7 @@ return [
         ],
         [
             'text'        => 'Grupos',
-            'route'         => 'grupose.index',
+            'route'         => 'grupos.index',
             'icon' => 'fas fa-brands fa-glide',
         ],
         [

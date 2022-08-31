@@ -1,4 +1,4 @@
-{{--  <h1>{{ $titulo }} Grupos estudiantiles</h1>  --}}
+
 
 @if (count($errors) > 0)
     <div class="alert alert-danger" role="alert">
@@ -84,6 +84,6 @@
 </table>
 
 <input type="submit" value="Guardar" class="btn btn-success">
-<button type="button" class="btn btn-secondary"><a href="{{ url('grupose/') }}"> Regresar </a></button>
+<button type="button" class="btn btn-secondary"><a href="{{ url('grupos/') }}"> Regresar </a></button>
 
 
