@@ -324,7 +324,7 @@ return [
         ],
         [
             'text'        => 'Grupos',
-            'route'         => 'asignaturadoc.index',
+            'route'         => 'grupose.index',
             'icon' => 'fas fa-brands fa-glide',
         ],
         ['header' => 'CONFIGURACION DE CUENTA'],
