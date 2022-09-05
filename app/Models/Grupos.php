@@ -12,13 +12,10 @@ class Grupos extends Model
     {
         return $this->belongsTo(Grado::class);
     }
-    public function niveles_academico()
+
+    public function empleado()
     {
-        return $this->belongsTo(Niveles_academico::class);
-    }
-    public function asignaturadocente()
-    {
-        return $this->belongsTo(AsignaturaDocente::class);
+        return $this->belongsTo(Empleado::class);
     }
 
 }

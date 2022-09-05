@@ -305,7 +305,7 @@ return [
         [
             'text'        => 'Empleados',
             'route'         => 'empleados.index',
-            'icon'        => 'fas fa-solid fa-users',
+            'icon' => 'fas fa-solid fa-layer-group',
         ],
         [
             'text'        => 'Tutores',
@@ -325,12 +325,13 @@ return [
         [
             'text'        => 'Grupos',
             'route'         => 'grupos.index',
-            'icon' => 'fas fa-brands fa-glide',
+            'icon'        => 'fas fa-solid fa-users',
+
         ],
         [
             'text'        => 'Calificaciones',
             'route'         => 'calificacionese.index',
-            'icon' => 'fas fa-brands fa-glide',
+            'icon' => 'fas fa-solid fa-book',
         ],
         ['header' => 'CONFIGURACION DE CUENTA'],
         [
