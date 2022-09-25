@@ -20,7 +20,7 @@ return new class extends Migration
             ->onDelete('set null');
             $table->string('fecha');
             $table->integer('docente_id')->foreign('docente_id')
-            ->references('id')->on('empleados')
+            ->references('id')->on('empleados') //que
             ->onDelete('set null');
             $table->timestamps();
         });

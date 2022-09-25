@@ -45,8 +45,8 @@ return [
     |
     */
 
-    'logo' => '<b>Mantle O</b>f Grace',
-    'logo_img' => 'favicons/favicons/adminlte/dist/img/AdminLTELogo.jpg',
+    'logo' => '<b>Mantle Of Grace</b>',
+    'logo_img' => 'favicons/favicons/adminlte/dist/img/logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
