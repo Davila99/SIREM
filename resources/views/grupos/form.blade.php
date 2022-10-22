@@ -69,7 +69,7 @@
         @foreach ($asignaturadocentes as $asignaturadocente )
            <option value="{{$asignaturadocente->id }}"
                {{ old('asignaturadocente_id') == $asignaturadocente->id ? 'selected' : '' }}
-               >{{ $asignaturadocente->descripcion}}</option>
+               >{{ $asignaturadocente}}</option>
         @endforeach
         @endisset
     
