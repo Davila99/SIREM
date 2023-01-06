@@ -1,11 +1,6 @@
 @extends('adminlte::page')
-@section('title', 'Profesion')
-@section('content_header')
-@stop
-
 @section('content')
     <div class="container">
-
         @if (Session::has('mensaje'))
             <div class="alert alert-success" role="alert" class="text-center">
                 {{ Session::get('mensaje') }}
@@ -33,8 +28,7 @@
                         <td>{{ $profession->descripcion }}</td>
                         <td><a href="{{ url('/profession/' . $profession->id . '/edit') }}" class="btn btn-info">
                                 Editar </a>|
-                            <form action="{{ url('/profession/' . $profession->id) }}" method="post"
-                                class="d-inline">
+                            <form action="{{ url('/profession/' . $profession->id) }}" method="post" class="d-inline">
                                 @csrf
                                 {{ method_field('DELETE') }}
                                 <input type="submit" onclick="return confirm('Estas seguro de eliminar este registro?')"
@@ -46,17 +40,5 @@
                 @endforeach
             </tbody>
         </table>
-        {!! $professions->links() !!}
     </div>
-
-@stop
-
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-    <script>
-        console.log('Hi!');
-    </script>
 @stop

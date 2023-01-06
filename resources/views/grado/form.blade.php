@@ -17,4 +17,4 @@
 
 
 <input type="submit" value="Guardar" class="btn btn-success">
-<a  type="button" class="btn btn-primary" href="{{ url('grados/') }}"> Regresar </a>
+<a type="button" class="btn btn-primary" href="{{ url('grados/') }}"> Regresar </a>

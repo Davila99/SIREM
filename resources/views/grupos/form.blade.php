@@ -14,7 +14,7 @@
     <thead class="thead-light">
         <tr>
             <th>Grado</th>
-            <th>Niveles Academicos</th>
+            <th>Fecha</th>
             <th>Docente</th>
            
         </tr>
@@ -41,19 +41,7 @@
         <th>
 
 <div class="form-group">
-    <select class="form-control @error('niveles_academico_id') is-invalid @enderror"
-     name="niveles_academico_id"
-     id="niveles_academico_id">
-
-    <option value="" selected disabled>--Seleccione--</option>
-    
-    @isset($niveles_academicos)
-    @foreach ($niveles_academicos as $niveles_academico )
-       <option value="{{$niveles_academico->id }}"
-           {{ old('niveles_academico_id') == $niveles_academico->id ? 'selected' : '' }}
-           >{{ $niveles_academico->nombres}}</option>
-    @endforeach
-    @endisset
+    <td>{{ $grupos->fecha}}</td>
 
 </div>
 </th>

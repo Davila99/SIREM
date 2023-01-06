@@ -49,7 +49,6 @@ Route::resource('tutores', TutoreController::class);
 Route::resource('consanguiniedades', ConsanguiniedadeController::class);
 Route::resource('asignaturadoc', AsignaturaDocenteController::class);
 Route::resource('matriculas', MatriculaController::class);
-
 Route::resource('grupos', GruposController::class);
 Route::resource('calificacionese', CalificacionesController::class);
 Auth::routes();

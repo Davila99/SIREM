@@ -24,7 +24,7 @@ class GruposController extends Controller
 
     return view('grupos/index',$datos);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -46,9 +46,8 @@ class GruposController extends Controller
      */
     public function store(StoreGruposRequest $request)
     {
-        $datos = request()->except('_token');
-        Grupos::insert($datos);
-        return redirect('grupos/')->with('mensaje', 'grupo agregado con exito');
+  
+     
     }
 
     /**

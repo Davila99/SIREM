@@ -1,14 +1,6 @@
  @extends('adminlte::page')
-    @section('title', 'cargos')
-
-    @section('content_header')
-    @stop
-
+  
     @section('content')
-
-
-
-
     <div class="container">
 
         @if (Session::has('mensaje'))
@@ -52,18 +44,9 @@
                 @endforeach
             </tbody>
         </table>
-        {!! $cargos->links() !!}
     </div>
-
-
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-    <script>
-        console.log('Hi!');
-    </script>
+<link rel="stylesheet" href="/css/admin_custom.css">
 @stop

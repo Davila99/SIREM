@@ -120,7 +120,6 @@
 </tr>
 </tbody>
 
-
 </table>
 
 <input type="submit" value="Guardar" class="btn btn-success">

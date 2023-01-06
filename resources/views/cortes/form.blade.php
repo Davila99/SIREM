@@ -9,10 +9,12 @@
 @endif
 
 <div class="form-group">
-    <label for="descripcion"><h5>Corte Evaluativo::</h5></label><br>
+    <label for="descripcion">
+        <h5>Corte Evaluativo::</h5>
+    </label><br>
     <input type="text" class="form-control" id="descripcion" name="descripcion"
         value="{{ isset($datos->descripcion) ? $datos->descripcion : old('descripcion') }}"><br>
 </div>
 
 <input type="submit" value="Guardar" class="btn btn-success">
-<a  type="button" class="btn btn-primary"  href="{{ url('cevaluativos/') }}"> Regresar </a>
+<a type="button" class="btn btn-primary" href="{{ url('cevaluativos/') }}"> Regresar </a>
