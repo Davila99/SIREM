@@ -17,11 +17,11 @@ class EmpleadoController extends Controller
     public function index()
     {
         $datos['empleados'] = Empleado::query()
-            ->with(['nivel_academico'])
-            ->with(['cargos'])
-            ->paginate(3);
+        ->with(['nivel_academico'])
+        ->with(['cargos'])
+        ->paginate(10);
 
-        return view('empleados/index', $datos, $datos);
+    return view('empleados/index', $datos, $datos);
     }
 
     /**

@@ -1,4 +1,8 @@
 @extends('adminlte::page')
+@section('title', 'Dashboard')
+
+@section('content')
+
 @section('content')
     <div class="container">
 
@@ -58,7 +62,7 @@
                         <td>{{ $empleado->direccion }}</td>
                         <td>{{ $empleado->email }}</td>
                         <td>{{ $empleado->fecha_ingreso }}</td>
-                        <td>{{ $empleado->cargos->descripcion}}</td>
+                        <td>{{ $empleado->cargos->descripcion }}</td>
                         <td><a href="{{ url('/empleados/' .$empleado->id.'/edit') }}" class="btn btn-info">
                                 Editar </a>|
                             <form action="{{ url('/empleados/' . $empleado->id) }}" method="post" class="d-inline">
@@ -73,6 +77,10 @@
                 @endforeach
             </tbody>
         </table>
-    
+        {!! $empleados->links() !!}
     </div>
+
+@endsection
 @stop
+
+
