@@ -19,7 +19,7 @@ return new class extends Migration
             ->references('id')->on('grados')
             ->onDelete('set null');
             $table->string('fecha');
-            $table->integer('docente_id')->foreign('docente_id')
+            $table->integer('empleados_id')->foreign('empleados_id')
             ->references('id')->on('empleados') 
             ->onDelete('set null');
             $table->timestamps();

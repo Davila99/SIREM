@@ -38,13 +38,13 @@
 
                 @foreach ($grupos as $grupo)
                     <tr>
-                        <td>{{ $grupos->grados->descripcion }}</td>
-                        <td>{{ $$grupos->niveles_academico->descripcion }}</td>
-                        <td>{{ $$grupos->asignaturadocente->descripcion }}</td>
+                        <td>{{ $grupo->grados->descripcion }}</td>
+                        <td>{{ $grupo->fecha }}</td>
+                        <td>{{ $grupo->empleados->nombres }}</td>
 
-                        <td><a href="{{ url('/grupos/' . $grupos->id . '/edit') }}" class="btn btn-info">
+                        <td><a href="{{ url('/grupos/' . $grupo->id . '/edit') }}" class="btn btn-info">
                                 Editar </a>|
-                            <form action="{{ url('/grupos/' . $grupos->id) }}" method="post" class="d-inline">
+                            <form action="{{ url('/grupos/' . $grupo->id) }}" method="post" class="d-inline">
                                 @csrf
                                 {{ method_field('DELETE') }}
                                 

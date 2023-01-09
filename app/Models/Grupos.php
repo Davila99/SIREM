@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Grupos extends Model
 {
     use HasFactory;
-    public function grado()
+    public function grados()
     {
         return $this->belongsTo(Grado::class);
     }
 
-    public function empleado()
+    public function empleados()
     {
         return $this->belongsTo(Empleado::class);
     }

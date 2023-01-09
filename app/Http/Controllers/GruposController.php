@@ -20,7 +20,8 @@ class GruposController extends Controller
     {
         $datos['grupos'] =Grupos::query()
         ->with(['grados'])
-        ->paginate(3);
+        ->with(['empleados'])
+        ->paginate(10);
 
     return view('grupos/index',$datos);
     }
@@ -33,8 +34,7 @@ class GruposController extends Controller
     public function create()
     {
         $grados = Grado::all();
-        $empleados = Empleado::all();
-
+        $empleados = Empleado::where('cargos_id',1)->get();
         return view('grupos/create',compact('grados'),compact('empleados'));
     }
 
@@ -44,9 +44,11 @@ class GruposController extends Controller
      * @param  \App\Http\Requests\StoreGruposRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreGruposRequest $request)
+    public function store(Request $request)
     {
-  
+        $datos = request()->except('_token');
+        Grupos::insert($datos);
+        return redirect('grupos/')->with('mensaje', 'Grupo agregado con exito');
      
     }
 
