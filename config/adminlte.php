@@ -264,6 +264,11 @@ return [
                     'icon' => 'fas fa-solid fa-address-book',
                 ],
                 [
+                    'text'    => 'Consanguiniedad',
+                    'route'     => 'consanguiniedades.index',
+                    'icon' => 'fas fa-solid fa-address-book',
+                ],
+                [
                     'text' => 'Asignaturas',
                     'route'  => 'asignaturas.index',
                     'icon' => 'fas fa-solid fa-book',
