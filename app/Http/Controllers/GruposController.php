@@ -73,7 +73,7 @@ class GruposController extends Controller
     {
         $datos = Grupos::findOrFail($id);
         $grados = Grado::all();
-        $empleados = Empleado::all();
+        $empleados = Empleado::where('cargos_id',1)->get();
        
         return view('grupos/edit',["datos"=>$datos,"grados"=>$grados,"empleados"=>$empleados]);
     }
@@ -89,8 +89,8 @@ class GruposController extends Controller
     {
         $datos = request()->except(['_token', '_method']);
         Grupos::where('id', '=', $id)->update($datos);
-        $datos = Grado::findOrFail($id);
-        return view('grupos.edit', compact('datos'));
+        $datos = Grupos::findOrFail($id);
+        return view('grupos/', compact('datos'));
     }
 
     /**
