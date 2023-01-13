@@ -39,8 +39,8 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Telefono</th>
-                    <th>Cedula</th>
                     <th>Fecha Nacimiento</th>
+                    <th>Cedula</th>
                     <th>Nivel Academico</th>
                     <th>Direccion</th>
                     <th>Email</th>

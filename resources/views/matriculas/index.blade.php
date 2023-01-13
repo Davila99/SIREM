@@ -13,7 +13,7 @@
         @endif
         <br>
             <div class="col-xl-12">
-                <form action="{{ route('tutores.index') }}" method="get">
+                <form action="{{ route('matriculas.index') }}" method="get">
                     <div class="form-row">
                         <div class="col-sm-4">
                         <input type="text" class="form-control" name="texto" value="">
@@ -32,30 +32,27 @@
         <table class="table table-dark">
             <thead class="thead-light">
                 <tr>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Fecha Nacimiento</th>
-                    <th>Direccion</th>
-                    <th>Tutor</th>
-                    <th>Sexo</th>
-                    <th>Acciones</th>
+                    <th>Fecha</th>
+                    <th>Estudiante</th>
+                    <th>Usuario</th>
+                    <th>Tipo de Matricula</th>
+                    <th>Grupo</th>
+          
                 </tr>
             </thead>
 
             <tbody>
 
-                @foreach ($estudiantes as $estudiante)
+                @foreach ($matriculas as $matricula)
 
                     <tr>
-                        <td>{{ $estudiante->nombres }}</td>
-                        <td>{{ $estudiante->apellidos}}</td>
-                        <td>{{ $estudiante->fecha_nacimiento }}</td>
-                        <td>{{ $estudiante->direccion }}</td>
-                        <td>{{ $estudiante->tutor->nombre}}</td>
-                        <td>{{ $estudiante->sexo->descripcion}}</td>
-                        <td><a href="{{ url('/estudiantes/' . $estudiante->id . '/edit') }}" class="btn btn-info">
+                        <td>{{ $matricula->nombres }}</td>
+                        <td>{{ $matricula->apellidos}}</td>
+                        <td>{{ $matricula->fecha_nacimiento }}</td>
+                        <td>{{ $matricula->direccion }}</td>
+                        <td><a href="{{ url('/matriculas/' . $matricula->id . '/edit') }}" class="btn btn-info">
                                 Editar </a>|
-                            <form action="{{ url('/estudiantes/' . $estudiante->id) }}" method="post" class="d-inline">
+                            <form action="{{ url('/matriculas/' . $matricula->id) }}" method="post" class="d-inline">
                                 @csrf
                                 {{ method_field('DELETE') }}
                                 <input type="submit" onclick="return confirm('Estas seguro de eliminar este registro?')"

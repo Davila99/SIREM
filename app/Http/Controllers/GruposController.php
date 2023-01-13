@@ -18,6 +18,7 @@ class GruposController extends Controller
      */
     public function index()
     {
+        dd(date('Y-m-d'));
         $datos['grupos'] =Grupos::query()
         ->with(['grados'])
         ->with(['empleados'])

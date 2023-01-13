@@ -33,7 +33,6 @@ class AsignaturaDocenteController extends Controller
     public function create()
     {
         $asignaturas = Asignatura::all();
-        // $cargosDocentes = Cargo::where()
         $empleados = Empleado::where('cargos_id',1)->get();
         return view('asignaturadocente/create',compact('asignaturas'),compact('empleados'));
     }

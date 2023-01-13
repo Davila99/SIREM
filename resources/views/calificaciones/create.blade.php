@@ -6,7 +6,7 @@
     @csrf
 
     @include('calificaciones.form')
-
+    
 </form>
 </div>
 @endsection

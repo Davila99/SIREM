@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Matricula extends Model
 {
     use HasFactory;
+    
     public function estudiante()
     {
         return $this->belongsTo(Estudiante::class);
@@ -20,5 +21,13 @@ class Matricula extends Model
     {
         return $this->belongsTo(User::class);
     }
- 
+    public function tipo__matriculas()
+    {
+        return $this->belongsTo(Tipo_Matricula::class);
+    }
+    public function grupos()
+    {
+        return $this->belongsTo(Grupos::class);
+    }
+    
 }

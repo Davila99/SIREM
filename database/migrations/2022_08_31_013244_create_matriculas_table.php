@@ -15,16 +15,16 @@ return new class extends Migration
     {
         Schema::create('matriculas', function (Blueprint $table) {
             $table->id();
+            $table->string('fecha');
             $table->integer('user_id')->foreign('user_id')
             ->references('id')->on('users')
             ->onDelete('set null');
             $table->integer('estudiante_id')->foreign('estudiante_id')
             ->references('id')->on('estudiantes')
             ->onDelete('set null');
-            $table->integer('tipo__matricula_id')->foreign('tipo__matricula_id')
-            ->references('id')->on('tipo__matriculas')
+            $table->integer('tipo_matricula_id')->foreign('tipo_matricula_id')
+            ->references('id')->on('tipo_matriculas')
             ->onDelete('set null');
-            $table->string('fecha');
             $table->timestamps();
         });
     }
