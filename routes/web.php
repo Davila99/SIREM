@@ -8,6 +8,7 @@ use App\Http\Controllers\ConsanguiniedadeController;
 use App\Http\Controllers\CortesEvaluativoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EstudianteController;
+use App\Http\Controllers\EstudiantesTutoresController;
 use App\Http\Controllers\GradoController;
 use App\Http\Controllers\GruposController;
 use App\Http\Controllers\NivelesAcademicoController;
@@ -49,6 +50,7 @@ Route::resource('consanguiniedades', ConsanguiniedadeController::class);
 Route::resource('asignaturadoc', AsignaturaDocenteController::class);
 Route::resource('grupose', GruposController::class);
 Route::resource('calificacionese', CalificacionesController::class);
+Route::resource('estutor', EstudiantesTutoresController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

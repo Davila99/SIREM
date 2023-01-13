@@ -16,6 +16,7 @@ class AsignaturaDocenteController extends Controller
      */
     public function index()
     {
+        
         $datos['asignaturadocentes'] = AsignaturaDocente::query()
         ->with(['asignatura'])
         ->with(['empleado'])
