@@ -21,11 +21,7 @@ class Matricula extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function tipo__matriculas()
-    {
-        return $this->belongsTo(Tipo_Matricula::class);
-    }
-    public function grupos()
+    public function grupo()
     {
         return $this->belongsTo(Grupos::class);
     }

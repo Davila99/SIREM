@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\GrupoCollection;
+use App\Http\Resources\TipoMatriculaCollection;
 use App\Models\Tipo_Matricula;
 
 use Illuminate\Http\Request;
@@ -92,4 +94,21 @@ class TipoMatriculaController extends Controller
         Tipo_Matricula::destroy($id);
         return redirect('tmatricula/')->with('mensaje', 'Cargos eliminado con exito');
     }
+    public function search(Request $request)
+    {
+
+        if (!isset($request->term)) {
+            return [
+                'data' => []
+            ];
+        }
+
+        $results = Tipo_Matricula::query()
+            ->where('descripcion', 'like', "%" . $request->term . "%")
+            ->select('id', 'descripcion')
+            ->get();
+
+        return new TipoMatriculaCollection($results);
+    }
+
 }

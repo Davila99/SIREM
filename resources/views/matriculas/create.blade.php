@@ -1,14 +1,13 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <h1>Registrar Nivel Academico</h1>
-        <form action="{{ url('/nivelacademic') }}" method="post" enctype="multipart/form-data">
+        <h1>Registrar Matricula</h1>
+        <form action="{{ url('/matriculas') }}" method="post" enctype="multipart/form-data">
             @csrf
-            @include('nivelacademico.form')
+            @include('matriculas.form')
 
         </form>
-        <select class="buscador-estudiantes col-12">
-        </select>
+       
     </div>
 @endsection
 
@@ -40,7 +39,5 @@ $(document).ready(function() {
         }
     });
 });
-
 </script>
-
 @endsection
