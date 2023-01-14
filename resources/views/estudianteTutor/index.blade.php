@@ -44,10 +44,10 @@
 
             <tbody>
 
-                @foreach ($estudiantetutores as $estudiantetutore)
+                @foreach ($estudianteTutors as $estudianteTutor)
                     <tr>
-                        <td>{{ $estudiantetutor->asignatura->descripcion }}</td>
-                        <td>{{ $estudiantetutor->tutor->nombres }}</td>
+                        <td>{{ $estudianteTutor->asignatura->descripcion }}</td>
+                        <td>{{ $estudianteTutor->tutor->nombres }}</td>
 
                         <td><a href="{{ url('/estudianteTutor/' . $estudiantetutore->id . '/edit') }}" class="btn btn-info">
                                 Editar </a>|
