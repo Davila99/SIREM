@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -15,13 +14,13 @@ return new class extends Migration
     {
         Schema::create('grupos', function (Blueprint $table) {
             $table->id();
-            $table->integer('grados_id')->foreign('grados_id')
-            ->references('id')->on('grados')
-            ->onDelete('set null');
+            $table->integer('grado_id')->foreign('grado_id')
+                ->references('id')->on('grados')
+                ->onDelete('set null');
             $table->string('fecha');
             $table->integer('empleados_id')->foreign('empleados_id')
-            ->references('id')->on('empleados') 
-            ->onDelete('set null');
+                ->references('id')->on('empleados')
+                ->onDelete('set null');
             $table->timestamps();
         });
     }

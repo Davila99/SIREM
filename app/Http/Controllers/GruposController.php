@@ -18,15 +18,17 @@ class GruposController extends Controller
      */
     public function index()
     {
+
         dd(date('Y-m-d'));
         $datos['grupos'] =Grupos::query()
         ->with(['grados'])
         ->with(['empleados'])
         ->paginate(10);
 
-    return view('grupos/index',$datos);
+
+        return view('grupos/index', $datos);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -35,8 +37,8 @@ class GruposController extends Controller
     public function create()
     {
         $grados = Grado::all();
-        $empleados = Empleado::where('cargos_id',1)->get();
-        return view('grupos/create',compact('grados'),compact('empleados'));
+        $empleados = Empleado::where('cargos_id', 1)->get();
+        return view('grupos/create', compact('grados'), compact('empleados'));
     }
 
     /**
@@ -50,7 +52,7 @@ class GruposController extends Controller
         $datos = request()->except('_token');
         Grupos::insert($datos);
         return redirect('grupos/')->with('mensaje', 'Grupo agregado con exito');
-     
+
     }
 
     /**
@@ -74,9 +76,11 @@ class GruposController extends Controller
     {
         $datos = Grupos::findOrFail($id);
         $grados = Grado::all();
+
         $empleados = Empleado::where('cargos_id',1)->get();
        
         return view('grupos/edit',["datos"=>$datos,"grados"=>$grados,"empleados"=>$empleados]);
+
     }
 
     /**
@@ -104,5 +108,25 @@ class GruposController extends Controller
     {
         Grupos::destroy($id);
         return redirect('grupos/')->with('mensaje', ' Eliminado con exito');
+    }
+
+    public function search(Request $request)
+    {
+
+        if (!isset($request->term)) {
+            return [
+                'data' => []
+            ];
+        }
+
+
+        $results = Grupos::query()
+            ->with('grado', 'empleado')
+            ->whereHas('grado', function ($q) use ($request) {
+                $q->where('descripcion', 'like', "%" . $request->term . "%");
+            })
+            ->get();
+
+        return $results;
     }
 }

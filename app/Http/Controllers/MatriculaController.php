@@ -10,16 +10,15 @@ class MatriculaController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $datos['matriculas'] = Matricula::query()
-        ->with(['estudiante'])
-        ->with(['tipo_matricula'])
-        ->with(['user'])
-        ->paginate(5);
+            ->with(['estudiante'])
+            ->with(['tipo_matricula'])
+            ->with(['user'])
+            ->paginate(5);
+
         return view('matriculas/index', $datos);
     }
 
@@ -30,7 +29,7 @@ class MatriculaController extends Controller
      */
     public function create()
     {
-        //
+        return view('matriculas/create');
     }
 
     /**

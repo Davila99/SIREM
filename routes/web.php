@@ -54,3 +54,7 @@ Route::resource('calificacionese', CalificacionesController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('buscar-estudiantes', [EstudianteController::class, 'search']);
+Route::get('buscar-grupos', [GruposController::class, 'search']);

@@ -18,5 +18,14 @@ class Grupos extends Model
         return $this->belongsTo(Empleado::class);
     }
 
-}
+    public function grado()
+    {
+        return $this->belongsTo(Grado::class);
+    }
 
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class);
+    }
+
+}
