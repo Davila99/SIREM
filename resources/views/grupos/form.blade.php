@@ -23,6 +23,7 @@
                 <div class="form-group">
                     <select class="form-control @error('grados_id') is-invalid @enderror" name="grados_id" id="grados">
 
+<<<<<<< HEAD
                         <option value="" selected disabled>--Seleccione--</option>
 
                         @isset($grados)
@@ -35,6 +36,14 @@
                 </div>
             </th>
             <th>
+=======
+<div class="form-group">
+    <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"
+        value="{{ isset($datos->fecha_nacimiento) ? $datos->fecha_nacimiento : old('fecha_nacimiento') }}"><br>
+</div>
+</th>
+<th>
+>>>>>>> 4ad9804d0e57e918b97a73fd1bf06f2562906c87
 
                 <div class="form-group">
                     

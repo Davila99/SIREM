@@ -1,4 +1,12 @@
 @extends('adminlte::page')
+@section('title', 'Dashboard')
+
+@section('content_header')
+@stop
+
+@section('content')
+
+{{--  @extends('layouts.app')  --}}
 
 @section('content')
     <div class="container">
@@ -14,7 +22,7 @@
         @endif
         <br>
             <div class="col-xl-12">
-                <form action="{{ route('calificacionese.index') }}" method="get">
+                <form action="{{ route('tutorestudiante.index') }}" method="get">
                     <div class="form-row">
                         <div class="col-sm-4">
                         <input type="text" class="form-control" name="texto" value="">
@@ -26,9 +34,8 @@
                 </form>
             </div>
 
-            <br>-----
-        <a href="{{ url('calificacionese/create') }}" class="btn btn-success"> Nueva Calificaciones
-         </a>
+            <br>
+        <a href="{{ url('tutorestudiante/create') }}" class="btn btn-success"> Nuev </a>
         <br>
         <br>
         <table class="table table-dark">
@@ -37,18 +44,14 @@
 
             <tbody>
 
-                @foreach ($calificaciones as $calificacione)
+                @foreach ($estudiantestutores as $estudiantestutor)
                     <tr>
-                        <td>{{ $calificaciones->Docente->nombres }}</td>
-                        <td>{{ $calificaciones->asignatura->descripcion }}</td>
-                        <td>{{ $calificaciones->grado->descripcion }}</td>
-                        <td>{{ $calificaciones->estudiante->nombres }}</td>
-                        <td>{{ $calificaciones->corteevaluativo->descripcion }}</td>
+                        <td>{{ $estudiantestutor->estudiante->nombres }}</td>
+                        <td>{{ $estudiantestutor->tutores->nombre }}</td>
 
-
-                        <td><a href="{{ url('/calificaciones/' . $calificacion->id . '/edit') }}" class="btn btn-info">
+                        <td><a href="{{ url('/tutorestudiante/' . $estudiantestutor->id . '/edit') }}" class="btn btn-info">
                                 Editar </a>|
-                            <form action="{{ url('/calificaciones/' . $calificacion->id) }}" method="post" class="d-inline">
+                            <form action="{{ url('/tutorestudiante/' . $estudiantestutor->id) }}" method="post" class="d-inline">
                                 @csrf
                                 {{ method_field('DELETE') }}
                                 
@@ -60,8 +63,19 @@
                     </tr>
                 @endforeach
             </tbody>
-        </table>       
+        </table>
+       
     </div>
 
 @endsection
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script>
+        console.log('Hi!');
+    </script>
 @stop
