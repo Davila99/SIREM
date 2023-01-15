@@ -12,9 +12,9 @@ public function estudiante()
 {
     return $this->belongsTo(Estudiante::class);
 }
-public function tutor()
+public function tutores()
 {
-    return $this->belongsTo(Tutor::class);
+    return $this->belongsTo(Tutore::class);
 }
 
 }

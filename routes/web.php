@@ -50,7 +50,7 @@ Route::resource('consanguiniedades', ConsanguiniedadeController::class);
 Route::resource('asignaturadoc', AsignaturaDocenteController::class);
 Route::resource('grupose', GruposController::class);
 Route::resource('calificacionese', CalificacionesController::class);
-Route::resource('estutor', EstudiantesTutoresController::class);
+Route::resource('tutorestudiante', EstudiantesTutoresController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

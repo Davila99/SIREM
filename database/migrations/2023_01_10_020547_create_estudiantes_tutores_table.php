@@ -19,8 +19,8 @@ return new class extends Migration
             ->references('id')->on('estudiante')
             ->onDelete('set null');
 
-            $table->integer('tutor_id')->foreign('tutores_id')
-            ->references('id')->on('tutor')
+            $table->integer('tutores_id')->foreign('tutores_id')
+            ->references('id')->on('tutores')
             ->onDelete('set null');
 
 

@@ -1,4 +1,4 @@
-{{--  <h1>{{ $titulo }} Asignatura Docentes</h1>  --}}
+{{--  <h1>{{ $titulo }} </h1>  --}}
 
 @if (count($errors) > 0)
     <div class="alert alert-danger" role="alert">
@@ -27,11 +27,11 @@
                  id="estudiante">
                  <option value="" selected disabled>--Seleccione--</option>
                 
-                 @isset($aestudiantes)
-                 @foreach ($aestudiantes as $estudiante )
+                 @isset($estudiantes)
+                 @foreach ($estudiantes as $estudiante )
                     <option value="{{$estudiante->id }}"
-                        {{ old('estudiante_id') == $asignatura->id ? 'selected' : '' }}
-                        >{{ $estudiante->descripcion}}</option>
+                        {{ old('estudiante_id') == $estudiante->id ? 'selected' : '' }}
+                        >{{ $estudiante->nombres}}</option>
                  @endforeach
                  @endisset
             
@@ -40,21 +40,22 @@
         <th>
 
 <div class="form-group">
-    <select class="form-control @error('tutor_id') is-invalid @enderror"
-     name="tutor_id"
+    <select class="form-control @error('tutores_id') is-invalid @enderror"
+     name="tutores_id"
      id="tutor">
 
     <option value="" selected disabled>--Seleccione--</option>
     
-    @isset($tutoress)
-    @foreach ($tutores as $tutor )
-       <option value="{{$tutor->id }}"
-           {{ old('tutor_id') == $tutor->id ? 'selected' : '' }}
-           >{{ $tutor->nombres}}</option>
+    @isset($tutores)
+    @foreach ($tutores as $tutore )
+       <option value="{{$tutore->id }}"
+           {{ old('tutores_id') == $tutore->id ? 'selected' : '' }}
+           >{{ $tutore->nombre}}</option>
     @endforeach
     @endisset
 
 </div>
+
 </th>
 <th>
 </th>
@@ -65,6 +66,6 @@
 </table>
 
 <input type="submit" value="Guardar" class="btn btn-success">
-<button type="button" class="btn btn-secondary"><a href="{{ url('estudiantetutor/') }}"> Regresar </a></button>
+<button type="button" class="btn btn-secondary"><a href="{{ url('tutorestudiante/') }}"> Regresar </a></button>
 
 

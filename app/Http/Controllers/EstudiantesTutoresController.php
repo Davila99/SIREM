@@ -16,11 +16,12 @@ class EstudiantesTutoresController extends Controller
      */
     public function index()
     {
+       
         $datos['estudiantestutores'] = EstudiantesTutores::query()
         ->with(['estudiante'])
-        ->with(['tutore'])
-        ->paginate(3);
-
+        ->with(['tutores'])
+        ->paginate(10);
+      
         return view('estudianteTutor/index',$datos);
     }
 
@@ -34,6 +35,9 @@ class EstudiantesTutoresController extends Controller
         $estudiantes = Estudiante::all();
         $tutores = Tutore::all();
         return view('estudianteTutor/create',compact('estudiantes'),compact('tutores'));
+
+
+       
     }
 
     /**
@@ -46,7 +50,7 @@ class EstudiantesTutoresController extends Controller
     {
         $datos = request()->except('_token');
         EstudiantesTutores::insert($datos);
-        return redirect('estudianteTutor/')->with('mensaje', 'Asignatura Docente agregado con exito');
+        return redirect('tutorestudiante/')->with('mensaje', 'Asignatura Docente agregado con exito');
     }
 
     /**
@@ -98,6 +102,6 @@ class EstudiantesTutoresController extends Controller
     public function destroy($id)
     {
         EstudiantesTutores::destroy($id);
-        return redirect('estudianteTutor/')->with('mensaje', 'Asignatura Docentes Eliminado con exito');
+        return redirect('tutorestudiante/')->with('mensaje', ' Eliminado con exito');
     }
 }

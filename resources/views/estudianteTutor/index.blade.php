@@ -22,7 +22,7 @@
         @endif
         <br>
             <div class="col-xl-12">
-                <form action="{{ route('estutor.index') }}" method="get">
+                <form action="{{ route('tutorestudiante.index') }}" method="get">
                     <div class="form-row">
                         <div class="col-sm-4">
                         <input type="text" class="form-control" name="texto" value="">
@@ -35,7 +35,7 @@
             </div>
 
             <br>
-        <a href="{{ url('estutor/create') }}" class="btn btn-success"> Nuev </a>
+        <a href="{{ url('tutorestudiante/create') }}" class="btn btn-success"> Nuev </a>
         <br>
         <br>
         <table class="table table-dark">
@@ -44,14 +44,14 @@
 
             <tbody>
 
-                @foreach ($estudianteTutors as $estudianteTutor)
+                @foreach ($estudiantestutores as $estudiantestutor)
                     <tr>
-                        <td>{{ $estudianteTutor->asignatura->descripcion }}</td>
-                        <td>{{ $estudianteTutor->tutor->nombres }}</td>
+                        <td>{{ $estudiantestutor->estudiante->nombres }}</td>
+                        <td>{{ $estudiantestutor->tutores->nombre }}</td>
 
-                        <td><a href="{{ url('/estudianteTutor/' . $estudiantetutore->id . '/edit') }}" class="btn btn-info">
+                        <td><a href="{{ url('/tutorestudiante/' . $estudiantestutor->id . '/edit') }}" class="btn btn-info">
                                 Editar </a>|
-                            <form action="{{ url('/estudianteTutor/' . $estudiantetutore->id) }}" method="post" class="d-inline">
+                            <form action="{{ url('/tutorestudiante/' . $estudiantestutor->id) }}" method="post" class="d-inline">
                                 @csrf
                                 {{ method_field('DELETE') }}
                                 
@@ -64,7 +64,7 @@
                 @endforeach
             </tbody>
         </table>
-        {!! $estudiantetutor->links() !!}
+       
     </div>
 
 @endsection
