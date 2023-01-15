@@ -128,5 +128,6 @@ class GruposController extends Controller
             ->get();
 
         return $results;
+       
     }
 }

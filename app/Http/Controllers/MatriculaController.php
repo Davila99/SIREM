@@ -16,6 +16,7 @@ class MatriculaController extends Controller
         $datos['matriculas'] = Matricula::query()
             ->with(['estudiante'])
             ->with(['tipo_matricula'])
+            ->with(['grupo'])
             ->with(['user'])
             ->paginate(5);
 
@@ -40,7 +41,7 @@ class MatriculaController extends Controller
      */
     public function store(StoreMatriculaRequest $request)
     {
-        //
+        
     }
 
     /**

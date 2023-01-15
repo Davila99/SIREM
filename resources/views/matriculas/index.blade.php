@@ -46,10 +46,10 @@
                 @foreach ($matriculas as $matricula)
 
                     <tr>
-                        <td>{{ $matricula->nombres }}</td>
-                        <td>{{ $matricula->apellidos}}</td>
-                        <td>{{ $matricula->fecha_nacimiento }}</td>
-                        <td>{{ $matricula->direccion }}</td>
+                        <td>{{ $matricula->estudiante->nombres }}</td>
+                        <td>{{ $matricula->tipo_matricula->descripcion}}</td>
+                        <td>{{ $matricula->grupo-grado_id }}</td>
+                        <td>{{ $matricula->user->name }}</td>
                         <td><a href="{{ url('/matriculas/' . $matricula->id . '/edit') }}" class="btn btn-info">
                                 Editar </a>|
                             <form action="{{ url('/matriculas/' . $matricula->id) }}" method="post" class="d-inline">
