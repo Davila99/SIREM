@@ -1,12 +1,4 @@
 @extends('adminlte::page')
-@section('title', 'Dashboard')
-
-@section('content_header')
-@stop
-
-@section('content')
-
-{{--  @extends('layouts.app')  --}}
 
 @section('content')
     <div class="container">
@@ -22,7 +14,7 @@
         @endif
         <br>
             <div class="col-xl-12">
-                <form action="{{ route('grupose.index') }}" method="get">
+                <form action="{{ route('grupos.index') }}" method="get">
                     <div class="form-row">
                         <div class="col-sm-4">
                         <input type="text" class="form-control" name="texto" value="">
@@ -35,7 +27,7 @@
             </div>
 
             <br>
-        <a href="{{ url('grupose/create') }}" class="btn btn-success"> Nuevo Grupo </a>
+        <a href="{{ url('grupos/create') }}" class="btn btn-success"> Nuevo Grupo </a>
         <br>
         <br>
         <table class="table table-dark">
@@ -46,13 +38,13 @@
 
                 @foreach ($grupos as $grupo)
                     <tr>
-                        <td>{{ $grupos->grado->descripcion }}</td>
-                        <td>{{ $$grupos->niveles_academico->descripcion }}</td>
-                        <td>{{ $$grupos->asignaturadocente->descripcion }}</td>
+                        <td>{{ $grupo->grados->descripcion }}</td>
+                        <td>{{ $grupo->fecha }}</td>
+                        <td>{{ $grupo->empleados->nombres }}</td>
 
-                        <td><a href="{{ url('/grupose/' . $grupos->id . '/edit') }}" class="btn btn-info">
+                        <td><a href="{{ url('/grupos/' . $grupo->id . '/edit') }}" class="btn btn-info">
                                 Editar </a>|
-                            <form action="{{ url('/grupose/' . $grupos->id) }}" method="post" class="d-inline">
+                            <form action="{{ url('/grupos/' . $grupo->id) }}" method="post" class="d-inline">
                                 @csrf
                                 {{ method_field('DELETE') }}
                                 
@@ -68,15 +60,7 @@
         {!! $grupos->links() !!}
     </div>
 
-@endsection
+
 @stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
 
-@section('js')
-    <script>
-        console.log('Hi!');
-    </script>
-@stop

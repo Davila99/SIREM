@@ -10,6 +10,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\EstudiantesTutoresController;
 use App\Http\Controllers\GradoController;
+use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\GruposController;
 use App\Http\Controllers\NivelesAcademicoController;
 use App\Http\Controllers\ProfessionController;
@@ -48,9 +49,16 @@ Route::resource('empleados', EmpleadoController::class);
 Route::resource('tutores', TutoreController::class);
 Route::resource('consanguiniedades', ConsanguiniedadeController::class);
 Route::resource('asignaturadoc', AsignaturaDocenteController::class);
-Route::resource('grupose', GruposController::class);
+Route::resource('matriculas', MatriculaController::class);
+Route::resource('grupos', GruposController::class);
 Route::resource('calificacionese', CalificacionesController::class);
 Route::resource('tutorestudiante', EstudiantesTutoresController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('buscar-estudiantes', [EstudianteController::class, 'search']);
+Route::get('buscar-grupos', [GruposController::class, 'search']);
+Route::get('buscador-tipo-matriculas', [TipoMatriculaController::class, 'search']);
+

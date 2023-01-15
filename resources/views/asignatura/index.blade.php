@@ -1,12 +1,6 @@
 @extends('adminlte::page')
-@section('title', 'Asignatura')
-
-@section('content_header')
-@stop
-
 @section('content')
 <div class="container">
-
     @if (Session::has('mensaje'))
         <div class="alert alert-success" role="alert" class="text-center">
             {{ Session::get('mensaje') }}
@@ -48,18 +42,6 @@
             @endforeach
         </tbody>
     </table>
-    {!! $asignaturas->links() !!}
 </div>
-
-
 @stop
 
-@section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-<script>
-    console.log('Hi!');
-</script>
-@stop

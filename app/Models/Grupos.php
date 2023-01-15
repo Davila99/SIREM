@@ -8,18 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Grupos extends Model
 {
     use HasFactory;
+    public function grados()
+    {
+        return $this->belongsTo(Grado::class);
+    }
+
+    public function empleados()
+    {
+        return $this->belongsTo(Empleado::class);
+    }
+
     public function grado()
     {
         return $this->belongsTo(Grado::class);
     }
-    public function niveles_academico()
+
+    public function empleado()
     {
-        return $this->belongsTo(Niveles_academico::class);
-    }
-    public function asignaturadocente()
-    {
-        return $this->belongsTo(AsignaturaDocente::class);
+        return $this->belongsTo(Empleado::class);
     }
 
 }
-

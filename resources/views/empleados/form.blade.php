@@ -52,6 +52,7 @@
         <option value="{{$nivelacademico->id }}"
             {{ old('nivel_academico_id') == $nivelacademico->id ? 'selected' : '' }}
             >{{ $nivelacademico->descripcion}}</option>
+            
      @endforeach
      @endisset
 

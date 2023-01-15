@@ -27,7 +27,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('fecha_ingreso');
             $table->integer('cargos_id')->foreign('cargos_id')
-            ->references('id')->on('cargos');
+            ->references('id')->on('cargos')
+            ->onDelete('set null');
             $table->timestamps();
         });
     }

@@ -1,5 +1,3 @@
-{{--  <h1>{{ $titulo }} Grupos estudiantiles</h1>  --}}
-
 @if (count($errors) > 0)
     <div class="alert alert-danger" role="alert">
         <ul>
@@ -14,64 +12,70 @@
     <thead class="thead-light">
         <tr>
             <th>Grado</th>
-            <th>Niveles Academicos</th>
+            <th>Fecha</th>
             <th>Docente</th>
-           
+
         </tr>
     </thead>
- <tbody>
-    <tr>
-        <th>
-            <div class="form-group">
-                <select class="form-control @error('grado_id') is-invalid @enderror"
-                 name="grado_id"
-                 id="grado">
-                 <option value="" selected disabled>--Seleccione--</option>
-                
-                 @isset($grados)
-                 @foreach ($grados as $grado )
-                    <option value="{{$grado->id }}"
-                        {{ old('grado_id') == $grado->id ? 'selected' : '' }}
-                        >{{ $grado->descripcion}}</option>
-                 @endforeach
-                 @endisset
-            
-            </div>
-        </th>
-        <th>
+    <tbody>
+        <tr>
+            <th>
+                <div class="form-group">
+                    <select class="form-control @error('grados_id') is-invalid @enderror" name="grados_id" id="grados">
 
+<<<<<<< HEAD
 <div class="form-group">
     <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"
         value="{{ isset($datos->fecha_nacimiento) ? $datos->fecha_nacimiento : old('fecha_nacimiento') }}"><br>
 </div>
 </th>
 <th>
+=======
+                        <option value="" selected disabled>--Seleccione--</option>
 
-    <div class="form-group">
-        <select class="form-control @error('asignaturadocente_id') is-invalid @enderror"
-        name="asignaturadocente_id"
-        id="asignaturadocente">
-        <option value="" selected disabled>--Seleccione--</option>
-       
-        @isset($asignaturadocentes)
-        @foreach ($asignaturadocentes as $asignaturadocente )
-           <option value="{{$asignaturadocente->id }}"
-               {{ old('asignaturadocente_id') == $asignaturadocente->id ? 'selected' : '' }}
-               >{{ $asignaturadocente->descripcion}}</option>
-        @endforeach
-        @endisset
-    
-    </div>
-    </th>
-<th>
-</th>
-</tr>
-</tbody>
+                        @isset($grados)
+                            @foreach ($grados as $grado)
+                                <option value="{{ $grado->id }}" {{ old('grados_id') == $grado->id ? 'selected' : '' }}>
+                                    {{ $grado->descripcion }}</option>
+                            @endforeach
+                        @endisset
+
+                </div>
+            </th>
+            <th>
+>>>>>>> 0bc00cb1b93896c0ffeff7cdb7d39e8230e7e932
+
+                <div class="form-group">
+                    
+                    <input type="date" class="form-control" id="fecha" name="fecha"
+                        value="{{ isset($datos->fecha) ? $datos->fecha : old('fecha') }}"><br>
+                </div>
+            </th>
+            <th>
+
+                <div class="form-group">
+                    <select class="form-control @error('empleado_id') is-invalid @enderror" name="empleados_id"
+                        id="empleados">
+
+                        <option value="" selected disabled>--Seleccione--</option>
+
+                        @isset($empleados)
+                            @foreach ($empleados as $empleado)
+                                <option value="{{ $empleado->id }}"
+                                    {{ old('empleados_id') == $empleado->id ? 'selected' : '' }}>{{ $empleado->nombres }}
+                                </option>
+                            @endforeach
+                        @endisset
+
+                </div>
+            </th>
+            <th>
+            </th>
+        </tr>
+    </tbody>
 
 
 </table>
 
 <input type="submit" value="Guardar" class="btn btn-success">
-<button type="button" class="btn btn-secondary"><a href="{{ url('grupose/') }}"> Regresar </a></button>
-
-
+<button type="button" class="btn btn-secondary"><a href="{{ url('grupos/') }}"> Regresar </a></button>

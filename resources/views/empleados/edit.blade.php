@@ -8,5 +8,4 @@
             @include('empleados.form')
         </form>
     </div>
-
 @endsection

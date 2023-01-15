@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {{--  <h1>{{ $titulo }} </h1>  --}}
 
 @if (count($errors) > 0)
@@ -127,3 +128,6 @@
 <button type="button" class="btn btn-secondary"><a href="{{ url('calificaciones/') }}"> Regresar </a></button>
 
 
+=======
+<h1>Hola</h1>
+>>>>>>> 0bc00cb1b93896c0ffeff7cdb7d39e8230e7e932

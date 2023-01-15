@@ -14,6 +14,7 @@ class AsignaturaDocente extends Model
     }
     public function empleado()
     {
+        
         return $this->belongsTo(Empleado::class);
     }
 

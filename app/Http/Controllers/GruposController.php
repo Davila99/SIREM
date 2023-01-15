@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Grupos;
 use App\Http\Requests\StoreGruposRequest;
 use Illuminate\Http\Request;
-use App\Models\AsignaturaDocente;
+use App\Models\Empleado;
 use App\Models\Grado;
-use App\Models\Niveles_academico;
+
 
 class GruposController extends Controller
 {
@@ -18,13 +18,15 @@ class GruposController extends Controller
      */
     public function index()
     {
-        $datos['grupos'] =Grupos::query()
-        ->with(['grado'])
-        ->with(['niveles_academico'])
-        ->with(['asignaturadocente'])
-        ->paginate(3);
 
-    return view('grupos/index',$datos);
+        // dd(date('Y-m-d'));
+        $datos['grupos'] =Grupos::query()
+        ->with(['grados'])
+        ->with(['empleados'])
+        ->paginate(10);
+
+
+        return view('grupos/index', $datos);
     }
 
     /**
@@ -35,9 +37,8 @@ class GruposController extends Controller
     public function create()
     {
         $grados = Grado::all();
-        $niveles_academicos = Niveles_academico::all();
-        $asignaturadocentes = AsignaturaDocente::all();
-        return view('grupos/create',compact('grados'),compact('asignaturadocentes'),compact('niveles_academicos'));
+        $empleados = Empleado::where('cargos_id', 1)->get();
+        return view('grupos/create', compact('grados'), compact('empleados'));
     }
 
     /**
@@ -46,11 +47,12 @@ class GruposController extends Controller
      * @param  \App\Http\Requests\StoreGruposRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreGruposRequest $request)
+    public function store(Request $request)
     {
         $datos = request()->except('_token');
         Grupos::insert($datos);
-        return redirect('grupos/')->with('mensaje', 'grupo agregado con exito');
+        return redirect('grupos/')->with('mensaje', 'Grupo agregado con exito');
+
     }
 
     /**
@@ -74,10 +76,11 @@ class GruposController extends Controller
     {
         $datos = Grupos::findOrFail($id);
         $grados = Grado::all();
-        $niveles_academicos = Niveles_academico::all();
-        $asignaturadocentes = AsignaturaDocente::all();
-        return view('grupos/edit',["datos"=>$datos,"grados"=>$grados,
-        "niveles_academicoss"=>$niveles_academicos,"asignaturadocentes"=>$asignaturadocentes]);
+
+        $empleados = Empleado::where('cargos_id',1)->get();
+       
+        return view('grupos/edit',["datos"=>$datos,"grados"=>$grados,"empleados"=>$empleados]);
+
     }
 
     /**
@@ -91,8 +94,8 @@ class GruposController extends Controller
     {
         $datos = request()->except(['_token', '_method']);
         Grupos::where('id', '=', $id)->update($datos);
-        $datos = Grado::findOrFail($id);
-        return view('Grupo.edit', compact('datos'));
+        $datos = Grupos::findOrFail($id);
+        return view('grupos/', compact('datos'));
     }
 
     /**
@@ -105,5 +108,25 @@ class GruposController extends Controller
     {
         Grupos::destroy($id);
         return redirect('grupos/')->with('mensaje', ' Eliminado con exito');
+    }
+
+    public function search(Request $request)
+    {
+
+        if (!isset($request->term)) {
+            return [
+                'data' => []
+            ];
+        }
+
+
+        $results = Grupos::query()
+            ->with('grado', 'empleado')
+            ->whereHas('grado', function ($q) use ($request) {
+                $q->where('descripcion', 'like', "%" . $request->term . "%");
+            })
+            ->get();
+
+        return $results;
     }
 }

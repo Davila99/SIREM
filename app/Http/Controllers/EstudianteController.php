@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EstudianteCollection;
+use App\Http\Resources\EstudianteResource;
 use App\Models\Estudiante;
 use App\Models\Sexo;
 use App\Models\Tutore;
 use Illuminate\Http\Request;
+
 class EstudianteController extends Controller
 {
     /**
@@ -16,9 +19,9 @@ class EstudianteController extends Controller
     public function index()
     {
         $datos['estudiantes'] = Estudiante::query()
-        ->with(['tutor'])
-        ->with(['sexo'])
-        ->paginate(5);
+            ->with(['tutor'])
+            ->with(['sexo'])
+            ->paginate(5);
         return view('estudiante/index', $datos);
     }
 
@@ -31,7 +34,7 @@ class EstudianteController extends Controller
     {
         $tutores = Tutore::all();
         $sexos = Sexo::all();
-        return view('estudiante/create',compact('tutores'),compact('sexos'));
+        return view('estudiante/create', compact('tutores'), compact('sexos'));
     }
 
     /**
@@ -69,7 +72,7 @@ class EstudianteController extends Controller
         $datos = Estudiante::findOrFail($id);
         $tutores = Tutore::all();
         $sexos = Sexo::all();
-        return view('estudiante/edit',["datos"=>$datos,"tutores"=>$tutores,"sexos"=>$sexos]);
+        return view('estudiante/edit', ["datos" => $datos, "tutores" => $tutores, "sexos" => $sexos]);
     }
 
     /**
@@ -97,5 +100,23 @@ class EstudianteController extends Controller
     {
         Estudiante::destroy($id);
         return redirect('estudiantes/')->with('mensaje', 'Estudiante eliminado con exito');
+    }
+
+    public function search(Request $request)
+    {
+
+        if (!isset($request->term)) {
+            return [
+                'data' => []
+            ];
+        }
+
+        $results = Estudiante::query()
+            ->where('nombres', 'like', "%" . $request->term . "%")
+            ->orWhere('apellidos', 'like', "%" . $request->term . "%")
+            ->select('id', 'nombres', 'apellidos')
+            ->get();
+
+        return new EstudianteCollection($results);
     }
 }

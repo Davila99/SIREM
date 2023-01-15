@@ -45,28 +45,30 @@
             <tr>
                 <th>
                     <div class="form-group">
-                        <select class="form-control @error('tutor_id') is-invalid @enderror" name="tutor_id" id="tutor">
+                        <select class="form-control @error('tutor_id') is-invalid @enderror" name="tutor_id"
+                            id="tutor">
 
                             <option value="" disabled>--Seleccione--</option>
                             @isset($tutores)
                                 @foreach ($tutores as $tutor)
-                                    <option value="{{ $tutor->id }}"
+                                    {{-- <option value="{{ $tutor->id }}"
                                         {{ $datos->tutor_id == $tutor->id ? 'selected' : '' }}>
-                                        {{ $tutor->nombre }}</option>
+                                        {{ $tutor->nombre }}</option> --}}
+                                    <option value="{{ $tutor->id }}"
+                                        {{ old('tutor_id') == $tutor->id ? 'selected' : '' }}>{{ $tutor->nombre }}</option>
                                 @endforeach
                             @endisset
                     </div>
                 </th>
                 <th>
-
                     <div class="form-group">
-                        <select class="form-control @error('sexo_id') is-invalid @enderror" name="sexo_id" id="sexo">
+                        <select class="form-control @error('sexo_id') is-invalid @enderror" name="sexo_id"
+                            id="sexo">
 
                             <option value="" selected disabled>--Seleccione--</option>
                             @isset($sexos)
                                 @foreach ($sexos as $sexo)
-                                    <option value="{{ $sexo->id }}"
-                                        {{ old('sexo_id') == $sexo->id ? 'selected' : '' }}>
+                                    <option value="{{ $sexo->id }}" {{ old('sexo_id') == $sexo->id ? 'selected' : '' }}>
                                         {{ $sexo->descripcion }}</option>
                                 @endforeach
                             @endisset

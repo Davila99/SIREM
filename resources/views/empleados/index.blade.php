@@ -1,12 +1,7 @@
 @extends('adminlte::page')
 @section('title', 'Dashboard')
 
-@section('content_header')
-@stop
-
 @section('content')
-
-{{--  @extends('layouts.app')  --}}
 
 @section('content')
     <div class="container">
@@ -44,8 +39,8 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Telefono</th>
-                    <th>Cedula</th>
                     <th>Fecha Nacimiento</th>
+                    <th>Cedula</th>
                     <th>Nivel Academico</th>
                     <th>Direccion</th>
                     <th>Email</th>
@@ -88,13 +83,4 @@
 @endsection
 @stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-    <script>
-        console.log('Hi!');
-    </script>
-@stop
 

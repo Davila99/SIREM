@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AsignaturaDocente;
 use Illuminate\Http\Request;
 use App\Models\Asignatura;
+use App\Models\Cargo;
 use App\Models\Empleado;
 
 class AsignaturaDocenteController extends Controller
@@ -15,8 +16,12 @@ class AsignaturaDocenteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+<<<<<<< HEAD
     {
         
+=======
+    {   
+>>>>>>> 0bc00cb1b93896c0ffeff7cdb7d39e8230e7e932
         $datos['asignaturadocentes'] = AsignaturaDocente::query()
         ->with(['asignatura'])
         ->with(['empleado'])
@@ -33,7 +38,7 @@ class AsignaturaDocenteController extends Controller
     public function create()
     {
         $asignaturas = Asignatura::all();
-        $empleados = Empleado::all();
+        $empleados = Empleado::where('cargos_id',1)->get();
         return view('asignaturadocente/create',compact('asignaturas'),compact('empleados'));
     }
 

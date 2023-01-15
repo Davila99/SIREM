@@ -45,8 +45,8 @@ return [
     |
     */
 
-    'logo' => '<b>Mantle O</b>f Grace',
-    'logo_img' => 'favicons/favicons/adminlte/dist/img/AdminLTELogo.jpg',
+    'logo' => '<b>Mantle Of Grace</b>',
+    'logo_img' => 'favicons/favicons/adminlte/dist/img/logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -264,6 +264,11 @@ return [
                     'icon' => 'fas fa-solid fa-address-book',
                 ],
                 [
+                    'text'    => 'Consanguiniedad',
+                    'route'     => 'consanguiniedades.index',
+                    'icon' => 'fas fa-solid fa-address-book',
+                ],
+                [
                     'text' => 'Asignaturas',
                     'route'  => 'asignaturas.index',
                     'icon' => 'fas fa-solid fa-book',
@@ -313,14 +318,20 @@ return [
             'icon' => 'fas fa-solid fa-briefcase',
         ],
         [
+            'text'        => 'Matriculas',
+            'route'         => 'matriculas.index',
+            'icon' => 'fas fa-solid fa-briefcase',
+        ],
+        [
             'text'        => 'Asignturas Docentes',
             'route'         => 'asignaturadoc.index',
             'icon' => 'fas fa-solid fa-signature',
         ],
         [
             'text'        => 'Grupos',
-            'route'         => 'grupose.index',
+            'route'         => 'grupos.index',
             'icon'        => 'fas fa-solid fa-users',
+
         ],
         [
             'text'        => 'Calificaciones',

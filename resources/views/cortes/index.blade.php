@@ -1,9 +1,4 @@
  @extends('adminlte::page')
- @section('title', 'Cortes')
-
- @section('content_header')
- @stop
-
  @section('content')
      <div class="container">
 
@@ -31,8 +26,7 @@
                  @foreach ($cortes_evaluativos as $cortes_evaluativo)
                      <tr>
                          <td>{{ $cortes_evaluativo->descripcion }}</td>
-                         <td><a href="{{ url('/cevaluativos/' . $cortes_evaluativo->id . '/edit') }}"
-                                 class="btn btn-info">
+                         <td><a href="{{ url('/cevaluativos/' . $cortes_evaluativo->id . '/edit') }}" class="btn btn-info">
                                  Editar </a>|
                              <form action="{{ url('/cevaluativos/' . $cortes_evaluativo->id) }}" method="post"
                                  class="d-inline">
@@ -47,17 +41,5 @@
                  @endforeach
              </tbody>
          </table>
-         {!! $cortes_evaluativos->links() !!}
      </div>
-
- @stop
-
- @section('css')
-     <link rel="stylesheet" href="/css/admin_custom.css">
- @stop
-
- @section('js')
-     <script>
-         console.log('Hi!');
-     </script>
  @stop

@@ -1,4 +1,3 @@
-
 @if (count($errors) > 0)
     <div class="alert alert-danger" role="alert">
         <ul>
@@ -16,5 +15,4 @@
 </div>
 
 <input type="submit" value="Guardar" class="btn btn-success">
-<a  type="button" class="btn btn-primary"  href="{{ url('profession/') }}"> Regresar </a>
-
+<a type="button" class="btn btn-primary" href="{{ url('profession/') }}"> Regresar </a>
