@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-<h1>Hola</h1>
-=======
-{{--  <h1>{{ $titulo }} </h1>  --}}
+
 
 @if (count($errors) > 0)
     <div class="alert alert-danger" role="alert">
@@ -128,6 +125,3 @@
 
 <input type="submit" value="Guardar" class="btn btn-success">
 <button type="button" class="btn btn-secondary"><a href="{{ url('calificaciones/') }}"> Regresar </a></button>
-
-
->>>>>>> 4ad9804d0e57e918b97a73fd1bf06f2562906c87

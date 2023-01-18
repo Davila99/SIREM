@@ -17,11 +17,19 @@ class AsignaturaDocenteController extends Controller
      */
     public function index()
 <<<<<<< HEAD
+<<<<<<< HEAD
     {   
 =======
     {
         
 >>>>>>> 4ad9804d0e57e918b97a73fd1bf06f2562906c87
+=======
+    {
+        
+=======
+    {   
+>>>>>>> 0bc00cb1b93896c0ffeff7cdb7d39e8230e7e932
+>>>>>>> e1561d87ae7b0a41e35bc3f56f2d320f07ea6f9e
         $datos['asignaturadocentes'] = AsignaturaDocente::query()
         ->with(['asignatura'])
         ->with(['empleado'])
