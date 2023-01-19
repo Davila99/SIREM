@@ -19,13 +19,10 @@ class GruposController extends Controller
     public function index()
     {
 
-        // dd(date('Y-m-d'));
         $datos['grupos'] =Grupos::query()
         ->with(['grados'])
         ->with(['empleados'])
         ->paginate(10);
-
-
         return view('grupos/index', $datos);
     }
 
@@ -49,6 +46,7 @@ class GruposController extends Controller
      */
     public function store(Request $request)
     {
+        $datos = date('Y-m-d');
         $datos = request()->except('_token');
         Grupos::insert($datos);
         return redirect('grupos/')->with('mensaje', 'Grupo agregado con exito');

@@ -98,7 +98,7 @@ $(document).ready(function() {
                         results = data.data.map(item => {
                             return {
                                 id: item.id,
-                                text: item.fecha
+                                text: item.descripcion
                             }
                         })
                     }
