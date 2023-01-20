@@ -25,6 +25,9 @@ return new class extends Migration
             $table->integer('tipo_matricula_id')->foreign('tipo_matricula_id')
             ->references('id')->on('tipo_matriculas')
             ->onDelete('set null');
+            $table->integer('grupo_id')->foreign('grupo_id')
+            ->references('id')->on('grupos')
+            ->onDelete('set null');
             $table->timestamps();
         });
     }
