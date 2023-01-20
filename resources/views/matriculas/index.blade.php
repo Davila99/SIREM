@@ -11,21 +11,7 @@
             </div>
 
         @endif
-        <br>
-            <div class="col-xl-12">
-                <form action="{{ route('matriculas.index') }}" method="get">
-                    <div class="form-row">
-                        <div class="col-sm-4">
-                        <input type="text" class="form-control" name="texto" value="">
-                        </div>
-                        <div class="col-auto">
-                            <input type="submit" class="btn btn-primary" value="Buscar">
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <br>
+        
         <a href="{{ url('matriculas/create') }}" class="btn btn-success"> Nueva Matricula </a>
         <br>
         <br>
@@ -46,10 +32,12 @@
                 @foreach ($matriculas as $matricula)
 
                     <tr>
+                        <td>{{ $matricula->fecha }}</td>
                         <td>{{ $matricula->estudiante->nombres }}</td>
-                        <td>{{ $matricula->tipo_matricula->descripcion}}</td>
-                        <td>{{ $matricula->grupo-grado_id }}</td>
                         <td>{{ $matricula->user->name }}</td>
+                        <td>{{ $matricula->tipo_matricula->descripcion}}</td>
+                        {{-- <td>{{ $matricula->grupo->grado->descripcion }}</td> --}}
+                        
                         <td><a href="{{ url('/matriculas/' . $matricula->id . '/edit') }}" class="btn btn-info">
                                 Editar </a>|
                             <form action="{{ url('/matriculas/' . $matricula->id) }}" method="post" class="d-inline">
@@ -65,7 +53,6 @@
         </table>
     </div>
 
-@endsection
 @stop
 
 

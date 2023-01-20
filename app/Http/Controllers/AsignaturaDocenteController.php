@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\AsignaturaDocente;
 use Illuminate\Http\Request;
 use App\Models\Asignatura;
-use App\Models\Cargo;
 use App\Models\Empleado;
 
 class AsignaturaDocenteController extends Controller

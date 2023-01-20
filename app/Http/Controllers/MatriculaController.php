@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Matricula;
-use App\Http\Requests\StoreMatriculaRequest;
 use App\Http\Requests\UpdateMatriculaRequest;
+use Illuminate\Http\Request;
 
 class MatriculaController extends Controller
 {
@@ -16,11 +16,12 @@ class MatriculaController extends Controller
         $datos['matriculas'] = Matricula::query()
             ->with(['estudiante'])
             ->with(['tipo_matricula'])
-            ->with(['grupo'])
+            ->with(['grupos'])
             ->with(['user'])
             ->paginate(5);
 
-        return view('matriculas/index', $datos);
+        return 
+        dd($datos);
     }
 
     /**
@@ -39,9 +40,11 @@ class MatriculaController extends Controller
      * @param  \App\Http\Requests\StoreMatriculaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMatriculaRequest $request)
+    public function store(Request $request)
     {
-        
+        $datos = request()->except('_token');
+        Matricula::insert($datos);
+        return redirect('matriculas/')->with('mensaje', 'Matricula agregada con exito');
     }
 
     /**

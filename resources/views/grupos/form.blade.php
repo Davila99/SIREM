@@ -21,14 +21,14 @@
         <tr>
             <th>
                 <div class="form-group">
-                    <select class="form-control @error('grados_id') is-invalid @enderror" name="grados_id" id="grados">
+                    <select class="form-control @error('grado_id') is-invalid @enderror" name="grado_id" id="grados">
 
 
                         <option value="" selected disabled>--Seleccione--</option>
 
                         @isset($grados)
                             @foreach ($grados as $grado)
-                                <option value="{{ $grado->id }}" {{ old('grados_id') == $grado->id ? 'selected' : '' }}>
+                                <option value="{{ $grado->id }}" {{ old('grado_id') == $grado->id ? 'selected' : '' }}>
                                     {{ $grado->descripcion }}</option>
                             @endforeach
                         @endisset

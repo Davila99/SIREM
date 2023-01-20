@@ -2,7 +2,7 @@
     <label for="descripcion">
         <h5>Estudiante</h5>
     </label><br>
-    <select class="buscador-estudiantes col-12">
+    <select  class="buscador-estudiantes col-12">
     </select>
 </div>
 <div class="form-group">

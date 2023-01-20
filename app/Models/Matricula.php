@@ -21,7 +21,7 @@ class Matricula extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function grupo()
+    public function grupos()
     {
         return $this->belongsTo(Grupos::class);
     }

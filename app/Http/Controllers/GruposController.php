@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grupos;
-use App\Http\Requests\StoreGruposRequest;
+
+use App\Http\Resources\GrupoCollection;
 use Illuminate\Http\Request;
 use App\Models\Empleado;
 use App\Models\Grado;
@@ -35,6 +36,8 @@ class GruposController extends Controller
     {
         $grados = Grado::all();
         $empleados = Empleado::where('cargos_id', 1)->get();
+      
+        
         return view('grupos/create', compact('grados'), compact('empleados'));
     }
 
@@ -45,12 +48,13 @@ class GruposController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $datos = date('Y-m-d');
+    {   
+        $fecha = date('Y-m-d');
         $datos = request()->except('_token');
+        
         Grupos::insert($datos);
         return redirect('grupos/')->with('mensaje', 'Grupo agregado con exito');
-
+        dd($fecha);
     }
 
     /**
@@ -119,13 +123,14 @@ class GruposController extends Controller
 
 
         $results = Grupos::query()
-            ->with('grado', 'empleado')
+            ->with('grado','empleado')
             ->whereHas('grado', function ($q) use ($request) {
                 $q->where('descripcion', 'like', "%" . $request->term . "%");
             })
+            
             ->get();
 
-        return $results;
+            return new GrupoCollection($results);
        
     }
 }
