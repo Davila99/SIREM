@@ -90,6 +90,6 @@ class ConsanguiniedadeController extends Controller
     public function destroy($id)
     {
         Consanguiniedade::destroy($id);
-        return redirect('consanguiniedades/')->with('mensaje', ' eliminada con exito');
+        return redirect('consanguiniedades/')->with('mesajeerror', ' eliminada con exito');
     }
 }

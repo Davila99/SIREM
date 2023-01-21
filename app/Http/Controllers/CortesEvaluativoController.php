@@ -88,6 +88,6 @@ class CortesEvaluativoController extends Controller
     public function destroy($id)
     {
         Cortes_evaluativo::destroy($id);
-        return redirect('cevaluativos/')->with('mensaje','Corte eliminado con exito');
+        return redirect('cevaluativos/')->with('mesajeerror','Corte eliminado con exito');
     }
 }

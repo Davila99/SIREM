@@ -15,6 +15,15 @@
             </div>
 
         @endif
+        @if (Session::has('mesajeerror'))
+        <div class="alert alert-danger" role="alert" class="text-center">
+            {{ Session::get('mesajeerror') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                <span aria-hiden="true">&times;</span>
+            </button>
+        </div>
+
+    @endif
         <br>
             <div class="col-xl-12">
                 <form action="{{ route('empleados.index') }}" method="get">

@@ -90,6 +90,6 @@ class AsignaturaController extends Controller
     public function destroy($id)
     {
         Asignatura::destroy($id);
-        return redirect('asignaturas/')->with('mensaje', 'Asignatura eliminada con exito');
+        return redirect('asignaturas/')->with('mesajeerror', 'Asignatura eliminada con exito');
     }
 }

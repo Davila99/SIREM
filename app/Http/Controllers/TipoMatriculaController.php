@@ -90,7 +90,7 @@ class TipoMatriculaController extends Controller
     public function destroy($id)
     {
         Tipo_Matricula::destroy($id);
-        return redirect('tmatricula/')->with('mensaje', 'Cargos eliminado con exito');
+        return redirect('tmatricula/')->with('mesajeerror', 'Cargos eliminado con exito');
     }
     public function search(Request $request)
     {

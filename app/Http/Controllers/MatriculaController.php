@@ -46,7 +46,7 @@ class MatriculaController extends Controller
      */
     public function store(Request $request)
     {
-        $fecha = date('Y-m-d');
+        $fecha = date('d-m-Y');
         $matricula = new Matricula();
         $user_id = auth()->id();
         $matricula->user_id = $user_id;
@@ -108,6 +108,6 @@ class MatriculaController extends Controller
     public function destroy($id)
     {
         Matricula::destroy($id);
-        return redirect('matriculas/')->with('mensaje', 'Matricula eliminada con exito');
+        return redirect('matriculas/')->with('mesajeerror', 'Matricula eliminada con exito');
     }
 }

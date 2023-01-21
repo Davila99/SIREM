@@ -102,6 +102,6 @@ class EstudiantesTutoresController extends Controller
     public function destroy($id)
     {
         EstudiantesTutores::destroy($id);
-        return redirect('tutorestudiante/')->with('mensaje', ' Eliminado con exito');
+        return redirect('tutorestudiante/')->with('mesajeerror', ' Eliminado con exito');
     }
 }

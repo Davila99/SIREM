@@ -89,7 +89,7 @@ class GradoController extends Controller
     public function destroy($id)
     {
     Grado::destroy($id);
-    return redirect('grados/')->with('mensaje','Grado eliminado con exito');
+    return redirect('grados/')->with('mesajeerror','Grado eliminado con exito');
 
     }
 }

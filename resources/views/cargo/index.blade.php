@@ -12,6 +12,15 @@
             </div>
 
         @endif
+        @if (Session::has('mesajeerror'))
+        <div class="alert alert-danger" role="alert" class="text-center">
+            {{ Session::get('mesajeerror') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                <span aria-hiden="true">&times;</span>
+            </button>
+        </div>
+
+    @endif
         <br>
         <a href="{{ url('cargos/create') }}" class="btn btn-success"> Nuevo Cargo </a>
         <br>

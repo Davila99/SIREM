@@ -143,6 +143,6 @@ class TutoreController extends Controller
     public function destroy($id)
     {
         Tutore::destroy($id);
-        return redirect('tutores/')->with('mensaje', 'Tutor Eliminado con exito');
+        return redirect('tutores/')->with('mesajeerror', 'Tutor Eliminado con exito');
     }
 }

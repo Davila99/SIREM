@@ -88,6 +88,6 @@ class ProfessionController extends Controller
     public function destroy($id)
     {
     Profession::destroy($id);
-    return redirect('profession')->with('mensaje', 'Prefesion eliminado con exito');
+    return redirect('profession')->with('mesajeerror', 'Prefesion eliminado con exito');
     }
 }

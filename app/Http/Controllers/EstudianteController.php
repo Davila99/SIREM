@@ -99,7 +99,7 @@ class EstudianteController extends Controller
     public function destroy($id)
     {
         Estudiante::destroy($id);
-        return redirect('estudiantes/')->with('mensaje', 'Estudiante eliminado con exito');
+        return redirect('estudiantes/')->with('mesajeerror', 'Estudiante eliminado con exito');
     }
 
     public function search(Request $request)

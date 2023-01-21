@@ -49,7 +49,7 @@ class GruposController extends Controller
      */
     public function store(Request $request)
     {   
-        $fecha = date('Y-m-d');
+        $fecha = date('d-m-Y');
         $grupo = new Grupos();
         $grupo->grado_id = $request->grado_id;
         $grupo->fecha = $fecha;
@@ -110,7 +110,7 @@ class GruposController extends Controller
     public function destroy($id)
     {
         Grupos::destroy($id);
-        return redirect('grupos/')->with('mensaje', ' Eliminado con exito');
+        return redirect('grupos/')->with('mesajeerror', ' Eliminado con exito');
     }
 
     public function search(Request $request)

@@ -90,6 +90,6 @@ class CargoController extends Controller
     public function destroy($id)
     {
         Cargo::destroy($id);
-        return redirect('cargos/')->with('mensaje', 'Cargos eliminado con exito');
+        return redirect('cargos/')->with('mesajeerror', 'Cargos eliminado con exito');
     }
 }

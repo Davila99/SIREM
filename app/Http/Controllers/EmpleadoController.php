@@ -96,6 +96,6 @@ class EmpleadoController extends Controller
     public function destroy($id)
     {
         Empleado::destroy($id);
-        return redirect('empleados/')->with('mensaje', 'Empleado Eliminado con exito');
+        return redirect('empleados/')->with('mesajeerror', 'Empleado Eliminado con exito');
     }
 }
