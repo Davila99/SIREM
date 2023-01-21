@@ -2,21 +2,21 @@
     <label for="descripcion">
         <h5>Estudiante</h5>
     </label><br>
-    <select  class="buscador-estudiantes col-12">
+    <select name="estudiante_id" class="buscador-estudiantes col-12">
     </select>
 </div>
 <div class="form-group">
     <label for="descripcion">
         <h5>Tipo Matricula</h5>
     </label><br>
-    <select class="buscador-tipo-matriculas col-12">
+    <select name="tipo_matricula_id" class="buscador-tipo-matriculas col-12">
     </select>
 </div>
 <div class="form-group">
     <label for="descripcion">
         <h5>Grupo</h5>
     </label><br>
-    <select class="buscar-grupos col-12">
+    <select name="grupo_id" class="buscar-grupos col-12">
     </select>
 </div>
 

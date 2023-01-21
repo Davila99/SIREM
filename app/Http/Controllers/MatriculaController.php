@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Matricula;
 use App\Http\Requests\UpdateMatriculaRequest;
+use App\Models\Estudiante;
+use App\Models\Grupos;
+use App\Models\Tipo_Matricula;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MatriculaController extends Controller
@@ -20,8 +24,8 @@ class MatriculaController extends Controller
             ->with(['user'])
             ->paginate(5);
 
-        return 
-        dd($datos);
+            return view('matriculas/index', $datos);
+        
     }
 
     /**
@@ -42,10 +46,18 @@ class MatriculaController extends Controller
      */
     public function store(Request $request)
     {
-        $datos = request()->except('_token');
         $fecha = date('Y-m-d');
-        Matricula::insert($datos,$fecha);
+        $matricula = new Matricula();
+        $user_id = auth()->id();
+        $matricula->user_id = $user_id;
+        $matricula->fecha = $fecha;
+        $matricula->estudiante_id = $request->estudiante_id;
+        $matricula->tipo_matricula_id = $request->tipo_matricula_id;
+        $matricula->grupo_id = $request->grupo_id;
+        $matricula->save();
+      
         return redirect('matriculas/')->with('mensaje', 'Matricula agregada con exito');
+        
     }
 
     /**
@@ -65,9 +77,14 @@ class MatriculaController extends Controller
      * @param  \App\Models\Matricula  $matricula
      * @return \Illuminate\Http\Response
      */
-    public function edit(Matricula $matricula)
+    public function edit($id)
     {
-        //
+        $datos = Matricula::findOrFail($id);
+        $estudiante = Estudiante::all();
+        $tipo_matricula = Tipo_Matricula::where('cargos_id',1)->get();
+        $grupos = Grupos::where('cargos_id',1)->get();
+       
+        return view('grupos/edit',["datos"=>$datos,"estudiante"=>$estudiante,"tipo_matricula"=>$tipo_matricula,"grupos"=>$grupos]);
     }
 
     /**
@@ -88,8 +105,9 @@ class MatriculaController extends Controller
      * @param  \App\Models\Matricula  $matricula
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Matricula $matricula)
+    public function destroy($id)
     {
-        //
+        Matricula::destroy($id);
+        return redirect('matriculas/')->with('mensaje', 'Matricula eliminada con exito');
     }
 }
