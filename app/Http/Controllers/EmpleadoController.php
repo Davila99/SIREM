@@ -84,7 +84,7 @@ class EmpleadoController extends Controller
         $datos = request()->except(['_token', '_method']);
         Empleado::where('id', '=', $id)->update($datos);
         $datos = Empleado::findOrFail($id);
-        return view('empleados.edit', compact('datos'));
+        return redirect('empleados')->with('mensaje', 'Empleado editado con exito');
     }
 
     /**

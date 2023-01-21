@@ -76,7 +76,7 @@ class ProfessionController extends Controller
         $datos = request()->except(['_token', '_method']);
         Profession::where('id', '=', $id)->update($datos);
         $datos = Profession::findOrFail($id);
-        return view('profession.edit', compact('datos'));
+        return redirect('profession')->with('mensaje', 'Profesion editado con exito');
     }
 
     /**
@@ -87,7 +87,7 @@ class ProfessionController extends Controller
      */
     public function destroy($id)
     {
-        Profession::destroy($id);
+    Profession::destroy($id);
     return redirect('profession')->with('mensaje', 'Prefesion eliminado con exito');
     }
 }

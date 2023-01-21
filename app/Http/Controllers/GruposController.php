@@ -98,7 +98,7 @@ class GruposController extends Controller
         $datos = request()->except(['_token', '_method']);
         Grupos::where('id', '=', $id)->update($datos);
         $datos = Grupos::findOrFail($id);
-        return view('grupos/edit', compact('datos'));
+        return redirect('grupos/')->with('mensaje', 'Grupo editado con exito');
     }
 
     /**

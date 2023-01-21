@@ -87,7 +87,7 @@ class AsignaturaDocenteController extends Controller
         $datos = request()->except(['_token', '_method']);
         AsignaturaDocente::where('id', '=', $id)->update($datos);
         $datos = AsignaturaDocente::findOrFail($id);
-        return view('asignaturadocente.edit', compact('datos'));
+        return redirect('asignaturas')->with('mensaje', 'Asignatura Docente editado con exito');
     }
 
     /**

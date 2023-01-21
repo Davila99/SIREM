@@ -130,7 +130,8 @@ class TutoreController extends Controller
     Tutore::where('id', '=', $id)->update($datos);
     $datos = Tutore::findOrFail($id);
 
-    return view('tutores.edit', compact('datos'));
+
+    return redirect('tutores')->with('mensaje', 'Tutor editado con exito');
 }
 
     /**
@@ -141,7 +142,7 @@ class TutoreController extends Controller
      */
     public function destroy($id)
     {
-            Tutore::destroy($id);
+        Tutore::destroy($id);
         return redirect('tutores/')->with('mensaje', 'Tutor Eliminado con exito');
     }
 }

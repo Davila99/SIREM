@@ -77,8 +77,7 @@ class GradoController extends Controller
         $datos = request()->except(['_token','_method']);
         Grado::where('id','=',$id)->update($datos);
         $datos = Grado::findOrFail($id);
-
-        return view('grado.edit',compact('datos'));
+        return redirect('grados')->with('mensaje', 'Grado editado con exito');
     }
 
     /**

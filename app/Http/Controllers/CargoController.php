@@ -78,7 +78,7 @@ class CargoController extends Controller
         Cargo::where('id', '=', $id)->update($datos);
 
         $datos = Cargo::findOrFail($id);
-        return view('cargo.edit', compact('datos'));
+        return redirect('cargos/')->with('mensaje', 'Cargo editado con exito');
     }
 
     /**

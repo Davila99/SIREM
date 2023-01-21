@@ -90,7 +90,7 @@ class EstudiantesTutoresController extends Controller
         $datos = request()->except(['_token', '_method']);
         EstudiantesTutores::where('id', '=', $id)->update($datos);
         $datos = EstudiantesTutores::findOrFail($id);
-        return view('estudianteTutor.edit', compact('datos'));
+        return redirect('tutorestudiante')->with('mensaje', 'Estudiante Tutor editado con exito');
     }
 
     /**

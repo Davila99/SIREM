@@ -43,7 +43,8 @@ class MatriculaController extends Controller
     public function store(Request $request)
     {
         $datos = request()->except('_token');
-        Matricula::insert($datos);
+        $fecha = date('Y-m-d');
+        Matricula::insert($datos,$fecha);
         return redirect('matriculas/')->with('mensaje', 'Matricula agregada con exito');
     }
 

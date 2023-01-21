@@ -76,7 +76,7 @@ class CortesEvaluativoController extends Controller
         $datos = request()->except(['_token','_method']);
         Cortes_evaluativo::where('id', '=', $id)->update($datos);
         $datos = Cortes_evaluativo::findOrFail($id);
-        return view('cortes.edit', compact('datos'));
+        return redirect('cevaluativos')->with('mensaje', 'Corte Evaluativo editado con exito');
     }
 
     /**

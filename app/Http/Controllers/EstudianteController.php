@@ -87,7 +87,7 @@ class EstudianteController extends Controller
         $datos = request()->except(['_token', '_method']);
         Estudiante::where('id', '=', $id)->update($datos);
         $datos = Estudiante::findOrFail($id);
-        return view('estudiante.edit', compact('datos'));
+        return redirect('estudiantes')->with('mensaje', 'Estudiante editado con exito');
     }
 
     /**

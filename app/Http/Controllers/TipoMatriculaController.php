@@ -76,11 +76,9 @@ class TipoMatriculaController extends Controller
     public function update(Request $request, $id)
     {
         $datos = request()->except(['_token', '_method']);
-
         Tipo_Matricula::where('id', '=', $id)->update($datos);
-
         $datos = Tipo_Matricula::findOrFail($id);
-        return view('tipoMatricula.edit', compact('datos'));
+        return redirect('tmatricula')->with('mensaje', 'Tipo de Matricula editado con exito');
     }
 
     /**

@@ -78,7 +78,7 @@ class AsignaturaController extends Controller
         Asignatura::where('id', '=', $id)->update($datos);
 
         $datos = Asignatura::findOrFail($id);
-        return view('asignatura.edit', compact('datos'));
+        return redirect('asignaturas')->with('mensaje', 'Asignatura editado con exito');
     }
 
     /**

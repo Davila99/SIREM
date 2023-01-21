@@ -78,7 +78,7 @@ class ConsanguiniedadeController extends Controller
         Consanguiniedade::where('id', '=', $id)->update($datos);
 
         $datos = Consanguiniedade::findOrFail($id);
-        return view('consanguiniedad.edit', compact('datos'));
+        return redirect('consanguiniedades')->with('mensaje', 'Consanguiniedad editado con exito');
     }
 
     /**
