@@ -38,7 +38,7 @@
 
                 @foreach ($grupos as $grupo)
                     <tr>
-                        <td>{{ $grupo->grados->descripcion }}</td>
+                        <td>{{ $grupo->grado->descripcion }}</td>
                         <td>{{ $grupo->fecha }}</td>
                         <td>{{ $grupo->empleados->nombres }}</td>
 

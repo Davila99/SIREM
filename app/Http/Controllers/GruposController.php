@@ -50,11 +50,13 @@ class GruposController extends Controller
     public function store(Request $request)
     {   
         $fecha = date('Y-m-d');
-        $datos = request()->except('_token');
-        
-        Grupos::insert($datos);
+        $grupo = new Grupos();
+        $grupo->grado_id = $request->grado_id;
+        $grupo->fecha = $fecha;
+        $grupo->empleados_id = $request->empleados_id;
+        $grupo->save();
         return redirect('grupos/')->with('mensaje', 'Grupo agregado con exito');
-        dd($fecha);
+        
     }
 
     /**
@@ -78,7 +80,6 @@ class GruposController extends Controller
     {
         $datos = Grupos::findOrFail($id);
         $grados = Grado::all();
-
         $empleados = Empleado::where('cargos_id',1)->get();
        
         return view('grupos/edit',["datos"=>$datos,"grados"=>$grados,"empleados"=>$empleados]);
@@ -97,7 +98,7 @@ class GruposController extends Controller
         $datos = request()->except(['_token', '_method']);
         Grupos::where('id', '=', $id)->update($datos);
         $datos = Grupos::findOrFail($id);
-        return view('grupos/', compact('datos'));
+        return view('grupos/edit', compact('datos'));
     }
 
     /**
