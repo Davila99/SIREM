@@ -20,10 +20,10 @@ class MatriculaController extends Controller
         $datos['matriculas'] = Matricula::query()
             ->with(['estudiante'])
             ->with(['tipo_matricula'])
-            ->with(['grupos'])
+            ->with(['grupo'])
             ->with(['user'])
-            ->paginate(5);
-
+            ->paginate(10);
+            // return dd($datos);
             return view('matriculas/index', $datos);
         
     }
@@ -81,10 +81,10 @@ class MatriculaController extends Controller
     {
         $datos = Matricula::findOrFail($id);
         $estudiante = Estudiante::all();
-        $tipo_matricula = Tipo_Matricula::where('cargos_id',1)->get();
-        $grupos = Grupos::where('cargos_id',1)->get();
+        $tipo_matricula = Tipo_Matricula::all();
+        $grupos = Grupos::all();
        
-        return view('grupos/edit',["datos"=>$datos,"estudiante"=>$estudiante,"tipo_matricula"=>$tipo_matricula,"grupos"=>$grupos]);
+        return view('matriculas/edit',["datos"=>$datos,"estudiante"=>$estudiante,"tipo_matricula"=>$tipo_matricula,"grupos"=>$grupos]);
     }
 
     /**
@@ -94,9 +94,12 @@ class MatriculaController extends Controller
      * @param  \App\Models\Matricula  $matricula
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMatriculaRequest $request, Matricula $matricula)
+    public function update(Request $request, $id)
     {
-        //
+        $datos = request()->except(['_token', '_method']);
+        Matricula::where('id', '=', $id)->update($datos);
+        $datos = Matricula::findOrFail($id);
+        return redirect('matriculas/')->with('mensaje', 'Matricula actualizada con exito');
     }
 
     /**

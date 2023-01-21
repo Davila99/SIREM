@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\EstudianteCollection;
-use App\Http\Resources\EstudianteResource;
 use App\Models\Estudiante;
 use App\Models\Sexo;
 use App\Models\Tutore;
