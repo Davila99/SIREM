@@ -84,7 +84,7 @@ class EmpleadoController extends Controller
         $datos = request()->except(['_token', '_method']);
         Empleado::where('id', '=', $id)->update($datos);
         $datos = Empleado::findOrFail($id);
-        return redirect('empleados')->with('mensaje', 'Empleado editado con exito');
+        return redirect('empleados')->with('mensaje-editar', 'Empleado editado con exito');
     }
 
     /**
@@ -96,6 +96,6 @@ class EmpleadoController extends Controller
     public function destroy($id)
     {
         Empleado::destroy($id);
-        return redirect('empleados/')->with('mesajeerror', 'Empleado Eliminado con exito');
+        return redirect('empleados/')->with('mesaje-eliminar', 'Empleado Eliminado con exito');
     }
 }

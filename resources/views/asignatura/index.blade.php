@@ -23,10 +23,10 @@
                                 Editar </a>|
                             <form id="form-eliminar" action="{{ url('/asignaturas/' . $asignatura->id) }}" method="post"
                                 class="d-inline">
-                                @csrf
-                                {{ method_field('DELETE') }}
 
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
+                                @csrf
+                                {{ method_field('DELETE') }}
                             </form>
                         </td>
 

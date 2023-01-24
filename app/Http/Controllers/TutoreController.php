@@ -131,7 +131,7 @@ class TutoreController extends Controller
     $datos = Tutore::findOrFail($id);
 
 
-    return redirect('tutores')->with('mensaje', 'Tutor editado con exito');
+    return redirect('tutores')->with('mensaje-editar', 'Tutor editado con exito');
 }
 
     /**
@@ -143,6 +143,6 @@ class TutoreController extends Controller
     public function destroy($id)
     {
         Tutore::destroy($id);
-        return redirect('tutores/')->with('mesajeerror', 'Tutor Eliminado con exito');
+        return redirect('tutores/')->with('mesaje-eliminar', 'Tutor Eliminado con exito');
     }
 }
