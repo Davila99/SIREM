@@ -2,23 +2,6 @@
 @section('content')
     <div class="container">
 
-        @if (Session::has('mensaje'))
-            <div class="alert alert-success" role="alert" class="text-center">
-                {{ Session::get('mensaje') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="close">
-                    <span aria-hiden="true">&times;</span>
-                </button>
-            </div>
-        @endif
-        @if (Session::has('mesajeerror'))
-        <div class="alert alert-danger" role="alert" class="text-center">
-            {{ Session::get('mesajeerror') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="close">
-                <span aria-hiden="true">&times;</span>
-            </button>
-        </div>
-
-    @endif
         <br>
         <a href="{{ url('grados/create') }}" class="btn btn-success"> Nuevo Grado </a>
         <br>
@@ -38,11 +21,10 @@
                         <td>{{ $grado->descripcion }}</td>
                         <td><a href="{{ url('/grados/' . $grado->id . '/edit') }}" class="btn btn-info">
                                 Editar </a>|
-                            <form action="{{ url('/grados/' . $grado->id) }}" method="post" class="d-inline">
+                            <form id="form-eliminar" action="{{ url('/grados/' . $grado->id) }}" method="post" class="d-inline">
                                 @csrf
                                 {{ method_field('DELETE') }}
-                                <input type="submit" onclick="return confirm('Estas seguro de eliminar este registro?')"
-                                    class="btn btn-danger" value="eliminar">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
                         </td>
 
@@ -53,3 +35,57 @@
     </div>
 
 @stop
+@section('js')
+ <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ @if (Session::has('mensaje'))
+     <script>
+         Swal.fire({
+             position: 'top-center',
+             icon: 'success',
+             title: 'Grado registrado!',
+             showConfirmButton: false,
+             timer: 2000
+         })
+     </script>
+ @endif
+ @if (Session::has('mensaje-editar'))
+     <script>
+         Swal.fire({
+             position: 'top-center',
+             icon: 'success',
+             title: 'Grado editado exitosamente!',
+             showConfirmButton: false,
+             timer: 2000
+         })
+     </script>
+ @endif
+ @if (Session::has('mesaje-eliminar'))
+     <script>
+         Swal.fire(
+             'Eliminado!',
+             'Su archivo ha sido eliminado.',
+             'success'
+         )
+     </script>
+ @endif
+ <script>
+     $('#form-eliminar').submit(function(e) {
+         e.preventDefault();
+         Swal.fire({
+             title: '¿Estas seguro?',
+             text: "No podrás revertir esto.!",
+             icon: 'warning',
+             showCancelButton: true,
+             confirmButtonColor: '#3085d6',
+             cancelButtonColor: '#d33',
+             confirmButtonText: 'Si eliminar',
+             cancelButtonText:'Calcelar'
+         }).then((result) => {
+             if (result.isConfirmed) {
+                 this.submit();
+             }
+         })
+
+     });
+ </script>
+@endsection

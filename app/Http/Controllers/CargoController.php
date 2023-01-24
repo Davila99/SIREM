@@ -78,7 +78,7 @@ class CargoController extends Controller
         Cargo::where('id', '=', $id)->update($datos);
 
         $datos = Cargo::findOrFail($id);
-        return redirect('cargos/')->with('mensaje', 'Cargo editado con exito');
+        return redirect('cargos/')->with('mensaje-editar', 'Cargo editado con exito');
     }
 
     /**
@@ -90,6 +90,6 @@ class CargoController extends Controller
     public function destroy($id)
     {
         Cargo::destroy($id);
-        return redirect('cargos/')->with('mesajeerror', 'Cargos eliminado con exito');
+        return redirect('cargos/')->with('mesaje-eliminar', 'Cargos eliminado con exito');
     }
 }

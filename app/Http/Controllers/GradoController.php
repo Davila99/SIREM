@@ -77,7 +77,7 @@ class GradoController extends Controller
         $datos = request()->except(['_token','_method']);
         Grado::where('id','=',$id)->update($datos);
         $datos = Grado::findOrFail($id);
-        return redirect('grados')->with('mensaje', 'Grado editado con exito');
+        return redirect('grados')->with('mensaje-editar', 'Grado editado con exito');
     }
 
     /**
@@ -89,7 +89,7 @@ class GradoController extends Controller
     public function destroy($id)
     {
     Grado::destroy($id);
-    return redirect('grados/')->with('mesajeerror','Grado eliminado con exito');
+    return redirect('grados/')->with('mesaje-eliminar','Grado eliminado con exito');
 
     }
 }

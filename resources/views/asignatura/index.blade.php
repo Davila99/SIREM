@@ -2,7 +2,6 @@
 @section('content')
 
     <div class="container">
-
         <br>
         <a href="{{ url('asignaturas/create') }}" class="btn btn-success"> Nuevo Asignatura </a>
         <br>
@@ -51,11 +50,22 @@
             })
         </script>
     @endif
-    @if (Session::has('mesajeerror'))
+    @if (Session::has('mensaje-editar'))
+        <script>
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Asignatura editada exitosamente!',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        </script>
+    @endif
+    @if (Session::has('mesaje-eliminar'))
         <script>
             Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
+                'Eliminado!',
+                'Su archivo ha sido eliminado.',
                 'success'
             )
         </script>
@@ -64,13 +74,14 @@
         $('#form-eliminar').submit(function(e) {
             e.preventDefault();
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: '¿Estas seguro?',
+                text: "No podrás revertir esto.!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Si eliminar',
+                cancelButtonText:'Calcelar'
             }).then((result) => {
                 if (result.isConfirmed) {
 
