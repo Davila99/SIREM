@@ -37,7 +37,11 @@
 
                 <tr>
                     <td>{{ $asignatura->descripcion }}</td>
-                    <td><a href="{{ url('/asignaturas/' . $asignatura->id . '/edit') }}" class="btn btn-info">
+                    <td>
+                        <div class="d-flex flex-row bd-highlight mb-6">
+                            
+                        </div>
+                        <a href="{{ url('/asignaturas/' . $asignatura->id . '/edit') }}" class="btn btn-info">
                             Editar </a>|
                         <form id="form-eliminar" action="{{ url('/asignaturas/' . $asignatura->id) }}" method="post" class="d-inline">
                             @csrf
