@@ -1,12 +1,3 @@
-@if (count($errors) > 0)
-    <div class="alert alert-danger" role="alert">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
 <table class="table table-dark">
     <thead class="thead-light">
@@ -22,7 +13,6 @@
             <th>
                 <div class="form-group">
                     <select class="form-control @error('grado_id') is-invalid @enderror" name="grado_id" id="grados">
-
 
                         <option value="" selected disabled>--Seleccione--</option>
 

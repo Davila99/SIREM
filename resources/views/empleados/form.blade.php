@@ -1,13 +1,4 @@
 
-@if (count($errors) > 0)
-    <div class="alert alert-danger" role="alert">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
 <div class="container">
     <div class="justify-content-sm-between">
@@ -53,16 +44,13 @@
              @endisset
         
         </div>
-        
-        
+             
          <div class="form-group">
              
                 <label for="direccion"><h5>Direccion:</h5></label>
                 <input type="text" class="form-control" id="direccion" name="direccion"
                     value="{{ isset($datos->direccion) ? $datos->direccion : old('direccion') }}"><br>
         </div>
-        
-        
         
         <div class="form-group">
             <label class="form-group" for="email"><h5>Email:</h5></label>
