@@ -20,7 +20,7 @@
     </select>
 </div>
 
-
+<br>
 <input type="submit" value="Guardar" class="btn btn-success">
 <a type="button" class="btn btn-primary" href="{{ url('matriculas/') }}"> Regresar </a>
 

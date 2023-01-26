@@ -324,7 +324,7 @@ return [
         ],
         [
             'text'        => 'Asignturas Docentes',
-            'route'         => 'asignaturadoc.index',
+            'route'         => 'asignaturadocente.index',
             'icon' => 'fas fa-solid fa-signature',
         ],
         [

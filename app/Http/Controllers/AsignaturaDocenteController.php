@@ -20,7 +20,7 @@ class AsignaturaDocenteController extends Controller
         $datos['asignaturadocentes'] = AsignaturaDocente::query()
         ->with(['asignatura'])
         ->with(['empleado'])
-        ->paginate(3);
+        ->paginate(10);
 
     return view('asignaturadocente/index',$datos);
     }
@@ -47,7 +47,7 @@ class AsignaturaDocenteController extends Controller
     {
         $datos = request()->except('_token');
         AsignaturaDocente::insert($datos);
-        return redirect('asignaturadoc/')->with('mensaje', 'Asignatura Docente agregado con exito');
+        return redirect('asignaturadocente/')->with('mensaje', 'Asignatura Docente agregado con exito');
     }
 
     /**
@@ -87,7 +87,7 @@ class AsignaturaDocenteController extends Controller
         $datos = request()->except(['_token', '_method']);
         AsignaturaDocente::where('id', '=', $id)->update($datos);
         $datos = AsignaturaDocente::findOrFail($id);
-        return redirect('asignaturas')->with('mensaje', 'Asignatura Docente editado con exito');
+        return redirect('asignaturadocente/')->with('mensaje-editar', 'Asignatura Docente editado con exito');
     }
 
     /**
@@ -99,6 +99,6 @@ class AsignaturaDocenteController extends Controller
     public function destroy($id)
     {
         AsignaturaDocente::destroy($id);
-        return redirect('asignaturadoc/')->with('mensaje', 'Asignatura Docentes Eliminado con exito');
+        return redirect('asignaturadocente/')->with('mensaje-eliminar', 'Asignatura Docentes Eliminado con exito');
     }
 }

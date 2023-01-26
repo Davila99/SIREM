@@ -19,7 +19,7 @@ class TutoreController extends Controller
         $datos['tutores'] = Tutore::query()
         ->with(['professions'])
         ->orderBy('nombre', 'asc')
-        ->paginate(3);
+        ->paginate(10);
 
     return view('tutores/index', $datos,$datos);
     }

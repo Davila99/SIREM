@@ -18,14 +18,18 @@
                  @foreach ($cortes_evaluativos as $cortes_evaluativo)
                      <tr>
                          <td>{{ $cortes_evaluativo->descripcion }}</td>
-                         <td><a href="{{ url('/cevaluativos/' . $cortes_evaluativo->id . '/edit') }}" class="btn btn-info">
-                                 Editar </a>|
-                             <form id="form-eliminar" action="{{ url('/cevaluativos/' . $cortes_evaluativo->id) }}" method="post"
-                                 class="d-inline">
-                                 @csrf
-                                 {{ method_field('DELETE') }}
-                                 <button type="submit" class="btn btn-danger">Eliminar</button>
-                             </form>
+                         <td>
+                            <div class="d-flex flex-row bd-highlight mb-6">
+                                <a href="{{ url('/cevaluativos/' . $cortes_evaluativo->id . '/edit') }}" class="btn btn-info">
+                                    Editar </a>|
+                                <form class="form-eliminar" action="{{ url('/cevaluativos/' . $cortes_evaluativo->id) }}" method="post"
+                                    class="d-inline">
+                                    @csrf
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </div>
+                           
                          </td>
 
                      </tr>
@@ -68,7 +72,7 @@
      </script>
  @endif
  <script>
-     $('#form-eliminar').submit(function(e) {
+     $('.form-eliminar').submit(function(e) {
          e.preventDefault();
          Swal.fire({
              title: '¿Estas seguro?',

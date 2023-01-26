@@ -26,13 +26,17 @@
                         <td>{{ $tutore->cedula }}</td>
                         <td>{{ $tutore->telefono }}</td>
                         <td>{{ $tutore->professions->descripcion }}</td>
-                        <td><a href="{{ url('/tutores/' . $tutore->id . '/edit') }}" class="btn btn-info">
-                                Editar </a>|
-                            <form id="form-eliminar" action="{{ url('/tutores/' . $tutore->id) }}" method="post" class="d-inline">
-                                @csrf
-                                {{ method_field('DELETE') }}
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
+                        <td>
+                            <div class="d-flex flex-row bd-highlight mb-6">
+                                <a href="{{ url('/tutores/' . $tutore->id . '/edit') }}" class="btn btn-info">
+                                    Editar </a>|
+                                <form class="form-eliminar" action="{{ url('/tutores/' . $tutore->id) }}" method="post"
+                                    class="d-inline">
+                                    @csrf
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
@@ -76,7 +80,7 @@
         </script>
     @endif
     <script>
-        $('#form-eliminar').submit(function(e) {
+        $('.form-eliminar').submit(function(e) {
             e.preventDefault();
             Swal.fire({
                 title: '¿Estas seguro?',

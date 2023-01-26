@@ -20,7 +20,7 @@ class EstudianteController extends Controller
         $datos['estudiantes'] = Estudiante::query()
             ->with(['tutor'])
             ->with(['sexo'])
-            ->paginate(5);
+            ->paginate(10);
         return view('estudiante/index', $datos);
     }
 
@@ -86,7 +86,7 @@ class EstudianteController extends Controller
         $datos = request()->except(['_token', '_method']);
         Estudiante::where('id', '=', $id)->update($datos);
         $datos = Estudiante::findOrFail($id);
-        return redirect('estudiantes')->with('mensaje', 'Estudiante editado con exito');
+        return redirect('estudiantes')->with('mensaje-editar', 'Estudiante editado con exito');
     }
 
     /**
@@ -98,7 +98,7 @@ class EstudianteController extends Controller
     public function destroy($id)
     {
         Estudiante::destroy($id);
-        return redirect('estudiantes/')->with('mesajeerror', 'Estudiante eliminado con exito');
+        return redirect('estudiantes/')->with('mesaje-eliminar', 'Estudiante eliminado con exito');
     }
 
     public function search(Request $request)

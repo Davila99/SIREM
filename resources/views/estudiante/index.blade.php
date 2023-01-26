@@ -1,43 +1,9 @@
 @extends('adminlte::page')
 
 @section('content')
-
-@section('content')
     <div class="container">
 
-        @if (Session::has('mensaje'))
-            <div class="alert alert-success" role="alert" class="text-center">
-                {{ Session::get('mensaje') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="close">
-                    <span aria-hiden="true">&times;</span>
-                </button>
-            </div>
-
-        @endif
-        @if (Session::has('mesajeerror'))
-        <div class="alert alert-danger" role="alert" class="text-center">
-            {{ Session::get('mesajeerror') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="close">
-                <span aria-hiden="true">&times;</span>
-            </button>
-        </div>
-
-    @endif
         <br>
-            <div class="col-xl-12">
-                <form action="{{ route('tutores.index') }}" method="get">
-                    <div class="form-row">
-                        <div class="col-sm-4">
-                        <input type="text" class="form-control" name="texto" value="">
-                        </div>
-                        <div class="col-auto">
-                            <input type="submit" class="btn btn-primary" value="Buscar">
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <br>
         <a href="{{ url('estudiantes/create') }}" class="btn btn-success"> Nuevo Estudiante </a>
         <br>
         <br>
@@ -57,39 +23,82 @@
             <tbody>
 
                 @foreach ($estudiantes as $estudiante)
-
                     <tr>
                         <td>{{ $estudiante->nombres }}</td>
-                        <td>{{ $estudiante->apellidos}}</td>
+                        <td>{{ $estudiante->apellidos }}</td>
                         <td>{{ $estudiante->fecha_nacimiento }}</td>
                         <td>{{ $estudiante->direccion }}</td>
-                        <td>{{ $estudiante->tutor->nombre}}</td>
-                        <td>{{ $estudiante->sexo->descripcion}}</td>
-                        <td><a href="{{ url('/estudiantes/' . $estudiante->id . '/edit') }}" class="btn btn-info">
-                                Editar </a>|
-                            <form action="{{ url('/estudiantes/' . $estudiante->id) }}" method="post" class="d-inline">
-                                @csrf
-                                {{ method_field('DELETE') }}
-                                <input type="submit" onclick="return confirm('Estas seguro de eliminar este registro?')"
-                                    class="btn btn-danger" value="eliminar">
-                            </form>
+                        <td>{{ $estudiante->tutor->nombre }}</td>
+                        <td>{{ $estudiante->sexo->descripcion }}</td>
+                        <td>
+                            <div class="d-flex flex-row bd-highlight mb-6">
+                                <a href="{{ url('/estudiantes/' . $estudiante->id . '/edit') }}" class="btn btn-info">
+                                    Editar </a>|
+                                <form class="form-eliminar" action="{{ url('/estudiantes/' . $estudiante->id) }}" method="post" class="d-inline">
+                                    @csrf
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </div>
+                           
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        {!! $estudiantes->links() !!}
+
     </div>
-
 @endsection
-@stop
-
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
 @section('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (Session::has('mensaje'))
+        <script>
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Estudiante registrado!',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        </script>
+    @endif
+    @if (Session::has('mensaje-editar'))
+        <script>
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Estudiante editado exitosamente!',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        </script>
+    @endif
+    @if (Session::has('mesaje-eliminar'))
+        <script>
+            Swal.fire(
+                'Eliminado!',
+                'Su archivo ha sido eliminado.',
+                'success'
+            )
+        </script>
+    @endif
     <script>
-        console.log('Hi!');
+        $('.form-eliminar').submit(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: '¿Estas seguro?',
+                text: "No podrás revertir esto.!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si eliminar',
+                cancelButtonText: 'Calcelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+        });
     </script>
-@stop
+@endsection

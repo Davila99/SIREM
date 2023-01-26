@@ -13,22 +13,23 @@
                 <th>Acciones</th>
             </tr>
         </thead>
-
         <tbody>
 
             @foreach ($tipo__matriculas as $tipoMatricula)
 
                 <tr>
                     <td>{{ $tipoMatricula->descripcion }}</td>
-                    <td><a href="{{ url('/tmatricula/' . $tipoMatricula->id . '/edit') }}" class="btn btn-info">
-                            Editar </a>|
-                        <form id="form-eliminar" action="{{ url('/tmatricula/' . $tipoMatricula->id) }}" method="post" class="d-inline">
-                            @csrf
-                            {{ method_field('DELETE') }}
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
+                    <td>
+                        <div class="d-flex flex-row bd-highlight mb-6">
+                            <a href="{{ url('/tmatricula/' . $tipoMatricula->id . '/edit') }}" class="btn btn-info">
+                                Editar </a>|
+                            <form class="form-eliminar" action="{{ url('/tmatricula/' . $tipoMatricula->id) }}" method="post" class="d-inline">
+                                @csrf
+                                {{ method_field('DELETE') }}
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </div>        
                     </td>
-
                 </tr>
             @endforeach
         </tbody>
@@ -71,7 +72,7 @@
     </script>
 @endif
 <script>
-    $('#form-eliminar').submit(function(e) {
+    $('.form-eliminar').submit(function(e) {
         e.preventDefault();
         Swal.fire({
             title: '¿Estas seguro?',

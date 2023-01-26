@@ -14,7 +14,5 @@
         value="{{ isset($datos->descripcion) ? $datos->descripcion : old('descripcion') }}"><br>
 </div>
 
-
-
 <input type="submit" value="Guardar" class="btn btn-success">
 <a type="button" class="btn btn-primary" href="{{ url('grados/') }}"> Regresar </a>

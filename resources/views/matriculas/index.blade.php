@@ -20,7 +20,7 @@
             </div>
 
         @endif
-        
+        <br>
         <a href="{{ url('matriculas/create') }}" class="btn btn-success"> Nueva Matricula </a>
         <br>
         <br>

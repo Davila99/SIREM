@@ -25,7 +25,7 @@ class CalificacionesController extends Controller
         ->with(['grado'])
         ->with(['estudiante'])
         ->with(['cortes_evaluativo'])
-        ->paginate(3);
+        ->paginate(10);
 
     return view('calificaciones/index',$datos);
     }

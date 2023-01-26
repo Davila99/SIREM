@@ -18,13 +18,17 @@
                 @foreach ($professions as $profession)
                     <tr>
                         <td>{{ $profession->descripcion }}</td>
-                        <td><a href="{{ url('/profession/' . $profession->id . '/edit') }}" class="btn btn-info">
-                                Editar </a>|
-                            <form id="form-eliminar" action="{{ url('/profession/' . $profession->id) }}" method="post" class="d-inline">
-                                @csrf
-                                {{ method_field('DELETE') }}
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
+                        <td>
+                            <div class="d-flex flex-row bd-highlight mb-6">
+                                <a href="{{ url('/profession/' . $profession->id . '/edit') }}" class="btn btn-info">
+                                    Editar </a>|
+                                <form class="form-eliminar" action="{{ url('/profession/' . $profession->id) }}" method="post" class="d-inline">
+                                    @csrf
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>     
+                            </div>
+                            
                         </td>
 
                     </tr>
@@ -67,7 +71,7 @@
     </script>
 @endif
 <script>
-    $('#form-eliminar').submit(function(e) {
+    $('.form-eliminar').submit(function(e) {
         e.preventDefault();
         Swal.fire({
             title: '¿Estas seguro?',
