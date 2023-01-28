@@ -6,49 +6,52 @@
         <a href="{{ url('empleados/create') }}" class="btn btn-success"> Nuevo Empleado </a>
         <br>
         <br>
-        <table class="table table-dark">
-            <thead class="thead-light">
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Telefono</th>
-                    <th>Fecha Nacimiento</th>
-                    <th>Cedula</th>
-                    <th>Nivel Academico</th>
-                    <th>Direccion</th>
-                    <th>Email</th>
-                    <th>Fecha ingreso</th>
-                    <th>Cargo</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
+        <div class="table-responsive">
 
-            <tbody>
-
-                @foreach ($empleados as $empleado)
-                        <td>{{ $empleado->nombres }}</td>
-                        <td>{{ $empleado->apellidos }}</td>
-                        <td>{{ $empleado->telefono }}</td>
-                        <td>{{ $empleado->fecha_nacimiento }}</td>
-                        <td>{{ $empleado->cedula }}</td>
-                        <td>{{ $empleado->nivel_academico->descripcion }}</td>
-                        <td>{{ $empleado->direccion }}</td>
-                        <td>{{ $empleado->email }}</td>
-                        <td>{{ $empleado->fecha_ingreso }}</td>
-                        <td>{{ $empleado->cargos->descripcion }}</td>
-                        <td><a href="{{ url('/empleados/' .$empleado->id.'/edit') }}" class="btn btn-info">
-                                Editar </a>|
-                            <form id="form-eliminar" action="{{ url('/empleados/' . $empleado->id) }}" method="post" class="d-inline">
-                                @csrf
-                                {{ method_field('DELETE') }}
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
-                        </td>
-
+            <table class="table table-dark">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Telefono</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Cedula</th>
+                        <th>Nivel Academico</th>
+                        <th>Direccion</th>
+                        <th>Email</th>
+                        <th>Fecha ingreso</th>
+                        <th>Cargo</th>
+                        <th>Acciones</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+    
+                <tbody>
+    
+                    @foreach ($empleados as $empleado)
+                            <td>{{ $empleado->nombres }}</td>
+                            <td>{{ $empleado->apellidos }}</td>
+                            <td>{{ $empleado->telefono }}</td>
+                            <td>{{ $empleado->fecha_nacimiento }}</td>
+                            <td>{{ $empleado->cedula }}</td>
+                            <td>{{ $empleado->nivel_academico->descripcion }}</td>
+                            <td>{{ $empleado->direccion }}</td>
+                            <td>{{ $empleado->email }}</td>
+                            <td>{{ $empleado->fecha_ingreso }}</td>
+                            <td>{{ $empleado->cargos->descripcion }}</td>
+                            <td><a href="{{ url('/empleados/' .$empleado->id.'/edit') }}" class="btn btn-info">
+                                    Editar </a>|
+                                <form id="form-eliminar" action="{{ url('/empleados/' . $empleado->id) }}" method="post" class="d-inline">
+                                    @csrf
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </td>
+    
+                        </tr>
+                    @endforeacht
+                </tbody>
+            </table>
+        </div>
 
     </div>
 @endsection
