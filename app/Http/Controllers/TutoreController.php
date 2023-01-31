@@ -21,7 +21,7 @@ class TutoreController extends Controller
         ->orderBy('nombre', 'asc')
         ->paginate(10);
 
-    return view('tutores/index', $datos,$datos);
+             return view('tutores/index', $datos);
     }
 
     /**
@@ -71,9 +71,11 @@ class TutoreController extends Controller
      * @param  \App\Models\Tutore  $tutore
      * @return \Illuminate\Http\Response
      */
-    public function show(Tutore $tutore)
+    public function show($id)
     {
-        //
+        $tutores = Tutore::findOrFail($id);
+        // dd($tutores);
+        return view('tutores/perfil', compact('tutores'));
     }
 
     /**
