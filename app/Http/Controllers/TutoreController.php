@@ -20,8 +20,8 @@ class TutoreController extends Controller
         ->with(['professions'])
         ->orderBy('nombre', 'asc')
         ->paginate(10);
-
-             return view('tutores/index', $datos);
+        
+         return view('tutores/index', $datos);
     }
 
     /**
@@ -72,10 +72,20 @@ class TutoreController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $tutores = Tutore::findOrFail($id);
-        // dd($tutores);
-        return view('tutores/perfil', compact('tutores'));
+    { 
+        
+        $datos = Tutore::findOrFail($id);
+        dd($datos);
+        return view('tutores/edit', $datos);
+        
+        // $tutores = Tutore::findOrFail($id);
+        // $profession = Profession::all();
+        // $data = [
+        //     'tutores'   => $tutores,
+        //     'profession'   => $profession,
+        // ];
+        
+        return view('tutores/perfil', $datos);
     }
 
     /**

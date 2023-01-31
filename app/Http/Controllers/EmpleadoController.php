@@ -20,8 +20,8 @@ class EmpleadoController extends Controller
         ->with(['nivel_academico'])
         ->with(['cargos'])
         ->paginate(10);
-
-    return view('empleados/index', $datos, $datos);
+      
+        return view('empleados/index', $datos);
     }
 
     /**
@@ -55,9 +55,11 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function show(Empleado $empleado)
+    public function show($id)
     {
-
+        $empleado = Empleado::findOrFail($id);
+        // dd($empleado);
+        return view('empleados/perfil', compact('empleado'));
     }
 
     /**

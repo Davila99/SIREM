@@ -21,6 +21,7 @@ class EstudianteController extends Controller
             ->with(['tutor'])
             ->with(['sexo'])
             ->paginate(10);
+        
         return view('estudiante/index', $datos);
     }
 

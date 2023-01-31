@@ -13,13 +13,13 @@
                         <div class="row">
                             <div class="col-sm-4 col-md-3">
                                 <div class="card bg-light">
-                                    <div class="px-5 pt-2">
-                                        {{-- @if (isset($teacher->photo))
+                                    {{-- <div class="px-5 pt-2">
+                                        @if (isset($teacher->photo))
                                             <img src="{{asset('/storage'.$tutor->photo)}}" class="rounded-3 card-img-top" alt="Profile photo">
                                         @else
                                             <img src="{{asset('imgs/profile.png')}}" class="rounded-3 card-img-top" alt="Profile photo">
-                                        @endif --}}
-                                    </div>
+                                        @endif
+                                    </div> --}}
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $tutores->nombre}} {{$tutores->apellido}}</h5>
                                     </div>
@@ -32,44 +32,22 @@
                             <div class="col-sm-8 col-md-9">
                                 <div class="p-3 mb-3 border rounded bg-white">
                                     <h6>Tutor </h6>
-                                    {{-- <table class="table table-responsive mt-3">
+                                    <table class="table table-responsive mt-3">
                                         <tbody>
                                             <tr>
-                                                <th scope="row">First Name:</th>
-                                                <td>{{$teacher->first_name}}</td>
-                                                <th>Last Name:</th>
-                                                <td>{{$teacher->last_name}}</td>
+                                                <th scope="row">Primer Nombre:</th>
+                                                <td>{{ $tutores->nombre}}</td>
+                                                <th>Apellidos:</th>
+                                                <td>{{$tutores->apellido}}</td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">Email:</th>
-                                                <td>{{$teacher->email}}</td>
-                                                <th scope="row">Nationality:</th>
-                                                <td>{{$teacher->nationality}}</td>
-                                            </tr>
-                                            <tr>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Address:</th>
-                                                <td>{{$teacher->address}}</td>
-                                                <th>Address2:</th>
-                                                <td>{{$teacher->address2}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">City:</th>
-                                                <td>{{$teacher->city}}</td>
-                                                <th>Zip:</th>
-                                                <td>{{$teacher->zip}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Phone:</th>
-                                                <td>{{$teacher->phone}}</td>
-                                                <th>Gender:</th>
-                                                <td>{{$teacher->gender}}</td>
-                                            </tr>
-                                            <tr>
+                                                <th scope="row">Cargo:</th>
+                                                <td>{{$tutores->cedula}}</td>
+                                                <th scope="row">Telefono:</th>
+                                                <td>{{$tutores->telefono}}</td>
                                             </tr>
                                         </tbody>
-                                    </table> --}}
+                                    </table>
                                 </div>
                             </div>
                         </div>

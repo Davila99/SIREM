@@ -14,11 +14,9 @@
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Telefono</th>
-                        <th>Fecha Nacimiento</th>
                         <th>Cedula</th>
                         <th>Nivel Academico</th>
-                        <th>Direccion</th>
-                        <th>Email</th>
+
                         <th>Fecha ingreso</th>
                         <th>Cargo</th>
                         <th>Acciones</th>
@@ -31,15 +29,14 @@
                             <td>{{ $empleado->nombres }}</td>
                             <td>{{ $empleado->apellidos }}</td>
                             <td>{{ $empleado->telefono }}</td>
-                            <td>{{ $empleado->fecha_nacimiento }}</td>
                             <td>{{ $empleado->cedula }}</td>
                             <td>{{ $empleado->nivel_academico->descripcion }}</td>
-                            <td>{{ $empleado->direccion }}</td>
-                            <td>{{ $empleado->email }}</td>
                             <td>{{ $empleado->fecha_ingreso }}</td>
                             <td>{{ $empleado->cargos->descripcion }}</td>
                             <td><a href="{{ url('/empleados/' .$empleado->id.'/edit') }}" class="btn btn-info">
                                     Editar </a>|
+                                    <a href="{{ url('/empleados/' . $empleado->id) }}" class="btn btn-warning">
+                                        Perfil </a>|
                                 <form id="form-eliminar" action="{{ url('/empleados/' . $empleado->id) }}" method="post" class="d-inline">
                                     @csrf
                                     {{ method_field('DELETE') }}
