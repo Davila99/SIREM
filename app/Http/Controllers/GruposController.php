@@ -22,7 +22,7 @@ class GruposController extends Controller
 
         $datos['grupos'] =Grupos::query()
         ->with(['grado'])
-        ->with(['empleados'])
+        ->with(['empleado'])
         ->paginate(10);
         //return dd($datos);
         return view('grupos/index', $datos);

@@ -13,9 +13,13 @@ class AsignaturaDocente extends Model
         return $this->belongsTo(Asignatura::class);
     }
     public function empleado()
-    {
-        
+    {      
         return $this->belongsTo(Empleado::class);
+    }
+  
+    public function grado()
+    {
+        return $this->hasOneThrough(Grado::class, Grupos::class,'grado_id','id');
     }
 
 }

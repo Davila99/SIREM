@@ -16,6 +16,7 @@ class GradoController extends Controller
     public function index()
     {
         $datos['grados'] = Grado::paginate(10);
+        
         return view('grado/index',$datos);
     }
 

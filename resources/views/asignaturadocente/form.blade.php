@@ -1,8 +1,7 @@
-<table class="table table-dark">
+<table class="table table-responsive table-dark">
     <thead class="thead-light">
         <tr>
             <th>Asignatura</th>
-            <th>Docente</th>
         </tr>
     </thead>
     <tbody>
@@ -23,8 +22,18 @@
 
                 </div>
             </th>
+        </tr>
+    </tbody>
+    <thead class="thead-light">
+        <tr>
+            <th>Docente</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
             <th>
                 <div class="form-group">
+                    
                     <select class="form-control @error('empleado_id') is-invalid @enderror" name="empleado_id"
                         id="empleado">
 
@@ -39,7 +48,31 @@
 
                 </div>
             </th>
+        </tr>
+    </tbody>
+    <thead class="thead-light">
+        <tr>
+            <th>Grupo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
             <th>
+                <div class="form-group">
+            
+                    <select class="form-control @error('grupo_id') is-invalid @enderror" name="grupo_id"
+                        id="grupo">
+                      
+                        <option value="" selected disabled>--Seleccione--</option>
+                        @isset($grupos)
+                            @foreach ($grupos as $grupo)
+                                <option value="{{ $grupo->id }}"
+                                    {{ old('grupo_id') == $grupo->id ? 'selected' : '' }}>{{ $grupo->fecha }}
+                                </option>
+                            @endforeach
+                        @endisset
+
+                </div>
             </th>
         </tr>
     </tbody>
@@ -47,4 +80,5 @@
 </table>
 
 <input type="submit" value="Guardar" class="btn btn-success">
-<button type="button" class="btn btn-secondary"><a href="{{ url('asignaturadoc/') }}"> Regresar </a></button>
+<button type="button" class="btn btn-secondary"><a href="{{ url('asignaturadocente/') }}"> Regresar </a></button>
+

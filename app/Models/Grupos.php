@@ -27,5 +27,5 @@ class Grupos extends Model
     {
         return $this->belongsTo(Empleado::class);
     }
-
+    
 }

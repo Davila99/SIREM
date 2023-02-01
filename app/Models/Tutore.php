@@ -11,6 +11,6 @@ class Tutore extends Model
     use HasFactory;
     public function professions()
     {
-        return $this->hasMany(Profession::class);
+        return $this->belongsTo(Profession::class,'professions_id');
     }
 }

@@ -6,6 +6,8 @@ use App\Models\AsignaturaDocente;
 use Illuminate\Http\Request;
 use App\Models\Asignatura;
 use App\Models\Empleado;
+use App\Models\Grado;
+use App\Models\Grupos;
 
 class AsignaturaDocenteController extends Controller
 {
@@ -20,9 +22,10 @@ class AsignaturaDocenteController extends Controller
         $datos['asignaturadocentes'] = AsignaturaDocente::query()
         ->with(['asignatura'])
         ->with(['empleado'])
+        ->with(['grado'])
         ->paginate(10);
-
-    return view('asignaturadocente/index',$datos);
+        // dd($datos);
+        return view('asignaturadocente/index',$datos,);
     }
 
     /**
@@ -33,8 +36,10 @@ class AsignaturaDocenteController extends Controller
     public function create()
     {
         $asignaturas = Asignatura::all();
+        $grupos = Grupos::all();
         $empleados = Empleado::where('cargos_id',1)->get();
-        return view('asignaturadocente/create',compact('asignaturas'),compact('empleados'));
+     
+        return view('asignaturadocente/create',compact('asignaturas','empleados','grupos'));
     }
 
     /**
@@ -72,7 +77,9 @@ class AsignaturaDocenteController extends Controller
         $datos = AsignaturaDocente::findOrFail($id);
         $asignaturas = Asignatura::all();
         $empleados = Empleado::all();
-        return view('asignaturadocente/edit',["datos"=>$datos,"asignaturas"=>$asignaturas,"empleados"=>$empleados]);
+        $grupos = Grupos::all();
+      
+        return view('asignaturadocente/edit',["datos"=>$datos,"asignaturas"=>$asignaturas,"empleados"=>$empleados,"grupos"=>$grupos]);
     }
 
     /**

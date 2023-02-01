@@ -1,11 +1,9 @@
 
-<table class="table table-dark">
+<table class="table table-responsive table-dark">
     <thead class="thead-light">
         <tr>
             <th>Grado</th>
-        
             <th>Docente</th>
-
         </tr>
     </thead>
     <tbody>
@@ -27,7 +25,6 @@
             </th>
             
             <th>
-
                 <div class="form-group">
                     <select class="form-control @error('empleado_id') is-invalid @enderror" name="empleados_id"
                         id="empleados">
@@ -41,14 +38,10 @@
                                 </option>
                             @endforeach
                         @endisset
-
                 </div>
-            </th>
-            <th>
             </th>
         </tr>
     </tbody>
-
 
 </table>
 

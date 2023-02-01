@@ -8,7 +8,13 @@
         <br>
         <table class="table table-dark">
             <thead class="thead-light">
-            </thead>
+                <tr>
+                    <th>Grado</th>
+                    <th>Año Lectivo</th>
+                    <th>Docente</th>
+                    <th>Acciones</th>
+                </tr>
+        </thead>
 
             <tbody>
 

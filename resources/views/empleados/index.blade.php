@@ -1,22 +1,18 @@
 @extends('adminlte::page')
 @section('content')
     <div class="container">
-
-            <br>
+        <br>
         <a href="{{ url('empleados/create') }}" class="btn btn-success"> Nuevo Empleado </a>
         <br>
         <br>
         <div class="table-responsive">
-
             <table class="table table-dark">
                 <thead class="thead-light">
                     <tr>
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Telefono</th>
-                        <th>Cedula</th>
                         <th>Nivel Academico</th>
-
                         <th>Fecha ingreso</th>
                         <th>Cargo</th>
                         <th>Acciones</th>
@@ -29,7 +25,6 @@
                             <td>{{ $empleado->nombres }}</td>
                             <td>{{ $empleado->apellidos }}</td>
                             <td>{{ $empleado->telefono }}</td>
-                            <td>{{ $empleado->cedula }}</td>
                             <td>{{ $empleado->nivel_academico->descripcion }}</td>
                             <td>{{ $empleado->fecha_ingreso }}</td>
                             <td>{{ $empleado->cargos->descripcion }}</td>
@@ -43,7 +38,6 @@
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
                                 </form>
                             </td>
-    
                         </tr>
                     @endforeach
                 </tbody>
