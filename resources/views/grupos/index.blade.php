@@ -22,7 +22,7 @@
                     <tr>
                         <td>{{ $grupo->grado->descripcion }}</td>
                         <td>{{ $grupo->fecha }}</td>
-                        <td>{{ $grupo->empleados->nombres}}</td>
+                        <td>{{ $grupo->empleado->nombres}}</td>
 
                         <td>
                             <div class="d-flex flex-row bd-highlight mb-6">

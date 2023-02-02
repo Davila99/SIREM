@@ -74,18 +74,10 @@ class TutoreController extends Controller
     public function show($id)
     { 
         
-        $datos = Tutore::findOrFail($id);
-        dd($datos);
-        return view('tutores/edit', $datos);
-        
-        // $tutores = Tutore::findOrFail($id);
-        // $profession = Profession::all();
-        // $data = [
-        //     'tutores'   => $tutores,
-        //     'profession'   => $profession,
-        // ];
-        
-        return view('tutores/perfil', $datos);
+        $tutores = Tutore::findOrFail($id);
+        // dd($datos);
+
+        return view('tutores/perfil', $tutores);
     }
 
     /**

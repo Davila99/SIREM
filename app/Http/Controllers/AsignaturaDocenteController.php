@@ -24,6 +24,7 @@ class AsignaturaDocenteController extends Controller
         ->with(['empleado'])
         ->with(['grado'])
         ->paginate(10);
+       
         // dd($datos);
         return view('asignaturadocente/index',$datos,);
     }

@@ -58,7 +58,7 @@ class EmpleadoController extends Controller
     public function show($id)
     {
         $empleado = Empleado::findOrFail($id);
-        // dd($empleado);
+        dd($empleado);
         return view('empleados/perfil', compact('empleado'));
     }
 

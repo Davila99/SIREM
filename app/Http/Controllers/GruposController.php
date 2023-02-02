@@ -24,7 +24,7 @@ class GruposController extends Controller
         ->with(['grado'])
         ->with(['empleado'])
         ->paginate(10);
-        //return dd($datos);
+        //  dd($datos);
         return view('grupos/index', $datos);
     }
 

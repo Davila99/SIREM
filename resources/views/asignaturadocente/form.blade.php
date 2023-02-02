@@ -59,19 +59,11 @@
         <tr>
             <th>
                 <div class="form-group">
-            
-                    <select class="form-control @error('grupo_id') is-invalid @enderror" name="grupo_id"
-                        id="grupo">
-                      
-                        <option value="" selected disabled>--Seleccione--</option>
-                        @isset($grupos)
-                            @foreach ($grupos as $grupo)
-                                <option value="{{ $grupo->id }}"
-                                    {{ old('grupo_id') == $grupo->id ? 'selected' : '' }}>{{ $grupo->fecha }}
-                                </option>
-                            @endforeach
-                        @endisset
-
+                    <label for="descripcion">
+                        <h5>Grupo</h5>
+                    </label><br>
+                    <select name="grupo_id" class="buscar-grupos col-12">
+                    </select>
                 </div>
             </th>
         </tr>
@@ -82,3 +74,33 @@
 <input type="submit" value="Guardar" class="btn btn-success">
 <button type="button" class="btn btn-secondary"><a href="{{ url('asignaturadocente/') }}"> Regresar </a></button>
 
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.buscar-grupos').select2({
+            ajax: {
+                url: '/buscar-grupos',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data, params) {
+                    let results = [];
+                    if (data) {
+                        results = data.data.map(item => {
+                            return {
+                                id: item.id,
+                                text: item.descripcion
+                            }
+                        })
+                    }
+    
+                    console.log(results);
+    
+                    return {
+                        results: results
+                    };
+                },
+            }
+        });
+    });
+    </script>
+@endsection

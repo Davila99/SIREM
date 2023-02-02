@@ -4,28 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
 
 class Grupos extends Model
 {
     use HasFactory;
-    public function grados()
-    {
-        return $this->belongsTo(Grado::class);
-    }
-
-    public function empleados()
-    {
-        return $this->belongsTo(Empleado::class);
-    }
-
+ 
     public function grado()
     {
-        return $this->belongsTo(Grado::class);
+        return $this->hasOne(Grado::class,'id','grado_id');
     }
 
     public function empleado()
     {
-        return $this->belongsTo(Empleado::class);
+        return $this->hasOne(Empleado::class,'id','empleados_id');
     }
     
+    public function asignaturaDocente()
+    {
+        return $this->hasMany(AsignaturaDocente::class);
+    }
+   
 }
