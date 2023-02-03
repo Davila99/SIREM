@@ -63,7 +63,7 @@ class TutoreController extends Controller
     }
 
     Tutore::insert($datos);
-    return redirect('tutores/')->with('mensaje', 'Tutor agregado con exito');
+    return redirect('tutores/')->with('mensaje');
 }
     /**
      * Display the specified resource.
@@ -135,7 +135,7 @@ class TutoreController extends Controller
     $datos = Tutore::findOrFail($id);
 
 
-    return redirect('tutores')->with('mensaje-editar', 'Tutor editado con exito');
+    return redirect('tutores')->with('mensaje-editar');
 }
 
     /**
@@ -147,6 +147,6 @@ class TutoreController extends Controller
     public function destroy($id)
     {
         Tutore::destroy($id);
-        return redirect('tutores/')->with('mesaje-eliminar', 'Tutor Eliminado con exito');
+        return redirect('tutores/')->with('mesaje-eliminar');
     }
 }

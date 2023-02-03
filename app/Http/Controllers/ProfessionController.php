@@ -38,7 +38,7 @@ class ProfessionController extends Controller
     {
         $datos = request()->except('_token');
         Profession::insert($datos);
-        return redirect('profession/')->with('mensaje', 'Carrera agregado con exito');
+        return redirect('profession/')->with('mensaje');
     }
 
     /**
@@ -76,7 +76,7 @@ class ProfessionController extends Controller
         $datos = request()->except(['_token', '_method']);
         Profession::where('id', '=', $id)->update($datos);
         $datos = Profession::findOrFail($id);
-        return redirect('profession')->with('mensaje-editar', 'Profesion editado con exito');
+        return redirect('profession')->with('mensaje-editar');
     }
 
     /**
@@ -88,6 +88,6 @@ class ProfessionController extends Controller
     public function destroy($id)
     {
     Profession::destroy($id);
-    return redirect('profession')->with('mesaje-eliminar', 'Prefesion eliminado con exito');
+    return redirect('profession')->with('mesaje-eliminar');
     }
 }

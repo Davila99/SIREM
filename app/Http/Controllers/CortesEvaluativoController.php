@@ -38,7 +38,7 @@ class CortesEvaluativoController extends Controller
     {
         $datos = request()->except('_token');
         Cortes_evaluativo::insert($datos);
-        return redirect('cevaluativos/')->with('mensaje','Corte agregado con exito');
+        return redirect('cevaluativos/')->with('mensaje');
     }
 
     /**
@@ -76,7 +76,7 @@ class CortesEvaluativoController extends Controller
         $datos = request()->except(['_token','_method']);
         Cortes_evaluativo::where('id', '=', $id)->update($datos);
         $datos = Cortes_evaluativo::findOrFail($id);
-        return redirect('cevaluativos')->with('mensaje-editar', 'Corte Evaluativo editado con exito');
+        return redirect('cevaluativos')->with('mensaje-editar');
     }
 
     /**
@@ -88,6 +88,6 @@ class CortesEvaluativoController extends Controller
     public function destroy($id)
     {
         Cortes_evaluativo::destroy($id);
-        return redirect('cevaluativos/')->with('mesaje-eliminar','Corte eliminado con exito');
+        return redirect('cevaluativos/')->with('mesaje-eliminar');
     }
 }

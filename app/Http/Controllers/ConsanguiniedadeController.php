@@ -38,7 +38,7 @@ class ConsanguiniedadeController extends Controller
     {
         $datos = request()->except('_token');
         Consanguiniedade::insert($datos);
-        return redirect('consanguiniedades/')->with('mensaje', ' agregado con exito');
+        return redirect('consanguiniedades/')->with('mensaje');
     }
 
     /**
@@ -78,7 +78,7 @@ class ConsanguiniedadeController extends Controller
         Consanguiniedade::where('id', '=', $id)->update($datos);
 
         $datos = Consanguiniedade::findOrFail($id);
-        return redirect('consanguiniedades')->with('mensaje-editar', 'Consanguiniedad editado con exito');
+        return redirect('consanguiniedades')->with('mensaje-editar');
     }
 
     /**
@@ -90,6 +90,6 @@ class ConsanguiniedadeController extends Controller
     public function destroy($id)
     {
         Consanguiniedade::destroy($id);
-        return redirect('consanguiniedades/')->with('mesaje-eliminar', ' eliminada con exito');
+        return redirect('consanguiniedades/')->with('mesaje-eliminar');
     }
 }
