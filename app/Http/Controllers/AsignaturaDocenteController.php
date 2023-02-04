@@ -53,7 +53,7 @@ class AsignaturaDocenteController extends Controller
     {
         $datos = request()->except('_token');
         AsignaturaDocente::insert($datos);
-        return redirect('asignaturadocente/')->with('mensaje', 'Asignatura Docente agregado con exito');
+        return redirect('asignaturadocente/')->with('mensaje');
     }
 
     /**
@@ -95,7 +95,7 @@ class AsignaturaDocenteController extends Controller
         $datos = request()->except(['_token', '_method']);
         AsignaturaDocente::where('id', '=', $id)->update($datos);
         $datos = AsignaturaDocente::findOrFail($id);
-        return redirect('asignaturadocente/')->with('mensaje-editar', 'Asignatura Docente editado con exito');
+        return redirect('asignaturadocente/')->with('mensaje-editar');
     }
 
     /**
@@ -107,6 +107,6 @@ class AsignaturaDocenteController extends Controller
     public function destroy($id)
     {
         AsignaturaDocente::destroy($id);
-        return redirect('asignaturadocente/')->with('mensaje-eliminar', 'Asignatura Docentes Eliminado con exito');
+        return redirect('asignaturadocente/')->with('mensaje-eliminar');
     }
 }

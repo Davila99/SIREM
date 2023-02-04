@@ -32,7 +32,7 @@
                                     Editar </a>|
                                     <a href="{{ url('/empleados/' . $empleado->id) }}" class="btn btn-warning">
                                         Perfil </a>|
-                                <form id="form-eliminar" action="{{ url('/empleados/' . $empleado->id) }}" method="post" class="d-inline">
+                                <form class="form-eliminar" action="{{ url('/empleados/' . $empleado->id) }}" method="post" class="d-inline">
                                     @csrf
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -81,7 +81,7 @@
     </script>
 @endif
 <script>
-    $('#form-eliminar').submit(function(e) {
+    $('.form-eliminar').submit(function(e) {
         e.preventDefault();
         Swal.fire({
             title: '¿Estas seguro?',

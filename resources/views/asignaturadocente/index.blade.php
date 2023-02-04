@@ -28,17 +28,14 @@
                                 <a href="{{ url('/asignaturadocente/' . $asignaturadocente->id . '/edit') }}"
                                     class="btn btn-info">
                                     Editar </a>|
-                                <form id="form-eliminar" action="{{ url('/asignaturadocente/' . $asignaturadocente->id) }}" method="post"
-                                    class="d-inline">
+                                <form class="form-eliminar" action="{{ url('/asignaturadocente/' . $asignaturadocente->id) }}" method="post" class="d-inline">
                                     @csrf
                                     {{ method_field('DELETE') }}
-
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
                                 </form>
                             </div>
                          
                         </td>
-
                     </tr>
                 @endforeach
             </tbody>
@@ -81,7 +78,7 @@
     </script>
 @endif
 <script>
-    $('#form-eliminar').submit(function(e) {
+    $('.form-eliminar').submit(function(e) {
         e.preventDefault();
         Swal.fire({
             title: '¿Estas seguro?',

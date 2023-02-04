@@ -1,4 +1,4 @@
-{{--  <h1>{{ $titulo }} </h1>  --}}
+
 
 @if (count($errors) > 0)
     <div class="alert alert-danger" role="alert">
@@ -56,8 +56,6 @@
 
 </div>
 
-</th>
-<th>
 </th>
 </tr>
 </tbody>

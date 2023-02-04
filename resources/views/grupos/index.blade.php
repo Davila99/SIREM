@@ -80,7 +80,7 @@
     </script>
 @endif
 <script>
-    $('#form-eliminar').submit(function(e) {
+    $('.form-eliminar').submit(function(e) {
         e.preventDefault();
         Swal.fire({
             title: '¿Estas seguro?',

@@ -34,7 +34,7 @@ class EstudianteController extends Controller
     {
         $tutores = Tutore::all();
         $sexos = Sexo::all();
-        return view('estudiante/create', compact('tutores'), compact('sexos'));
+        return view('estudiante/create', compact('tutores','sexos'));
     }
 
     /**

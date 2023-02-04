@@ -33,7 +33,7 @@ class EmpleadoController extends Controller
     {
         $niveles_academicos = Niveles_academico::all();
         $cargos = Cargo::all();
-        return view('empleados/create', compact('niveles_academicos'), compact('cargos'));
+        return view('empleados/create', compact('niveles_academicos','cargos'));
     }
 
     /**
@@ -46,7 +46,7 @@ class EmpleadoController extends Controller
     {
         $datos = request()->except('_token');
         Empleado::insert($datos);
-        return redirect('empleados/')->with('mensaje', 'Empleado agregado con exito');
+        return redirect('empleados/')->with('mensaje');
     }
 
     /**
@@ -58,7 +58,7 @@ class EmpleadoController extends Controller
     public function show($id)
     {
         $empleado = Empleado::findOrFail($id);
-        dd($empleado);
+      
         return view('empleados/perfil', compact('empleado'));
     }
 
@@ -86,7 +86,7 @@ class EmpleadoController extends Controller
         $datos = request()->except(['_token', '_method']);
         Empleado::where('id', '=', $id)->update($datos);
         $datos = Empleado::findOrFail($id);
-        return redirect('empleados')->with('mensaje-editar', 'Empleado editado con exito');
+        return redirect('empleados')->with('mensaje-editar');
     }
 
     /**
@@ -98,6 +98,6 @@ class EmpleadoController extends Controller
     public function destroy($id)
     {
         Empleado::destroy($id);
-        return redirect('empleados/')->with('mesaje-eliminar', 'Empleado Eliminado con exito');
+        return redirect('empleados/')->with('mesaje-eliminar');
     }
 }
