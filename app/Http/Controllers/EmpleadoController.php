@@ -18,7 +18,7 @@ class EmpleadoController extends Controller
     {
         $datos['empleados'] = Empleado::query()
         ->with(['nivel_academico'])
-        ->with(['cargos'])
+        ->with(['cargos'])  
         ->paginate(10);
       
         return view('empleados/index', $datos);

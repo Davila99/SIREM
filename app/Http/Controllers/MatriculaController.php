@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Matricula;
-use App\Http\Requests\UpdateMatriculaRequest;
 use App\Models\Estudiante;
 use App\Models\Grupos;
 use App\Models\Tipo_Matricula;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class MatriculaController extends Controller
@@ -56,7 +54,7 @@ class MatriculaController extends Controller
         $matricula->grupo_id = $request->grupo_id;
         $matricula->save();
       
-        return redirect('matriculas/')->with('mensaje', 'Matricula agregada con exito');
+        return redirect('matriculas/')->with('mensaje');
         
     }
 
@@ -99,7 +97,7 @@ class MatriculaController extends Controller
         $datos = request()->except(['_token', '_method']);
         Matricula::where('id', '=', $id)->update($datos);
         $datos = Matricula::findOrFail($id);
-        return redirect('matriculas/')->with('mensaje', 'Matricula actualizada con exito');
+        return redirect('matriculas/')->with('mensaje-editar');
     }
 
     /**
@@ -111,6 +109,6 @@ class MatriculaController extends Controller
     public function destroy($id)
     {
         Matricula::destroy($id);
-        return redirect('matriculas/')->with('mesajeerror', 'Matricula eliminada con exito');
+        return redirect('matriculas/')->with('mesaje-eliminar');
     }
 }

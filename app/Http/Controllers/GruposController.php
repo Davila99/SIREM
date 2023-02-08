@@ -37,7 +37,7 @@ class GruposController extends Controller
     {
         $grados = Grado::all();
         $empleados = Empleado::where('cargos_id', 1)->get();
-      
+        
         
         return view('grupos/create', compact('grados'), compact('empleados'));
     }
