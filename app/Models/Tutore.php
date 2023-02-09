@@ -13,4 +13,5 @@ class Tutore extends Model
     {
         return $this->belongsTo(Profession::class,'professions_id','id');
     }
+    
 }

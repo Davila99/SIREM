@@ -1,20 +1,20 @@
-@if (count($errors) > 0)
-    <div class="alert alert-danger" role="alert">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
-<div class="form-group">
-    <label for="descripcion"><h5>Nombre del Cargo:</h5></label><br>
-    <input type="text" class="form-control" id="descripcion" name="descripcion"
-        value="{{ isset($datos->descripcion) ? $datos->descripcion : old('descripcion') }}"><br>
-</div>
+<fieldset class="border p-4">
+    <div class="form-group">
+        <label for="descripcion">Nombre del Cargo:</label><br>
+        <input type="text" class="form-control @error('descripcion') is-invalid @enderror" placeholder="Cargo"
+            id="descripcion" 
+            value="{{ isset($datos->descripcion) ? $datos->descripcion : old('descripcion') }}"><br>
+        @error('descripcion')
+            <div class="invalid-feedback">
+                <h6> {{ $message }}</h6>
+            </div>
+        @enderror
+    </div>
+</fieldset>
+
 
 
 
 <input type="submit" value="Guardar" class="btn btn-success">
-<a  type="button" class="btn btn-primary" href="{{ url('cargos/') }}"> Regresar </a>
+<a type="button" class="btn btn-primary" href="{{ url('cargos/') }}"> Regresar </a>
