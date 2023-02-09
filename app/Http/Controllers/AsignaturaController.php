@@ -37,6 +37,9 @@ class AsignaturaController extends Controller
     public function store(Request $request)
     {
         $datos = request()->except('_token');
+        $datos = $request->validate([
+            'descripcion' => 'required',
+        ]);
         Asignatura::insert($datos);
         return redirect('asignaturas/')->with('mensaje');
     }
@@ -74,7 +77,9 @@ class AsignaturaController extends Controller
     public function update(Request $request,$id)
     {
         $datos = request()->except(['_token', '_method']);
-
+        $datos = $request->validate([
+            'descripcion' => 'required',
+        ]);
         Asignatura::where('id', '=', $id)->update($datos);
 
         $datos = Asignatura::findOrFail($id);

@@ -37,6 +37,9 @@ class CortesEvaluativoController extends Controller
     public function store(Request $request)
     {
         $datos = request()->except('_token');
+        $datos = $request->validate([
+            'descripcion' => 'required',
+        ]);
         Cortes_evaluativo::insert($datos);
         return redirect('cevaluativos/')->with('mensaje');
     }
@@ -74,6 +77,9 @@ class CortesEvaluativoController extends Controller
     public function update(Request $request, $id)
     {
         $datos = request()->except(['_token','_method']);
+        $datos = $request->validate([
+            'descripcion' => 'required',
+        ]);
         Cortes_evaluativo::where('id', '=', $id)->update($datos);
         $datos = Cortes_evaluativo::findOrFail($id);
         return redirect('cevaluativos')->with('mensaje-editar');

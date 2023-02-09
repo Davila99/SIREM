@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h1>Registrar Nueva Asignatura</h1>
+    <legend class="text">Registrar Nueva Asignatura</legend>
     <form action="{{ url('/asignaturas') }}" method="post" enctype="multipart/form-data">
     @csrf
 

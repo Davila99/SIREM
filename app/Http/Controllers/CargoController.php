@@ -81,8 +81,7 @@ class CargoController extends Controller
         $datos = request()->except(['_token', '_method']);
         $datos = $request->validate([
             'descripcion' => 'required',
-        ]);  
-
+        ]);
         Cargo::where('id', '=', $id)->update($datos);
 
         $datos = Cargo::findOrFail($id);

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <h1>Editar Cargos</h1>
+        <legend class="text">Editar Cargos</legend>
         <form action="{{ url('cevaluativos/' . $datos->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             {{ method_field('PATCH') }}

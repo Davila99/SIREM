@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h1>Registrar Nueva Consanguiniedad</h1>
+    <legend class="text">Registrar Nueva Consanguiniedad</legend>
     <form action="{{ url('/consanguiniedades') }}" method="post" enctype="multipart/form-data">
     @csrf
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <h1>Editar Matricula</h1>
+        <legend class="text">Editar Matricula</legend>
         <form action="{{ url('tmatricula/' . $datos->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             {{ method_field('PATCH') }}
