@@ -27,7 +27,7 @@ class CalificacionesController extends Controller
         ->with(['cortes_evaluativo'])
         ->paginate(10);
 
-    return view('calificaciones/index',$datos);
+         return view('calificaciones/index',$datos);
     }
 
     /**
@@ -56,7 +56,7 @@ class CalificacionesController extends Controller
     {
         $datos = request()->except('_token');
         Calificaciones::insert($datos);
-        return redirect('calificaciones/')->with('mensaje', ' agregado con exito');
+        return redirect('calificaciones/')->with('mensaje');
     }
 
 
@@ -114,6 +114,6 @@ class CalificacionesController extends Controller
     public function destroy($id)
     {
         Calificaciones::destroy($id);
-        return redirect('calificaciones/')->with('mensaje', 'Eliminado con exito');
+        return redirect('calificaciones/')->with('mensaje');
     }
 }

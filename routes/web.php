@@ -16,6 +16,7 @@ use App\Http\Controllers\NivelesAcademicoController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\TipoMatriculaController;
 use App\Http\Controllers\TutoreController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth/login');
-});
+}); 
 
 Route::resource('cargos', CargoController::class);
 Route::resource('nivelacademic', NivelesAcademicoController::class);
@@ -51,7 +52,7 @@ Route::resource('consanguiniedades', ConsanguiniedadeController::class);
 Route::resource('asignaturadocente', AsignaturaDocenteController::class);
 Route::resource('matriculas', MatriculaController::class);
 Route::resource('grupos', GruposController::class);
-Route::resource('calificacionese', CalificacionesController::class);
+Route::resource('calificaciones', CalificacionesController::class);
 Route::resource('tutorestudiante', EstudiantesTutoresController::class);
 Auth::routes();
 

@@ -1,15 +1,4 @@
 
-
-@if (count($errors) > 0)
-    <div class="alert alert-danger" role="alert">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
 <table class="table table-dark">
     <thead class="thead-light">
         <tr>
@@ -18,8 +7,6 @@
             <th>Grado</th>
             <th>Estudiante</th>
             <th>Cortes_evaluativo</th>
-            
-           
         </tr>
     </thead>
  <tbody>
