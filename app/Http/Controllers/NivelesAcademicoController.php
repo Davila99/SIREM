@@ -38,7 +38,7 @@ class NivelesAcademicoController extends Controller
     {
         $datos = request()->except('_token');
         Niveles_academico::insert($datos);
-        return redirect('nivelacademic')->with('mensaje');
+        return redirect('nivelacademic')->with('mensaje','ok');
     }
 
     /**
@@ -76,7 +76,7 @@ class NivelesAcademicoController extends Controller
         $datos = request()->except(['_token', '_method']);
         Niveles_academico::where('id', '=', $id)->update($datos);
         $datos = Niveles_academico::findOrFail($id);
-        return redirect('nivelacademic')->with('mensaje-editar');
+        return redirect('nivelacademic')->with('mensaje-editar','ok');
     }
 
     /**
@@ -88,6 +88,6 @@ class NivelesAcademicoController extends Controller
     public function destroy($id)
     {
         Niveles_academico::destroy($id);
-        return redirect('nivelacademic')->with('mesaje-eliminar');
+        return redirect('nivelacademic')->with('mensaje-eliminar','ok');
     }
 }

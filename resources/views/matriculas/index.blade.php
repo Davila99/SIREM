@@ -49,7 +49,7 @@
         Swal.fire({
             position: 'top-center',
             icon: 'success',
-            title: 'Empleado registrado!',
+            title: 'Matricula registrado!',
             showConfirmButton: false,
             timer: 2000
         })
@@ -60,13 +60,13 @@
         Swal.fire({
             position: 'top-center',
             icon: 'success',
-            title: 'Empleado editado exitosamente!',
+            title: 'Matricula editado exitosamente!',
             showConfirmButton: false,
             timer: 2000
         })
     </script>
 @endif
-@if (Session::has('mesaje-eliminar'))
+@if (Session::has('mensaje-eliminar'))
     <script>
         Swal.fire(
             'Eliminado!',

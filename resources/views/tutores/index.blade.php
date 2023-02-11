@@ -72,7 +72,7 @@
             })
         </script>
     @endif
-    @if (Session::has('mesaje-eliminar'))
+    @if (Session::has('mensaje-eliminar'))
         <script>
             Swal.fire(
                 'Eliminado!',

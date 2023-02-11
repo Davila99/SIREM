@@ -40,7 +40,7 @@ class GradoController extends Controller
     {
         $datos = request()->except('_token');
         Grado::insert($datos);
-        return redirect('grados/')->with('mensaje');
+        return redirect('grados/')->with('mensaje','ok');
     }
 
     /**
@@ -78,7 +78,7 @@ class GradoController extends Controller
         $datos = request()->except(['_token','_method']);
         Grado::where('id','=',$id)->update($datos);
         $datos = Grado::findOrFail($id);
-        return redirect('grados')->with('mensaje-editar');
+        return redirect('grados')->with('mensaje-editar','ok');
     }
 
     /**
@@ -90,7 +90,7 @@ class GradoController extends Controller
     public function destroy($id)
     {
     Grado::destroy($id);
-    return redirect('grados/')->with('mesaje-eliminar');
+    return redirect('grados/')->with('mensaje-eliminar','ok');
 
     }
 }

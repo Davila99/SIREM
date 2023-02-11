@@ -56,7 +56,7 @@ class GruposController extends Controller
         $grupo->fecha = $fecha;
         $grupo->empleados_id = $request->empleados_id;
         $grupo->save();
-        return redirect('grupos/')->with('mensaje', 'Grupo agregado con exito');
+        return redirect('grupos/')->with('mensaje', 'ok');
         
     }
 
@@ -99,7 +99,7 @@ class GruposController extends Controller
         $datos = request()->except(['_token', '_method']);
         Grupos::where('id', '=', $id)->update($datos);
         $datos = Grupos::findOrFail($id);
-        return redirect('grupos/')->with('mensaje', 'Grupo editado con exito');
+        return redirect('grupos/')->with('mensaje-editar', 'ok');
     }
 
     /**
@@ -111,7 +111,7 @@ class GruposController extends Controller
     public function destroy($id)
     {
         Grupos::destroy($id);
-        return redirect('grupos/')->with('mesajeerror', ' Eliminado con exito');
+        return redirect('grupos/')->with('mensaje-eliminar','ok');
     }
 
     public function search(Request $request)

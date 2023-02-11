@@ -41,7 +41,7 @@ class AsignaturaController extends Controller
             'descripcion' => 'required',
         ]);
         Asignatura::insert($datos);
-        return redirect('asignaturas/')->with('mensaje');
+        return redirect('asignaturas/')->with('mensaje','ok');
     }
 
     /**
@@ -83,7 +83,7 @@ class AsignaturaController extends Controller
         Asignatura::where('id', '=', $id)->update($datos);
 
         $datos = Asignatura::findOrFail($id);
-        return redirect('asignaturas')->with('mensaje-editar');
+        return redirect('asignaturas')->with('mensaje-editar','ok');
     }
 
     /**
@@ -95,6 +95,6 @@ class AsignaturaController extends Controller
     public function destroy($id)
     {
         Asignatura::destroy($id);
-        return redirect('asignaturas/')->with('mesaje-eliminar');
+        return redirect('asignaturas/')->with('mensaje-eliminar','ok');
     }
 }

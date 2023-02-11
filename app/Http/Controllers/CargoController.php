@@ -42,7 +42,7 @@ class CargoController extends Controller
             'descripcion' => 'required',
         ]);  
         Cargo::insert($datos);
-        return redirect('cargos/')->with('mensaje');
+        return redirect('cargos/')->with('mensaje','ok');
     }
 
     /**
@@ -85,7 +85,7 @@ class CargoController extends Controller
         Cargo::where('id', '=', $id)->update($datos);
 
         $datos = Cargo::findOrFail($id);
-        return redirect('cargos/')->with('mensaje-editar');
+        return redirect('cargos/')->with('mensaje-editar','ok');
     }
 
     /**
@@ -97,6 +97,6 @@ class CargoController extends Controller
     public function destroy($id)
     {
         Cargo::destroy($id);
-        return redirect('cargos/')->with('mesaje-eliminar');
+        return redirect('cargos/')->with('mensaje-eliminar','ok');
     }
 }

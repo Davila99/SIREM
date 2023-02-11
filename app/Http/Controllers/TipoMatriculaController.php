@@ -40,7 +40,7 @@ class TipoMatriculaController extends Controller
     {
         $datos = request()->except('_token');
         Tipo_Matricula::insert($datos);
-        return redirect('tmatricula/')->with('mensaje');
+        return redirect('tmatricula/')->with('mensaje','ok');
     }
 
     /**
@@ -78,7 +78,7 @@ class TipoMatriculaController extends Controller
         $datos = request()->except(['_token', '_method']);
         Tipo_Matricula::where('id', '=', $id)->update($datos);
         $datos = Tipo_Matricula::findOrFail($id);
-        return redirect('tmatricula')->with('mensaje-editar');
+        return redirect('tmatricula')->with('mensaje-editar','ok');
     }
 
     /**
@@ -90,7 +90,7 @@ class TipoMatriculaController extends Controller
     public function destroy($id)
     {
         Tipo_Matricula::destroy($id);
-        return redirect('tmatricula/')->with('mesaje-eliminar');
+        return redirect('tmatricula/')->with('mensaje-eliminar','ok');
     }
     public function search(Request $request)
     {

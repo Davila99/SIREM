@@ -50,7 +50,7 @@ class EstudiantesTutoresController extends Controller
     {
         $datos = request()->except('_token');
         EstudiantesTutores::insert($datos);
-        return redirect('tutorestudiante/')->with('mensaje', 'Asignatura Docente agregado con exito');
+        return redirect('tutorestudiante/')->with('mensaje', 'ok');
     }
 
     /**
@@ -90,7 +90,7 @@ class EstudiantesTutoresController extends Controller
         $datos = request()->except(['_token', '_method']);
         EstudiantesTutores::where('id', '=', $id)->update($datos);
         $datos = EstudiantesTutores::findOrFail($id);
-        return redirect('tutorestudiante')->with('mensaje', 'Estudiante Tutor editado con exito');
+        return redirect('tutorestudiante')->with('mensaje-editar', 'ok');
     }
 
     /**
@@ -102,6 +102,6 @@ class EstudiantesTutoresController extends Controller
     public function destroy($id)
     {
         EstudiantesTutores::destroy($id);
-        return redirect('tutorestudiante/')->with('mesajeerror', ' Eliminado con exito');
+        return redirect('tutorestudiante/')->with('mensaje-eliminar', ' ok');
     }
 }

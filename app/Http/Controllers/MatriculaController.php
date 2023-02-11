@@ -54,7 +54,7 @@ class MatriculaController extends Controller
         $matricula->grupo_id = $request->grupo_id;
         $matricula->save();
       
-        return redirect('matriculas/')->with('mensaje');
+        return redirect('matriculas/')->with('mensaje','ok');
         
     }
 
@@ -97,7 +97,7 @@ class MatriculaController extends Controller
         $datos = request()->except(['_token', '_method']);
         Matricula::where('id', '=', $id)->update($datos);
         $datos = Matricula::findOrFail($id);
-        return redirect('matriculas/')->with('mensaje-editar');
+        return redirect('matriculas/')->with('mensaje-editar','ok');
     }
 
     /**
@@ -109,6 +109,6 @@ class MatriculaController extends Controller
     public function destroy($id)
     {
         Matricula::destroy($id);
-        return redirect('matriculas/')->with('mesaje-eliminar');
+        return redirect('matriculas/')->with('mensaje-eliminar','ok');
     }
 }

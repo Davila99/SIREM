@@ -41,7 +41,7 @@ class CortesEvaluativoController extends Controller
             'descripcion' => 'required',
         ]);
         Cortes_evaluativo::insert($datos);
-        return redirect('cevaluativos/')->with('mensaje');
+        return redirect('cevaluativos/')->with('mensaje','ok');
     }
 
     /**
@@ -82,7 +82,7 @@ class CortesEvaluativoController extends Controller
         ]);
         Cortes_evaluativo::where('id', '=', $id)->update($datos);
         $datos = Cortes_evaluativo::findOrFail($id);
-        return redirect('cevaluativos')->with('mensaje-editar');
+        return redirect('cevaluativos')->with('mensaje-editar','ok');
     }
 
     /**
@@ -94,6 +94,6 @@ class CortesEvaluativoController extends Controller
     public function destroy($id)
     {
         Cortes_evaluativo::destroy($id);
-        return redirect('cevaluativos/')->with('mesaje-eliminar');
+        return redirect('cevaluativos/')->with('mensaje-eliminar','ok');
     }
 }
