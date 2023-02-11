@@ -35,7 +35,14 @@ class ProfessionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {    $request->validate(
+        [
+            'descripcion' => 'required',
+        ],
+        [
+            'descripcion.required' => 'El campo es obligatorio.',
+        ]
+    );
         $datos = request()->except('_token');
         Profession::insert($datos);
         return redirect('profession/')->with('mensaje','ok');
@@ -72,7 +79,14 @@ class ProfessionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)
-    {
+    {    $request->validate(
+        [
+            'descripcion' => 'required',
+        ],
+        [
+            'descripcion.required' => 'El campo es obligatorio.',
+        ]
+    );
         $datos = request()->except(['_token', '_method']);
         Profession::where('id', '=', $id)->update($datos);
         $datos = Profession::findOrFail($id);

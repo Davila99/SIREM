@@ -6,39 +6,42 @@
          <a href="{{ url('cargos/create') }}" class="btn btn-success"> Nuevo Cargo </a>
          <br>
          <br>
-         <table class="table table-dark">
-             <thead class="thead-light">
-                 <tr>
-                     <th>Cargos</th>
-                     <th>Acciones</th>
-                 </tr>
-             </thead>
-
-             <tbody>
-
-                 @foreach ($cargos as $cargo)
+         <div class="table-responsive">
+             <table class="table table-dark">
+                 <thead class="thead-light">
                      <tr>
-                         <td>{{ $cargo->descripcion }}</td>
-
-                         <td>
-                             <div class="d-flex flex-row bd-highlight mb-6">
-                                
-                                 <a href="{{ url('/cargos/' . $cargo->id . '/edit') }}" class="btn btn-info">
-                                     Editar </a>|
-                                 <form class="form-eliminar" action="{{ url('/cargos/' . $cargo->id) }}" method="post"
-                                     class="d-inline">
-                                     @csrf
-                                     {{ method_field('DELETE') }}
-                                     <button type="submit" class="btn btn-danger">Eliminar</button>
-                                 </form>
-                             </div>
-                             
-                         </td>
-
+                         <th>Cargos</th>
+                         <th>Acciones</th>
                      </tr>
-                 @endforeach
-             </tbody>
-         </table>
+                 </thead>
+
+                 <tbody>
+
+                     @foreach ($cargos as $cargo)
+                         <tr>
+                             <td>{{ $cargo->descripcion }}</td>
+
+                             <td>
+                                 <div class="d-flex flex-row bd-highlight mb-6">
+
+                                     <a href="{{ url('/cargos/' . $cargo->id . '/edit') }}" class="btn btn-info">
+                                         Editar </a>|
+                                     <form class="form-eliminar" action="{{ url('/cargos/' . $cargo->id) }}" method="post"
+                                         class="d-inline">
+                                         @csrf
+                                         {{ method_field('DELETE') }}
+                                         <button type="submit" class="btn btn-danger">Eliminar</button>
+                                     </form>
+                                 </div>
+
+                             </td>
+
+                         </tr>
+                     @endforeach
+                 </tbody>
+             </table>
+         </div>
+
      </div>
  @stop
  @section('js')

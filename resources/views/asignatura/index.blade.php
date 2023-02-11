@@ -6,36 +6,39 @@
         <a href="{{ url('asignaturas/create') }}" class="btn btn-success"> Nuevo Asignatura </a>
         <br>
         <br>
-        <table class="table table-dark">
-            <thead class="thead-light">
-                <tr>
-                    <th>Asignaturas</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                @foreach ($asignaturas as $asignatura)
+        <div class="table-responsive">
+            <table class="table table-dark">
+                <thead class="thead-light">
                     <tr>
-                        <td>{{ $asignatura->descripcion }}</td>
-                        <td>
-                            <div class="d-flex flex-row bd-highlight mb-6">
-                                <a href="{{ url('/asignaturas/' . $asignatura->id . '/edit') }}" class="btn btn-info">
-                                    Editar </a>|
-                                <form class="form-eliminar" action="{{ url('/asignaturas/' . $asignatura->id) }}"
-                                    method="post" class="d-inline">
-                                    @csrf
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </div>
-
-                        </td>
+                        <th>Asignaturas</th>
+                        <th>Acciones</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+
+                <tbody>
+
+                    @foreach ($asignaturas as $asignatura)
+                        <tr>
+                            <td>{{ $asignatura->descripcion }}</td>
+                            <td>
+                                <div class="d-flex flex-row bd-highlight mb-6">
+                                    <a href="{{ url('/asignaturas/' . $asignatura->id . '/edit') }}" class="btn btn-info">
+                                        Editar </a>|
+                                    <form class="form-eliminar" action="{{ url('/asignaturas/' . $asignatura->id) }}"
+                                        method="post" class="d-inline">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                </div>
+
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
     </div>
 @stop
 

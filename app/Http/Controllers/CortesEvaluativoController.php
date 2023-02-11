@@ -15,7 +15,7 @@ class CortesEvaluativoController extends Controller
     public function index()
     {
         $datos['cortes_evaluativos'] = Cortes_evaluativo::paginate(10);
-        return view('cortes/index',$datos);
+        return view('cortes/index', $datos);
     }
 
     /**
@@ -36,12 +36,18 @@ class CortesEvaluativoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'descripcion' => 'required',
+            ],
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
         $datos = request()->except('_token');
-        $datos = $request->validate([
-            'descripcion' => 'required',
-        ]);
+
         Cortes_evaluativo::insert($datos);
-        return redirect('cevaluativos/')->with('mensaje','ok');
+        return redirect('cevaluativos/')->with('mensaje', 'ok');
     }
 
     /**
@@ -76,13 +82,18 @@ class CortesEvaluativoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $datos = request()->except(['_token','_method']);
-        $datos = $request->validate([
-            'descripcion' => 'required',
-        ]);
+        $request->validate([
+            'descripcion'=>'required' 
+        ],
+        [
+            'descripcion.required' => 'El campo es obligatorio.'
+        ]
+         );
+        $datos = request()->except(['_token', '_method']);
+
         Cortes_evaluativo::where('id', '=', $id)->update($datos);
         $datos = Cortes_evaluativo::findOrFail($id);
-        return redirect('cevaluativos')->with('mensaje-editar','ok');
+        return redirect('cevaluativos')->with('mensaje-editar', 'ok');
     }
 
     /**
@@ -94,6 +105,6 @@ class CortesEvaluativoController extends Controller
     public function destroy($id)
     {
         Cortes_evaluativo::destroy($id);
-        return redirect('cevaluativos/')->with('mensaje-eliminar','ok');
+        return redirect('cevaluativos/')->with('mensaje-eliminar', 'ok');
     }
 }

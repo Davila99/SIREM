@@ -6,38 +6,42 @@
         <a href="{{ url('consanguiniedades/create') }}" class="btn btn-success"> Nuevo Consanguiniedad </a>
         <br>
         <br>
-        <table class="table table-dark">
-            <thead class="thead-light">
-                <tr>
-                    <th> Consanguiniedades</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                @foreach ($consanguiniedades as $consanguiniedade)
+        <div class="table-responsive">
+            <table class="table table-dark">
+                <thead class="thead-light">
                     <tr>
-                        <td>{{ $consanguiniedade->descripcion }}</td>
-                        <td>
-                            <div class="d-flex flex-row bd-highlight mb-6">
-                                <a href="{{ url('/consanguiniedades/' . $consanguiniedade->id . '/edit') }}"
-                                    class="btn btn-info">
-                                    Editar </a>|
-                                <form class="form-eliminar" action="{{ url('/consanguiniedades/' . $consanguiniedade->id) }}"
-                                    method="post" class="d-inline">
-                                    @csrf
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </div>
-
-                        </td>
-
+                        <th> Consanguiniedades</th>
+                        <th>Acciones</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+
+                <tbody>
+
+                    @foreach ($consanguiniedades as $consanguiniedade)
+                        <tr>
+                            <td>{{ $consanguiniedade->descripcion }}</td>
+                            <td>
+                                <div class="d-flex flex-row bd-highlight mb-6">
+                                    <a href="{{ url('/consanguiniedades/' . $consanguiniedade->id . '/edit') }}"
+                                        class="btn btn-info">
+                                        Editar </a>|
+                                    <form class="form-eliminar"
+                                        action="{{ url('/consanguiniedades/' . $consanguiniedade->id) }}" method="post"
+                                        class="d-inline">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
 
     </div>
 @stop

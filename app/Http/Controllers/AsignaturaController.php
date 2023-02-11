@@ -36,12 +36,18 @@ class AsignaturaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'descripcion' => 'required',
+            ],
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
         $datos = request()->except('_token');
-        $datos = $request->validate([
-            'descripcion' => 'required',
-        ]);
+
         Asignatura::insert($datos);
-        return redirect('asignaturas/')->with('mensaje','ok');
+        return redirect('asignaturas/')->with('mensaje', 'ok');
     }
 
     /**
@@ -74,16 +80,22 @@ class AsignaturaController extends Controller
      * @param  \App\Models\Asignatura  $asignatura
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
+        $request->validate(
+            [
+                'descripcion' => 'required',
+            ],
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
         $datos = request()->except(['_token', '_method']);
-        $datos = $request->validate([
-            'descripcion' => 'required',
-        ]);
+
         Asignatura::where('id', '=', $id)->update($datos);
 
         $datos = Asignatura::findOrFail($id);
-        return redirect('asignaturas')->with('mensaje-editar','ok');
+        return redirect('asignaturas')->with('mensaje-editar', 'ok');
     }
 
     /**
@@ -95,6 +107,6 @@ class AsignaturaController extends Controller
     public function destroy($id)
     {
         Asignatura::destroy($id);
-        return redirect('asignaturas/')->with('mensaje-eliminar','ok');
+        return redirect('asignaturas/')->with('mensaje-eliminar', 'ok');
     }
 }

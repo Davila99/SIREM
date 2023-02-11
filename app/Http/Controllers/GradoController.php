@@ -38,6 +38,14 @@ class GradoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'descripcion' => 'required',
+            ],
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
         $datos = request()->except('_token');
         Grado::insert($datos);
         return redirect('grados/')->with('mensaje','ok');
@@ -75,6 +83,14 @@ class GradoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate(
+            [
+                'descripcion' => 'required',
+            ],
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
         $datos = request()->except(['_token','_method']);
         Grado::where('id','=',$id)->update($datos);
         $datos = Grado::findOrFail($id);

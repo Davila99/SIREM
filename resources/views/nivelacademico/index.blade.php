@@ -6,38 +6,40 @@
         <a href="{{ url('nivelacademic/create') }}" class="btn btn-success"> Nuevo Nivel academico </a>
         <br>
         <br>
-        <table class="table table-dark">
-            <thead class="thead-light">
-                <tr>
-                    <th>Niveles Academicos</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                @foreach ($niveles_academicos as $niveles_academico)
+        <div class="table-responsive">
+            <table class="table table-dark">
+                <thead class="thead-light">
                     <tr>
-                        <td>{{ $niveles_academico->descripcion }}</td>
-                        <td>
-                            <div class="d-flex flex-row bd-highlight mb-6">
-                                <a href="{{ url('/nivelacademic/' . $niveles_academico->id . '/edit') }}" class="btn btn-info">
-                                    Editar </a>|
-                                <form class="form-eliminar" action="{{ url('/nivelacademic/' . $niveles_academico->id) }}" method="post"
-                                    class="d-inline">
-                                    @csrf
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </div>
-                           
-                        </td>
-
+                        <th>Niveles Academicos</th>
+                        <th>Acciones</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
-
+                </thead>
+    
+                <tbody>
+    
+                    @foreach ($niveles_academicos as $niveles_academico)
+                        <tr>
+                            <td>{{ $niveles_academico->descripcion }}</td>
+                            <td>
+                                <div class="d-flex flex-row bd-highlight mb-6">
+                                    <a href="{{ url('/nivelacademic/' . $niveles_academico->id . '/edit') }}" class="btn btn-info">
+                                        Editar </a>|
+                                    <form class="form-eliminar" action="{{ url('/nivelacademic/' . $niveles_academico->id) }}" method="post"
+                                        class="d-inline">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                </div>
+                               
+                            </td>
+    
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        
     </div>
 @stop
 @section('js')

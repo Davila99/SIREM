@@ -36,6 +36,14 @@ class NivelesAcademicoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'descripcion' => 'required',
+            ],
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
         $datos = request()->except('_token');
         Niveles_academico::insert($datos);
         return redirect('nivelacademic')->with('mensaje','ok');
@@ -72,7 +80,14 @@ class NivelesAcademicoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   $request->validate(
+        [
+            'descripcion' => 'required',
+        ],
+        [
+            'descripcion.required' => 'El campo es obligatorio.',
+        ]
+    );
         $datos = request()->except(['_token', '_method']);
         Niveles_academico::where('id', '=', $id)->update($datos);
         $datos = Niveles_academico::findOrFail($id);

@@ -36,9 +36,17 @@ class ConsanguiniedadeController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'descripcion' => 'required',
+            ],
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
         $datos = request()->except('_token');
         Consanguiniedade::insert($datos);
-        return redirect('consanguiniedades/')->with('mensaje','ok');
+        return redirect('consanguiniedades/')->with('mensaje', 'ok');
     }
 
     /**
@@ -71,14 +79,22 @@ class ConsanguiniedadeController extends Controller
      * @param  \App\Models\Consanguiniedade  $consanguiniedade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
+        $request->validate(
+            [
+                'descripcion' => 'required',
+            ],
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
         $datos = request()->except(['_token', '_method']);
 
         Consanguiniedade::where('id', '=', $id)->update($datos);
 
         $datos = Consanguiniedade::findOrFail($id);
-        return redirect('consanguiniedades')->with('mensaje-editar','ok');
+        return redirect('consanguiniedades')->with('mensaje-editar', 'ok');
     }
 
     /**
@@ -90,6 +106,6 @@ class ConsanguiniedadeController extends Controller
     public function destroy($id)
     {
         Consanguiniedade::destroy($id);
-        return redirect('consanguiniedades/')->with('mesaje-eliminar','ok');
+        return redirect('consanguiniedades/')->with('mensaje-eliminar', 'ok');
     }
 }

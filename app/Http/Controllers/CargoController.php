@@ -36,11 +36,15 @@ class CargoController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'descripcion'=>'required' 
+        ],
+        [
+            'descripcion.required' => 'El campo es obligatorio.'
+        ]
+         );
         $datos = request()->except('_token');
-        $datos = $request->validate([
-            'descripcion' => 'required',
-        ]);  
+        //  dd($datos);
         Cargo::insert($datos);
         return redirect('cargos/')->with('mensaje','ok');
     }
@@ -77,11 +81,14 @@ class CargoController extends Controller
      */
     public function update(Request $request, $id)
     {   
-       
+        $request->validate([
+            'descripcion'=>'required' 
+        ],
+        [
+            'descripcion.required' => 'El campo es obligatorio.'
+        ]
+         );
         $datos = request()->except(['_token', '_method']);
-        $datos = $request->validate([
-            'descripcion' => 'required',
-        ]);
         Cargo::where('id', '=', $id)->update($datos);
 
         $datos = Cargo::findOrFail($id);

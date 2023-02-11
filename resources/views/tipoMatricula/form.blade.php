@@ -1,20 +1,25 @@
-@if (count($errors) > 0)
-    <div class="alert alert-danger" role="alert">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+<div class="mt-5 row justify-content-center">
+    <fieldset class="border p-4">
+        <div class="form-group">
+            <label for="descripcion">
+                <h5>Tipo de matricula:</h5>
+            </label>
+            <input id="descripcion" name="descripcion" type="text"
+                class="form-control @error('descripcion') is-invalid @enderror" placeholder="Tipo de matricula"
+                value="{{ isset($datos->descripcion) ? $datos->descripcion : old('descripcion') }}">
+            @error('descripcion')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
+        </div>
+    </fieldset>
+
+    <div class="d-grid mt-2 col-sm-4">
+        <input type="submit" value="Guardar" class="btn btn-success">
     </div>
-@endif
 
-<div class="form-group">
-    <label for="descripcion">Tipo de matricula:</label><br>
-    <input type="text" class="form-control" id="descripcion" name="descripcion"
-        value="{{ isset($datos->descripcion) ? $datos->descripcion : old('descripcion') }}"><br>
+    <div class="d-grid mt-2 col-sm-4">
+        <a  type="button" class="btn btn-primary"  href="{{ url('tmatricula/') }}"> Regresar </a>
+    </div>
 </div>
-
-
-
-<input type="submit" value="Guardar" class="btn btn-success">
-<a  type="button" class="btn btn-primary"  href="{{ url('tmatricula/') }}"> Regresar </a>

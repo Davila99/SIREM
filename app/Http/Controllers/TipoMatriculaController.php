@@ -16,7 +16,7 @@ class TipoMatriculaController extends Controller
      */
     public function index()
     {
-        $datos['tipo__matriculas'] =  Tipo_Matricula::paginate(10);
+        $datos['tipo__matriculas'] = Tipo_Matricula::paginate(10);
         return view('tipoMatricula/index', $datos);
     }
 
@@ -38,9 +38,17 @@ class TipoMatriculaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'descripcion' => 'required',
+            ],
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
         $datos = request()->except('_token');
         Tipo_Matricula::insert($datos);
-        return redirect('tmatricula/')->with('mensaje','ok');
+        return redirect('tmatricula/')->with('mensaje', 'ok');
     }
 
     /**
@@ -75,10 +83,18 @@ class TipoMatriculaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate(
+            [
+                'descripcion' => 'required',
+            ],
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
         $datos = request()->except(['_token', '_method']);
         Tipo_Matricula::where('id', '=', $id)->update($datos);
         $datos = Tipo_Matricula::findOrFail($id);
-        return redirect('tmatricula')->with('mensaje-editar','ok');
+        return redirect('tmatricula')->with('mensaje-editar', 'ok');
     }
 
     /**
@@ -90,23 +106,21 @@ class TipoMatriculaController extends Controller
     public function destroy($id)
     {
         Tipo_Matricula::destroy($id);
-        return redirect('tmatricula/')->with('mensaje-eliminar','ok');
+        return redirect('tmatricula/')->with('mensaje-eliminar', 'ok');
     }
     public function search(Request $request)
     {
-
         if (!isset($request->term)) {
             return [
-                'data' => []
+                'data' => [],
             ];
         }
 
         $results = Tipo_Matricula::query()
-            ->where('descripcion', 'like', "%" . $request->term . "%")
+            ->where('descripcion', 'like', '%' . $request->term . '%')
             ->select('id', 'descripcion')
             ->get();
 
         return new TipoMatriculaCollection($results);
     }
-
 }
