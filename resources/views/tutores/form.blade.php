@@ -1,33 +1,62 @@
 <div class="mt-5 row justify-content-center ">
     <fieldset class="border p-4">
         <div class="form-group">
-            <label for="nombre">Nombre:</label><br>
+            <label for="nombre">
+                <h5>Nombre:</h5>
+            </label>
             <input type="text" id="nombre" name="nombre"class="form-control @error('nombre') is-invalid @enderror"
-                placeholder="Nombre" value="{{ isset($datos->nombre) ? $datos->nombre : old('nombre') }}"><br>
+                placeholder="Nombres " value="{{ isset($datos->nombre) ? $datos->nombre : old('nombre') }}">
+            @error('nombre')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
         </div>
         <div class="form-group">
-            <label for="apellido">Apellido:</label><br>
+            <label for="apellido">
+                <h5>Apellido:</h5>
+            </label>
             <input type="text" id="apellido" name="apellido"
-                class="form-control @error('descripcion') is-invalid @enderror" placeholder="Cargo"
-                value="{{ isset($datos->apellido) ? $datos->apellido : old('apellido') }}"><br>
+                class="form-control @error('apellido') is-invalid @enderror" placeholder="Apellidos"
+                value="{{ isset($datos->apellido) ? $datos->apellido : old('apellido') }}">
+            @error('apellido')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
         </div>
 
         <div class="form-group">
-            <label for="cedula">Cedula:</label><br>
+            <label for="cedula">
+                <h5>Cédula:</h5>
+            </label>
             <input type="text" id="cedula" name="cedula"
-                class="form-control @error('descripcion') is-invalid @enderror" placeholder="Cargo"
-                value="{{ isset($datos->cedula) ? $datos->cedula : old('cedula') }}"><br>
+                class="form-control @error('cedula') is-invalid @enderror" placeholder=" Numero de Cédula"
+                value="{{ isset($datos->cedula) ? $datos->cedula : old('cedula') }}">
+            @error('cedula')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
         </div>
         <div class="form-group">
-            <label for="telefono">Telefono:</label><br>
+            <label for="telefono">
+                <h5>Telefono:</h5>
+            </label>
             <input type="text" id="telefono" name="telefono"
-                class="form-control @error('descripcion') is-invalid @enderror" placeholder="Cargo"
-                value="{{ isset($datos->telefono) ? $datos->telefono : old('telefono') }}"><br>
+                class="form-control @error('telefono') is-invalid @enderror" placeholder="Numero de Telefono"
+                value="{{ isset($datos->telefono) ? $datos->telefono : old('telefono') }}">
+            @error('telefono')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
         </div>
 
         <div class="form-group">
-            <label for="professions">Profesion:</label>
-            <br>
+            <label for="professions">
+                <h5>Profesion:</h5>
+            </label>
             <select class="form-select @error('professions_id') is-invalid @enderror" name="professions_id"
                 id="professions">
                 <option value="" selected disabled>--Seleccione--</option>
@@ -35,12 +64,17 @@
                 @isset($professions)
                     @foreach ($professions as $profession)
                         <option value="{{ $profession->id }}"
-                            {{ old('professions_id') == $profession->id ? 'selected' : '' }}>{{ $profession->descripcion }}
-                        </option>
+                            @if (!empty($datos->professions_id)) {{ $datos->professions_id == $profession->id ? 'selected' : '' }} @endif>
+                            {{ $profession->descripcion }} </option>
                     @endforeach
                 @endisset
-            </select>
 
+            </select>
+            @error('professions_id')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
         </div>
 
     </fieldset>

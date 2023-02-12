@@ -6,44 +6,47 @@
         <a href="{{ url('tutores/create') }}" class="btn btn-success"> Nuevo Tutor </a>
         <br>
         <br>
-        <table class="table table-dark">
-            <thead class="thead-light">
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>cedula</th>
-                    <th>Telefono</th>
-                    <th>Profesion</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                @foreach ($tutores as $tutore)
+        <div class="table-responsive">
+            <table class="table table-dark">
+                <thead class="thead-light">
                     <tr>
-                        <td>{{ $tutore->nombre }}</td>
-                        <td>{{ $tutore->apellido }}</td>
-                        <td>{{ $tutore->cedula }}</td>
-                        <td>{{ $tutore->telefono }}</td>
-                        <td>{{ $tutore->professions->descripcion }}</td>
-                        <td>
-                            <div class="d-flex flex-row bd-highlight mb-6">
-                                <a href="{{ url('/tutores/' . $tutore->id . '/edit') }}" class="btn btn-info">
-                                    Editar </a>|
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>cedula</th>
+                        <th>Telefono</th>
+                        <th>Profesion</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach ($tutores as $tutore)
+                        <tr>
+                            <td>{{ $tutore->nombre }}</td>
+                            <td>{{ $tutore->apellido }}</td>
+                            <td>{{ $tutore->cedula }}</td>
+                            <td>{{ $tutore->telefono }}</td>
+                            <td>{{ $tutore->professions->descripcion }}</td>
+                            <td>
+                                <div class="d-flex flex-row bd-highlight mb-6">
+                                    <a href="{{ url('/tutores/' . $tutore->id . '/edit') }}" class="btn btn-info">
+                                        Editar </a>|
                                     <a href="{{ url('/tutores/' . $tutore->id) }}" class="btn btn-warning">
                                         Perfil </a>|
-                                <form class="form-eliminar" action="{{ url('/tutores/' . $tutore->id) }}" method="post"
-                                    class="d-inline">
-                                    @csrf
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                                    <form class="form-eliminar" action="{{ url('/tutores/' . $tutore->id) }}" method="post"
+                                        class="d-inline">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
     </div>
 
 @stop
