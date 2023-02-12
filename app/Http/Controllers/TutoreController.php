@@ -17,11 +17,11 @@ class TutoreController extends Controller
     public function index()
     {
         $datos['tutores'] = Tutore::query()
-        ->with(['professions'])
-        ->orderBy('nombre', 'asc')
-        ->paginate(10);
-        
-         return view('tutores/index', $datos);
+            ->with(['professions'])
+            ->orderBy('nombre', 'asc')
+            ->paginate(10);
+
+        return view('tutores/index', $datos);
     }
 
     /**
@@ -32,7 +32,7 @@ class TutoreController extends Controller
     public function create()
     {
         $professions = Profession::all();
-        return view('tutores/create',compact('professions'));
+        return view('tutores/create', compact('professions'));
     }
 
     /**
@@ -43,28 +43,27 @@ class TutoreController extends Controller
      */
     public function store(Request $request)
     {
-        $campos =
-        [
-            'nombre' => 'required|string|max:100',
-            'apellido' => 'required|string|max:100',
-            'telefono' => 'required|string|max:12',
-            'cedula' => 'required|string|max:16',
+        $request->validate(
+            [
+                'nombre' => 'required|string|max:100',
+                'apellido' => 'required|string|max:100',
+                'telefono' => 'required|string|max:12',
+                'cedula' => 'required|string|max:16',
+            ],
 
-        ];
-    $mensaje = [
-        'required' => 'El :attribute es requerido',
-        'cedula.required' => 'La cedula es requerida'
-    ];
+            [
+                'nombre.required' => 'El nombre es obligatorio.',
+                'apellido.required' => 'El apellido es obligatorio.',
+                'telefono.required' => 'El telefono es obligatorio.',
+                'cedula.required' => 'El cedula es obligatorio.',
+                'professions_id.required' => 'El campo es obligatorio.',
+            ]
+        );
 
-    $this->validate($request, $campos, $mensaje);
-    $datos = request()->except('_token');
-    if ($request->hasFile('cedula')) {
-        $datos['cedula'] = $request->file('cedula')->store('uploads', 'public');
+        $datos = request()->except('_token');
+        Tutore::insert($datos);
+        return redirect('tutores/')->with('mensaje', 'ok');
     }
-
-    Tutore::insert($datos);
-    return redirect('tutores/')->with('mensaje','ok');
-}
     /**
      * Display the specified resource.
      *
@@ -72,14 +71,14 @@ class TutoreController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    { 
+    {
         $datos['tutores'] = Tutore::findOrFail($id)
-        ->with(['professions'])
-        ->paginate(10);
+            ->with(['professions'])
+            ->paginate(10);
         $tutores = Tutore::findOrFail($id);
         dd($datos);
 
-        return view('tutores/perfil',compact('tutores'));
+        return view('tutores/perfil', compact('tutores'));
     }
 
     /**
@@ -103,42 +102,40 @@ class TutoreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $campos =
-        [
+        $campos = [
             'nombre' => 'required|string|max:100',
             'apellido' => 'required|string|max:100',
             'telefono' => 'required|string|max:12',
             'cedula' => 'required|string|max:16',
-
         ];
 
-    $mensaje = [
-        'required' => 'El :attribute es requerido',
+        $mensaje = [
+            'required' => 'El :attribute es requerido',
+        ];
+        if ($request->hasFile('cedula')) {
+            $campos = ['cedula' => 'required|max:10000'];
+            $mensaje = ['cedula.required' => 'La cedula  es requerida'];
+        }
+        $this->validate($request, $campos, $mensaje);
 
-    ];
-    if ($request->hasFile('cedula')) {
-        $campos = ['cedula' => 'required|max:10000'];
-        $mensaje = ['cedula.required' => 'La cedula  es requerida'];
+        //excluimos el token y la infromacion de method
+        $datos = request()->except(['_token', '_method']);
+
+        //condicionamos y comparamos que esi el id que estamos enviando
+        if ($request->hasFile('cedula')) {
+            $tutore = Tutore::findOrFail($id);
+
+            Storage::delete('public/' . $tutore->cedula);
+            $datos['cedula'] = $request
+                ->file('cedula')
+                ->store('uploads', 'public');
+        }
+        //es identico al que esta en los resgitros de la base de datos y guarda los nuevos cambios
+        Tutore::where('id', '=', $id)->update($datos);
+        $datos = Tutore::findOrFail($id);
+
+        return redirect('tutores')->with('mensaje-editar', 'ok');
     }
-    $this->validate($request, $campos, $mensaje);
-
-    //excluimos el token y la infromacion de method
-    $datos = request()->except(['_token', '_method']);
-
-    //condicionamos y comparamos que esi el id que estamos enviando
-    if ($request->hasFile('cedula')) {
-        $tutore = Tutore::findOrFail($id);
-
-        Storage::delete('public/' . $tutore->cedula);
-        $datos['cedula'] = $request->file('cedula')->store('uploads', 'public');
-    }
-    //es identico al que esta en los resgitros de la base de datos y guarda los nuevos cambios
-    Tutore::where('id', '=', $id)->update($datos);
-    $datos = Tutore::findOrFail($id);
-
-
-    return redirect('tutores')->with('mensaje-editar','ok');
-}
 
     /**
      * Remove the specified resource from storage.
@@ -149,6 +146,6 @@ class TutoreController extends Controller
     public function destroy($id)
     {
         Tutore::destroy($id);
-        return redirect('tutores/')->with('mensaje-eliminar','ok');
+        return redirect('tutores/')->with('mensaje-eliminar', 'ok');
     }
 }
