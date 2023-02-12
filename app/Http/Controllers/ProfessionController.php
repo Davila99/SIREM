@@ -101,7 +101,9 @@ class ProfessionController extends Controller
      */
     public function destroy($id)
     {
-    Profession::destroy($id);
-    return redirect('profession')->with('mensaje-eliminar','ok');
+       
+     Profession::destroy($id);
+    // return redirect('profession')->with('mensaje-eliminar','ok');
+    return redirect('profession/')->with('mensaje-ocupado','ok');
     }
 }
