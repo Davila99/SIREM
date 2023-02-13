@@ -64,7 +64,7 @@ class EstudianteController extends Controller
                 'sexo_id.required' => 'El sexo es obligatorio.',
             ]
         );
-        $datos = request()->except('_token');
+        $datos = request()->except(['_token', '_method']);
         Estudiante::insert($datos);
         return redirect('estudiantes/')->with('mensaje','ok');
     }

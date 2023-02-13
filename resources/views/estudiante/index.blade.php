@@ -4,48 +4,53 @@
     <div class="container">
 
         <br>
-        <a href="{{ url('estudiantes/create') }}" class="btn btn-success"> Nuevo Estudiante </a>
-        <br>
-        <br>
-        <table class="table table-dark">
-            <thead class="thead-light">
-                <tr>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Fecha Nacimiento</th>
-                    <th>Direccion</th>
-                    <th>Tutor</th>
-                    <th>Sexo</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                @foreach ($estudiantes as $estudiante)
+        <div class="form-group ">
+            <a href="{{ url('estudiantes/create') }}" class="btn btn-success"> Nuevo Estudiante </a>
+        </div>
+        
+        <div class="table-responsive">
+            <table class="table table-dark">
+                <thead class="thead-light">
                     <tr>
-                        <td>{{ $estudiante->nombres }}</td>
-                        <td>{{ $estudiante->apellidos }}</td>
-                        <td>{{ $estudiante->fecha_nacimiento }}</td>
-                        <td>{{ $estudiante->direccion }}</td>
-                        <td>{{ $estudiante->tutor->nombre }}</td>
-                        <td>{{ $estudiante->sexo->descripcion }}</td>
-                        <td>
-                            <div class="d-flex flex-row bd-highlight mb-6">
-                                <a href="{{ url('/estudiantes/' . $estudiante->id . '/edit') }}" class="btn btn-info">
-                                    Editar </a>|
-                                <form class="form-eliminar" action="{{ url('/estudiantes/' . $estudiante->id) }}" method="post" class="d-inline">
-                                    @csrf
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </div>
-                           
-                        </td>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Direccion</th>
+                        <th>Tutor</th>
+                        <th>Sexo</th>
+                        <th>Acciones</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+
+                <tbody>
+
+                    @foreach ($estudiantes as $estudiante)
+                        <tr>
+                            <td>{{ $estudiante->nombres }}</td>
+                            <td>{{ $estudiante->apellidos }}</td>
+                            <td>{{ $estudiante->fecha_nacimiento }}</td>
+                            <td>{{ $estudiante->direccion }}</td>
+                            <td>{{ $estudiante->tutor->nombre }}</td>
+                            <td>{{ $estudiante->sexo->descripcion }}</td>
+                            <td>
+                                <div class="d-flex flex-row bd-highlight mb-6">
+                                    <a href="{{ url('/estudiantes/' . $estudiante->id . '/edit') }}" class="btn btn-info">
+                                        Editar </a>|
+                                    <form class="form-eliminar" action="{{ url('/estudiantes/' . $estudiante->id) }}"
+                                        method="post" class="d-inline">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                </div>
+
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
 
     </div>
 @endsection
