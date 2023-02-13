@@ -4,9 +4,8 @@
             <label for="nombres">
                 <h5>Nombre:</h5>
             </label><br>
-            <input  id="nombres" name="nombres" type="text" 
-                class="form-control @error('nombres') is-invalid @enderror" placeholder="Nombres"
-                value="{{ isset($datos->nombres) ? $datos->nombres : old('nombres') }}">
+            <input id="nombres" name="nombres" type="text" class="form-control @error('nombres') is-invalid @enderror"
+                placeholder="Nombres" value="{{ isset($datos->nombres) ? $datos->nombres : old('nombres') }}"><br>
             @error('nombres')
                 <div class="invalid-feedback">
                     <h5> {{ $message }}</h5>
@@ -18,9 +17,15 @@
         <div class="form-group">
             <label for="apellidos">
                 <h5>Apellido:</h5>
-            </label>
-            <input id="apellidos" name="apellidos" type="text"  class="form-control @error('apellidos') is-invalid @enderror" placeholder="Apellidos"
+            </label><br>
+            <input id="apellidos" name="apellidos" type="text"
+                class="form-control @error('apellidos') is-invalid @enderror" placeholder="Apellidos"
                 value="{{ isset($datos->apellidos) ? $datos->apellidos : old('apellidos') }}"><br>
+            @error('apellidos')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
         </div>
 
 
@@ -28,39 +33,64 @@
             <label for="telefono">
                 <h5>Telefono:</h5>
             </label><br>
-            <input type="text" class="form-control" id="telefono" name="telefono"
+            <input type="text" class="form-control @error('telefono') is-invalid @enderror"
+                placeholder="Numero de Telefono" id="telefono" name="telefono"
                 value="{{ isset($datos->telefono) ? $datos->telefono : old('telefono') }}"><br>
+            @error('telefono')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="cedula">
                 <h5>Cedula:</h5>
             </label><br>
-            <input type="text" class="form-control" id="cedula" name="cedula"
+            <input type="text" id="cedula" name="cedula"
+                class="form-control @error('cedula') is-invalid @enderror" placeholder="Numero de cedula"
                 value="{{ isset($datos->cedula) ? $datos->cedula : old('cedula') }}"><br>
+            @error('cedula')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="fecha_nacimiento">
                 <h5>Fecha Nacimiento:</h5>
             </label><br>
-            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"
+            <input id="fecha_nacimiento" name="fecha_nacimiento" type="date"
+                class="form-control @error('fecha_nacimiento') is-invalid @enderror"
                 value="{{ isset($datos->fecha_nacimiento) ? $datos->fecha_nacimiento : old('fecha_nacimiento') }}"><br>
+            @error('fecha_nacimiento')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
         </div>
+
+
         <div class="form-group">
             <label for="nivel_academico_id">
                 <h5>Nivel Academico:</h5>
             </label>
-            <select class="form-control @error('nivel_academico_id') is-invalid @enderror" name="nivel_academico_id"
-                id="niveles_academicos">
-
+            <select class="form-select @error('nivel_academico_id') is-invalid @enderror" name="nivel_academico_id"
+                id="professions">
                 <option value="" selected disabled>--Seleccione--</option>
+
                 @isset($niveles_academicos)
                     @foreach ($niveles_academicos as $nivelacademico)
                         <option value="{{ $nivelacademico->id }}"
-                            {{ old('nivel_academico_id') == $nivelacademico->id ? 'selected' : '' }}>
-                            {{ $nivelacademico->descripcion }}</option>
+                            @if (!empty($datos->nivel_academico_id)) {{ $datos->nivel_academico_id == $nivelacademico->id ? 'selected' : '' }} @endif>
+                            {{ $nivelacademico->descripcion }} </option>
                     @endforeach
                 @endisset
-
+            </select><br>
+            @error('nivel_academico_id')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
         </div>
 
         <div class="form-group">
@@ -68,26 +98,46 @@
             <label for="direccion">
                 <h5>Direccion:</h5>
             </label>
-            <input type="text" class="form-control" id="direccion" name="direccion"
+            <input type="text" id="direccion" name="direccion"
+                class="form-control @error('direccion') is-invalid @enderror" placeholder="Dirección"
                 value="{{ isset($datos->direccion) ? $datos->direccion : old('direccion') }}"><br>
+            @error('direccion')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
         </div>
 
         <div class="form-group">
             <label class="form-group" for="email">
                 <h5>Email:</h5>
             </label>
-            <input type="email" class="form-control" id="email" name="email"
+            <input id="email" name="email" type="email"
+                class="form-control @error('email') is-invalid @enderror" placeholder="Email"
                 value="{{ isset($datos->email) ? $datos->email : old('email') }}"><br>
+            @error('email')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
         </div>
+
         <div class="form-group">
             <label for="fecha_ingreso">
                 <h5>Fecha ingreso:</h5>
             </label>
-            <input type="date" class="form-control" id="fecha_ingreso" name="fecha_ingreso"
+            <input id="fecha_ingreso" name="fecha_ingreso" type="date"
+                class="form-control @error('fecha_ingreso') is-invalid @enderror"
                 value="{{ isset($datos->fecha_ingreso) ? $datos->fecha_ingreso : old('fecha_ingreso') }}"><br>
+            @error('fecha_ingreso')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
+
         </div>
         <div class="form-group">
-            <label for="email">
+            <label for="cargos">
                 <h5>Cargo:</h5>
             </label>
             <select class="form-control @error('cargos_id') is-invalid @enderror" name="cargos_id" id="cargo">
