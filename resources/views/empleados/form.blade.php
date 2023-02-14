@@ -42,6 +42,7 @@
                 </div>
             @enderror
         </div>
+
         <div class="form-group">
             <label for="cedula">
                 <h5>Cedula:</h5>
@@ -55,6 +56,7 @@
                 </div>
             @enderror
         </div>
+
         <div class="form-group">
             <label for="fecha_nacimiento">
                 <h5>Fecha Nacimiento:</h5>
@@ -140,14 +142,22 @@
             <label for="cargos">
                 <h5>Cargo:</h5>
             </label>
-            <select class="form-control @error('cargos_id') is-invalid @enderror" name="cargos_id" id="cargo">
+            <select class="form-select @error('cargos_id') is-invalid @enderror" name="cargos_id" id="cargo">
                 <option value="" selected disabled>--Seleccione--</option>
+
                 @isset($cargos)
                     @foreach ($cargos as $cargo)
-                        <option value="{{ $cargo->id }}" {{ old('cargo_id') == $cargo->id ? 'selected' : '' }}>
-                            {{ $cargo->descripcion }}</option>
+                        <option value="{{ $cargo->id }}"
+                            @if (!empty($datos->cargos_id)) {{ $datos->cargos_id == $cargo->id ? 'selected' : '' }} @endif>
+                            {{ $cargo->descripcion }} </option>
                     @endforeach
                 @endisset
+            </select><br>
+                @error('cargos_id')
+                    <div class="invalid-feedback">
+                        <h5> {{ $message }}</h5>
+                    </div>
+                @enderror
 
         </div>
     </fieldset>
