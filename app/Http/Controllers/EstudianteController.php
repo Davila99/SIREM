@@ -102,7 +102,25 @@ class EstudianteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {    $request->validate(
+        [
+            'nombres' => 'required|string|max:100',
+            'apellidos' => 'required|string|max:100',
+            'fecha_nacimiento' => 'required|string|max:12',
+            'direccion' => 'required|string|max:100',
+            'tutor_id' => 'required',
+            'sexo_id' => 'required'
+        ],
+
+        [
+            'nombres.required' => 'El nombre es obligatorio.',
+            'apellidos.required' => 'El apellido es obligatorio.',
+            'fecha_nacimiento.required' => 'la fecha de nacimiento es obligatoria.',
+            'direccion.required' => 'La direccion es obligatoria.',
+            'tutor_id.required' => 'La profesion es obligatoria.',
+            'sexo_id.required' => 'El sexo es obligatorio.',
+        ]
+    );
         $datos = request()->except(['_token', '_method']);
         Estudiante::where('id', '=', $id)->update($datos);
         $datos = Estudiante::findOrFail($id);

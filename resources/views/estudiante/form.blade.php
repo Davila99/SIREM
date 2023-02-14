@@ -44,7 +44,7 @@
                 <h5>Direccion:</h5>
             </label>
             <input id="direccion" name="direccion" type="text" 
-                class="form-control @error('direccion') is-invalid @enderror"
+                class="form-control @error('direccion') is-invalid @enderror" placeholder="Direccón"
                 value="{{ isset($datos->direccion) ? $datos->direccion : old('direccion') }}">
             @error('direccion')
                 <div class="invalid-feedback">
@@ -63,7 +63,7 @@
                 @isset($tutores)
                     @foreach ($tutores as $tutor)
                         <option value="{{ $tutor->id }}"
-                            @if (!empty($datos->tutor_id)) {{ $datos->tutor_id == $tutor->id ? 'selected' : '' }} @endif>
+                            @if (!empty($datos->tutor_id)) {{ $datos->tutor_id == $tutor->id ? 'selected' : '' }} @else {{ old('tutor_id') == $tutor->id ? 'selected' : '' }} @endif>
                             {{ $tutor->nombre }} </option>
                     @endforeach
                 @endisset
@@ -86,7 +86,7 @@
                 @isset($sexos)
                     @foreach ($sexos as $sexo)
                         <option value="{{ $sexo->id }}"
-                            @if (!empty($datos->sexo_id)) {{ $datos->sexo_id == $sexo->id ? 'selected' : '' }} @endif>
+                            @if (!empty($datos->sexo_id)) {{ $datos->sexo_id == $sexo->id ? 'selected' : '' }} @else {{ old('sexo_id') == $sexo->id ? 'selected' : '' }} @endif>
                             {{ $sexo->descripcion }} </option>
                     @endforeach
                 @endisset

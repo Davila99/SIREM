@@ -83,7 +83,7 @@
                 @isset($niveles_academicos)
                     @foreach ($niveles_academicos as $nivelacademico)
                         <option value="{{ $nivelacademico->id }}"
-                            @if (!empty($datos->nivel_academico_id)) {{ $datos->nivel_academico_id == $nivelacademico->id ? 'selected' : '' }} @endif>
+                            @if (!empty($datos->nivel_academico_id)) {{ $datos->nivel_academico_id == $nivelacademico->id ? 'selected' : '' }}  @else {{ old('nivel_academico_id') == $nivelacademico->id ? 'selected' : '' }} @endif>
                             {{ $nivelacademico->descripcion }} </option>
                     @endforeach
                 @endisset
@@ -148,7 +148,7 @@
                 @isset($cargos)
                     @foreach ($cargos as $cargo)
                         <option value="{{ $cargo->id }}"
-                            @if (!empty($datos->cargos_id)) {{ $datos->cargos_id == $cargo->id ? 'selected' : '' }} @endif>
+                            @if (!empty($datos->cargos_id)) {{ $datos->cargos_id == $cargo->id ? 'selected' : '' }}  @else {{ old('cargos_id') == $cargo->id ? 'selected' : '' }} @endif>
                             {{ $cargo->descripcion }} </option>
                     @endforeach
                 @endisset

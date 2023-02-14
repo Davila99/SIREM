@@ -64,11 +64,10 @@
                 @isset($professions)
                     @foreach ($professions as $profession)
                         <option value="{{ $profession->id }}"
-                            @if (!empty($datos->professions_id)) {{ $datos->professions_id == $profession->id ? 'selected' : '' }} @endif>
+                            @if (!empty($datos->professions_id)) {{ $datos->professions_id == $profession->id ? 'selected' : '' }} @else {{ old('professions_id') == $profession->id ? 'selected' : '' }} @endif>
                             {{ $profession->descripcion }} </option>
                     @endforeach
                 @endisset
-
             </select>
             @error('professions_id')
                 <div class="invalid-feedback">
