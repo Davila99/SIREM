@@ -21,7 +21,7 @@
                 @foreach ($asignaturadocentes as $asignaturadocente)
                     <tr>
                         <td>{{ $asignaturadocente->asignatura->descripcion }}</td>
-                        <td>{{ $asignaturadocente->empleado->nombres }}</td>
+                        {{-- <td>{{ $asignaturadocente->empleados->nombres }}</td> --}}
                         <td>{{ $asignaturadocente->grado->descripcion }}</td>
                         <td>
                             <div class="d-flex flex-row bd-highlight mb-6">
