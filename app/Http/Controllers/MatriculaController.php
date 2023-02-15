@@ -44,6 +44,22 @@ class MatriculaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'estudiante_id' => 'required',
+                'tipo_matricula_id' => 'required',
+                'grupo_id' => 'required',
+            ],
+    
+            [
+    
+                'estudiante_id.required' => 'El estudiantes es obligatorio.',
+                'tipo_matricula_id.required' => 'El tipo de matricula es obligatorio.',
+                'grupo_id.required' => 'El grupo es obligatorio.',
+            ]
+        );
+
+
         $fecha = date('d-m-Y');
         $matricula = new Matricula();
         $user_id = auth()->id();
@@ -94,6 +110,21 @@ class MatriculaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate(
+            [
+                'estudiante_id' => 'required',
+                'tipo_matricula_id' => 'required',
+                'grupo_id' => 'required',
+            ],
+    
+            [
+    
+                'estudiante_id.required' => 'El estudiantes es obligatorio.',
+                'tipo_matricula_id.required' => 'El tipo de matricula es obligatorio.',
+                'grupo_id.required' => 'El grupo es obligatorio.',
+            ]
+        );
+
         $datos = request()->except(['_token', '_method']);
         Matricula::where('id', '=', $id)->update($datos);
         $datos = Matricula::findOrFail($id);

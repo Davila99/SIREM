@@ -5,6 +5,7 @@
         <a href="{{ url('matriculas/create') }}" class="btn btn-success"> Nueva Matricula </a>
         <br>
         <br>
+        <div class="table-responsive">
         <table class="table table-dark">
             <thead class="thead-light">
                 <tr>
@@ -39,6 +40,7 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
     </div>
 @stop
 

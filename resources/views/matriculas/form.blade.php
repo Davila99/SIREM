@@ -1,28 +1,56 @@
-<div class="form-group">
-    <label for="descripcion">
-        <h5>Estudiante</h5>
-    </label><br>
-    <select name="estudiante_id" class="buscador-estudiantes col-12">
-    </select>
-</div>
-<div class="form-group">
-    <label for="descripcion">
-        <h5>Tipo Matricula</h5>
-    </label><br>
-    <select name="tipo_matricula_id" class="buscador-tipo-matriculas col-12">
-    </select>
-</div>
-<div class="form-group">
-    <label for="descripcion">
-        <h5>Grupo</h5>
-    </label><br>
-    <select name="grupo_id" class="buscar-grupos col-12">
-    </select>
-</div>
+<div class="mt-5 row justify-content-center ">
+    <fieldset class="border p-4">
+        <div class="form-group">
+            <label for="descripcion">
+                <h5>Estudiante</h5>
+            </label><br>
+            <select name="estudiante_id" class="buscador-estudiantes col-12 @error('estudiante_id') is-invalid @enderror" >
+            </select>
+            @error('estudiante_id')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="descripcion">
+                <h5>Tipo Matricula</h5>
+            </label><br>
+            <select name="tipo_matricula_id" class="buscador-tipo-matriculas col-12 @error('tipo_matricula_id') is-invalid @enderror" >
+            </select>
+            @error('tipo_matricula_id')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label for="descripcion">
+                <h5>Grupo</h5>
+            </label><br>
+            <select name="grupo_id" class="buscar-grupos col-12 @error('grupo_id') is-invalid @enderror" >
+            </select>
+            @error('grupo_id')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
+        </div>
+        
+        <br>
+       
+        
+    </fieldset>
+    <div class=" d-grid mt-2 col-sm-4">
+        <input type="submit" value="Guardar" class="btn btn-success">
+    </div>
 
-<br>
-<input type="submit" value="Guardar" class="btn btn-success">
-<a type="button" class="btn btn-primary" href="{{ url('matriculas/') }}"> Regresar </a>
+    <div class="d-grid mt-2 col-sm-4">
+        <a type="button" class="btn btn-primary" href="{{ url('matriculas/') }}"> Regresar </a>
+    </div>
+</div>
+    
+
 
 
 

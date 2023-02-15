@@ -5,7 +5,8 @@
         <br>
         <a href="{{ url('asignaturadocente/create') }}" class="btn btn-success"> Nueva Asignatura </a>
         <br>
-        <br>
+        <br> 
+        <div class="table-responsive">
         <table class="table  table-dark">
             <thead class="thead-light">
                     <tr>
@@ -40,6 +41,7 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
     </div>
 @endsection
 
