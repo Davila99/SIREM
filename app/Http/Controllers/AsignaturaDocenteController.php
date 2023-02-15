@@ -104,7 +104,20 @@ class AsignaturaDocenteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {    $request->validate(
+        [
+            'asignatura_id' => 'required',
+            'empleado_id' => 'required',
+            'grupo_id' => 'required',
+        ],
+
+        [
+
+            'asignatura_id.required' => 'La asignatura es obligatorio.',
+            'empleado_id.required' => 'El empleado es obligatorio.',
+            'grupo_id.required' => 'El grupo es obligatorio.',
+        ]
+    );
         $datos = request()->except(['_token', '_method']);
         AsignaturaDocente::where('id', '=', $id)->update($datos);
         $datos = AsignaturaDocente::findOrFail($id);
