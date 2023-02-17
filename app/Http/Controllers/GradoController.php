@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Grado;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 class GradoController extends Controller
 {
@@ -105,6 +106,12 @@ class GradoController extends Controller
      */
     public function destroy($id)
     {
+        try {
+            //code...
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
     Grado::destroy($id);
     return redirect('grados/')->with('mensaje-eliminar','ok');
 
