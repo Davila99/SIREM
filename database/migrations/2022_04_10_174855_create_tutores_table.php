@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('telefono');
             $table->foreignId('professions_id')->constrained()
             ->references('id')->on('professions')
-            ->onDelete('restrict');
+            ->restrictOnDelete();
             $table->timestamps();
         });
     }
