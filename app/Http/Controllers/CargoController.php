@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cargo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Throwable;
 
 class CargoController extends Controller
 {
@@ -101,9 +103,38 @@ class CargoController extends Controller
      * @param  \App\Models\Cargo  $cargo
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        Cargo::destroy($id);
+    public function destroy($id){
+        try {
+            Paket::where('id',$id)->destroy();
+             \Session::flash('mensaje','error');
+
+        } catch (\Exception $e) {
+            \Session::flash('error', $e->getMessage());
+        }
         return redirect('cargos/')->with('mensaje-eliminar','ok');
+    // {
+    //     try{
+    //         $cargos->delete();
+    //     }catch(Throwable $error){
+    //         report($error);
+    //         return to_route(route:'cargos/')->with('mensaje-eliminar','ok');
+            
+    // }
+    //     return to_route(route:'cargos.index')->with('mensaje-eliminar','ok');
+
+            // $cargo = Cargo::find($request->id);
+            // $cargo->Empleados()->delete();
+            // $cargo->delete();
+            // return back()->with('msg', "¡cargo eliminado!");
+
+       
+        //  Cargo::destroy($id);
+        // if(id==true){
+
+        //     return redirect('cargos/')->with('mensaje-eliminar','ok'); 
+        // } else{  
+        //       return redirect('cargos/')->with('mensaje-eliminar','ok');
+        // }
+       
     }
 }
