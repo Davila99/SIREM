@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cargo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Throwable;
 
 class CargoController extends Controller
 {
@@ -101,9 +103,15 @@ class CargoController extends Controller
      * @param  \App\Models\Cargo  $cargo
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        Cargo::destroy($id);
-        return redirect('cargos/')->with('mensaje-eliminar','ok');
+    public function destroy($id){
+
+        try {
+            Cargo::destroy($id);
+            return redirect('cargos')->with('mensaje-eliminar','ok');
+        } catch (\Throwable $th) {
+
+            return redirect('cargos')->with('mensaje-error-eliminar','ok');
+        }
+      
     }
 }

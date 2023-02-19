@@ -71,6 +71,7 @@
             )
         </script>
     @endif
+
     @if (Session::has('mensaje-error-eliminar'))
         <script>
             Swal.fire({
@@ -100,4 +101,5 @@
 
         });
     </script>
+
 @endsection
