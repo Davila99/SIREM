@@ -106,8 +106,8 @@ class ProfessionController extends Controller
             Profession::destroy($id);
             return redirect('profession')->with('mensaje-eliminar','ok');
         } catch (\Throwable $th) {
-           
-            dd('No se puede eliminar porque esta siendo ocupado');
+
+            return redirect('profession')->with('mensaje-error-eliminar','ok');
         }
  
     }
