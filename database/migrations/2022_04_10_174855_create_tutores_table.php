@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('apellido');
             $table->string('cedula');
             $table->string('telefono');
-            $table->string('professions_id')->foreign('professions_id')
+            $table->foreignId('professions_id')->constrained()
             ->references('id')->on('professions')
-            ->onDelete('set null');
+            ->restrictOnDelete();
             $table->timestamps();
         });
     }

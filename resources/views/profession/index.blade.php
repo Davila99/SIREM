@@ -71,13 +71,14 @@
             )
         </script>
     @endif
-    @if (Session::has('mensaje-ocupado'))
-        <script>
-            Swal.fire(
 
-                'No se puede puede eliminar este registro',
-                'Esta siendo ocupado'
-            )
+    @if (Session::has('mensaje-error-eliminar'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Lo sentimos',
+                text: 'Este dato esta siendo utilizado',
+            })
         </script>
     @endif
     <script>
@@ -100,6 +101,5 @@
 
         });
     </script>
-
 
 @endsection

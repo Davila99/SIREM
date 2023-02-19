@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Profession;
 use Illuminate\Http\Request;
-use Throwable;
+
+use PhpParser\Node\Stmt\TryCatch;
+
 
 class ProfessionController extends Controller
 {
@@ -100,19 +102,16 @@ class ProfessionController extends Controller
      * @param  \App\Models\Profession  $profession
      * @return \Illuminate\Http\Response
      */
-    public function destroy(profession $professions)
+    public function destroy( $id)
     {
-        try{
-            $professions->delete();
-        }catch(Throwable $error){
-            report($error);
-            return to_route(route:'profession/')->with('mensaje-eliminar','ok');
-            
+
+        try {
+            Profession::destroy($id);
+            return redirect('profession')->with('mensaje-eliminar','ok');
+        } catch (\Throwable $th) {
+
+            return redirect('profession')->with('mensaje-error-eliminar','ok');
         }
-        return to_route(route:'profession.index')->with('mensaje-eliminar}','ok');
-       
-    //  Profession::destroy($id);
-    // // return redirect('profession')->with('mensaje-eliminar','ok');
-    // return redirect('profession/')->with('mensaje-ocupado','ok');
+ 
     }
 }

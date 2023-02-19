@@ -5,7 +5,8 @@
         <br>
         <a href="{{ url('asignaturadocente/create') }}" class="btn btn-success"> Nueva Asignatura </a>
         <br>
-        <br>
+        <br> 
+        <div class="table-responsive">
         <table class="table  table-dark">
             <thead class="thead-light">
                     <tr>
@@ -21,7 +22,7 @@
                 @foreach ($asignaturadocentes as $asignaturadocente)
                     <tr>
                         <td>{{ $asignaturadocente->asignatura->descripcion }}</td>
-                        <td>{{ $asignaturadocente->empleado->nombres }}</td>
+                        {{-- <td>{{ $asignaturadocente->empleados->nombres }}</td> --}}
                         <td>{{ $asignaturadocente->grado->descripcion }}</td>
                         <td>
                             <div class="d-flex flex-row bd-highlight mb-6">
@@ -40,6 +41,7 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
     </div>
 @endsection
 
