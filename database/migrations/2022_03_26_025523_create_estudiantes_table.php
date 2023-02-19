@@ -21,7 +21,10 @@ return new class extends Migration
             $table->string('direccion');
             $table->integer('tutor_id')->foreign('tutor_id')
             ->references('id')->on('tutores')
-            ->onDelete('set null');
+            ->restrictOnDelete();
+            // $table->foreignId('tutor_id')->constrained()
+            // ->references('id')->on('tutores')
+            // ->restrictOnDelete();
             $table->integer('sexo_id')->foreign('sexo_id')
             ->references('id')->on('sexos')
             ->onDelete('set null');

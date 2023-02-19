@@ -34,7 +34,7 @@
     
                 <th>
                     <div class="form-group">
-                        <select class="form-control @error('empleado_id') is-invalid @enderror" name="empleados_id"
+                        <select class="form-control @error('empleados_id') is-invalid @enderror" name="empleados_id"
                             id="empleados">
     
                             <option value="" selected disabled>--Seleccione--</option>
@@ -46,7 +46,7 @@
                                 @endforeach
                             @endisset
                         </select>
-                        @error('empleado_id')
+                        @error('empleados_id')
                             <div class="invalid-feedback">
                                 <h5> {{ $message }}</h5>
                             </div>

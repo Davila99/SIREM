@@ -113,13 +113,13 @@ class GruposController extends Controller
     {   
         $request->validate(
             [
-                'empleado_id' => 'required',
+                'empleados_id' => 'required',
                 'grado_id' => 'required',
             ],
     
             [
 
-                'empleado_id.required' => 'El docente es obligatorio.',
+                'empleados_id.required' => 'El docente es obligatorio.',
                 'grado_id.required' => 'El grado es obligatorio.',
             ]
         );
