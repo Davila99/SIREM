@@ -50,6 +50,21 @@ class GruposController extends Controller
      */
     public function store(Request $request)
     {   
+        $request->validate(
+            [
+                'empleado_id' => 'required',
+                'grado_id' => 'required',
+            ],
+    
+            [
+
+                'empleado_id.required' => 'El docente es obligatorio.',
+                'grado_id.required' => 'El grado es obligatorio.',
+            ]
+        );
+    
+
+
         $fecha = date('d-m-Y');
         $grupo = new Grupos();
         $grupo->grado_id = $request->grado_id;
@@ -95,7 +110,20 @@ class GruposController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
+        $request->validate(
+            [
+                'empleado_id' => 'required',
+                'grado_id' => 'required',
+            ],
+    
+            [
+
+                'empleado_id.required' => 'El docente es obligatorio.',
+                'grado_id.required' => 'El grado es obligatorio.',
+            ]
+        );
+
         $datos = request()->except(['_token', '_method']);
         Grupos::where('id', '=', $id)->update($datos);
         $datos = Grupos::findOrFail($id);
