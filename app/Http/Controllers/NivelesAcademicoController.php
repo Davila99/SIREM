@@ -102,7 +102,13 @@ class NivelesAcademicoController extends Controller
      */
     public function destroy($id)
     {
-        Niveles_academico::destroy($id);
-        return redirect('nivelacademic')->with('mensaje-eliminar','ok');
+        try {
+            Niveles_academico::destroy($id);;
+            return redirect('nivelacademic')->with('mensaje-eliminar','ok');
+        } catch (\Throwable $th) {
+
+            return redirect('nivelacademic')->with('mensaje-error-eliminar','ok');
+        }
+        
     }
 }

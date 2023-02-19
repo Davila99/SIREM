@@ -20,15 +20,16 @@ return new class extends Migration
             $table->string('telefono');
             $table->string('cedula');
             $table->string('fecha_nacimiento');
-            $table->integer('nivel_academico_id')->foreign('nivel_academico_id')
+            $table->foreignId('nivel_academico_id')->constrained()
             ->references('id')->on('niveles_academicos')
-            ->onDelete('set null');
+            ->restrictOnDelete();
             $table->string('direccion');
             $table->string('email');
             $table->string('fecha_ingreso');
-            $table->integer('cargos_id')->foreign('cargos_id')
+            $table->foreignId('cargos_id')->constrained()
             ->references('id')->on('cargos')
-            ->onDelete('set null');
+            ->restrictOnDelete();
+
             $table->timestamps();
         });
     }
