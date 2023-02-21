@@ -107,13 +107,11 @@ class GradoController extends Controller
     public function destroy($id)
     {
         try {
-            //code...
+            Grado::destroy($id);
+            return redirect('grados/')->with('mensaje-eliminar','ok');
         } catch (\Throwable $th) {
-            //throw $th;
+            return redirect('grados')->with('mensaje-error-eliminar','ok');
         }
-
-    Grado::destroy($id);
-    return redirect('grados/')->with('mensaje-eliminar','ok');
 
     }
 }

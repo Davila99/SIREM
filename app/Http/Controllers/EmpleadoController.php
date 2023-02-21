@@ -154,7 +154,13 @@ class EmpleadoController extends Controller
      */
     public function destroy($id)
     {
-        Empleado::destroy($id);
-        return redirect('empleados/')->with('mensaje-eliminar','ok');
+
+        try {
+            Empleado::destroy($id);
+            return redirect('empleados/')->with('mensaje-eliminar','ok');
+        } catch (\Throwable $th) {
+            return redirect('empleados')->with('mensaje-error-eliminar','ok');
+        }
+
     }
 }
