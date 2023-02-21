@@ -17,7 +17,7 @@ class Grupos extends Model
 
     public function empleado()
     {
-        return $this->hasOne(Empleado::class,'id','empleados_id');
+        return $this->hasOne(Empleado::class,'id','empleado_id');
     }
     
     public function asignaturaDocente()

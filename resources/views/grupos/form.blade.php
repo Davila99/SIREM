@@ -34,19 +34,19 @@
     
                 <th>
                     <div class="form-group">
-                        <select class="form-control @error('empleados_id') is-invalid @enderror" name="empleados_id"
+                        <select class="form-control @error('empleado_id') is-invalid @enderror" name="empleado_id"
                             id="empleados">
     
                             <option value="" selected disabled>--Seleccione--</option>
                             @isset($empleados)
                                 @foreach ($empleados as $empleado)
                                     <option value="{{ $empleado->id }}"
-                                        @if (!empty($datos->empleados_id)) {{ $datos->empleados_id == $empleado->id ? 'selected' : '' }} @else {{ old('empleados_id') == $empleado->id ? 'selected' : '' }} @endif>
+                                        @if (!empty($datos->empleado_id)) {{ $datos->empleado_id == $empleado->id ? 'selected' : '' }} @else {{ old('empleado_id') == $empleado->id ? 'selected' : '' }} @endif>
                                         {{ $empleado->nombres }} </option>
                                 @endforeach
                             @endisset
                         </select>
-                        @error('empleados_id')
+                        @error('empleado_id')
                             <div class="invalid-feedback">
                                 <h5> {{ $message }}</h5>
                             </div>

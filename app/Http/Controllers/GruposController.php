@@ -69,7 +69,7 @@ class GruposController extends Controller
         $grupo = new Grupos();
         $grupo->grado_id = $request->grado_id;
         $grupo->fecha = $fecha;
-        $grupo->empleados_id = $request->empleados_id;
+        $grupo->empleado_id = $request->empleado_id;
         $grupo->save();
         return redirect('grupos/')->with('mensaje', 'ok');
         
@@ -113,13 +113,13 @@ class GruposController extends Controller
     {   
         $request->validate(
             [
-                'empleados_id' => 'required',
+                'empleado_id' => 'required',
                 'grado_id' => 'required',
             ],
     
             [
 
-                'empleados_id.required' => 'El docente es obligatorio.',
+                'empleado_id.required' => 'El docente es obligatorio.',
                 'grado_id.required' => 'El grado es obligatorio.',
             ]
         );
