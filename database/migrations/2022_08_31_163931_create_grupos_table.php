@@ -14,13 +14,13 @@ return new class extends Migration {
     {
         Schema::create('grupos', function (Blueprint $table) {
             $table->id();
-            $table->integer('grado_id')->foreign('grado_id')
-                ->references('id')->on('grados')
-                ->onDelete('set null');
+            $table->foreignId('grado_id')->constrained()
+            ->references('id')->on('grados')
+            ->restrictOnDelete();
             $table->string('fecha');
-            $table->integer('empleado_id')->foreign('empleado_id')
+            $table->foreignId('empleado_id')->constrained()
                 ->references('id')->on('empleados')
-                ->onDelete('set null');
+                ->restrictOnDelete();
             $table->timestamps();
         });
     }
