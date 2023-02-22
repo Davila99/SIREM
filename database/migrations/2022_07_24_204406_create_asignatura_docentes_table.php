@@ -17,13 +17,13 @@ return new class extends Migration
             $table->id();
             $table->integer('asignatura_id')->foreign('asignaturas_id')
             ->references('id')->on('asignatura')
-            ->onDelete('set null');
+            ->restrictOnDelete();
             $table->integer('empleado_id')->foreign('empleados_id')
             ->references('id')->on('empleado')
-            ->onDelete('set null');
+            ->restrictOnDelete();         
             $table->integer('grupo_id')->foreign('grupo_id')
             ->references('id')->on('grupos')
-            ->onDelete('set null');
+            ->restrictOnDelete();
             $table->timestamps();
         });
     }
