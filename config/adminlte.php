@@ -308,6 +308,11 @@ return [
             'icon'        => 'fas fa-solid fa-user-graduate',
         ],
         [
+            'text'        => 'Busqueda estudiantes',
+            'route'         => 'estudiante.busqueda',
+            'icon'        => 'fas fa-solid fa-user-graduate',
+        ],
+        [
             'text'        => 'Empleados',
             'route'         => 'empleados.index',
             'icon' => 'fas fa-solid fa-layer-group',
