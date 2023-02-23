@@ -46,6 +46,7 @@ Route::resource('tutores', TutoreController::class);
 Route::resource('consanguiniedades', ConsanguiniedadeController::class);
 Route::resource('empleados', EmpleadoController::class);
 Route::resource('estudiantes', EstudianteController::class);
+Route::get('busqueda', [EstudianteController::class, 'busqueda']);
 Route::resource('empleados', EmpleadoController::class);
 Route::resource('tutores', TutoreController::class);
 Route::resource('consanguiniedades', ConsanguiniedadeController::class);

@@ -7,6 +7,7 @@ use App\Models\Estudiante;
 use App\Models\Sexo;
 use App\Models\Tutore;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EstudianteController extends Controller
 {
@@ -15,14 +16,28 @@ class EstudianteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
         $datos['estudiantes'] = Estudiante::query()
             ->with(['tutor'])
             ->with(['sexo'])
             ->paginate(10);
         
         return view('estudiante/index', $datos);
+    }
+    public function busqueda(Request $request)
+    {
+        $texto=trim($request->get('texto'));
+        $Estudiante=DB::table('estudiantes')
+                    ->select('id', 'nombres','apellidos','fecha_nacimiento','direccion','sexo')
+                    ->where('nombres','LIKE','%',$texto.'%')
+                    ->OnWhere('nombres','LIKE','%',$texto.'%')  
+                    ->orderBy('apellidos','asc')
+                    ->paginate(10);
+                    return view('estudiante.busqueda',compact('Estudiante','texto'));
+                    
+
     }
 
     /**
