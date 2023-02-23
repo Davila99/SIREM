@@ -1,14 +1,8 @@
-<h1>Hola desde </h1>
-
-@section('title', 'Dashboard')
-@extends('layouts.app')
-
-@section('plugins.Sweetalert2', true)
-
+@extends('adminlte::page')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">{{ __('Buscar') }}</div>
 
@@ -19,21 +13,20 @@
                         </div>
                     @endif
                     <div class="col-xl-12">
-                        <form action="{{route(estudiantes.index)}}" method="get">
+                        <form action="{{url('search/')}}" method="get">
                             <div class="form-row">
-                                <div class="col-sm-4 my-2" >
+                                <div class="col-sm-4 my-1" >
                                    
                                     <input type="text" class="form-control" name="texto" value="{{$texto}}">    
                                    
                                 </div>
-                                <div class="col-sm-4 my-2">
+                                <div class="col-auto my-1">
                                     <input type="submit" class="btn btn-success" value="buscar">
                                 </div>
                             </div>
                         </form>
                     </div>
 
-                    {{ __('You are logged in!') }}
                 </div>
             </div>
         </div>
