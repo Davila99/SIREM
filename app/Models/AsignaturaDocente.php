@@ -25,4 +25,9 @@ class AsignaturaDocente extends Model
         return $this->hasOneThrough(Grado::class,Grupos::class,'grado_id','id','grupo_id','id');
     }
 
+    public function organizacionAcademica()
+    {
+        return $this->belongsTo(organizacion_academica::class);
+    }
+
 }

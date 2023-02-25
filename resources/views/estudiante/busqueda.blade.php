@@ -13,7 +13,7 @@
                         </div>
                     @endif
                     <div class="col-xl-12">
-                        <form action="{{url('search/')}}" method="get">
+                        <form action="{{url('/search')}}" method="get">
                             <div class="form-row">
                                 <div class="col-sm-4 my-1" >
                                    

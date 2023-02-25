@@ -309,8 +309,8 @@ return [
         ],
         [
             'text'        => 'Buscador de estudiantes',
-            'route'         => 'estudiante.busqueda',
-            'icon'        => 'fa-sharp fa-solid fa-magnifying-glass',
+            'url'         => 'search/',
+            'icon'        => 'fas fa-solid fa-user ',
         ],
         [
             'text'        => 'Empleados',
