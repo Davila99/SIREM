@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('asignatura_docentes', function (Blueprint $table) {
             $table->id();
+            $table->integer('organizacion_academica_id')->foreign('organizacion_academica_id')
+            ->references('id')->on('organizacion_academicas')
+            ->restrictOnDelete();
             $table->integer('asignatura_id')->foreign('asignaturas_id')
             ->references('id')->on('asignatura')
             ->restrictOnDelete();

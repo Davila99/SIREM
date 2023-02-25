@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('organizacion_academicas', function (Blueprint $table) {
             $table->id();
+            $table->string('descripcion');
+            $table->date('fecha');
+            $table->boolean('confirmed');
             $table->timestamps();
         });
     }
