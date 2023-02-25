@@ -16,15 +16,15 @@ return new class extends Migration
         Schema::create('matriculas', function (Blueprint $table) {
             $table->id();
             $table->string('fecha');
-            $table->integer('user_id')->foreign('user_id')
-            ->references('id')->on('users')
-            ->onDelete('set null');
+            $table->foreignId('user_id')->constrained('users')
+            ->restrictOnDelete();
             $table->integer('estudiante_id')->foreign('estudiante_id')
             ->references('id')->on('estudiantes')
             ->onDelete('set null');
             $table->integer('tipo_matricula_id')->foreign('tipo_matricula_id')
             ->references('id')->on('tipo_matriculas')
             ->onDelete('set null');
+            
             $table->integer('grupo_id')->foreign('grupo_id')
             ->references('id')->on('grupos')
             ->onDelete('set null');
