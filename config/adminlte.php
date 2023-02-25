@@ -250,7 +250,7 @@ return [
             'text' => 'Dashboard',
             'url'  => 'home',
             'icon' => 'fas fa-fw fa-home',
-            'label' => '',
+            // 'label' => '10',
             'label_color' => 'primary',
 
         ],
