@@ -2,22 +2,22 @@
 @section('content')
 
     <br>
-    <a href="{{ url('profession/create') }}" class="btn btn-success"> Nueva Profesion </a>
+    <a href="{{ url('organizacionacademica/create') }}" class="btn btn-success"> Nuevo Organizacion Academica</a>
     <br>
     <br>
     <table class="table table-dark">
         <thead class="thead-light">
             <tr>
-                <th>Profesiones</th>
+                <th>Organizacion Academica</th>
                 <th>Acciones</th>
             </tr>
         </thead>
 
         <tbody>
 
-            @foreach ($professions as $profession)
+            @foreach ($organizacionacademicas as $organizacionacademica)
                 <tr>
-                    <td>{{ $profession->descripcion }}</td>
+                    <td>{{ $organizacionacademica->descripcion }}</td>
                     <td>
                         <div class="d-flex flex-row bd-highlight mb-6">
                             <a href="{{ url('/organizacionacademica/' . $organizacionacademica->id . '/edit') }}" class="btn btn-info">
