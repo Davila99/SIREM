@@ -15,7 +15,9 @@ class OrganizacionAcademicaController extends Controller
      */
     public function index()
     {
-        dd('hola desde did');
+        $datos['organizacionacademicas'] = organizacion_academica::paginate(10);
+        return view('organizacionacademica/index',$datos);
+        
     }
 
     /**
