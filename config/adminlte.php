@@ -333,6 +333,11 @@ return [
             'icon' => 'fas fa-solid fa-signature',
         ],
         [
+            'text'        => 'Organización Academica',
+            'route'         => 'organizacionacademica.index',
+            'icon' => 'fas fa-solid fa-signature',
+        ],
+        [
             'text'        => 'Grupos',
             'route'         => 'grupos.index',
             'icon'        => 'fas fa-solid fa-users',

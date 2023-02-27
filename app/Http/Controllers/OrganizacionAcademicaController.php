@@ -15,7 +15,7 @@ class OrganizacionAcademicaController extends Controller
      */
     public function index()
     {
-        //
+        dd('hola desde did');
     }
 
     /**

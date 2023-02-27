@@ -13,6 +13,7 @@ use App\Http\Controllers\GradoController;
 use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\GruposController;
 use App\Http\Controllers\NivelesAcademicoController;
+use App\Http\Controllers\OrganizacionAcademicaController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\TipoMatriculaController;
 use App\Http\Controllers\TutoreController;
@@ -55,6 +56,7 @@ Route::resource('matriculas', MatriculaController::class);
 Route::resource('grupos', GruposController::class);
 Route::resource('calificaciones', CalificacionesController::class);
 Route::resource('tutorestudiante', EstudiantesTutoresController::class);
+Route::resource('organizacionacademica', OrganizacionAcademicaController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
