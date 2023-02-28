@@ -9,6 +9,8 @@
         <thead class="thead-light">
             <tr>
                 <th>Organizacion Academica</th>
+                <th>Fecha</th>
+                <th>Autorización</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -18,6 +20,8 @@
             @foreach ($organizacionacademicas as $organizacionacademica)
                 <tr>
                     <td>{{ $organizacionacademica->descripcion }}</td>
+                    <td>{{ $organizacionacademica->fecha }}</td>
+                    <td>{{ $organizacionacademica->confirmed }}</td>
                     <td>
                         <div class="d-flex flex-row bd-highlight mb-6">
                             <a href="{{ url('/organizacionacademica/' . $organizacionacademica->id . '/edit') }}" class="btn btn-info">
