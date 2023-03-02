@@ -21,11 +21,15 @@
                 <tr>
                     <td>{{ $organizacionacademica->descripcion }}</td>
                     <td>{{ $organizacionacademica->fecha }}</td>
-                    <td>{{ $organizacionacademica->confirmed }}</td>
+                    <td>
+                        <input data-id="{{$organizacionacademica->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $organizacionacademica->confirmed ? 'checked' : '' }}>
+                    </td>
                     <td>
                         <div class="d-flex flex-row bd-highlight mb-6">
                             <a href="{{ url('/organizacionacademica/' . $organizacionacademica->id . '/edit') }}" class="btn btn-info">
                                 Editar </a>|
+                                <a href="{{ url('/organizacionacademica/' . $organizacionacademica->id) }}" class="btn btn-warning">
+                                    Detalles </a>|
                             <form class="form-eliminar" action="{{ url('/organizacionacademica/' . $organizacionacademica->id) }}" method="post"
                                 class="d-inline">
                                 @csrf
@@ -49,7 +53,7 @@
             Swal.fire({
                 position: 'top-center',
                 icon: 'success',
-                title: 'Profesión registrado!',
+                title: 'Organizacion Academica registrada!',
                 showConfirmButton: false,
                 timer: 2000
             })

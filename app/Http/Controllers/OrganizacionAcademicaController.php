@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\organizacion_academica;
-use App\Http\Requests\Storeorganizacion_academicaRequest;
-use App\Http\Requests\Updateorganizacion_academicaRequest;
+use Illuminate\Http\Client\Request as ClientRequest;
+use Illuminate\Http\Request;
 
 class OrganizacionAcademicaController extends Controller
 {
@@ -16,8 +16,7 @@ class OrganizacionAcademicaController extends Controller
     public function index()
     {
         $datos['organizacionacademicas'] = organizacion_academica::paginate(10);
-        return view('organizacionacademica/index',$datos);
-        
+        return view('organizacionacademica/index', $datos);
     }
 
     /**
@@ -36,11 +35,28 @@ class OrganizacionAcademicaController extends Controller
      * @param  \App\Http\Requests\Storeorganizacion_academicaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storeorganizacion_academicaRequest $request)
+    public function store(Request $request)
     {
-        //
+        
+        $fecha = date('Y-m-d');
+        $organizacionacademica = new organizacion_academica();
+        $organizacionacademica->fecha = $fecha;
+        $organizacionacademica->descripcion = $request->descripcion;
+        $organizacionacademica->confirmed = false;
+        $organizacionacademica->save();
+        return redirect('organizacionacademica/')->with('mensaje', 'ok');
     }
-
+    public function changeStatus(Request $request)
+    {
+        $fecha = date('Y-m-d');
+        $organizacionacademica = new organizacion_academica();
+        $organizacionacademica->fecha = $fecha;
+        $organizacionacademica->descripcion = $request->descripcion;
+        $organizacionacademica->confirmed =$request->confirmed;
+        $organizacionacademica->save();
+  
+        return response()->json(['success'=>'Status change successfully.']);
+    }
     /**
      * Display the specified resource.
      *
@@ -58,7 +74,7 @@ class OrganizacionAcademicaController extends Controller
      * @param  \App\Models\organizacion_academica  $organizacion_academica
      * @return \Illuminate\Http\Response
      */
-    public function edit(organizacion_academica $organizacion_academica)
+    public function edit(Request $request)
     {
         //
     }
@@ -70,7 +86,7 @@ class OrganizacionAcademicaController extends Controller
      * @param  \App\Models\organizacion_academica  $organizacion_academica
      * @return \Illuminate\Http\Response
      */
-    public function update(Updateorganizacion_academicaRequest $request, organizacion_academica $organizacion_academica)
+    public function update(Request $request)
     {
         //
     }
@@ -81,8 +97,19 @@ class OrganizacionAcademicaController extends Controller
      * @param  \App\Models\organizacion_academica  $organizacion_academica
      * @return \Illuminate\Http\Response
      */
-    public function destroy(organizacion_academica $organizacion_academica)
+    public function destroy($id)
     {
-        //
+        try {
+            organizacion_academica::destroy($id);
+            return redirect('organizacionacademica')->with(
+                'mensaje-eliminar',
+                'ok'
+            );
+        } catch (\Throwable $th) {
+            return redirect('organizacionacademica')->with(
+                'mensaje-error-eliminar',
+                'ok'
+            );
+        }
     }
 }
