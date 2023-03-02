@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Profession;
 use Illuminate\Http\Request;
 
-use PhpParser\Node\Stmt\TryCatch;
+
 
 
 class ProfessionController extends Controller
@@ -104,7 +104,7 @@ class ProfessionController extends Controller
      */
     public function destroy( $id)
     {
-
+        
         try {
             Profession::destroy($id);
             return redirect('profession')->with('mensaje-eliminar','ok');
