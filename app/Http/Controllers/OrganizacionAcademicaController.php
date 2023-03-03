@@ -42,7 +42,7 @@ class OrganizacionAcademicaController extends Controller
         $organizacionacademica = new organizacion_academica();
         $organizacionacademica->fecha = $fecha;
         $organizacionacademica->descripcion = $request->descripcion;
-        $organizacionacademica->confirmed = false;
+        $organizacionacademica->confirmed = true;
         $organizacionacademica->save();
         return redirect('organizacionacademica/')->with('mensaje', 'ok');
     }
