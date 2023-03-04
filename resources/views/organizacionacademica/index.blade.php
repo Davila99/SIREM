@@ -109,5 +109,23 @@
 
         });
     </script>
+    <script>
+        $(function() {
+          $('.toggle-class').change(function() {
+              var confirmed = $(this).prop('checked') == true ? 1 : 0; 
+              var organizacionacademica = $(this).data('id'); 
+               
+              $.ajax({
+                  type: "GET",
+                  dataType: "json",
+                  url: '/changeStatus',
+                  data: {'confirmed': confirmed, 'organizacionacademica': organizacionacademica},
+                  success: function(data){
+                    console.log(data.success)
+                  }
+              });
+          })
+        })
+      </script>
 
 @endsection

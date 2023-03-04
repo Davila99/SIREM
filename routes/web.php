@@ -17,6 +17,7 @@ use App\Http\Controllers\OrganizacionAcademicaController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\TipoMatriculaController;
 use App\Http\Controllers\TutoreController;
+use App\Models\organizacion_academica;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,7 @@ Route::resource('grupos', GruposController::class);
 Route::resource('calificaciones', CalificacionesController::class);
 Route::resource('tutorestudiante', EstudiantesTutoresController::class);
 Route::resource('organizacionacademica', OrganizacionAcademicaController::class);
+Route::get('changeStatus/', [OrganizacionAcademicaController::class, 'changeStatus']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
