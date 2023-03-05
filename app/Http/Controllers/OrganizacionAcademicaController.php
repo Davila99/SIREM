@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\organizacion_academica;
-use Illuminate\Http\Client\Request as ClientRequest;
 use Illuminate\Http\Request;
 
 class OrganizacionAcademicaController extends Controller
@@ -37,23 +36,28 @@ class OrganizacionAcademicaController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate(
+            [
+                'descripcion' => 'required',
+            ],
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
         $fecha = date('Y-m-d');
         $organizacionacademica = new organizacion_academica();
         $organizacionacademica->fecha = $fecha;
         $organizacionacademica->descripcion = $request->descripcion;
-        $organizacionacademica->confirmed = true;
+        $organizacionacademica->confirmed = false;
         $organizacionacademica->save();
         return redirect('organizacionacademica/')->with('mensaje', 'ok');
     }
     public function changeStatus(Request $request)
     {
-        $fecha = date('Y-m-d');
         $organizacionacademica = organizacion_academica::find($request->organizacionacademica);
-        $organizacionacademica->fecha = $fecha;
         $organizacionacademica->confirmed =$request->confirmed;
         $organizacionacademica->save();
-        return response()->json(['success'=>'Status change successfully.']);
+        return response()->json(['success'=>'Cambio de estado con éxito.']);
     }
     /**
      * Display the specified resource.
@@ -85,8 +89,17 @@ class OrganizacionAcademicaController extends Controller
      * @param  \App\Models\organizacion_academica  $organizacion_academica
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
-    {
+    public function update(Request $request,$id)
+    {   
+        $request->validate(
+            [
+                'descripcion' => 'required',
+            ],
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
+
         $datos = request()->except(['_token', '_method']);
         organizacion_academica::where('id', '=', $id)->update($datos);
         $datos = organizacion_academica::findOrFail($id);
