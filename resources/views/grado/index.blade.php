@@ -14,9 +14,9 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-    
+
                 <tbody>
-    
+
                     @foreach ($grados as $grado)
                         <tr>
                             <td>{{ $grado->descripcion }}</td>
@@ -37,7 +37,7 @@
                 </tbody>
             </table>
         </div>
-        
+
     </div>
 
 @stop
@@ -75,14 +75,14 @@
         </script>
     @endif
     @if (Session::has('mensaje-error-eliminar'))
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Lo sentimos',
-            text: 'Este dato esta siendo utilizado',
-        })
-    </script>
-@endif
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Lo sentimos',
+                text: 'Este dato esta siendo utilizado',
+            })
+        </script>
+    @endif
     <script>
         $('.form-eliminar').submit(function(e) {
             e.preventDefault();
