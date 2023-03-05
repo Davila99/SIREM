@@ -5,6 +5,7 @@
     <a href="{{ url('organizacionacademica/create') }}" class="btn btn-success"> Nuevo Organizacion Academica</a>
     <br>
     <br>
+    <div class="table-responsive">
     <table class="table table-dark">
         <thead class="thead-light">
             <tr>
@@ -49,6 +50,7 @@
             @endforeach
         </tbody>
     </table>
+</div>
     </div>
 @stop
 @section('js')
