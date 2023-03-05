@@ -13,6 +13,7 @@
                         <th>Asignatura</th>
                         <th>Docente</th>
                         <th>Grado</th>
+                        <th>Organización Docente</th>
                         <th>Acciones</th>
                     </tr>
             </thead>
@@ -24,6 +25,7 @@
                         <td>{{ $asignaturadocente->asignatura->descripcion }}</td>
                         <td>{{ $asignaturadocente->empleado->nombres }}</td>
                         <td>{{ $asignaturadocente->grado->descripcion }}</td>
+                        <td>{{ $asignaturadocente->organizacionAcademica->descripcion }}</td>
                         <td>
                             <div class="d-flex flex-row bd-highlight mb-6">
                                 <a href="{{ url('/asignaturadocente/' . $asignaturadocente->id . '/edit') }}"

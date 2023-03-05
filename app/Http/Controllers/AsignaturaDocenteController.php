@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Asignatura;
 use App\Models\Empleado;
 use App\Models\Grupos;
+use App\Models\organizacion_academica;
 
 class AsignaturaDocenteController extends Controller
 {
@@ -22,6 +23,7 @@ class AsignaturaDocenteController extends Controller
         ->with(['asignatura'])
         ->with(['empleado'])
         ->with(['grado'])
+        ->with(['organizacionAcademica'])
         ->paginate(10);
        
         // dd($datos);
@@ -37,9 +39,10 @@ class AsignaturaDocenteController extends Controller
     {
         $asignaturas = Asignatura::all();
         $grupos = Grupos::all();
+        $organizacion_academicas = organizacion_academica::all();
         $empleados = Empleado::where('cargos_id',1)->get();
      
-        return view('asignaturadocente/create',compact('asignaturas','empleados','grupos'));
+        return view('asignaturadocente/create',compact('asignaturas','empleados','grupos','organizacion_academicas'));
     }
 
     /**
