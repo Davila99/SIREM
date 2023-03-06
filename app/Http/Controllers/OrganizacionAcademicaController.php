@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\organizacion_academica;
+use App\Models\OrganizacionAcademica;
 use Illuminate\Http\Request;
 
 class OrganizacionAcademicaController extends Controller
@@ -14,7 +14,8 @@ class OrganizacionAcademicaController extends Controller
      */
     public function index()
     {
-        $datos['organizacionacademicas'] = organizacion_academica::paginate(10);
+        $datos['organizacionacademicas'] = OrganizacionAcademica::paginate(10);
+        // dd($datos);
         return view('organizacionacademica/index', $datos);
     }
 
@@ -45,7 +46,7 @@ class OrganizacionAcademicaController extends Controller
             ]
         );
         $fecha = date('Y-m-d');
-        $organizacionacademica = new organizacion_academica();
+        $organizacionacademica = new OrganizacionAcademica();
         $organizacionacademica->fecha = $fecha;
         $organizacionacademica->descripcion = $request->descripcion;
         $organizacionacademica->confirmed = false;
@@ -54,7 +55,7 @@ class OrganizacionAcademicaController extends Controller
     }
     public function changeStatus(Request $request)
     {
-        $organizacionacademica = organizacion_academica::find($request->organizacionacademica);
+        $organizacionacademica = OrganizacionAcademica::find($request->organizacionacademica);
         $organizacionacademica->confirmed =$request->confirmed;
         $organizacionacademica->save();
         return response()->json(['success'=>'Cambio de estado con éxito.']);
@@ -65,9 +66,11 @@ class OrganizacionAcademicaController extends Controller
      * @param  \App\Models\organizacion_academica  $organizacion_academica
      * @return \Illuminate\Http\Response
      */
-    public function show(organizacion_academica $organizacion_academica)
+    public function show($id)
     {
-        //
+        $organizacion_academica = OrganizacionAcademica::findOrFail($id);
+       
+       dd($organizacion_academica);
     }
 
     /**
@@ -78,7 +81,7 @@ class OrganizacionAcademicaController extends Controller
      */
     public function edit($id)
     {
-        $datos = organizacion_academica::findOrFail($id);
+        $datos = OrganizacionAcademica::findOrFail($id);
         return view('organizacionacademica/edit',compact('datos'));
     }
 
@@ -101,8 +104,8 @@ class OrganizacionAcademicaController extends Controller
         );
 
         $datos = request()->except(['_token', '_method']);
-        organizacion_academica::where('id', '=', $id)->update($datos);
-        $datos = organizacion_academica::findOrFail($id);
+        OrganizacionAcademica::where('id', '=', $id)->update($datos);
+        $datos = OrganizacionAcademica::findOrFail($id);
         return redirect('organizacionacademica')->with('mensaje-editar','ok');
     }
 
@@ -115,7 +118,7 @@ class OrganizacionAcademicaController extends Controller
     public function destroy($id)
     {
         try {
-            organizacion_academica::destroy($id);
+            OrganizacionAcademica::destroy($id);
             return redirect('organizacionacademica')->with(
                 'mensaje-eliminar',
                 'ok'
