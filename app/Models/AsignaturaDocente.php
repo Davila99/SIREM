@@ -27,7 +27,7 @@ class AsignaturaDocente extends Model
 
     public function organizacionAcademica()
     {
-        return $this->belongsTo(organizacion_academica::class);
+        return $this->belongsTo(OrganizacionAcademica::class);
     }
 
 }
