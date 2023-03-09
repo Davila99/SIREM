@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class OrganizacionAcademica extends Model
 {
     use HasFactory;
-    public function asignaturaDocente()
+    public function asignaturaDocentes()
     {
-        return $this->belongsTo(AsignaturaDocente::class);
+        return $this->hasMany(AsignaturaDocente::class, 'id');
     }
     
 }

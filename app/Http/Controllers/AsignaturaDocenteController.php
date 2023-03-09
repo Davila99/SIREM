@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Asignatura;
 use App\Models\Empleado;
 use App\Models\Grupos;
-use App\Models\organizacion_academica;
+
 use App\Models\OrganizacionAcademica;
 
 class AsignaturaDocenteController extends Controller
