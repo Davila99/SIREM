@@ -83,9 +83,14 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {   
+        $datos['empleados'] = Empleado::findOrFail($id)
+        ->with(['nivel_academico'])
+        ->with(['cargos'])  
+        ->paginate(10);
+        dd($datos);
         $empleado = Empleado::findOrFail($id);
-      dd($empleado);
+     
         return view('empleados/perfil', compact('empleado'));
     }
 
