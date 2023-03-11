@@ -10,6 +10,6 @@ class Niveles_academico extends Model
     use HasFactory;
     public function empleados()
     {
-        return $this->hasOne(Empleado::class, 'id');
+        return $this->hasMany(Empleado::class, 'id');
     }
 }
