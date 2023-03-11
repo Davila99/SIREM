@@ -12,10 +12,10 @@ class Empleado extends Model
     use HasFactory;
     public function nivel_academico()
     {
-        return $this->belongsTo(Niveles_academico::class,'id','nivel_academico_id');
+        return $this->belongsTo(Niveles_academico::class,'nivel_academico_id','id');
     }
     public function cargos()
     {
-        return $this->belongsTo(Cargo::class,'id','cargos_id');
+        return $this->belongsTo(Cargo::class,'cargos_id','id');
     }
 }
