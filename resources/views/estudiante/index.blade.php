@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
+
     <div class="container">
 
         <br>
@@ -55,6 +56,10 @@
     </div>
 @endsection
 @section('js')
+<script src="{{ asset('js/app.js') }}" defer></script>
+
+
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (Session::has('mensaje'))
         <script>

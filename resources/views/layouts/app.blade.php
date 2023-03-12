@@ -24,6 +24,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
+    
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -80,6 +81,7 @@
         </nav>
 
         <main class="py-4">
+            <div id="reactapp"></div>
             @yield('content')
         </main>
     </div>
