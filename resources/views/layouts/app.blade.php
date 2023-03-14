@@ -81,7 +81,6 @@
         </nav>
 
         <main class="py-4">
-            <div id="reactapp"></div>
             @yield('content')
         </main>
     </div>
