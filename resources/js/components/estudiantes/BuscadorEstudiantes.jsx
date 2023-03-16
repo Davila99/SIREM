@@ -2,15 +2,16 @@
 import React, {useState, useEffect} from 'react'
 function BuscadorEstudiantes() {
     const [ users, setUsers ] = useState([])
+    const [ estudiantes, setEstudiantes ] = useState([])
     const [ search, setSearch ] = useState("")
   
     //función para traer los datos de la API
-    const URL = 'https://jsonplaceholder.typicode.com/users'
+    const URL = 'http://localhost:8000/api/estudiantes'
   
     const showData = async () => {
       const response = await fetch(URL)
       const data = await response.json()
-      //console.log(data)
+      console.log(data)
       setUsers(data)
     }   
      //función de búsqueda
@@ -18,10 +19,11 @@ function BuscadorEstudiantes() {
         setSearch(e.target.value)   
     }
      //metodo de filtrado 2   
-     const results = !search ? users : users.filter((dato)=> dato.name.toLowerCase().includes(search.toLocaleLowerCase()))
-    
+     const results = !search ? estudiantes : estudiantes.filter((dato)=> dato.nombres.toLowerCase().includes(search.toLocaleLowerCase()))
+     console.log(results)
      useEffect( ()=> {
-      showData()
+    showData()
+      
     }, [])
     return ( 
         <div>
@@ -35,10 +37,10 @@ function BuscadorEstudiantes() {
                 </tr>
             </thead>
             <tbody>
-                { results.map( (user) => (
-                    <tr key={user.id}>
-                        <td>{user.name}</td>
-                        <td>{user.username}</td>
+                { results.map( (estudiantes) => (
+                    <tr key={estudiantes.id}>
+                        <td>{estudiantes.nombres}</td>
+                        <td>{estudiantes.apellidos}</td>
                     </tr>                    
                 ))}
             </tbody>

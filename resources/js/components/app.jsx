@@ -1,11 +1,11 @@
 import React from 'react'
-import { CrearEstudiante } from './estudiantes/CrearEstudiante'
-import { LitarEstudiantes } from './estudiantes/LitarEstudiantes'
-
+import BuscadorEstudiantes from './estudiantes/BuscadorEstudiantes'
+import '../../css/app.css'
 const app = () => {
   return (
     <div>
-      <CrearEstudiante />
+      {/* <CrearEstudiante /> */}
+      <BuscadorEstudiantes/>
     </div>
   )
 }

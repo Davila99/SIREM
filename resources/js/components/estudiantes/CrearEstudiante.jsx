@@ -1,5 +1,6 @@
 export const CrearEstudiante = () => {
   return (
-    <div>voy a crear un estudiante</div>
+    <div>voy a crededeiante</div>
+    
   )
 }
