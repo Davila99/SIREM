@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AsignaturaController;
 use App\Http\Controllers\AsignaturaDocenteController;
+use App\Http\Controllers\BuscadorEstudiante;
 use App\Http\Controllers\CalificacionesController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ConsanguiniedadeController;
@@ -68,3 +69,18 @@ Route::get('buscar-estudiantes', [EstudianteController::class, 'search']);
 Route::get('buscar-grupos', [GruposController::class, 'search']);
 Route::get('buscador-tipo-matriculas', [TipoMatriculaController::class, 'search']);
 
+Route::get('/pro', function () {
+    return "Pruebas de autenticacion";
+})->middleware('auth');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::controller(BuscadorEstudiante::class)->group(function () {
+        Route::get('/search-estudiantes', 'index' );
+        Route::post('/search-estudiantes', 'store');
+        Route::get('/search-estudiantes/{id}', 'show');
+        Route::post('/search-estudiantes/{id}', 'update');
+        Route::post('/search-estudiantes/{id}', 'destroy');
+       
+    });
+});
