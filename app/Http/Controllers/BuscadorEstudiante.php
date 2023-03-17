@@ -11,13 +11,13 @@ use App\Http\Resources\EstudianteCollection;
 
 class BuscadorEstudiante extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $datos['estudiantes'] = Estudiante::query()
             ->with(['tutor'])
             ->with(['sexo'])
             ->paginate(10);
-        return $datos;   
+            return response()->json($datos);
 
     }
 }
