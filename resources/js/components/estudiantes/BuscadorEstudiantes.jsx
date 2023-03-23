@@ -1,28 +1,32 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 function BuscadorEstudiantes() {
-    const numbers = [1, 2, 3, 4, 5];
+  
     const [estudiantes, setEstudiantes] = useState([]);
     const [search, setSearch] = useState("");
     useEffect(() => {
         getEstudiantes();
     }, []);
-    //función para traer los datos de la API
+
     const URL = "http://127.0.0.1:8000/search-estudiantes";
 
     const getEstudiantes = async () => {
-        const respuesta = await axios.get(URL);
-        setEstudiantes(respuesta.data);
+        const response = await fetch(URL);
+        const data = await response.json();
+        setEstudiantes(data.estudiantes.data);
+     
     };
-
-    //función de búsqueda
+    console.log(estudiantes) 
     const searcher = (e) => {
         setSearch(e.target.value);
     };
-    //metodo de filtrado 2
+    useEffect(() => {
+        getEstudiantes();
+       
+    }, []);
     const results = !search
         ? estudiantes
-        : estudiantes.data.filter((dato) =>
+        : estudiantes.filter((dato) =>
               dato.nombres.toLowerCase().includes(search.toLocaleLowerCase())
           );
 
@@ -39,15 +43,17 @@ function BuscadorEstudiantes() {
             <table className="table table-striped table-hover mt-5 shadow-lg">
                 <thead>
                     <tr className="bg-curso text-white">
-                        <th>Nombre</th>
+                        <th>Nombres</th>
                         <th>Apellidos</th>
+                        <th>Direcion</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {estudiantes.map(estudiante => (
+                    {results.map((estudiante) => (
                         <tr key={estudiante.id}>
-                            <td>{estudiantes.nombres}</td>
-                            <td>{estudiantes.apellidos}</td>
+                            <td>{estudiante.nombres}</td>
+                            <td>{estudiante.apellidos}</td>
+                            <td>{estudiante.direccion}</td>
                         </tr>
                     ))}
                 </tbody>
