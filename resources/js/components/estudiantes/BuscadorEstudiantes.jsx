@@ -1,12 +1,8 @@
-import axios from "axios";
+
 import React, { useState, useEffect } from "react";
 function BuscadorEstudiantes() {
-  
     const [estudiantes, setEstudiantes] = useState([]);
     const [search, setSearch] = useState("");
-    useEffect(() => {
-        getEstudiantes();
-    }, []);
 
     const URL = "http://127.0.0.1:8000/search-estudiantes";
 
@@ -14,22 +10,20 @@ function BuscadorEstudiantes() {
         const response = await fetch(URL);
         const data = await response.json();
         setEstudiantes(data.estudiantes.data);
-     
     };
-    console.log(estudiantes) 
+    console.log(estudiantes);
     const searcher = (e) => {
         setSearch(e.target.value);
     };
-    useEffect(() => {
-        getEstudiantes();
-       
-    }, []);
+
     const results = !search
         ? estudiantes
         : estudiantes.filter((dato) =>
               dato.nombres.toLowerCase().includes(search.toLocaleLowerCase())
           );
-
+    useEffect(() => {
+        getEstudiantes();
+    }, []);
     return (
         <div>
             <input
