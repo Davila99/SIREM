@@ -25,16 +25,9 @@ class EstudianteController extends Controller
 
         return view('estudiante/index', $datos);
     }
-    public function busqueda(Request $request)
+    public function busqueda()
     {
-        $texto = trim($request->get('texto'));
-        $estudiantes = Estudiante::query()
-        ->where('nombres', 'like', '%' . $texto . '%')
-        ->orWhere('apellidos', 'like', '%' . $texto . '%')
-        ->select('id', 'nombres', 'apellidos')
-        ->get();
-        
-        return view('estudiante.busqueda', compact('estudiantes', 'texto'));
+        return view('estudiante.busqueda');
     }
 
     /**
