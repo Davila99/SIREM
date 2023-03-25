@@ -6,6 +6,7 @@ use App\Http\Resources\EstudianteCollection;
 use App\Models\Estudiante;
 use App\Models\Sexo;
 use App\Models\Tutore;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -22,7 +23,7 @@ class EstudianteController extends Controller
             ->with(['tutor'])
             ->with(['sexo'])
             ->paginate(10);
-
+            
         return view('estudiante/index', $datos);
     }
     public function busqueda()
@@ -70,8 +71,18 @@ class EstudianteController extends Controller
                 'sexo_id.required' => 'El sexo es obligatorio.',
             ]
         );
-        $datos = request()->except(['_token', '_method']);
-        Estudiante::insert($datos);
+        $estudiante = new Estudiante();
+        $estudiante->nombres = $request->nombres;
+        $estudiante->apellidos = $request->apellidos;
+        $estudiante->fecha_nacimiento = $request->fecha_nacimiento;
+        $estudiante->edad = Carbon::createFromDate($request->fecha_nacimiento)->age;
+        $estudiante->direccion = $request->direccion;
+        $estudiante->tutor_id = $request->tutor_id;
+        $estudiante->sexo_id = $request->sexo_id;
+        $estudiante->save();
+        // $datos = request()->except(['_token', '_method']);
+        // Estudiante::insert($datos);
+
         return redirect('matriculas/create')->with('mensaje', 'ok');
     }
 

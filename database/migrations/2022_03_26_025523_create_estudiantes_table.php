@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nombres');
             $table->string('apellidos');
             $table->string('fecha_nacimiento');
+            $table->string('edad');
             $table->string('direccion');
             $table->integer('tutor_id')->foreign('tutor_id')
             ->references('id')->on('tutores')

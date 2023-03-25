@@ -16,6 +16,7 @@
                         <th>Nombres</th>
                         <th>Apellidos</th>
                         <th>Fecha Nacimiento</th>
+                        <th>Edad</th>
                         <th>Direccion</th>
                         <th>Tutor</th>
                         <th>Sexo</th>
@@ -30,6 +31,7 @@
                             <td>{{ $estudiante->nombres }}</td>
                             <td>{{ $estudiante->apellidos }}</td>
                             <td>{{ $estudiante->fecha_nacimiento }}</td>
+                            <td>{{ $estudiante->edad }}</td>
                             <td>{{ $estudiante->direccion }}</td>
                             <td>{{ $estudiante->tutor->nombre }}</td>
                             <td>{{ $estudiante->sexo->descripcion }}</td>
