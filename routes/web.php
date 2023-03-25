@@ -69,10 +69,6 @@ Route::get('buscar-estudiantes', [EstudianteController::class, 'search']);
 Route::get('buscar-grupos', [GruposController::class, 'search']);
 Route::get('buscador-tipo-matriculas', [TipoMatriculaController::class, 'search']);
 
-Route::get('/pro', function () {
-    return "Pruebas de autenticacion";
-})->middleware('auth');
-
 
 Route::middleware(['auth'])->group(function () {
     Route::controller(BuscadorEstudiante::class)->group(function () {
