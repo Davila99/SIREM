@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AsignaturaDocente;
 use App\Models\OrganizacionAcademica;
 use Illuminate\Http\Request;
 
@@ -68,9 +69,9 @@ class OrganizacionAcademicaController extends Controller
      */
     public function show($id)
     {
-        $organizacion_academica = OrganizacionAcademica::findOrFail($id);
-       
-       dd($organizacion_academica);
+        $datos['organizacion_academica'] = OrganizacionAcademica::query()
+        ->with(['asignaturaDocentes'])->findOrFail($id);
+         dd($datos);
     }
 
     /**
