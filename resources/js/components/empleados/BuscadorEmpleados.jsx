@@ -1,31 +1,27 @@
 import React, { useState, useEffect } from "react";
 function BuscadorEmpleados() {
-    const [empleados, setEmpleados] = useState([]);
+    const [estudiantes, setEstudiantes] = useState([]);
     const [search, setSearch] = useState("");
 
-    //función para traer los datos de la API
-    const URL = "http://localhost:8000/api/estudiantes";
+    const URL = "http://127.0.0.1:8000/search-estudiantes";
 
-    const showData = async () => {
+    const getEstudiantes = async () => {
         const response = await fetch(URL);
         const data = await response.json();
-        console.log(data);
-        setEstudiantes(data);
+        setEstudiantes(data.estudiantes.data);
     };
-    //función de búsqueda
+    console.log(estudiantes);
     const searcher = (e) => {
         setSearch(e.target.value);
     };
-    //metodo de filtrado 2
+
     const results = !search
         ? estudiantes
         : estudiantes.filter((dato) =>
               dato.nombres.toLowerCase().includes(search.toLocaleLowerCase())
           );
-          
-    console.log(results);
     useEffect(() => {
-        showData();
+        getEstudiantes();
     }, []);
     return (
         <div>
@@ -40,8 +36,9 @@ function BuscadorEmpleados() {
             <table className="table table-striped table-hover mt-5 shadow-lg">
                 <thead>
                     <tr className="bg-curso text-white">
-                        <th>Nombre</th>
+                        <th>Nombres</th>
                         <th>Apellidos</th>
+                        <th>Direcion</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,6 +46,7 @@ function BuscadorEmpleados() {
                         <tr key={estudiante.id}>
                             <td>{estudiante.nombres}</td>
                             <td>{estudiante.apellidos}</td>
+                            <td>{estudiante.direccion}</td>
                         </tr>
                     ))}
                 </tbody>
