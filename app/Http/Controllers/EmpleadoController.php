@@ -23,6 +23,10 @@ class EmpleadoController extends Controller
       
         return view('empleados/index', $datos);
     }
+    public function busqueda()
+    {
+        return view('empleados.busqueda');
+    }
 
     /**
      * Show the form for creating a new resource.

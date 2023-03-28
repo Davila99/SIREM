@@ -318,6 +318,11 @@ return [
             'icon' => 'fas fa-solid fa-layer-group',
         ],
         [
+            'text'        => 'Buscador Empleados',
+            'url'         => 'search-emplado/',
+            'icon'        => 'fas fa-solid fa-user ',
+        ],
+        [
             'text'        => 'Tutores',
             'route'         => 'tutores.index',
             'icon' => 'fas fa-solid fa-briefcase',
