@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from "react";
 function BuscadorEmpleados() {
-    const [estudiantes, setEstudiantes] = useState([]);
+    const [empleados, setEmpleados] = useState([]);
     const [search, setSearch] = useState("");
 
-    const URL = "http://127.0.0.1:8000/search-estudiantes";
+    const URL = "http://127.0.0.1:8000/search-empleados";
 
-    const getEstudiantes = async () => {
+    const getEmpleados = async () => {
         const response = await fetch(URL);
         const data = await response.json();
-        setEstudiantes(data.estudiantes.data);
+        setEmpleados(data.empleados);
     };
-    console.log(estudiantes);
+    console.log(empleados);
     const searcher = (e) => {
         setSearch(e.target.value);
     };
 
     const results = !search
-        ? estudiantes
-        : estudiantes.filter((dato) =>
+        ? empleados
+        : empleados.filter((dato) =>
               dato.nombres.toLowerCase().includes(search.toLocaleLowerCase())
           );
     useEffect(() => {
-        getEstudiantes();
+       getEmpleados();
     }, []);
     return (
         <div>
@@ -38,15 +38,15 @@ function BuscadorEmpleados() {
                     <tr className="bg-curso text-white">
                         <th>Nombres</th>
                         <th>Apellidos</th>
-                        <th>Direcion</th>
+                        <th>Telefono</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {results.map((estudiante) => (
-                        <tr key={estudiante.id}>
-                            <td>{estudiante.nombres}</td>
-                            <td>{estudiante.apellidos}</td>
-                            <td>{estudiante.direccion}</td>
+                    {results.map((empleado) => (
+                        <tr key={empleado.id}>
+                            <td>{empleado.nombres}</td>
+                            <td>{empleado.apellidos}</td>
+                            <td>{empleado.telefono}</td>
                         </tr>
                     ))}
                 </tbody>

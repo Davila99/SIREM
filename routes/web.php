@@ -89,6 +89,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/search-estudiantes/{id}', 'update');
         Route::post('/search-estudiantes/{id}', 'destroy');
     });
-    Route::get('/search-emplado', [EmpleadoController::class, 'busqueda']);
-    Route::get('/search-emplados', [BuscadorEmpledado::class, 'index']);
+    Route::get('/search-empleado', [EmpleadoController::class, 'busqueda']);
+    Route::get('/search-empleados', [BuscadorEmpledado::class, 'index']);
 });
