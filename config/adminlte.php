@@ -319,7 +319,7 @@ return [
         ],
         [
             'text'        => 'Buscador Empleados',
-            'url'         => 'search-emplado/',
+            'url'         => 'search-empleado/',
             'icon'        => 'fas fa-solid fa-user ',
         ],
         [
