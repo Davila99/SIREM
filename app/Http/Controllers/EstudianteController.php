@@ -23,7 +23,7 @@ class EstudianteController extends Controller
             ->with(['tutor'])
             ->with(['sexo'])
             ->paginate(10);
-            
+
         return view('estudiante/index', $datos);
     }
     public function busqueda()
@@ -65,7 +65,7 @@ class EstudianteController extends Controller
                 'nombres.required' => 'El nombre es obligatorio.',
                 'apellidos.required' => 'El apellido es obligatorio.',
                 'fecha_nacimiento.required' =>
-                'la fecha de nacimiento es obligatoria.',
+                    'la fecha de nacimiento es obligatoria.',
                 'direccion.required' => 'La direccion es obligatoria.',
                 'tutor_id.required' => 'La profesion es obligatoria.',
                 'sexo_id.required' => 'El sexo es obligatorio.',
@@ -75,13 +75,13 @@ class EstudianteController extends Controller
         $estudiante->nombres = $request->nombres;
         $estudiante->apellidos = $request->apellidos;
         $estudiante->fecha_nacimiento = $request->fecha_nacimiento;
-        $estudiante->edad = Carbon::createFromDate($request->fecha_nacimiento)->age;
+        $estudiante->edad = Carbon::createFromDate(
+            $request->fecha_nacimiento
+        )->age;
         $estudiante->direccion = $request->direccion;
         $estudiante->tutor_id = $request->tutor_id;
         $estudiante->sexo_id = $request->sexo_id;
         $estudiante->save();
-        // $datos = request()->except(['_token', '_method']);
-        // Estudiante::insert($datos);
 
         return redirect('matriculas/create')->with('mensaje', 'ok');
     }
