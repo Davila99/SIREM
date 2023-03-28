@@ -1,14 +1,15 @@
 import React from 'react'
-import BuscadorEstudiantes from './estudiantes/BuscadorEstudiantes'
+
 import '../../css/app.css'
-import { LitarEstudiantes } from './estudiantes/LitarEstudiantes'
+import BuscadorEmpleados from './empleados/BuscadorEmpleados'
+
+
 const app = () => {
   return (
     <div>
-      {/* <CrearEstudiante /> */}
-      {/* <BuscadorEstudiantes/> */}
-      <LitarEstudiantes/>
-
+      <BuscadorEstudiantes/>
+      <BuscadorEmpleados/>
+      <CrearEstudiante/>
     </div>
   )
 }
