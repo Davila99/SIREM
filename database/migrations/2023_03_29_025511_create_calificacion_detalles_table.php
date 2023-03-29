@@ -19,7 +19,10 @@ return new class extends Migration
             ->restrictOnDelete();
             $table->foreignId('calificacion_id')->constrained('calificaciones')
             ->restrictOnDelete();
-            $table->unsignedBigInteger('periodo_academico');            $table->decimal('calificacion',4,2);
+            $table->foreignId('corte_evaluativo_id')->constrained('cortes_evaluativos')
+            ->restrictOnDelete();
+            
+            $table->decimal('calificacion',4,2);
             $table->string('observaciones')->nullable();
             $table->timestamps();
         });
