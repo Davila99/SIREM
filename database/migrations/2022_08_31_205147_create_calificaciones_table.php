@@ -15,28 +15,12 @@ return new class extends Migration
     {
         Schema::create('calificaciones', function (Blueprint $table) {
             $table->id();
-            $table->integer('asignaturadocente_id')->foreign('asignaturadocentes_id')
-            ->references('id')->on('asignaturadocente')
-            ->onDelete('set null');
-
-            $table->integer('asignatura_id')->foreign('asignaturas_id')
-            ->references('id')->on('asignatura')
-            ->onDelete('set null');
-
-            $table->integer('grado_id')->foreign('grados_id')
-            ->references('id')->on('grado')
-            ->onDelete('set null');
-
-            $table->integer('estudiante_id')->foreign('estudiantes_id')
-            ->references('id')->on('estudiante')
-            ->onDelete('set null');
-
-            
-            $table->integer('cortes_evaluativo_id')->foreign('cortes_evaluativos_id')
-            ->references('id')->on('cortes_evaluativo')
-            ->onDelete('set null');
-            
-
+            $table->string('fecha');
+            $table->foreignId('empleado_id')->constrained('empleados')
+            ->restrictOnDelete();
+            $table->foreignId('asignatura_id')->constrained('asignaturas')
+            ->restrictOnDelete();
+            $table->string('observaciones')->nullable();
             $table->timestamps();
         });
     }
