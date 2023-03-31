@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('content')
+@extends('adminlte::page')
+ @section('content')
     <div class="container">
         <legend class="text">Editar Cargos</legend>
         <form action="{{ url('cevaluativos/' . $datos->id) }}" method="post" enctype="multipart/form-data">

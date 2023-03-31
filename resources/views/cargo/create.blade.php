@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+
 @section('content')
 <div class="container">
     <legend class="text">Registrar Nuevo Cargo</legend>
