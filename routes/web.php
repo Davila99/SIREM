@@ -4,6 +4,7 @@ use App\Http\Controllers\AsignaturaController;
 use App\Http\Controllers\AsignaturaDocenteController;
 use App\Http\Controllers\BuscadorEmpledado;
 use App\Http\Controllers\BuscadorEstudiante;
+use App\Http\Controllers\BuscadorMatricula;
 use App\Http\Controllers\CalificacionesController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ConsanguiniedadeController;
@@ -91,4 +92,5 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::get('/search-empleado', [EmpleadoController::class, 'busqueda']);
     Route::get('/search-empleados', [BuscadorEmpledado::class, 'index']);
+    Route::get('/search-matriculas', [BuscadorMatricula::class, 'index']);
 });
