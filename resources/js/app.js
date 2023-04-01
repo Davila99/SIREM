@@ -8,6 +8,7 @@ import 'sweetalert2/src/sweetalert2.scss'
 import BuscadorEmpleados from "./components/empleados/BuscadorEmpleados";
 import { CrearEstudiante } from "./components/estudiantes/CrearEstudiante";
 import BuscadorEstudiantes from "./components/estudiantes/BuscadorEstudiantes";
+import BuscadorMatriculas from "./components/matriculas/BuscadorMatriculas";
 //importar sweet alert dialog en las vistas eliminar/confirmar
  window.Swal = require('sweetalert2')
 
@@ -21,3 +22,9 @@ import BuscadorEstudiantes from "./components/estudiantes/BuscadorEstudiantes";
     const root = ReactDOM.createRoot(appReact);
     root.render(<BuscadorEmpleados/>);
   }
+  if (document.getElementById('reactAppBuscadorMatriculas')) {
+    const appReact = document.getElementById('reactAppBuscadorMatriculas');
+    const root = ReactDOM.createRoot(appReact);
+    root.render(<BuscadorMatriculas/>);
+  }
+  

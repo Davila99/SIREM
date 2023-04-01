@@ -92,5 +92,7 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::get('/search-empleado', [EmpleadoController::class, 'busqueda']);
     Route::get('/search-empleados', [BuscadorEmpledado::class, 'index']);
+
+    Route::get('/search-matricula', [MatriculaController::class, 'busqueda']);
     Route::get('/search-matriculas', [BuscadorMatricula::class, 'index']);
 });

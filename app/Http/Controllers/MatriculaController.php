@@ -25,7 +25,10 @@ class MatriculaController extends Controller
             return view('matriculas/index', $datos);
         
     }
-
+    public function busqueda()
+    {
+        return view('matriculas.busqueda');
+    }
     /**
      * Show the form for creating a new resource.
      *
