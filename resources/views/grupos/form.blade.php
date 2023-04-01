@@ -1,5 +1,5 @@
-<div class="mt-5 row justify-content-center ">
-    <table class="table table-responsive table-dark">
+
+    <table class="table  table-dark">
   
         <thead class="thead-light">
             <tr>
@@ -57,11 +57,12 @@
         </tbody>
     
     </table>
-    <div class=" d-grid mt-2 col-sm-4">
+    <div class="mt-5 row justify-content-center ">
+    <div class=" d-grid mt-1 col-sm-1">
         <input type="submit" value="Guardar" class="btn btn-success">
     </div>
     
-    <div class="d-grid mt-2 col-sm-4">
+    <div class="d-grid mt-1 col-sm-10">
         <a type="button" class="btn btn-primary" href="{{ url('grupos/') }}"> Regresar </a>
     </div>
     
