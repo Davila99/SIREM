@@ -75,10 +75,10 @@ class TutoreController extends Controller
     {
         $datos['tutores'] = Tutore::findOrFail($id)
             ->with(['professions'])
+            ->with(['estudiante'])
             ->paginate(10);
         $tutores = Tutore::findOrFail($id);
-        dd($datos);
-
+    dd($datos);
         return view('tutores/perfil', compact('tutores'));
     }
 

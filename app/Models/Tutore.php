@@ -13,5 +13,8 @@ class Tutore extends Model
     {
         return $this->belongsTo(Profession::class,'professions_id','id');
     }
-    
+    public function estudiante()
+    {
+        return $this->hasMany(Estudiante::class,'id');
+    }
 }
