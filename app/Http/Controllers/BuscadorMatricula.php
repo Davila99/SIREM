@@ -18,8 +18,7 @@ class BuscadorMatricula extends Controller
         ->with(['estudiante'])
         ->with(['tipo_matricula'])
         ->with(['grupo'])
-        ->with(['user'])
-        ->paginate(10);
+        ->with(['user'])->get();
         return response()->json($datos);
     }
 
