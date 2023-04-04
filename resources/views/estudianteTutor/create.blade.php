@@ -1,10 +1,9 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 @section('content')
 <div class="container">
-    <h1>Crear </h1>
+    <legend class="text">Registrar Estudiante Tutor</legend>
     <form action="{{ url('/tutorestudiante') }}" method="post" enctype="multipart/form-data">
     @csrf
-
     @include('estudianteTutor.form')
 
 </form>
