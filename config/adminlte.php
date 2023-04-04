@@ -308,6 +308,11 @@ return [
             'icon'        => 'fas fa-solid fa-user-graduate',
         ],
         [
+            'text'        => 'Estudiantes Tutores',
+            'route'         => 'estudianteTutores.index',
+            'icon'        => 'fas fa-solid fa-user-graduate',
+        ],
+        [
             'text'        => 'Buscador de estudiantes',
             'url'         => 'search/',
             'icon'        => 'fas fa-solid fa-user ',
