@@ -20,8 +20,6 @@ use App\Http\Controllers\OrganizacionAcademicaController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\TipoMatriculaController;
 use App\Http\Controllers\TutoreController;
-use App\Models\organizacion_academica;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('consanguiniedades', ConsanguiniedadeController::class);
     Route::resource('empleados', EmpleadoController::class);
     Route::resource('estudiantes', EstudianteController::class);
+    Route::resource('estudianteTutores', EstudiantesTutoresController::class);
     Route::resource('empleados', EmpleadoController::class);
     Route::resource('tutores', TutoreController::class);
     Route::resource('consanguiniedades', ConsanguiniedadeController::class);
