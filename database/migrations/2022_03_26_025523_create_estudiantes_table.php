@@ -23,6 +23,9 @@ return new class extends Migration
             $table->integer('tutor_id')->foreign('tutor_id')
             ->references('id')->on('tutores')
             ->restrictOnDelete();
+            $table->integer('consanguiniedad_id')->foreign('consanguiniedad_id')
+            ->references('id')->on('consanguiniedades')
+            ->restrictOnDelete();
             $table->integer('sexo_id')->foreign('sexo_id')
             ->references('id')->on('sexos')
             ->onDelete('set null');
