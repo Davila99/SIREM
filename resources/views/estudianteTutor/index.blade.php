@@ -2,17 +2,6 @@
 
 @section('content')
     <div class="container">
-
-        @if (Session::has('mensaje'))
-            <div class="alert alert-success" role="alert" class="text-center">
-                {{ Session::get('mensaje') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="close">
-                    <span aria-hiden="true">&times;</span>
-                </button>
-            </div>
-
-        @endif
-
         <br>
         <a href="{{ url('tutorestudiante/create') }}" class="btn btn-success"> Registrar Nuevo Parentesco </a>
         <br>
@@ -28,15 +17,17 @@
                         <td>{{ $estudiantestutor->estudiante->nombres }}</td>
                         <td>{{ $estudiantestutor->tutores->nombre }}</td>
 
-                        <td><a href="{{ url('/tutorestudiante/' . $estudiantestutor->id . '/edit') }}" class="btn btn-info">
-                                Editar </a>|
-                            <form action="{{ url('/tutorestudiante/' . $estudiantestutor->id) }}" method="post" class="d-inline">
-                                @csrf
-                                {{ method_field('DELETE') }}
-                                
-                                <input type="submit" onclick="return confirm('Estas seguro de eliminar este registro?')"
-                                    class="btn btn-danger" value="eliminar">
-                            </form>
+                        <td>
+                            <div class="d-flex flex-row bd-highlight mb-6">
+                                <a href="{{ url('/tutorestudiante/' . $estudiantestutor->id . '/edit') }}" class="btn btn-info">
+                                    Editar </a>|
+                                <form class="form-eliminar" action="{{ url('/tutorestudiante/' . $estudiantestutor->id) }}"
+                                    method="post" class="d-inline">
+                                    @csrf
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </div>
                         </td>
 
                     </tr>
@@ -49,16 +40,13 @@
 @endsection
 @section('js')
 <script src="{{ asset('js/app.js') }}" defer></script>
-
-
-
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (Session::has('mensaje'))
         <script>
             Swal.fire({
                 position: 'top-center',
                 icon: 'success',
-                title: 'Estudiante registrado!',
+                title: 'Registrado Exitosamente!',
                 showConfirmButton: false,
                 timer: 2000
             })
@@ -69,7 +57,7 @@
             Swal.fire({
                 position: 'top-center',
                 icon: 'success',
-                title: 'Estudiante editado exitosamente!',
+                title: 'Registro editado exitosamente!',
                 showConfirmButton: false,
                 timer: 2000
             })
