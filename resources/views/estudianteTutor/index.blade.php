@@ -1,12 +1,4 @@
 @extends('adminlte::page')
-@section('title', 'Dashboard')
-
-@section('content_header')
-@stop
-
-@section('content')
-
-{{--  @extends('layouts.app')  --}}
 
 @section('content')
     <div class="container">
@@ -20,31 +12,9 @@
             </div>
 
         @endif
-        @if (Session::has('mesajeerror'))
-        <div class="alert alert-danger" role="alert" class="text-center">
-            {{ Session::get('mesajeerror') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="close">
-                <span aria-hiden="true">&times;</span>
-            </button>
-        </div>
 
-    @endif
         <br>
-            <div class="col-xl-12">
-                <form action="{{ route('tutorestudiante.index') }}" method="get">
-                    <div class="form-row">
-                        <div class="col-sm-4">
-                        <input type="text" class="form-control" name="texto" value="">
-                        </div>
-                        <div class="col-auto">
-                            <input type="submit" class="btn btn-primary" value="Buscar">
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <br>
-        <a href="{{ url('tutorestudiante/create') }}" class="btn btn-success"> Nuev </a>
+        <a href="{{ url('tutorestudiante/create') }}" class="btn btn-success"> Registrar Nuevo Parentesco </a>
         <br>
         <br>
         <table class="table table-dark">
@@ -77,14 +47,3 @@
     </div>
 
 @endsection
-@stop
-
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-    <script>
-        console.log('Hi!');
-    </script>
-@stop
