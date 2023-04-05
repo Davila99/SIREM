@@ -8,15 +8,21 @@
         <br>
         <table class="table table-dark">
             <thead class="thead-light">
+                <tr>
+                    <th>Estudiante</th>
+                    <th>Tutor</th>
+                    <th>Telefono Tutor</th>
+                    <th>Acciones</th>
+                </tr>
             </thead>
 
             <tbody>
 
                 @foreach ($estudiantestutores as $estudiantestutor)
                     <tr>
-                        <td>{{ $estudiantestutor->estudiante->nombres }}</td>
-                        <td>{{ $estudiantestutor->tutores->nombre }}</td>
-
+                        <td>{{ $estudiantestutor->estudiante->nombres }}  {{ $estudiantestutor->estudiante->apellidos }}</td>
+                        <td>{{ $estudiantestutor->tutores->nombre }}  {{ $estudiantestutor->tutores->apellido }} </td>
+                        <td>{{ $estudiantestutor->tutores->telefono }} </td>
                         <td>
                             <div class="d-flex flex-row bd-highlight mb-6">
                                 <a href="{{ url('/tutorestudiante/' . $estudiantestutor->id . '/edit') }}" class="btn btn-info">
