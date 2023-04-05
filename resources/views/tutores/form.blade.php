@@ -1,4 +1,4 @@
-<div class="mt-5 row justify-content-center ">
+
     <fieldset class="border p-4">
         <div class="form-group">
             <label for="nombre">
@@ -57,7 +57,7 @@
             <label for="professions">
                 <h5>Profesion:</h5>
             </label>
-            <select class="form-select @error('professions_id') is-invalid @enderror" name="professions_id"
+            <select class="form-control @error('professions_id') is-invalid @enderror" name="professions_id"
                 id="professions">
                 <option value="" selected disabled>--Seleccione--</option>
 
@@ -77,13 +77,12 @@
         </div>
 
     </fieldset>
-
-    <div class=" d-grid mt-2 col-sm-4">
-        <input type="submit" value="Guardar" class="btn btn-success">
+    <div class="mt-2 row justify-content-center">
+        <div class=" d-grid mt-1 col-sm-1">
+            <input type="submit" value="Guardar" class="btn btn-success">
+        </div>
+        
+        <div class="d-grid mt-1 col-sm-10">
+            <a type="button" class="btn btn-primary" href="{{ url('tutores/') }}"> Regresar </a>
+        </div>
     </div>
-
-    <div class="d-grid mt-2 col-sm-4">
-        <a type="button" class="btn btn-primary" href="{{ url('tutores/') }}"> Regresar </a>
-    </div>
-
-</div>
