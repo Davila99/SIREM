@@ -27,6 +27,8 @@
                             <div class="d-flex flex-row bd-highlight mb-6">
                                 <a href="{{ url('/tutorestudiante/' . $estudiantestutor->id . '/edit') }}" class="btn btn-info">
                                     Editar </a>|
+                                    <a href="{{ url('/tutorestudiante/' . $estudiantestutor->id) }}" class="btn btn-warning">
+                                        Perfil </a>|
                                 <form class="form-eliminar" action="{{ url('/tutorestudiante/' . $estudiantestutor->id) }}"
                                     method="post" class="d-inline">
                                     @csrf
