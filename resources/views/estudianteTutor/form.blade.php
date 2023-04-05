@@ -19,7 +19,7 @@
                         @foreach ($estudiantes as $estudiante)
                             <option value="{{ $estudiante->id }}"
                                 @if (!empty($datos->estudiante_id)) {{ $datos->estudiante_id == $estudiante->id ? 'selected' : '' }} @else {{ old('estudiante_id') == $estudiante->id ? 'selected' : '' }} @endif>
-                                {{ $estudiante->nombres }} </option>
+                                {{ $estudiante->nombres  }} {{ $estudiante->apellidos }} </option>
                         @endforeach
                     @endisset
 
@@ -41,7 +41,7 @@
                         @foreach ($tutores as $tutor)
                             <option value="{{ $tutor->id }}"
                                 @if (!empty($datos->tutores_id)) {{ $datos->tutores_id == $tutor->id ? 'selected' : '' }} @else {{ old('tutores_id') == $tutor->id ? 'selected' : '' }} @endif>
-                                {{ $tutor->nombre }} </option>
+                                {{ $tutor->nombre }} {{ $tutor->apellido }}  </option>
                         @endforeach
                     @endisset
 
