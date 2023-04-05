@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 @section('content')
     <div class="container">
         <legend class="text">Registrar Nueva Organizacion Academica </legend>
