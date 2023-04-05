@@ -13,7 +13,7 @@
         </div>
     </fieldset>
 
-    <div class="mt-5 row justify-content-center">
+        
     <div class="d-grid mt-1 col-sm-1">
         <input type="submit" value="Guardar" class="btn btn-success">
     </div>
@@ -21,4 +21,4 @@
     <div class="d-grid mt-1 col-sm-10">
         <a type="button" class="btn btn-primary" href="{{ url('cargos/') }}"> Regresar </a>
     </div>
-</div>
+    </div>
