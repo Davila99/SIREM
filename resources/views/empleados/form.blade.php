@@ -1,4 +1,4 @@
-<div class="mt-5 row justify-content-center ">
+
     <fieldset class="border p-4">
         <div class="form-group">
             <label for="nombres">
@@ -76,7 +76,7 @@
             <label for="nivel_academico_id">
                 <h5>Nivel Academico:</h5>
             </label>
-            <select class="form-select @error('nivel_academico_id') is-invalid @enderror" name="nivel_academico_id"
+            <select class="form-control @error('nivel_academico_id') is-invalid @enderror" name="nivel_academico_id"
                 id="professions">
                 <option value="" selected disabled>--Seleccione--</option>
 
@@ -142,7 +142,7 @@
             <label for="cargos">
                 <h5>Cargo:</h5>
             </label>
-            <select class="form-select @error('cargos_id') is-invalid @enderror" name="cargos_id" id="cargo">
+            <select class="form-control @error('cargos_id') is-invalid @enderror" name="cargos_id" id="cargo">
                 <option value="" selected disabled>--Seleccione--</option>
 
                 @isset($cargos)
@@ -161,6 +161,7 @@
 
         </div>
     </fieldset>
+    <div class="mt-2 row justify-content-center ">
     <div class=" d-grid mt-2 col-sm-4">
         <input type="submit" value="Guardar" class="btn btn-success">
     </div>
