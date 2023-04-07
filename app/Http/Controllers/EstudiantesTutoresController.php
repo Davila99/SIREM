@@ -65,9 +65,9 @@ class EstudiantesTutoresController extends Controller
             ->with(['estudiante'])
             ->with(['tutores'])
             ->paginate(10);
-         $tutores = EstudiantesTutores::findOrFail($id);
-        dd($datos);
-        return view('tutorestudiante/perfil', compact('estudiante','tutores'));
+         $estudiante = EstudiantesTutores::findOrFail($id);
+        // dd($datos);
+        return view('tutorestudiante/perfil', compact('estudiante'));
     }
 
     /**
