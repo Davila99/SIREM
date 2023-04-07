@@ -92,7 +92,7 @@ class EmpleadoController extends Controller
         ->with(['nivel_academico'])
         ->with(['cargos'])  
         ->paginate(10);
-        dd($datos);
+        // dd($datos);
         $empleado = Empleado::findOrFail($id);
      
         return view('empleados/perfil', compact('empleado'));
