@@ -67,7 +67,7 @@ class EstudiantesTutoresController extends Controller
             ->paginate(10);
          $estudiante = EstudiantesTutores::findOrFail($id);
         // dd($datos);
-        return view('tutorestudiante/perfil', compact('estudiante'));
+        return view('estudianteTutor/perfil', compact('estudiante'));
     }
 
     /**
