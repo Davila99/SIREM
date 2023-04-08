@@ -33,35 +33,35 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Nombres:</th>
-                                                <td>{{$$estudiante->nombres}}</td>
+                                                <td>{{$estudiante->nombres}}</td>
                                                 <th>Apellidos:</th>
-                                                <td>{{$$estudiante->nombres}}</td>
+                                                <td>{{$estudiante->nombres}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Telefono:</th>
-                                                <td>{{$$estudiante->nombres}}</td>
+                                                <td>{{$estudiante->nombres}}</td>
                                                 <th scope="row">Cedula:</th>
-                                                <td>{{$$estudiante->nombres}}</td>
+                                                <td>{{$estudiante->nombres}}</td>
                                             </tr>
                                             <tr>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Fecha de Nacimiento:</th>
-                                                <td>{{$$estudiante->nombres}}</td>
+                                                <td>{{$estudiante->nombres}}</td>
                                                 <th>Nivel Academico:</th>
-                                                <td>{{$$estudiante->nombres}}</td>
+                                                <td>{{$estudiante->nombres}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Direccion:</th>
-                                                <td>{{$$estudiante->nombres}}</td>
+                                                <td>{{$estudiante->nombres}}</td>
                                                 <th>Email:</th>
-                                                <td>{{$$estudiante->nombres}}</td>
+                                                <td>{{$estudiante->nombres}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Fecha de ingreso</th>
-                                                <td>{{$$estudiante->nombres}}</td>
+                                                <td>{{$estudiante->nombres}}</td>
                                                 <th>Cargo:</th>
-                                                <td>{{$$estudiante->nombres}}</td>
+                                                <td>{{ $estudiante->nombres }}</td>
                                             </tr>
                                             <tr>
                                             </tr>
