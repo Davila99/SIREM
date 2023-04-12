@@ -73,10 +73,11 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <div class="row">
+                                    <a type="button" class="btn btn-primary" href="{{ url('empleados/') }}"> Regresar </a>
+                                </div>
                             </div>
-                            <div class="row">
-                                <a type="button" class="btn btn-primary" href="{{ url('empleados/') }}"> Regresar </a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
