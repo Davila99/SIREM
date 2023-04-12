@@ -61,9 +61,8 @@ class EstudiantesTutoresController extends Controller
      */
     public function show($id)
     {
-         $estudiante = EstudiantesTutores::findOrFail($id);
-        // dd($estudiante);
-        return view('estudianteTutor/perfil', compact('estudiante'));
+         $estudianteTutor = EstudiantesTutores::findOrFail($id);
+        return view('estudianteTutor/perfil', compact('estudianteTutor'));
     }
 
     /**
