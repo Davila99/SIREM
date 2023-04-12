@@ -11,24 +11,10 @@
                     </h1>
                     <div class="mb-4">
                         <div class="row">
-                            <div class="col-sm-4 col-md-3">
-                                <div class="card bg-light">
-                                    <div class="px-5 pt-2">
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $empleado->nombres}} {{$empleado->apellidos}}</h5>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Cedula: {{$empleado->cedula }}</li>
-                                        <li class="list-group-item">Telefono: {{$empleado->telefono}}</li>
-                                    </ul>
-                                    
-                                </div>
-                                <a  type="button" class="btn btn-primary"  href="{{ url('empleados/') }}"> Regresar </a>
-                            </div>
+
                             <div class="col-sm-8 col-md-9">
                                 <div class="p-3 mb-3 border rounded bg-white">
-                                    <h6>Tutor </h6>
+                                    <h6>Informacion de empleado </h6>
                                     <table class="table table-responsive mt-3">
                                         <tbody>
                                             <tr>
@@ -67,6 +53,9 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                                <div class="col-sm-4 col-md-3">
+                                    <a  type="button" class="btn btn-primary"  href="{{ url('empleados/') }}"> Regresar </a>
                                 </div>
                             </div>
                         </div>
