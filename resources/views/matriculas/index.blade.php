@@ -30,6 +30,8 @@
                         <td>{{ $matricula->grupo->descripcion }}</td>  
                         <td><a href="{{ url('/matriculas/' . $matricula->id . '/edit') }}" class="btn btn-info">
                                 Editar </a>|
+                                <a href="{{ url('/matriculas/' . $matricula->id) }}" class="btn btn-warning">
+                                    Detalles </a>|
                             <form class="form-eliminar" action="{{ url('/matriculas/' . $matricula->id) }}" method="post" class="d-inline">
                                 @csrf
                                 {{ method_field('DELETE') }}

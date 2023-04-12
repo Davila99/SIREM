@@ -83,9 +83,10 @@ class MatriculaController extends Controller
      * @param  \App\Models\Matricula  $matricula
      * @return \Illuminate\Http\Response
      */
-    public function show(Matricula $matricula)
+    public function show($id)
     {
-        //
+        $matriculas = Matricula::findOrFail($id);
+        return view('matriculas/detalles', compact('matriculas'));
     }
 
     /**
