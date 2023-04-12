@@ -49,7 +49,7 @@
                                                 <th scope="row">Fecha de Nacimiento:</th>
                                                 <td>{{$empleado->fecha_nacimiento}}</td>
                                                 <th>Nivel Academico:</th>
-                                                <td>{{$empleado->nivel_academico_id}}</td>
+                                                <td>{{$empleado->nivel_academico->descripcion}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Direccion:</th>
@@ -61,7 +61,7 @@
                                                 <th scope="row">Fecha de ingreso</th>
                                                 <td>{{$empleado->fecha_ingreso}}</td>
                                                 <th>Cargo:</th>
-                                                <td>{{$empleado->cargos_id}}</td>
+                                                <td>{{$empleado->cargos->descripcion}}</td>
                                             </tr>
                                             <tr>
                                             </tr>
