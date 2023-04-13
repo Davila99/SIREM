@@ -53,22 +53,16 @@
                                     <table class="table table-responsive mt-3">
                                         <tbody>
                                             <tr>
-                                                <th scope="row">Nombres:</th>
-                                                <td>{{ $matriculas->grupo }}</td>
-                                                <th>Apellidos:</th>
-                                                <td>{{ $matriculas->tipo_matricula }}</td>
+                                                <th scope="row">Grado:</th>
+                                                <td>{{ $matriculas->grupo->grado_id}}</td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">Cedula:</th>
-                                                <td>{{ $matriculas->tipo_matricula }}</td>
-                                                <th scope="row">Telefono:</th>
-                                                <td>{{ $matriculas->tipo_matricula }}</td>
+                                                <th scope="row">Fechade registro:</th>
+                                                <td>{{ $matriculas->grupo->fecha }}</td>
                                             </tr>
                                             <tr>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Profesion:</th>
-                                                <td>{{ $matriculas->tipo_matricula }}</td>
+                                                <th scope="row">Empleado:</th>
+                                                <td>{{ $matriculas->grupo->empleado_id }}</td>
                                             </tr>
                                             <tr>
                                             </tr>
