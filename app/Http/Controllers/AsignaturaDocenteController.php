@@ -79,9 +79,10 @@ class AsignaturaDocenteController extends Controller
      * @param  \App\Models\AsignaturaDocente  $asignaturaDocente
      * @return \Illuminate\Http\Response
      */
-    public function show(AsignaturaDocente $asignaturaDocente)
+    public function show($id)
     {
-        //
+        $asignaturaDocente = AsignaturaDocente::findOrFail($id);
+        return view('asignaturadocente/detalles', compact('asignaturaDocente'));
     }
 
     /**

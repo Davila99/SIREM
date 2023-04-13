@@ -31,6 +31,8 @@
                                 <a href="{{ url('/asignaturadocente/' . $asignaturadocente->id . '/edit') }}"
                                     class="btn btn-info">
                                     Editar </a>|
+                                    <a href="{{ url('/asignaturadocente/' . $asignaturadocente->id) }}" class="btn btn-warning">
+                                        Detalles </a>|
                                 <form class="form-eliminar" action="{{ url('/asignaturadocente/' . $asignaturadocente->id) }}" method="post" class="d-inline">
                                     @csrf
                                     {{ method_field('DELETE') }}
