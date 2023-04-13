@@ -31,8 +31,8 @@
                                             <tr>
                                                 <th scope="row">Direcion:</th>
                                                 <td>{{ $matriculas->estudiante->direccion }}</td>
-                                                <th>Tutor:</th>
-                                                <td>{{ $matriculas->estudiante->tutor->nombre}}</td>
+                                                <th>Fecha de registro:</th>
+                                                <td>{{ $matriculas->fecha}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Sexo:</th>
@@ -54,7 +54,7 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Nombres:</th>
-                                                <td>{{ $matriculas->tipo_matricula }}</td>
+                                                <td>{{ $matriculas->grupo }}</td>
                                                 <th>Apellidos:</th>
                                                 <td>{{ $matriculas->tipo_matricula }}</td>
                                             </tr>
@@ -83,21 +83,21 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Nombres:</th>
-                                                <td>{{ $matriculas->tutores }}</td>
+                                                <td>{{ $matriculas->estudiante->tutor->nombre }}</td>
                                                 <th>Apellidos:</th>
-                                                <td>{{ $matriculas->tutores }}</td>
+                                                <td>{{ $matriculas->estudiante->tutor->apellido }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Cedula:</th>
-                                                <td>{{ $matriculas->tutores }}</td>
+                                                <td>{{ $matriculas->estudiante->tutor->cedula }}</td>
                                                 <th scope="row">Telefono:</th>
-                                                <td>{{ $matriculas->tutores }}</td>
+                                                <td>{{ $matriculas->estudiante->tutor->telefono }}</td>
                                             </tr>
                                             <tr>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Profesion:</th>
-                                                <td>{{ $matriculas->tutores }}</td>
+                                                <td>{{ $matriculas->estudiante->tutor->professions->descripcion}}</td>
                                             </tr>
                                             <tr>
                                             </tr>
@@ -108,8 +108,6 @@
                                     <a  type="button" class="btn btn-primary" href="{{ url('empleados/') }}"> Regresar </a>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
