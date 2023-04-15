@@ -99,7 +99,7 @@
                                     </table>
                                 </div>
                                 <div class="row">
-                                    <a  type="button" class="btn btn-primary" href="{{ url('empleados/') }}"> Regresar </a>
+                                    <a  type="button" class="btn btn-primary" href="{{ url('matriculas/') }}"> Regresar </a>
                                 </div>
                             </div>
                         </div>
