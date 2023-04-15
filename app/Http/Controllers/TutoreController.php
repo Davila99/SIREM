@@ -77,7 +77,6 @@ class TutoreController extends Controller
             ->with(['professions'])
             ->paginate(10);
         $tutores = Tutore::findOrFail($id);
-        dd($datos);
         return view('tutores/perfil', compact('tutores'));
     }
 
