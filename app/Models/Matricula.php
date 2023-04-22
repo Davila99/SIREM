@@ -21,6 +21,10 @@ class Matricula extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function grupo2()
+    {   
+        return $this->hasOneThrough(Empleado::class,Grupos::class,'empleado_id','id','empleado_id','id');
+    }
    
  
     public function grupo()

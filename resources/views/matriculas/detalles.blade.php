@@ -54,15 +54,15 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Grado:</th>
-                                                <td>{{ $matriculas->grupo->grado_id}}</td>
+                                                <td>{{ $matriculas->grupo->descripcion}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Fechade registro:</th>
-                                                <td>{{ $matriculas->grupo->fecha }}</td>
+                                                <td>{{ $matriculas->fecha }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Empleado:</th>
-                                                <td>{{ $matriculas->grupo->empleado_id }}</td>
+                                                <td>{{ $matriculas->user->name }}</td>
                                             </tr>
                                             <tr>
                                             </tr>
