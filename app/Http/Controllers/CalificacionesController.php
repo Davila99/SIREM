@@ -37,13 +37,7 @@ class CalificacionesController extends Controller
      */
     public function create()
     {
-        $asignaturadocentes = AsignaturaDocente::all();
-        $asignaturas = Asignatura::all();
-        $grados = Grado::all();
-        $estudiantes = Estudiante::all();
-        $cortes_evaluativos = Cortes_evaluativo::all();
-        return view('calificaciones/create',compact('asignaturadocentes'),compact('asignaturas'),
-        compact('grados'),compact('estudiantes'), compact('cortes_evaluativos'));
+        
     }
 
     /**
@@ -54,9 +48,7 @@ class CalificacionesController extends Controller
      */
     public function store(Request $request)
     {
-        $datos = request()->except('_token');
-        Calificaciones::insert($datos);
-        return redirect('calificaciones/')->with('mensaje');
+    
     }
 
 
@@ -79,15 +71,7 @@ class CalificacionesController extends Controller
      */
     public function edit($id)
     {
-        $datos = Calificaciones::findOrFail($id);
-        $asignaturadocentes = AsignaturaDocente::all();
-        $asignaturas = Asignatura::all();
-        $grados = Grado::all();
-        $estudiantes = Estudiante::all();
-        $cortes_evaluativos = Cortes_evaluativo::all();
-        return view('calificaciones/edit',["datos"=>$datos,"asignaturadocentes"=>$asignaturadocentes,
-        "asignaturas"=>$asignaturas,"grados"=>$grados,"estudiantes"=>$estudiantes,
-        "corte_evaluativos"=>$cortes_evaluativos]);
+      
     }
 
     /**
@@ -99,10 +83,7 @@ class CalificacionesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $datos = request()->except(['_token', '_method']);
-        Calificaciones::where('id', '=', $id)->update($datos);
-        $datos = Calificaciones::findOrFail($id);
-        return view('calificaciones.edit', compact('datos'));
+    
     }
 
     /**
@@ -113,7 +94,6 @@ class CalificacionesController extends Controller
      */
     public function destroy($id)
     {
-        Calificaciones::destroy($id);
-        return redirect('calificaciones/')->with('mensaje');
+        
     }
 }
