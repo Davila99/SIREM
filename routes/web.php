@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AsignaturaController;
 use App\Http\Controllers\AsignaturaDocenteController;
 use App\Http\Controllers\BuscadorEmpledado;
@@ -46,6 +47,7 @@ Route::get('/home', [
 ])->name('home');
 
 Route::middleware(['auth'])->group(function () {
+    Route::resource('users', UserController::class);
     Route::resource('cargos', CargoController::class);
     Route::resource('nivelacademic', NivelesAcademicoController::class);
     Route::resource('grados', GradoController::class);
