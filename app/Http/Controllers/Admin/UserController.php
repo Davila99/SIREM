@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -12,9 +13,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public $search;
+
     public function index()
-    {
-        return view('admin/users.index');
+    {   
+        $datos['users'] = User::where('name','LIKE','%'.$this->search. '%')->paginate();
+        // dd($users);
+        return view('admin/users.index',$datos);
     }
 
     /**
@@ -55,9 +61,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return $user;
     }
 
     /**
