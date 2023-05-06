@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "laraveles/spanish": "^1.5",
+        "livewire/livewire": "^2.12",
         "spatie/laravel-permission": "^5.10"
     },
     "require-dev": {
