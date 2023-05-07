@@ -18,9 +18,8 @@ class UserController extends Controller
 
     public function index()
     {   
-        $datos['users'] = User::where('name','LIKE','%'.$this->search. '%')->paginate();
-        // dd($users);
-        return view('admin/users.index',$datos);
+   
+        return view('admin/users.index');
     }
 
     /**
