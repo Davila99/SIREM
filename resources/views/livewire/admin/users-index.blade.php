@@ -3,7 +3,7 @@
         <div class="card-header">
             <input wire:model='search'  class="form-control" placeholder="Ingrese su nombre o su correo electronico">
         </div>
-
+        @if ($users->count())
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -48,4 +48,14 @@
       <div class="card-footer">
         {{ $users->links() }}
       </div>
+        @else
+        <div class="card-body">
+            <strong>No hay registro</strong>
+        </div>
+
+        @endif
+       
+        
+
+       
 </div>
