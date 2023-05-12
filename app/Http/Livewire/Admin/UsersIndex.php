@@ -10,6 +10,10 @@ class UsersIndex extends Component
 {
     use WithPagination;
     public $search;
+public  function updatingSearch(){
+    $this->resetPage();
+}
+    
 
     public function render()
     {
