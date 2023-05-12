@@ -14,7 +14,7 @@ class UsersIndex extends Component
     public function render()
     {
         $users = User::where('name','LIKE','%'.$this->search .'%')
-        ->paginate();
+        ->paginate(10);
         return view('livewire.admin.users-index',compact('users'));
     }
 }
