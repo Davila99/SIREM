@@ -15,7 +15,10 @@ class SeccionController extends Controller
      */
     public function index()
     {
-        //
+        $datos['secciones'] = Seccion::paginate(10);
+        return view('seccion/index', $datos);
+
+        
     }
 
     /**
