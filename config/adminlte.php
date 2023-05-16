@@ -274,6 +274,11 @@ return [
                     'icon' => 'fas fa-solid fa-book',
                 ],
                 [
+                    'text' => 'Secciones',
+                    'route'  => 'seccion.index',
+                    'icon' => 'fas fa-solid fa-book',
+                ],
+                [
                     'text' => 'Cortes-Evaluativos',
                     'route'  => 'cevaluativos.index',
                     'icon' => 'fas fa-solid fa-copyright',
