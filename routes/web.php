@@ -20,6 +20,7 @@ use App\Http\Controllers\OrganizacionAcademicaController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\SeccionController;
 use App\Http\Controllers\TipoMatriculaController;
+use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\TutoreController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +50,7 @@ Route::get('/home', [
 Route::middleware(['auth'])->group(function () {
     Route::resource('cargos', CargoController::class);
     Route::resource('seccion', SeccionController::class);
+    Route::resource('turno', TurnoController::class);
     Route::resource('nivelacademic', NivelesAcademicoController::class);
     Route::resource('grados', GradoController::class);
     Route::resource('profession', ProfessionController::class);
