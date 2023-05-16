@@ -18,6 +18,7 @@ use App\Http\Controllers\GruposController;
 use App\Http\Controllers\NivelesAcademicoController;
 use App\Http\Controllers\OrganizacionAcademicaController;
 use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\SeccionController;
 use App\Http\Controllers\TipoMatriculaController;
 use App\Http\Controllers\TutoreController;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,7 @@ Route::get('/home', [
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('cargos', CargoController::class);
+    Route::resource('seccion', SeccionController::class);
     Route::resource('nivelacademic', NivelesAcademicoController::class);
     Route::resource('grados', GradoController::class);
     Route::resource('profession', ProfessionController::class);
