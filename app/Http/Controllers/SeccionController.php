@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Seccion;
-use App\Http\Requests\StoreSeccionRequest;
+use Illuminate\Http\Request;
 use App\Http\Requests\UpdateSeccionRequest;
 
 class SeccionController extends Controller
@@ -28,7 +28,7 @@ class SeccionController extends Controller
      */
     public function create()
     {
-        //
+        return view('seccion/create');
     }
 
     /**
@@ -37,9 +37,18 @@ class SeccionController extends Controller
      * @param  \App\Http\Requests\StoreSeccionRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSeccionRequest $request)
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'descripcion'=>'required' 
+        ],
+        [
+            'descripcion.required' => 'El campo es obligatorio.'
+        ]
+         );
+        $datos = request()->except('_token');
+        Seccion::insert($datos);
+        return redirect('seccion/')->with('mensaje','ok');
     }
 
     /**
@@ -59,9 +68,10 @@ class SeccionController extends Controller
      * @param  \App\Models\Seccion  $seccion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Seccion $seccion)
+    public function edit($id)
     {
-        //
+        $datos = Seccion::findOrFail($id);
+        return view('seccion/edit', compact('datos'));
     }
 
     /**
@@ -71,9 +81,20 @@ class SeccionController extends Controller
      * @param  \App\Models\Seccion  $seccion
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSeccionRequest $request, Seccion $seccion)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'descripcion'=>'required' 
+        ],
+        [
+            'descripcion.required' => 'El campo es obligatorio.'
+        ]
+         );
+        $datos = request()->except(['_token', '_method']);
+        Seccion::where('id', '=', $id)->update($datos);
+
+        $datos = Seccion::findOrFail($id);
+        return redirect('seccion/')->with('mensaje-editar','ok');
     }
 
     /**
