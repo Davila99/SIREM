@@ -82,8 +82,14 @@ class SeccionController extends Controller
      * @param  \App\Models\Seccion  $seccion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Seccion $seccion)
+    public function destroy($id)
     {
-        //
+        try {
+            Seccion::destroy($id);
+            return redirect('seccion')->with('mensaje-eliminar','ok');
+        } catch (\Throwable $th) {
+
+            return redirect('seccion')->with('mensaje-error-eliminar','ok');
+        }
     }
 }
