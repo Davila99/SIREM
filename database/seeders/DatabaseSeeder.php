@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Seeders;
-
-
+use Database\Seeders\RoleSeeder;
+use Database\Seeders\TurnoSeeder;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,8 +18,14 @@ class DatabaseSeeder extends Seeder
         $this->call(
             SexoSeeder::class
         );
+        
         $this->call(
             TurnoSeeder::class
         );
+
+        $this->call(RoleSeeder::class);
+
+      
+
     }
 }

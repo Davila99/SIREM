@@ -370,9 +370,9 @@ return [
         ],
         ['header' => 'CONFIGURACION DE CUENTA'],
         [
-            'text' => 'Usuario',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Usuarios',
+            'route'  => 'users.index',
+            'icon' => 'fas fa-users fa-fw',
         ],
         [
             'text' => 'Cambio de Contraseña',
