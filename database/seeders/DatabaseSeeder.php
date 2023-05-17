@@ -18,5 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(
             SexoSeeder::class
         );
+        $this->call(
+            TurnoSeeder::class
+        );
     }
 }
