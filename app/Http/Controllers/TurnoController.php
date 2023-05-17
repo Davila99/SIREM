@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Turno;
-use App\Http\Requests\StoreTurnoRequest;
+use Illuminate\Http\Request;
 use App\Http\Requests\UpdateTurnoRequest;
 
 class TurnoController extends Controller
@@ -15,7 +15,8 @@ class TurnoController extends Controller
      */
     public function index()
     {
-        //
+        $datos['turnos'] = Turno::paginate(10);
+        return view('turno/index', $datos);
     }
 
     /**
@@ -25,7 +26,7 @@ class TurnoController extends Controller
      */
     public function create()
     {
-        //
+        return view('turno/create');
     }
 
     /**
@@ -34,9 +35,19 @@ class TurnoController extends Controller
      * @param  \App\Http\Requests\StoreTurnoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTurnoRequest $request)
+    public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'descripcion' => 'required',
+            ],
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
+        $datos = request()->except('_token');
+        Turno::insert($datos);
+        return redirect('turnos/')->with('mensaje', 'ok');
     }
 
     /**
@@ -56,9 +67,10 @@ class TurnoController extends Controller
      * @param  \App\Models\Turno  $turno
      * @return \Illuminate\Http\Response
      */
-    public function edit(Turno $turno)
+    public function edit($id)
     {
-        //
+        $datos = Turno::findOrFail($id);
+        return view('turno/edit', compact('datos'));
     }
 
     /**
@@ -68,9 +80,22 @@ class TurnoController extends Controller
      * @param  \App\Models\Turno  $turno
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTurnoRequest $request, Turno $turno)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate(
+            [
+                'descripcion' => 'required',
+            ],
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
+        $datos = request()->except(['_token', '_method']);
+
+        Turno::where('id', '=', $id)->update($datos);
+
+        $datos = Turno::findOrFail($id);
+        return redirect('turnos')->with('mensaje-editar', 'ok');
     }
 
     /**
@@ -79,8 +104,14 @@ class TurnoController extends Controller
      * @param  \App\Models\Turno  $turno
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Turno $turno)
+    public function destroy($id )
     {
-        //
+        try {
+            Turno::destroy($id);
+            return redirect('turnos')->with('mensaje-eliminar','ok');
+        } catch (\Throwable $th) {
+
+            return redirect('turnos')->with('mensaje-error-eliminar','ok');
+        }
     }
 }
