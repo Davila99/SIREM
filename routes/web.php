@@ -50,7 +50,7 @@ Route::get('/home', [
 Route::middleware(['auth'])->group(function () {
     Route::resource('cargos', CargoController::class);
     Route::resource('seccion', SeccionController::class);
-    Route::resource('turno', TurnoController::class);
+    Route::resource('turnos', TurnoController::class);
     Route::resource('nivelacademic', NivelesAcademicoController::class);
     Route::resource('grados', GradoController::class);
     Route::resource('profession', ProfessionController::class);
