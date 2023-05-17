@@ -266,7 +266,7 @@ return [
                 [
                     'text'    => 'Consanguiniedad',
                     'route'     => 'consanguiniedades.index',
-                    'icon' => 'fas fa-solid fa-address-book',
+                    'icon' => 'fab fa-adn',
                 ],
                 [
                     'text' => 'Asignaturas',
@@ -276,7 +276,12 @@ return [
                 [
                     'text' => 'Secciones',
                     'route'  => 'seccion.index',
-                    'icon' => 'fas fa-solid fa-book',
+                    'icon' => 'fas fa-house-user',
+                ],
+                [
+                    'text' => 'Turnos',
+                    'route'  => 'turnos.index',
+                    'icon' => 'fas fa-window-restore',
                 ],
                 [
                     'text' => 'Cortes-Evaluativos',
@@ -315,27 +320,27 @@ return [
         [
             'text'        => 'Estudiantes Tutores',
             'route'         => 'estudianteTutores.index',
-            'icon'        => 'fas fa-solid fa-user-graduate',
+            'icon'        => 'fas fa-people-arrows',
         ],
         [
             'text'        => 'Buscador de estudiantes',
             'url'         => 'search/',
-            'icon'        => 'fas fa-solid fa-user ',
+            'icon'        => 'fas fa-search',
         ],
         [
             'text'        => 'Empleados',
-            'route'         => 'empleados.index',
-            'icon' => 'fas fa-solid fa-layer-group',
+            'route'       => 'empleados.index',
+            'icon'        => 'fas fa-solid fa-layer-group',
         ],
         [
             'text'        => 'Buscador Empleados',
             'url'         => 'search-empleado/',
-            'icon'        => 'fas fa-solid fa-user ',
+            'icon'        => 'fas fa-search ',
         ],
         [
             'text'        => 'Tutores',
-            'route'         => 'tutores.index',
-            'icon' => 'fas fa-solid fa-briefcase',
+            'route'       => 'tutores.index',
+            'icon' => 'fas fa-user-friends',
         ],
         [
             'text'        => 'Matriculas',
@@ -350,7 +355,7 @@ return [
         [
             'text'        => 'Organización Academica',
             'route'         => 'organizacionacademica.index',
-            'icon' => 'fas fa-solid fa-signature',
+            'icon' => 'fas fa-sitemap',
         ],
         [
             'text'        => 'Grupos',
