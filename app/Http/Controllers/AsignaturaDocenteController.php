@@ -9,6 +9,8 @@ use App\Models\Empleado;
 use App\Models\Grupos;
 
 use App\Models\OrganizacionAcademica;
+use App\Models\Seccion;
+use App\Models\Turno;
 
 class AsignaturaDocenteController extends Controller
 {
@@ -24,6 +26,8 @@ class AsignaturaDocenteController extends Controller
         ->with(['asignatura'])
         ->with(['empleado'])
         ->with(['grado'])
+        ->with(['seccion'])
+        ->with(['turno'])
         ->with(['organizacionAcademica'])
         ->paginate(10);
        
@@ -39,11 +43,13 @@ class AsignaturaDocenteController extends Controller
     public function create()
     {
         $asignaturas = Asignatura::all();
+        $secciones = Seccion::all();
+        $turnos = Turno::all();
         $grupos = Grupos::all();
         $organizacion_academicas = OrganizacionAcademica::all();
         $empleados = Empleado::where('cargos_id',1)->get();
      
-        return view('asignaturadocente/create',compact('asignaturas','empleados','grupos','organizacion_academicas'));
+        return view('asignaturadocente/create',compact('asignaturas','empleados','grupos','organizacion_academicas','secciones','turnos'));
     }
 
     /**
@@ -59,6 +65,8 @@ class AsignaturaDocenteController extends Controller
                 'asignatura_id' => 'required',
                 'empleado_id' => 'required',
                 'grupo_id' => 'required',
+                'seccion_id' => 'required',
+                'turno_id' => 'required',
             ],
     
             [
@@ -66,6 +74,8 @@ class AsignaturaDocenteController extends Controller
                 'asignatura_id.required' => 'La asignatura es obligatorio.',
                 'empleado_id.required' => 'El empleado es obligatorio.',
                 'grupo_id.required' => 'El grupo es obligatorio.',
+                'seccion_id.required' => 'El grupo es obligatorio.',
+                'turno_id.required' => 'El grupo es obligatorio.',
             ]
         );
         $datos = request()->except('_token');
@@ -96,9 +106,11 @@ class AsignaturaDocenteController extends Controller
         $datos = AsignaturaDocente::findOrFail($id);
         $asignaturas = Asignatura::all();
         $empleados = Empleado::all();
+        $secciones = Seccion::all();
+        $turnos = Turno::all();
         $grupos = Grupos::all();
       
-        return view('asignaturadocente/edit',["datos"=>$datos,"asignaturas"=>$asignaturas,"empleados"=>$empleados,"grupos"=>$grupos]);
+        return view('asignaturadocente/edit',["datos"=>$datos,"asignaturas"=>$asignaturas,"grupos"=>$grupos,"empleados"=>$empleados,"secciones"=>$secciones,"turnos"=>$turnos]);
     }
 
     /**
@@ -115,6 +127,8 @@ class AsignaturaDocenteController extends Controller
             'asignatura_id' => 'required',
             'empleado_id' => 'required',
             'grupo_id' => 'required',
+            'seccion_id' => 'required',
+            'turno_id' => 'required',
         ],
 
         [
@@ -122,6 +136,8 @@ class AsignaturaDocenteController extends Controller
             'asignatura_id.required' => 'La asignatura es obligatorio.',
             'empleado_id.required' => 'El empleado es obligatorio.',
             'grupo_id.required' => 'El grupo es obligatorio.',
+            'seccion_id.required' => 'El grupo es obligatorio.',
+            'turno_id.required' => 'El grupo es obligatorio.',
         ]
     );
         $datos = request()->except(['_token', '_method']);
