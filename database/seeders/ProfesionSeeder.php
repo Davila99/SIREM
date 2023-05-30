@@ -7,7 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ConsanguinieddSeeder extends Seeder
+class ProfesionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,20 +16,20 @@ class ConsanguinieddSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('consanguiniedades')->insert([
-            'descripcion' => 'Hermano',
+        DB::table('professions')->insert([
+            'descripcion' => 'Ingeniero en sistemas',
             'created_at'=> Carbon::now(),
             'updated_at'=> Carbon::now()
         ]);
 
-        DB::table('consanguiniedades')->insert([
-            'descripcion' => 'Padre',
+        DB::table('professions')->insert([
+            'descripcion' => 'Administrador de empresas',
             'created_at'=> Carbon::now(),
             'updated_at'=> Carbon::now()
 
         ]);
-        DB::table('consanguiniedades')->insert([
-            'descripcion' => 'Madre',
+        DB::table('professions')->insert([
+            'descripcion' => 'Ingenerio Agroforestal',
             'created_at'=> Carbon::now(),
             'updated_at'=> Carbon::now()
 
