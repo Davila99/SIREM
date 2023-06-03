@@ -94,7 +94,7 @@
             <input type="submit" value="Guardar" class="btn btn-success">
         </div>
         
-        <div class="d-grid mt-1 col-sm-10">
+        <div class="d-grid mt-1 col-sm-1">
             <a type="button" class="btn btn-primary" href="{{ url('grupos/') }}"> Regresar </a>
         </div>
 
