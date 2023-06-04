@@ -8,7 +8,7 @@ use App\Models\Sexo;
 use App\Models\Tutore;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class EstudianteController extends Controller
 {
