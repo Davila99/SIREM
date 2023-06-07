@@ -15,6 +15,7 @@ use App\Http\Controllers\EstudiantesTutoresController;
 use App\Http\Controllers\GradoController;
 use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\GruposController;
+use App\Http\Controllers\MiDocencia\MiDocenciaController;
 use App\Http\Controllers\NivelesAcademicoController;
 use App\Http\Controllers\OrganizacionAcademicaController;
 use App\Http\Controllers\ProfessionController;
@@ -48,6 +49,7 @@ Route::get('/home', [
 ])->name('home');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('mi-docencia', [MiDocenciaController::class, 'index']);
     Route::resource('cargos', CargoController::class);
     Route::resource('seccion', SeccionController::class);
     Route::resource('turnos', TurnoController::class);
