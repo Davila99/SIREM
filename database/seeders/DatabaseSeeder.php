@@ -48,5 +48,8 @@ class DatabaseSeeder extends Seeder
         $this->call(
             CargoSeeder::class
         );
+        $this->call(
+            UserSeeder::class
+        );
     }
 }

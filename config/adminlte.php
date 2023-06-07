@@ -379,6 +379,12 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
+        ['header' => 'CREACION Y REGISTRO DE USUARIOS'],
+        [
+            'text' => 'Usuarios',
+            'route'         => 'register',
+            'icon' => 'fas fa-fw fa-user',
+        ],
 
     ],
 

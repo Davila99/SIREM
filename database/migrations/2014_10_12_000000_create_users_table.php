@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('empleado_id')->foreign('empleado_id')
+            ->references('id')->on('empleados')
+            ->onDelete('set null');
             $table->rememberToken();
             $table->timestamps();
         });
