@@ -13,6 +13,8 @@
                         <th>Grado</th>
                         <th>Año Lectivo</th>
                         <th>Docente</th>
+                        <th>Seccion</th>
+                        <th>Turno</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -24,6 +26,8 @@
                             <td>{{ $grupo->grado->descripcion }}</td>
                             <td>{{ $grupo->fecha }}</td>
                             <td>{{ $grupo->empleado->nombres }}</td>
+                            <td>{{ $grupo->seccion->descripcion }}</td>
+                            <td>{{ $grupo->turno->descripcion }}</td>
 
                             <td>
                                 <div class="d-flex flex-row bd-highlight mb-6">

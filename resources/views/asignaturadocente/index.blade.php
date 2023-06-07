@@ -13,8 +13,6 @@
                         <th>Asignatura</th>
                         <th>Docente</th>
                         <th>Grado</th>
-                        <th>Seccion</th>
-                        <th>Turno</th>
                         <th>Organización Docente</th>
                         <th>Acciones</th>
                     </tr>
@@ -27,8 +25,6 @@
                         <td>{{ $asignaturadocente->asignatura->descripcion }}</td>
                         <td>{{ $asignaturadocente->empleado->nombres }}</td>
                         <td>{{ $asignaturadocente->grado->descripcion }}</td>
-                        <td>{{ $asignaturadocente->seccion->descripcion }}</td>
-                        <td>{{ $asignaturadocente->turno->descripcion }}</td>
                         <td>{{ $asignaturadocente->organizacionAcademica->descripcion }}</td>
                         <td>
                             <div class="d-flex flex-row bd-highlight mb-6">

@@ -12,14 +12,7 @@ class AsignaturaDocente extends Model
     {
         return $this->belongsTo(Asignatura::class,'asignatura_id','id');
     }
-    public function seccion()
-    {
-        return $this->belongsTo(Seccion::class,'seccion_id','id');
-    }
-    public function turno()
-    {
-        return $this->belongsTo(Turno::class,'turno_id','id');
-    }
+
     public function empleado()
     {      
         return $this->belongsTo(Empleado::class);

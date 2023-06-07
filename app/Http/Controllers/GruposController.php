@@ -8,7 +8,8 @@ use App\Http\Resources\GrupoCollection;
 use Illuminate\Http\Request;
 use App\Models\Empleado;
 use App\Models\Grado;
-
+use App\Models\Seccion;
+use App\Models\Turno;
 
 class GruposController extends Controller
 {
@@ -23,6 +24,8 @@ class GruposController extends Controller
         $datos['grupos'] =Grupos::query()
         ->with(['grado'])
         ->with(['empleado'])
+        ->with(['seccion'])
+        ->with(['turno'])
         ->paginate(10);
         //  dd($datos);
         return view('grupos/index', $datos);
@@ -36,10 +39,11 @@ class GruposController extends Controller
     public function create()
     {
         $grados = Grado::all();
+        $secciones = Seccion::all();
+        $turnos = Turno::all();
         $empleados = Empleado::where('cargos_id', 1)->get();
         
-        
-        return view('grupos/create', compact('grados'), compact('empleados'));
+        return view('grupos/create', compact('grados','empleados','secciones','turnos'));
     }
 
     /**
@@ -54,12 +58,16 @@ class GruposController extends Controller
             [
                 'empleado_id' => 'required',
                 'grado_id' => 'required',
+                'seccion_id' => 'required',
+                'turno_id' => 'required'
             ],
     
             [
 
                 'empleado_id.required' => 'El docente es obligatorio.',
                 'grado_id.required' => 'El grado es obligatorio.',
+                'seccion_id.required' => 'El grupo es obligatorio.',
+                'turno_id.required' => 'El grupo es obligatorio.',
             ]
         );
     
@@ -70,6 +78,8 @@ class GruposController extends Controller
         $grupo->grado_id = $request->grado_id;
         $grupo->fecha = $fecha;
         $grupo->empleado_id = $request->empleado_id;
+        $grupo->seccion_id = $request->seccion_id;
+        $grupo->turno_id = $request->turno_id;
         $grupo->save();
         return redirect('grupos/')->with('mensaje', 'ok');
         
@@ -96,9 +106,11 @@ class GruposController extends Controller
     {
         $datos = Grupos::findOrFail($id);
         $grados = Grado::all();
+        $secciones = Seccion::all();
+        $turnos = Turno::all();
         $empleados = Empleado::where('cargos_id',1)->get();
        
-        return view('grupos/edit',["datos"=>$datos,"grados"=>$grados,"empleados"=>$empleados]);
+        return view('grupos/edit',["datos"=>$datos,"grados"=>$grados,"empleados"=>$empleados,"secciones"=>$secciones,"turnos"=>$turnos]);
 
     }
 
@@ -115,12 +127,16 @@ class GruposController extends Controller
             [
                 'empleado_id' => 'required',
                 'grado_id' => 'required',
+                'seccion_id' => 'required',
+                'turno_id' => 'required',
             ],
     
             [
 
                 'empleado_id.required' => 'El docente es obligatorio.',
                 'grado_id.required' => 'El grado es obligatorio.',
+                'seccion_id.required' => 'El grupo es obligatorio.',
+                'turno_id.required' => 'El grupo es obligatorio.',
             ]
         );
 

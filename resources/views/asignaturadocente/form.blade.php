@@ -44,53 +44,7 @@
             @enderror
 
         </div>
-        <div class="form-group">
-            <label for="seccion">
-                <h5>Seccion:</h5>
-            </label>
-            <select class="form-control @error('seccion_id') is-invalid @enderror" name="seccion_id"
-                id="seccion">
-                <option value="" selected disabled>--Seleccione--</option>
-                @isset($secciones)
-                    @foreach ($secciones as $seccion)
-                        <option value="{{ $seccion->id }}"
-                            @if (!empty($datos->seccion_id)) {{ $datos->seccion_id == $seccion->id ? 'selected' : '' }} @else {{ old('seccion_id') == $seccion->id ? 'selected' : '' }} @endif>
-                            {{ $seccion->descripcion }} </option>
-                    @endforeach
-                @endisset
-            </select>
-            @error('seccion_id')
-                <div class="invalid-feedback">
-                    <h5> {{ $message }}</h5>
-                </div>
-            @enderror
 
-        </div>
-  
-
-
-    <div class="form-group">
-        <label for="turno">
-            <h5>Turno:</h5>
-        </label>
-        <select class="form-control @error('turno_id') is-invalid @enderror" name="turno_id"
-            id="turno">
-            <option value="" selected disabled>--Seleccione--</option>
-            @isset($turnos)
-                @foreach ($turnos as $turno)
-                    <option value="{{ $turno->id }}"
-                        @if (!empty($datos->turno_id)) {{ $datos->turno_id == $turno->id ? 'selected' : '' }} @else {{ old('turno_id') == $turno->id ? 'selected' : '' }} @endif>
-                        {{ $turno->descripcion }} </option>
-                @endforeach
-            @endisset
-        </select>
-        @error('turno_id')
-            <div class="invalid-feedback">
-                <h5> {{ $message }}</h5>
-            </div>
-        @enderror
-
-    </div>
         <div class="form-group">
             <label for="empleado_id">
                 <h5>Empleado:</h5>
@@ -128,11 +82,11 @@
             @enderror
         </div>
     </fieldset>
-    <div class=" d-grid mt-2 col-sm-4">
+    <div class=" d-grid mt-1 col-sm-1">
         <input type="submit" value="Guardar" class="btn btn-success">
     </div>
 
-    <div class="d-grid mt-2 col-sm-4">
+    <div class="d-grid mt-1 col-sm-10">
         <a type="button" class="btn btn-primary" href="{{ url('asignaturadocente/') }}"> Regresar </a>
     </div>
 

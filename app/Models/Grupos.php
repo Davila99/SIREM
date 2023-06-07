@@ -24,5 +24,13 @@ class Grupos extends Model
     {
         return $this->hasMany(AsignaturaDocente::class);
     }
+    public function seccion()
+    {
+        return $this->belongsTo(Seccion::class,'seccion_id','id');
+    }
+    public function turno()
+    {
+        return $this->belongsTo(Turno::class,'turno_id','id');
+    }
    
 }

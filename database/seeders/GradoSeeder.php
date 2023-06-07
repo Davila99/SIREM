@@ -7,7 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ConsanguinieddSeeder extends Seeder
+class GradoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,23 +16,20 @@ class ConsanguinieddSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('consanguiniedades')->insert([
-            'descripcion' => 'Hermano',
+        DB::table('grados')->insert([
+            'descripcion' => 'Primero',
             'created_at'=> Carbon::now(),
             'updated_at'=> Carbon::now()
         ]);
-
-        DB::table('consanguiniedades')->insert([
-            'descripcion' => 'Padre',
+        DB::table('grados')->insert([
+            'descripcion' => 'Segundo',
             'created_at'=> Carbon::now(),
             'updated_at'=> Carbon::now()
-
         ]);
-        DB::table('consanguiniedades')->insert([
-            'descripcion' => 'Madre',
+        DB::table('grados')->insert([
+            'descripcion' => 'Tercero',
             'created_at'=> Carbon::now(),
             'updated_at'=> Carbon::now()
-
         ]);
     }
 }
