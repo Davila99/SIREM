@@ -27,13 +27,13 @@
                                         <a href="{{ url('/users/' . $user->id . '/edit') }}"
                                             class="btn btn-info">
                                             Editar </a>|
-                                        {{-- <form class="form-eliminar"
+                                        <form class="form-eliminar"
                                             action="{{ url('/users/' . $user->id) }}" method="post"
                                             class="d-inline">
                                             @csrf
                                             {{ method_field('DELETE') }}
                                             <button type="submit" class="btn btn-danger">Eliminar</button>
-                                        </form> --}}
+                                        </form>
                                     </div>
                                 </td>
                             </tr>

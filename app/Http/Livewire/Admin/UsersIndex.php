@@ -10,15 +10,16 @@ class UsersIndex extends Component
 {
     use WithPagination;
     public $search;
-public  function updatingSearch(){
-    $this->resetPage();
-}
-    
+    public  function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
 
     public function render()
     {
-        $users = User::where('name','LIKE','%'.$this->search .'%')
-        ->paginate(10);
-        return view('livewire.admin.users-index',compact('users'));
+        $users = User::where('name', 'LIKE', '%' . $this->search . '%')
+            ->paginate(10);
+        return view('livewire.admin.users-index', compact('users'));
     }
 }
