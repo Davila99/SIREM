@@ -1,6 +1,7 @@
 <?php
 
 use Database\Seeders\RoleSeeder;
+use Database\Seeders\SexoSeeder;
 use Database\Seeders\TurnoSeeder;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
