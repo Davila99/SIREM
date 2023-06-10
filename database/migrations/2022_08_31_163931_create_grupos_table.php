@@ -21,6 +21,12 @@ return new class extends Migration {
             $table->foreignId('empleado_id')->constrained()
                 ->references('id')->on('empleados')
                 ->restrictOnDelete();
+            $table->integer('seccion_id')->foreign('seccion_id')
+                ->references('id')->on('seccions')
+                ->restrictOnDelete();
+            $table->integer('turno_id')->foreign('turno_id')
+                ->references('id')->on('turnos')
+                ->restrictOnDelete();
             $table->timestamps();
         });
     }

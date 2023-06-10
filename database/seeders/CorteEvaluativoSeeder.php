@@ -7,7 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ConsanguinieddSeeder extends Seeder
+class CorteEvaluativoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,23 +16,20 @@ class ConsanguinieddSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('consanguiniedades')->insert([
-            'descripcion' => 'Hermano',
+        DB::table('cortes_evaluativos')->insert([
+            'descripcion' => 'I Corte',
             'created_at'=> Carbon::now(),
             'updated_at'=> Carbon::now()
         ]);
-
-        DB::table('consanguiniedades')->insert([
-            'descripcion' => 'Padre',
+        DB::table('cortes_evaluativos')->insert([
+            'descripcion' => 'II Corte',
             'created_at'=> Carbon::now(),
             'updated_at'=> Carbon::now()
-
         ]);
-        DB::table('consanguiniedades')->insert([
-            'descripcion' => 'Madre',
+        DB::table('cortes_evaluativos')->insert([
+            'descripcion' => 'III Corte',
             'created_at'=> Carbon::now(),
             'updated_at'=> Carbon::now()
-
         ]);
     }
 }

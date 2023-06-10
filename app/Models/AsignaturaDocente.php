@@ -12,6 +12,7 @@ class AsignaturaDocente extends Model
     {
         return $this->belongsTo(Asignatura::class,'asignatura_id','id');
     }
+
     public function empleado()
     {      
         return $this->belongsTo(Empleado::class);

@@ -24,9 +24,39 @@ class DatabaseSeeder extends Seeder
             TurnoSeeder::class
         );
 
-        $this->call(RoleSeeder::class);
-
-      
+        $this->call(
+            SeccionSeeder::class
+        );
+        $this->call(
+            ConsanguinieddSeeder::class
+        );
+        $this->call(
+            GradoSeeder::class
+        );
+        $this->call(
+            ProfesionSeeder::class
+        );
+        $this->call(
+            TipoMatriculaSeeder::class
+        );
+        $this->call(
+            NivelAcademicoSeeder::class
+        );
+        $this->call(
+            CorteEvaluativoSeeder::class
+        );
+        $this->call(
+            AsignaturaSeeder::class
+        );
+        $this->call(
+            CargoSeeder::class
+        );
+        $this->call(
+            UserSeeder::class
+        );
+        $this->call(
+            RoleSeeder::class
+        );
 
     }
 }

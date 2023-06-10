@@ -9,6 +9,8 @@ use App\Models\Empleado;
 use App\Models\Grupos;
 
 use App\Models\OrganizacionAcademica;
+use App\Models\Seccion;
+use App\Models\Turno;
 
 class AsignaturaDocenteController extends Controller
 {
@@ -58,7 +60,7 @@ class AsignaturaDocenteController extends Controller
             [   'organizacion_academica_id' => 'required',
                 'asignatura_id' => 'required',
                 'empleado_id' => 'required',
-                'grupo_id' => 'required',
+                'grupo_id' => 'required'
             ],
     
             [
@@ -98,7 +100,7 @@ class AsignaturaDocenteController extends Controller
         $empleados = Empleado::all();
         $grupos = Grupos::all();
       
-        return view('asignaturadocente/edit',["datos"=>$datos,"asignaturas"=>$asignaturas,"empleados"=>$empleados,"grupos"=>$grupos]);
+        return view('asignaturadocente/edit',["datos"=>$datos,"asignaturas"=>$asignaturas,"grupos"=>$grupos,"empleados"=>$empleados]);
     }
 
     /**

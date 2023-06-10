@@ -144,7 +144,7 @@ class EstudianteController extends Controller
                 'sexo_id.required' => 'El sexo es obligatorio.',
             ]
         );
-       
+
         $estudiante = Estudiante::findOrFail($id);
         $estudiante->nombres = $request->nombres;
         $estudiante->apellidos = $request->apellidos;
@@ -156,8 +156,7 @@ class EstudianteController extends Controller
         $estudiante->tutor_id = $request->tutor_id;
         $estudiante->sexo_id = $request->sexo_id;
         $estudiante->save();
-        
-       
+
         return redirect('estudiantes')->with('mensaje-editar', 'ok');
     }
 
