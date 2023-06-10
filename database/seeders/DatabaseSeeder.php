@@ -1,8 +1,18 @@
 <?php
 
+use Database\Seeders\AsignaturaSeeder;
+use Database\Seeders\CargoSeeder;
+use Database\Seeders\ConsanguinieddSeeder;
+use Database\Seeders\CorteEvaluativoSeeder;
+use Database\Seeders\GradoSeeder;
+use Database\Seeders\NivelAcademicoSeeder;
+use Database\Seeders\ProfesionSeeder;
 use Database\Seeders\RoleSeeder;
+use Database\Seeders\SeccionSeeder;
 use Database\Seeders\SexoSeeder;
+use Database\Seeders\TipoMatriculaSeeder;
 use Database\Seeders\TurnoSeeder;
+use Database\Seeders\UserSeeder;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
