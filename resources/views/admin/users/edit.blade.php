@@ -31,6 +31,7 @@
 @endsection
 
 @section('js')
+
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @if (Session::has('mensaje'))
     <script>
