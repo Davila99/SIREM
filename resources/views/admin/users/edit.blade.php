@@ -10,15 +10,22 @@
         <h2 class="h5"> Lista de Roles</h2>
         {!! Form::model($user, ['route' =>['users.update',$user],'method'=>'put']) !!}
         @foreach ($roles as $role )
-            <div>
-                <label >
-                    {!! Form::checkbox('roles[]',$role->id, null ,['class'=>'mr-1'])!!}
+            <div class="form-check form-switch">
+                <label   >
+                    {!! Form::checkbox('roles[]',$role->id, null ,['class'=>'mr-2'])!!}
                     {{ $role->name }}
                 </label>
             </div>
         @endforeach
-         {!! Form::submit('Asignar Rol', ['class'=>'btn btn-primary mt-2']) !!}
-        {!! Form::close() !!}
+        <div class="d-flex justify-content-around">
+            {!! Form::submit('Asignar Rol', ['class'=>'  btn btn-danger']) !!}
+    
+            <div class="d-grid col-sm-10">
+                <a type="button" class="btn btn-success" href="{{ url('users/') }}"> Regresar </a>
+            </div>
+            {!! Form::close() !!}
+        </div>
+
     </div>
 </div>
 @endsection
