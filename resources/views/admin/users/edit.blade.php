@@ -38,7 +38,7 @@
         Swal.fire({
             position: 'top-center',
             icon: 'success',
-            title: 'Se asigno correctamente los permisos',
+            title: 'Se asigno correctamente los Roles',
             showConfirmButton: false,
             timer: 2000
         })
