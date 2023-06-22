@@ -262,52 +262,62 @@ return [
                     'text'    => 'Cargo',
                     'route'     => 'cargos.index',
                     'icon' => 'fas fa-solid fa-address-book',
+                    'can' =>'cargos.index'
                 ],
                 [
                     'text'    => 'Consanguiniedad',
                     'route'     => 'consanguiniedades.index',
                     'icon' => 'fab fa-adn',
+                    'can' =>'consanguiniedades.index'
                 ],
                 [
                     'text' => 'Asignaturas',
                     'route'  => 'asignaturas.index',
                     'icon' => 'fas fa-solid fa-book',
+                    'can' =>'asignaturas.index'
                 ],
                 [
                     'text' => 'Secciones',
                     'route'  => 'seccion.index',
                     'icon' => 'fas fa-house-user',
+                    'can' =>'seccion.index'
                 ],
                 [
                     'text' => 'Turnos',
                     'route'  => 'turnos.index',
                     'icon' => 'fas fa-window-restore',
+                    'can' =>'turnos.index'
                 ],
                 [
                     'text' => 'Cortes-Evaluativos',
                     'route'  => 'cevaluativos.index',
                     'icon' => 'fas fa-solid fa-copyright',
+                    'can' =>'cevaluativos.index'
                 ],
                 [
                     'text' => 'Grados',
                     'route'  => 'grados.index',
                     'icon' => 'fas fa-solid fa-user-graduate',
+                    'can' =>'cevaluativos.index'
                 ],
                 [
                     'text' => 'Nivel Academico',
                     'route'  => 'nivelacademic.index',
                     'icon' => 'fas fa-graduation-cap',
+                    'can' =>'nivelacademic.index'
                 ],
                 [
                     'text' => 'Profesion',
                     'route'  => 'profession.index',
                     'icon' => 'fas fa-solid fa-user-tie',
+                    'can' =>'profession.index'
 
                 ],
                 [
                     'text' => 'Tipo de Matricula',
                     'route'  => 'tmatricula.index',
                     'icon' => 'fas fa-solid fa-file-signature',
+                    'can' =>'tmatricula.index'
                 ],
                 
             ],
@@ -316,6 +326,7 @@ return [
             'text'        => 'Estudiantes',
             'route'         => 'estudiantes.index',
             'icon'        => 'fas fa-solid fa-user-graduate',
+            
         ],
         [
             'text'        => 'Estudiantes Tutores',
@@ -331,6 +342,7 @@ return [
             'text'        => 'Empleados',
             'route'       => 'empleados.index',
             'icon'        => 'fas fa-solid fa-layer-group',
+            'can' =>'empleados.index'
         ],
         [
             'text'        => 'Buscador Empleados',

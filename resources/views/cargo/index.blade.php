@@ -23,9 +23,11 @@
 
                              <td>
                                  <div class="d-flex flex-row bd-highlight mb-6">
-
-                                     <a href="{{ url('/cargos/' . $cargo->id . '/edit') }}" class="btn btn-info">
-                                         Editar </a>|
+                                    @can('cargos.edit')
+                                    <a href="{{ url('/cargos/' . $cargo->id . '/edit') }}" class="btn btn-info">
+                                        Editar </a>|
+                                    @endcan
+                                
                                      <form class="form-eliminar" action="{{ url('/cargos/' . $cargo->id) }}" method="post"
                                          class="d-inline">
                                          @csrf
