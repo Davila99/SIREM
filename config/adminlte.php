@@ -255,8 +255,9 @@ return [
 
         ],
         [
-            'text'    => 'Menu',
+            'text'    => 'Catalogos',
             'icon'    => 'fas fa-solid fa-bars',
+            'can' =>'cargos.index',
             'submenu' => [
                 [
                     'text'    => 'Cargo',
@@ -323,58 +324,92 @@ return [
             ],
         ],
         [
-            'text'        => 'Estudiantes',
-            'route'         => 'estudiantes.index',
-            'icon'        => 'fas fa-solid fa-user-graduate',
-            
+            'text'    => 'Resgistro',
+            'icon'    => 'fas fa-solid fa-bars',
+            'can' =>'estudiantes.index',
+            'submenu' => [
+                [
+                    'text'        => 'Estudiantes',
+                    'route'         => 'estudiantes.index',
+                    'icon'        => 'fas fa-solid fa-user-graduate',
+                    'can' =>'estudiantes.index'
+                    
+                ],
+                [
+                    'text'        => 'Estudiantes Tutores',
+                    'route'         => 'estudianteTutores.index',
+                    'icon'        => 'fas fa-people-arrows',
+                    'can' =>'estudianteTutores.index'
+                ],
+                [
+                    'text'        => 'Tutores',
+                    'route'       => 'tutores.index',
+                    'icon' => 'fas fa-user-friends',
+                    'can' =>'tutores.index'
+                ],
+                [
+                    'text'        => 'Matriculas',
+                    'route'         => 'matriculas.index',
+                    'icon' => 'fas fa-solid fa-briefcase',
+                    'can' =>'matriculas.index'
+                ],
+                [
+                    'text'        => 'Buscador de estudiantes',
+                    'url'         => 'search/',
+                    'icon'        => 'fas fa-search',
+                ],    
+            ],
         ],
         [
-            'text'        => 'Estudiantes Tutores',
-            'route'         => 'estudianteTutores.index',
-            'icon'        => 'fas fa-people-arrows',
+            'text'    => 'Academia',
+            'icon'    => 'fas fa-solid fa-bars',
+            'can' =>'asignaturadocente.index',
+            'submenu' => [
+                [
+                    'text'        => 'Asignturas Docentes',
+                    'route'         => 'asignaturadocente.index',
+                    'icon' => 'fas fa-solid fa-signature',
+                    'can' =>'asignaturadocente.index'
+                ],
+                [
+                    'text'        => 'Organización Academica',
+                    'route'         => 'organizacionacademica.index',
+                    'icon' => 'fas fa-sitemap',
+                    'can' =>'organizacionacademica.index'
+                ],
+                [
+                    'text'        => 'Grupos',
+                    'route'         => 'grupos.index',
+                    'icon'        => 'fas fa-solid fa-users',
+                    'can' =>'grupos.index'
+        
+                ],
+                    
+            ],
         ],
         [
-            'text'        => 'Buscador de estudiantes',
-            'url'         => 'search/',
-            'icon'        => 'fas fa-search',
-        ],
-        [
-            'text'        => 'Empleados',
-            'route'       => 'empleados.index',
-            'icon'        => 'fas fa-solid fa-layer-group',
-            'can' =>'empleados.index'
-        ],
-        [
-            'text'        => 'Buscador Empleados',
-            'url'         => 'search-empleado/',
-            'icon'        => 'fas fa-search ',
-        ],
-        [
-            'text'        => 'Tutores',
-            'route'       => 'tutores.index',
-            'icon' => 'fas fa-user-friends',
-        ],
-        [
-            'text'        => 'Matriculas',
-            'route'         => 'matriculas.index',
-            'icon' => 'fas fa-solid fa-briefcase',
-        ],
-        [
-            'text'        => 'Asignturas Docentes',
-            'route'         => 'asignaturadocente.index',
-            'icon' => 'fas fa-solid fa-signature',
-        ],
-        [
-            'text'        => 'Organización Academica',
-            'route'         => 'organizacionacademica.index',
-            'icon' => 'fas fa-sitemap',
-        ],
-        [
-            'text'        => 'Grupos',
-            'route'         => 'grupos.index',
-            'icon'        => 'fas fa-solid fa-users',
+            'text'    => 'Recursos Humanos',
+            'icon'    => 'fas fa-solid fa-bars',
+            'can' =>'empleados.index',
+            'submenu' => [
+                [
+                    'text'        => 'Empleados',
+                    'route'       => 'empleados.index',
+                    'icon'        => 'fas fa-solid fa-layer-group',
+                    'can' =>'empleados.index'
+                ],
+                [
+                    'text'        => 'Buscador Empleados',
+                    'url'         => 'search-empleado/',
+                    'icon'        => 'fas fa-search ',
+                ],
 
+                    
+            ],
         ],
+      
+
+
         [
             'text'        => 'Calificaciones',
             'route'         => 'calificaciones.index',
@@ -475,7 +510,7 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
