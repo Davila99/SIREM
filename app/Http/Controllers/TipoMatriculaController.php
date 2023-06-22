@@ -9,6 +9,15 @@ use App\Models\Tipo_Matricula;
 use Illuminate\Http\Request;
 class TipoMatriculaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:tmatricula.index')->only('index');
+        $this->middleware('can:tmatricula.edit')->only('edit','update');
+        $this->middleware('can:tmatricula.show')->only('show');
+        $this->middleware('can:tmatricula.store')->only('store');
+        $this->middleware('can:tmatricula.destroy')->only('destroy');
+        
+    }
     /**
      * Display a listing of the resource.
      *

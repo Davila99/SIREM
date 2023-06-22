@@ -9,6 +9,15 @@ use Throwable;
 
 class CargoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:cargos.index')->only('index');
+        $this->middleware('can:cargos.edit')->only('edit','update');
+        $this->middleware('can:cargos.show')->only('show');
+        $this->middleware('can:cargos.store')->only('store');
+        $this->middleware('can:cargos.destroy')->only('destroy');
+        
+    }
     /**
      * Display a listing of the resource.
      *

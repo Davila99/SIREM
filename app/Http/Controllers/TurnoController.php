@@ -8,6 +8,15 @@ use App\Http\Requests\UpdateTurnoRequest;
 
 class TurnoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:turnos.index')->only('index');
+        $this->middleware('can:turnos.edit')->only('edit','update');
+        $this->middleware('can:turnos.show')->only('show');
+        $this->middleware('can:turnos.store')->only('store');
+        $this->middleware('can:turnos.destroy')->only('destroy');
+        
+    }
     /**
      * Display a listing of the resource.
      *

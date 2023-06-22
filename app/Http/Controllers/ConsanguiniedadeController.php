@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class ConsanguiniedadeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:consanguiniedades.index')->only('index');
+        $this->middleware('can:consanguiniedades.edit')->only('edit','update');
+        $this->middleware('can:consanguiniedades.show')->only('show');
+        $this->middleware('can:consanguiniedades.store')->only('store');
+        $this->middleware('can:consanguiniedades.destroy')->only('destroy');
+        
+    }
     /**
      * Display a listing of the resource.
      *

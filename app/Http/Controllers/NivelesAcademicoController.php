@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class NivelesAcademicoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:nivelacademic.index')->only('index');
+        $this->middleware('can:nivelacademic.edit')->only('edit','update');
+        $this->middleware('can:nivelacademic.show')->only('show');
+        $this->middleware('can:nivelacademic.store')->only('store');
+        $this->middleware('can:nivelacademic.destroy')->only('destroy');
+        
+    }
     /**
      * Display a listing of the resource.
      *
