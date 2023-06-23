@@ -12,7 +12,7 @@ class AsignaturaController extends Controller
         $this->middleware('can:asignaturas.index')->only('index');
         $this->middleware('can:asignaturas.edit')->only('edit','update');
         $this->middleware('can:asignaturas.show')->only('show');
-        $this->middleware('can:asignaturas.store')->only('store');
+        $this->middleware('can:cargos.create')->only('create','store');
         $this->middleware('can:asignaturas.destroy')->only('destroy');
         
     }

@@ -14,7 +14,7 @@ class GradoController extends Controller
         $this->middleware('can:grados.index')->only('index');
         $this->middleware('can:grados.edit')->only('edit','update');
         $this->middleware('can:grados.show')->only('show');
-        $this->middleware('can:grados.store')->only('store');
+        $this->middleware('can:grados.create')->only('create','store');
         $this->middleware('can:grados.destroy')->only('destroy');
         
     }

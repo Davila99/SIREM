@@ -14,7 +14,7 @@ class TipoMatriculaController extends Controller
         $this->middleware('can:tmatricula.index')->only('index');
         $this->middleware('can:tmatricula.edit')->only('edit','update');
         $this->middleware('can:tmatricula.show')->only('show');
-        $this->middleware('can:tmatricula.store')->only('store');
+        $this->middleware('can:tmatricula.create')->only('create','store');
         $this->middleware('can:tmatricula.destroy')->only('destroy');
         
     }

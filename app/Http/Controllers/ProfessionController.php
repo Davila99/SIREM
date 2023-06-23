@@ -15,7 +15,7 @@ class ProfessionController extends Controller
         $this->middleware('can:profession.index')->only('index');
         $this->middleware('can:profession.edit')->only('edit','update');
         $this->middleware('can:profession.show')->only('show');
-        $this->middleware('can:profession.store')->only('store');
+        $this->middleware('can:profession.create')->only('create','store');
         $this->middleware('can:profession.destroy')->only('destroy');
         
     }

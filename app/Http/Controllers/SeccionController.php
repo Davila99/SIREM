@@ -13,7 +13,7 @@ class SeccionController extends Controller
         $this->middleware('can:seccion.index')->only('index');
         $this->middleware('can:seccion.edit')->only('edit','update');
         $this->middleware('can:seccion.show')->only('show');
-        $this->middleware('can:seccion.store')->only('store');
+        $this->middleware('can:seccion.create')->only('create','store');
         $this->middleware('can:seccion.destroy')->only('destroy');
         
     }

@@ -12,7 +12,7 @@ class NivelesAcademicoController extends Controller
         $this->middleware('can:nivelacademic.index')->only('index');
         $this->middleware('can:nivelacademic.edit')->only('edit','update');
         $this->middleware('can:nivelacademic.show')->only('show');
-        $this->middleware('can:nivelacademic.store')->only('store');
+        $this->middleware('can:nivelacademic.create')->only('create','store');
         $this->middleware('can:nivelacademic.destroy')->only('destroy');
         
     }

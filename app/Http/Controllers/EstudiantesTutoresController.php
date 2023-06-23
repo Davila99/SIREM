@@ -14,7 +14,7 @@ class EstudiantesTutoresController extends Controller
         $this->middleware('can:estudianteTutores.index')->only('index');
         $this->middleware('can:estudianteTutores.edit')->only('edit','update');
         $this->middleware('can:estudianteTutores.show')->only('show');
-        $this->middleware('can:estudianteTutores.store')->only('store');
+        $this->middleware('can:estudianteTutores.create')->only('create','store');
         $this->middleware('can:estudianteTutores.destroy')->only('destroy');
         
     }

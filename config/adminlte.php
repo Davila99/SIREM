@@ -45,8 +45,8 @@ return [
     |
     */
 
-    'logo' => '<b>Mantle Of Grace</b>',
-    'logo_img' => 'favicons/favicons/adminlte/dist/img/logo.png',
+    'logo' => '<h2> SIREM</h2>',
+    'logo_img' => null,
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -324,8 +324,8 @@ return [
             ],
         ],
         [
-            'text'    => 'Resgistro',
-            'icon'    => 'fas fa-solid fa-bars',
+            'text'    => 'Registro',
+            'icon'    => 'fas fa-solid fa-layer-group',
             'can' =>'estudiantes.index',
             'submenu' => [
                 [
@@ -362,7 +362,7 @@ return [
         ],
         [
             'text'    => 'Academia',
-            'icon'    => 'fas fa-solid fa-bars',
+            'icon'    => 'fas fa-solid fa-school',
             'can' =>'asignaturadocente.index',
             'submenu' => [
                 [
@@ -389,7 +389,7 @@ return [
         ],
         [
             'text'    => 'Recursos Humanos',
-            'icon'    => 'fas fa-solid fa-bars',
+            'icon'    => 'fas fa-solid fa-address-book',
             'can' =>'empleados.index',
             'submenu' => [
                 [

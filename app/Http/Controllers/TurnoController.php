@@ -13,7 +13,7 @@ class TurnoController extends Controller
         $this->middleware('can:turnos.index')->only('index');
         $this->middleware('can:turnos.edit')->only('edit','update');
         $this->middleware('can:turnos.show')->only('show');
-        $this->middleware('can:turnos.store')->only('store');
+        $this->middleware('can:turnos.create')->only('create','store');
         $this->middleware('can:turnos.destroy')->only('destroy');
         
     }

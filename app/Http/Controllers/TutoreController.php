@@ -14,7 +14,7 @@ class TutoreController extends Controller
         $this->middleware('can:tutores.index')->only('index');
         $this->middleware('can:tutores.edit')->only('edit','update');
         $this->middleware('can:tutores.show')->only('show');
-        $this->middleware('can:tutores.store')->only('store');
+        $this->middleware('can:tutores.create')->only('create','store');
         $this->middleware('can:tutores.destroy')->only('destroy');
         
     }

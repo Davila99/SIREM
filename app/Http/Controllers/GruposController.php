@@ -18,7 +18,7 @@ class GruposController extends Controller
         $this->middleware('can:grupos.index')->only('index');
         $this->middleware('can:grupos.edit')->only('edit','update');
         $this->middleware('can:grupos.show')->only('show');
-        $this->middleware('can:grupos.store')->only('store');
+        $this->middleware('can:grupos.create')->only('create','store');
         $this->middleware('can:grupos.destroy')->only('destroy');
         
     }

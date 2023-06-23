@@ -12,7 +12,7 @@ class ConsanguiniedadeController extends Controller
         $this->middleware('can:consanguiniedades.index')->only('index');
         $this->middleware('can:consanguiniedades.edit')->only('edit','update');
         $this->middleware('can:consanguiniedades.show')->only('show');
-        $this->middleware('can:consanguiniedades.store')->only('store');
+        $this->middleware('can:consanguiniedades.create')->only('create','store');
         $this->middleware('can:consanguiniedades.destroy')->only('destroy');
         
     }
