@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class OrganizacionAcademicaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:organizacionacademica.index')->only('index');
+        $this->middleware('can:organizacionacademica.edit')->only('edit','update');
+        $this->middleware('can:organizacionacademica.show')->only('show');
+        $this->middleware('can:organizacionacademica.store')->only('store');
+        $this->middleware('can:organizacionacademica.destroy')->only('destroy');
+        
+    }
     /**
      * Display a listing of the resource.
      *

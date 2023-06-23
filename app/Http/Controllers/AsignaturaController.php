@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class AsignaturaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:asignaturas.index')->only('index');
+        $this->middleware('can:asignaturas.edit')->only('edit','update');
+        $this->middleware('can:asignaturas.show')->only('show');
+        $this->middleware('can:asignaturas.store')->only('store');
+        $this->middleware('can:asignaturas.destroy')->only('destroy');
+        
+    }
     /**
      * Display a listing of the resource.
      *

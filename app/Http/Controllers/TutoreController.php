@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Storage;
 
 class TutoreController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:tutores.index')->only('index');
+        $this->middleware('can:tutores.edit')->only('edit','update');
+        $this->middleware('can:tutores.show')->only('show');
+        $this->middleware('can:tutores.store')->only('store');
+        $this->middleware('can:tutores.destroy')->only('destroy');
+        
+    }
     /**
      * Display a listing of the resource.
      *

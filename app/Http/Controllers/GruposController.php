@@ -13,6 +13,15 @@ use App\Models\Turno;
 
 class GruposController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:grupos.index')->only('index');
+        $this->middleware('can:grupos.edit')->only('edit','update');
+        $this->middleware('can:grupos.show')->only('show');
+        $this->middleware('can:grupos.store')->only('store');
+        $this->middleware('can:grupos.destroy')->only('destroy');
+        
+    }
     /**
      * Display a listing of the resource.
      *

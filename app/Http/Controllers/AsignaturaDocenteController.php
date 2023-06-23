@@ -14,6 +14,15 @@ use App\Models\Turno;
 
 class AsignaturaDocenteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:asignaturadocente.index')->only('index');
+        $this->middleware('can:asignaturadocente.edit')->only('edit','update');
+        $this->middleware('can:asignaturadocente.show')->only('show');
+        $this->middleware('can:asignaturadocente.store')->only('store');
+        $this->middleware('can:asignaturadocente.destroy')->only('destroy');
+        
+    }
     /**
      * Display a listing of the resource.
      *
