@@ -54,8 +54,14 @@ class TurnoController extends Controller
             ]
         );
         $datos = request()->except('_token');
-        Turno::insert($datos);
-        return redirect('turnos/')->with('mensaje', 'ok');
+        $existeDato = Turno::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('turnos/create')->with('mensaje-error', 'ok');
+        } else {
+            Turno::insert($datos);
+            return redirect('turnos/')->with('mensaje', 'ok');
+        }
+
     }
 
     /**

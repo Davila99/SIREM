@@ -55,8 +55,14 @@ class TipoMatriculaController extends Controller
             ]
         );
         $datos = request()->except('_token');
-        Tipo_Matricula::insert($datos);
-        return redirect('tmatricula/')->with('mensaje', 'ok');
+        $existeDato = Tipo_Matricula::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('tmatricula/create')->with('mensaje-error', 'ok');
+        } else {
+            Tipo_Matricula::insert($datos);
+            return redirect('tmatricula/')->with('mensaje', 'ok');
+        }
+
     }
 
     /**

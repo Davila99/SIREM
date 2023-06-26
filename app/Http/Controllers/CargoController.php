@@ -11,11 +11,10 @@ class CargoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:cargos.index')->only('index','show');
-        $this->middleware('can:cargos.edit')->only('edit','update');
-        $this->middleware('can:cargos.create')->only('create','store');
+        $this->middleware('can:cargos.index')->only('index', 'show');
+        $this->middleware('can:cargos.edit')->only('edit', 'update');
+        $this->middleware('can:cargos.create')->only('create', 'store');
         $this->middleware('can:cargos.destroy')->only('destroy');
-        
     }
     /**
      * Display a listing of the resource.
@@ -46,17 +45,22 @@ class CargoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'descripcion'=>'required' 
-        ],
-        [
-            'descripcion.required' => 'El campo es obligatorio.'
-        ]
-         );
+        $request->validate(
+            [
+                'descripcion' => 'required',
+            ],
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
         $datos = request()->except('_token');
-        //  dd($datos);
-        Cargo::insert($datos);
-        return redirect('cargos/')->with('mensaje','ok');
+        $existeDato = Cargo::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('cargos/create')->with('mensaje-error', 'ok');
+        } else {
+            Cargo::insert($datos);
+            return redirect('cargos/')->with('mensaje', 'ok');
+        }
     }
 
     /**
@@ -90,19 +94,20 @@ class CargoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
-        $request->validate([
-            'descripcion'=>'required' 
-        ],
-        [
-            'descripcion.required' => 'El campo es obligatorio.'
-        ]
-         );
+    {
+        $request->validate(
+            [
+                'descripcion' => 'required',
+            ],
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
         $datos = request()->except(['_token', '_method']);
         Cargo::where('id', '=', $id)->update($datos);
 
         $datos = Cargo::findOrFail($id);
-        return redirect('cargos/')->with('mensaje-editar','ok');
+        return redirect('cargos/')->with('mensaje-editar', 'ok');
     }
 
     /**
@@ -111,15 +116,13 @@ class CargoController extends Controller
      * @param  \App\Models\Cargo  $cargo
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id){
-
+    public function destroy($id)
+    {
         try {
             Cargo::destroy($id);
-            return redirect('cargos')->with('mensaje-eliminar','ok');
+            return redirect('cargos')->with('mensaje-eliminar', 'ok');
         } catch (\Throwable $th) {
-
-            return redirect('cargos')->with('mensaje-error-eliminar','ok');
+            return redirect('cargos')->with('mensaje-error-eliminar', 'ok');
         }
-      
     }
 }

@@ -53,8 +53,15 @@ class NivelesAcademicoController extends Controller
             ]
         );
         $datos = request()->except('_token');
-        Niveles_academico::insert($datos);
-        return redirect('nivelacademic')->with('mensaje','ok');
+
+        $existeDato = Niveles_academico::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('nivelacademic/create')->with('mensaje-error', 'ok');
+        } else {
+            Niveles_academico::insert($datos);
+            return redirect('nivelacademic/')->with('mensaje', 'ok');
+        }
+
     }
 
     /**

@@ -21,4 +21,14 @@
         <a type="button" class="btn btn-primary" href="{{ url('nivelacademic/') }}"> Regresar </a>
     </div>
 </div>
-
+@section('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (Session::has('mensaje-error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Dato existente ',
+            })
+        </script>
+    @endif
+@endsection

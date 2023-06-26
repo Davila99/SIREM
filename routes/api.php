@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\BuscadorEstudiante;
-use App\Http\Controllers\EstudianteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

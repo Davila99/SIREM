@@ -55,8 +55,14 @@ class SeccionController extends Controller
         ]
          );
         $datos = request()->except('_token');
-        Seccion::insert($datos);
-        return redirect('seccion/')->with('mensaje','ok');
+        $existeDato = Seccion::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('seccion/create')->with('mensaje-error', 'ok');
+        } else {
+            Seccion::insert($datos);
+            return redirect('seccion/')->with('mensaje', 'ok');
+        }
+
     }
 
     /**

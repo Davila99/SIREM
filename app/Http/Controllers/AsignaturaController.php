@@ -53,9 +53,13 @@ class AsignaturaController extends Controller
             ]
         );
         $datos = request()->except('_token');
-
-        Asignatura::insert($datos);
-        return redirect('asignaturas/')->with('mensaje', 'ok');
+        $existeDato = Asignatura::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('asignaturas/create')->with('mensaje-error', 'ok');
+        } else {
+            Asignatura::insert($datos);
+            return redirect('asignaturas/')->with('mensaje', 'ok');
+        }
     }
 
     /**

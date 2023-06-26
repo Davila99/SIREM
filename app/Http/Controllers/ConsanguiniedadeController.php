@@ -53,8 +53,14 @@ class ConsanguiniedadeController extends Controller
             ]
         );
         $datos = request()->except('_token');
-        Consanguiniedade::insert($datos);
-        return redirect('consanguiniedades/')->with('mensaje', 'ok');
+
+        $existeDato = Consanguiniedade::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('consanguiniedades/create')->with('mensaje-error', 'ok');
+        } else {
+            Consanguiniedade::insert($datos);
+            return redirect('consanguiniedades/')->with('mensaje', 'ok');
+        }
     }
 
     /**

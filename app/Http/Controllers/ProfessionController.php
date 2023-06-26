@@ -55,8 +55,15 @@ class ProfessionController extends Controller
         ]
     );
         $datos = request()->except('_token');
-        Profession::insert($datos);
-        return redirect('profession/')->with('mensaje','ok');
+        $array = implode($datos);
+        $existeDato = Profession::where('descripcion', 'like', '%'.$array.'%')->exists();
+        if ($existeDato) {
+            return redirect('profession/create')->with('mensaje-error', 'ok');
+        } else {
+            Profession::insert($datos);
+            return redirect('profession/')->with('mensaje', 'ok');
+        }
+
     }
 
     /**

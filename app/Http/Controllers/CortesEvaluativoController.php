@@ -53,9 +53,13 @@ class CortesEvaluativoController extends Controller
             ]
         );
         $datos = request()->except('_token');
-
-        Cortes_evaluativo::insert($datos);
-        return redirect('cevaluativos/')->with('mensaje', 'ok');
+        $existeDato = Cortes_evaluativo::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('cevaluativos/create')->with('mensaje-error', 'ok');
+        } else {
+            Cortes_evaluativo::insert($datos);
+            return redirect('cevaluativos/')->with('mensaje', 'ok');
+        }
     }
 
     /**

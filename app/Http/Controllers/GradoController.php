@@ -57,8 +57,14 @@ class GradoController extends Controller
             ]
         );
         $datos = request()->except('_token');
-        Grado::insert($datos);
-        return redirect('grados/')->with('mensaje','ok');
+        $existeDato = Grado::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('grados/create')->with('mensaje-error', 'ok');
+        } else {
+            Grado::insert($datos);
+            return redirect('grados/')->with('mensaje', 'ok');
+        }
+
     }
 
     /**
