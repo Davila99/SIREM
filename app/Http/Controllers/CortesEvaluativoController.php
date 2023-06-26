@@ -9,9 +9,8 @@ class CortesEvaluativoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:cevaluativos.index')->only('index');
+        $this->middleware('can:cevaluativos.index')->only('index','show');
         $this->middleware('can:cevaluativos.edit')->only('edit','update');
-        $this->middleware('can:cevaluativos.show')->only('show');
         $this->middleware('can:cevaluativos.create')->only('create','store');
         $this->middleware('can:cevaluativos.destroy')->only('destroy');
         

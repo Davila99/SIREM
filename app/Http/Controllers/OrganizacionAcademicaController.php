@@ -10,9 +10,8 @@ class OrganizacionAcademicaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:organizacionacademica.index')->only('index');
+        $this->middleware('can:organizacionacademica.index')->only('index','show');
         $this->middleware('can:organizacionacademica.edit')->only('edit','update');
-        $this->middleware('can:organizacionacademica.show')->only('show');
         $this->middleware('can:organizacionacademica.create')->only('create','store');
         $this->middleware('can:organizacionacademica.destroy')->only('destroy');
         

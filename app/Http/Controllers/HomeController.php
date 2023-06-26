@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
 use Illuminate\Http\Request;
+use Spatie\FlareClient\View;
 
 class HomeController extends Controller
 {
@@ -24,10 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $datos['estudiantes'] = Estudiante::query()
-        ->with(['tutor'])
-        ->with(['sexo'])
-        ->paginate(5);
-        return view('estudiante/index', $datos);
+        return view('perfil/index');
     }
 }

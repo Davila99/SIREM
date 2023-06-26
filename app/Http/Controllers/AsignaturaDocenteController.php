@@ -16,9 +16,8 @@ class AsignaturaDocenteController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:asignaturadocente.index')->only('index');
+        $this->middleware('can:asignaturadocente.index')->only('index','show');
         $this->middleware('can:asignaturadocente.edit')->only('edit','update');
-        $this->middleware('can:asignaturadocente.show')->only('show');
         $this->middleware('can:asignaturadocente.create')->only('create','store');
         $this->middleware('can:asignaturadocente.destroy')->only('destroy');
         

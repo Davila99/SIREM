@@ -10,9 +10,8 @@ class SeccionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:seccion.index')->only('index');
+        $this->middleware('can:seccion.index')->only('index','show');
         $this->middleware('can:seccion.edit')->only('edit','update');
-        $this->middleware('can:seccion.show')->only('show');
         $this->middleware('can:seccion.create')->only('create','store');
         $this->middleware('can:seccion.destroy')->only('destroy');
         

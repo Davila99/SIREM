@@ -12,9 +12,8 @@ class MatriculaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:matriculas.index')->only('index');
+        $this->middleware('can:matriculas.index')->only('index','show');
         $this->middleware('can:matriculas.edit')->only('edit','update');
-        $this->middleware('can:matriculas.show')->only('show');
         $this->middleware('can:matriculas.create')->only('create','store');
         $this->middleware('can:matriculas.destroy')->only('destroy');
         

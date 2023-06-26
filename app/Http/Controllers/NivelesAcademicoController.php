@@ -9,9 +9,8 @@ class NivelesAcademicoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:nivelacademic.index')->only('index');
+        $this->middleware('can:nivelacademic.index')->only('index','show');
         $this->middleware('can:nivelacademic.edit')->only('edit','update');
-        $this->middleware('can:nivelacademic.show')->only('show');
         $this->middleware('can:nivelacademic.create')->only('create','store');
         $this->middleware('can:nivelacademic.destroy')->only('destroy');
         

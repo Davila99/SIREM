@@ -25,11 +25,11 @@
                         <td>{{ $estudiantestutor->tutores->telefono }} </td>
                         <td>
                             <div class="d-flex flex-row bd-highlight mb-6">
-                                <a href="{{ url('/tutorestudiante/' . $estudiantestutor->id . '/edit') }}" class="btn btn-info">
+                                <a href="{{ url('/estudianteTutores/' . $estudiantestutor->id . '/edit') }}" class="btn btn-info">
                                     Editar </a>|
-                                    <a href="{{ url('/tutorestudiante/' . $estudiantestutor->id) }}" class="btn btn-warning">
+                                    <a href="{{ url('/estudianteTutores/' . $estudiantestutor->id) }}" class="btn btn-warning">
                                         Detalles </a>|
-                                <form class="form-eliminar" action="{{ url('/tutorestudiante/' . $estudiantestutor->id) }}"
+                                <form class="form-eliminar" action="{{ url('/estudianteTutores/' . $estudiantestutor->id) }}"
                                     method="post" class="d-inline">
                                     @csrf
                                     {{ method_field('DELETE') }}

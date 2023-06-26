@@ -11,9 +11,8 @@ class CargoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:cargos.index')->only('index');
+        $this->middleware('can:cargos.index')->only('index','show');
         $this->middleware('can:cargos.edit')->only('edit','update');
-        $this->middleware('can:cargos.show')->only('show');
         $this->middleware('can:cargos.create')->only('create','store');
         $this->middleware('can:cargos.destroy')->only('destroy');
         
