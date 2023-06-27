@@ -65,9 +65,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/password/reset', [App\Http\Controllers\Auth\ResetPasswordController::class, 'reset'])->name('password.update');
     
     Route::resource('users', UserController::class);
-
-    Route::get('mi-docencia', [MiDocenciaController::class, 'index']);
-
     Route::resource('cargos', CargoController::class);
     Route::resource('seccion', SeccionController::class);
     Route::resource('turnos', TurnoController::class);

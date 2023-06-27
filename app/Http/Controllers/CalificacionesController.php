@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Calificaciones;
 use Illuminate\Http\Request;
-use App\Models\Asignatura;
 use App\Models\AsignaturaDocente;
-use App\Models\Cortes_evaluativo;
-use App\Models\Estudiante;
-use App\Models\Grado;
+
 
 class CalificacionesController extends Controller
 {
@@ -17,17 +14,12 @@ class CalificacionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $datos['calificaciones'] = Calificaciones::query()
-        ->with(['asiganturadocente'])
-        ->with(['asigantura'])
-        ->with(['grado'])
-        ->with(['estudiante'])
-        ->with(['cortes_evaluativo'])
-        ->paginate(10);
-
-         return view('calificaciones/index',$datos);
+    public function index() {
+        $cursos = AsignaturaDocente::query()
+            ->with(['asignatura'])
+            ->where('empleado_id', auth()->id())->get();
+// dd($cursos);
+        return view('calificaciones.index', [ 'cursos' => $cursos]);
     }
 
     /**
