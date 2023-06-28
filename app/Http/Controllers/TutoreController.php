@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estudiante;
 use App\Models\Profession;
+
 use App\Models\Tutore;
 use Illuminate\Http\Request;
-
 
 class TutoreController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:tutores.index')->only('index','show');
-        $this->middleware('can:tutores.edit')->only('edit','update');
-        $this->middleware('can:tutores.create')->only('create','store');
+        $this->middleware('can:tutores.index')->only('index', 'show');
+        $this->middleware('can:tutores.edit')->only('edit', 'update');
+        $this->middleware('can:tutores.create')->only('create', 'store');
         $this->middleware('can:tutores.destroy')->only('destroy');
-        
     }
     /**
      * Display a listing of the resource.
@@ -57,7 +57,7 @@ class TutoreController extends Controller
                 'apellido' => 'required|string|max:100',
                 'telefono' => 'required|string|max:12',
                 'cedula' => 'required|string|max:16',
-                'professions_id' => 'required'
+                'professions_id' => 'required',
             ],
 
             [
@@ -70,10 +70,11 @@ class TutoreController extends Controller
         );
 
         $datos = request()->except('_token');
-        
+
         $existeDato = Tutore::where('nombre', $datos['nombre'])
-        ->orwhere('apellido', $datos['apellido'])
-        ->orwhere('cedula', $datos['cedula'])->exists();
+            ->orwhere('apellido', $datos['apellido'])
+            ->orwhere('cedula', $datos['cedula'])
+            ->exists();
         if ($existeDato) {
             return redirect('tutores/create')->with('mensaje-error', 'ok');
         } else {
@@ -106,7 +107,10 @@ class TutoreController extends Controller
     {
         $datos = Tutore::findOrFail($id);
         $professions = Profession::all();
-        return view('tutores/edit', ["datos" => $datos, "professions" => $professions]);
+        return view('tutores/edit', [
+            'datos' => $datos,
+            'professions' => $professions,
+        ]);
     }
 
     /**
@@ -124,7 +128,7 @@ class TutoreController extends Controller
                 'apellido' => 'required|string|max:100',
                 'telefono' => 'required|string|max:12',
                 'cedula' => 'required|string|max:16',
-                'professions_id' => 'required'
+                'professions_id' => 'required',
             ],
 
             [
@@ -135,12 +139,12 @@ class TutoreController extends Controller
                 'professions_id.required' => 'La profesion es obligatoria.',
             ]
         );
-       
+
         $datos = request()->except(['_token', '_method']);
-       
+
         Tutore::where('id', '=', $id)->update($datos);
         $datos = Tutore::findOrFail($id);
-     
+
         return redirect('tutores')->with('mensaje-editar', 'ok');
     }
 
@@ -152,7 +156,12 @@ class TutoreController extends Controller
      */
     public function destroy($id)
     {
-        Tutore::destroy($id);
-        return redirect('tutores/')->with('mensaje-eliminar', 'ok');
+        $estudiante = Estudiante::exists($id);
+        if ($estudiante) {
+            return redirect('tutores/')->with('mensaje-error-eliminar', 'ok');
+        } else {
+            Tutore::destroy($id);
+            return redirect('tutores/')->with('mensaje-eliminar', 'ok');
+        }
     }
 }

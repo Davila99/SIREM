@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cargo;
 use App\Models\Empleado;
+use App\Models\Grupos;
 use App\Models\Niveles_academico;
 use Illuminate\Http\Request;
 class EmpleadoController extends Controller
@@ -173,12 +174,12 @@ class EmpleadoController extends Controller
      */
     public function destroy($id)
     {
-
-        try {
+        $esxiteDato = Grupos::exists($id);
+        if ($esxiteDato) {
+            return redirect('tutores/')->with('mensaje-error-eliminar', 'ok');
+        } else {
             Empleado::destroy($id);
-            return redirect('empleados/')->with('mensaje-eliminar','ok');
-        } catch (\Throwable $th) {
-            return redirect('empleados')->with('mensaje-error-eliminar','ok');
+            return redirect('tutores/')->with('mensaje-eliminar', 'ok');
         }
 
     }
