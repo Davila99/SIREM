@@ -57,23 +57,30 @@
             <label for="tutor">
                 <h5>Tutor:</h5>
             </label>
-            <select class="form-control @error('tutor_id') is-invalid @enderror" name="tutor_id" id="tutor">
-                <option value="" selected disabled>--Seleccione--</option>
-
-                @isset($tutores)
-                    @foreach ($tutores as $tutor)
-                        <option value="{{ $tutor->id }}"
-                            @if (!empty($datos->tutor_id)) {{ $datos->tutor_id == $tutor->id ? 'selected' : '' }} @else {{ old('tutor_id') == $tutor->id ? 'selected' : '' }} @endif>
-                            {{ $tutor->nombre }} </option>
-                    @endforeach
-                @endisset
-
-            </select>
-            @error('tutor_id')
-                <div class="invalid-feedback">
-                    <h5> {{ $message }}</h5>
+            <div class="d-flex bd-highlight">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <select class="form-control @error('tutor_id') is-invalid @enderror" name="tutor_id" id="tutor">
+                        <option value="" selected disabled>--Seleccione--</option>
+        
+                        @isset($tutores)
+                            @foreach ($tutores as $tutor)
+                                <option value="{{ $tutor->id }}"
+                                    @if (!empty($datos->tutor_id)) {{ $datos->tutor_id == $tutor->id ? 'selected' : '' }} @else {{ old('tutor_id') == $tutor->id ? 'selected' : '' }} @endif>
+                                    {{ $tutor->nombre }} </option>
+                            @endforeach
+                        @endisset
+        
+                    </select>
+                    @error('tutor_id')
+                        <div class="invalid-feedback">
+                            <h5> {{ $message }}</h5>
+                        </div>
+                    @enderror
                 </div>
-            @enderror
+                <div class="p-2 bd-highlight"><a href="{{ url('tutores/create') }}" class="btn btn-success"> Agregar </a></div>
+                
+              </div>
+        
         </div>
         <br>
         <div class="form-group">
