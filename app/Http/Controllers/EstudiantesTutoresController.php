@@ -11,9 +11,12 @@ class EstudiantesTutoresController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:estudianteTutores.index')->only('index','show');
-        $this->middleware('can:estudianteTutores.edit')->only('edit','update');
-        $this->middleware('can:estudianteTutores.create')->only('create','store');
+        $this->middleware('can:estudianteTutores.index')->only('index', 'show');
+        $this->middleware('can:estudianteTutores.edit')->only('edit', 'update');
+        $this->middleware('can:estudianteTutores.create')->only(
+            'create',
+            'store'
+        );
         $this->middleware('can:estudianteTutores.destroy')->only('destroy');
     }
     /**
@@ -23,13 +26,12 @@ class EstudiantesTutoresController extends Controller
      */
     public function index()
     {
-       
         $datos['estudiantestutores'] = EstudiantesTutores::query()
-        ->with(['estudiante'])
-        ->with(['tutores'])
-        ->paginate(10);
-      
-        return view('estudianteTutor/index',$datos);
+            ->with(['estudiante'])
+            ->with(['tutores'])
+            ->paginate(10);
+
+        return view('estudianteTutor/index', $datos);
     }
 
     /**
@@ -41,10 +43,11 @@ class EstudiantesTutoresController extends Controller
     {
         $estudiantes = Estudiante::all();
         $tutores = Tutore::all();
-        return view('estudianteTutor/create',compact('estudiantes'),compact('tutores'));
-
-
-       
+        return view(
+            'estudianteTutor/create',
+            compact('estudiantes'),
+            compact('tutores')
+        );
     }
 
     /**
@@ -68,7 +71,7 @@ class EstudiantesTutoresController extends Controller
      */
     public function show($id)
     {
-         $estudianteTutor = EstudiantesTutores::findOrFail($id);
+        $estudianteTutor = EstudiantesTutores::findOrFail($id);
         return view('estudianteTutor/perfil', compact('estudianteTutor'));
     }
 
@@ -83,7 +86,11 @@ class EstudiantesTutoresController extends Controller
         $datos = EstudiantesTutores::findOrFail($id);
         $estudiantes = Estudiante::all();
         $tutores = Tutore::all();
-        return view('estudianteTutor/edit',["datos"=>$datos,"estudiantes"=>$estudiantes,"tutores"=>$tutores]);
+        return view('estudianteTutor/edit', [
+            'datos' => $datos,
+            'estudiantes' => $estudiantes,
+            'tutores' => $tutores,
+        ]);
     }
 
     /**
