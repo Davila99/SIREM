@@ -111,3 +111,15 @@
     </div>
 
 </div>
+
+@section('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (Session::has('mensaje-error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Ya se encuentra un estudiante con los mismos registros',
+            })
+        </script>
+    @endif
+@endsection

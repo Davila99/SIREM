@@ -84,8 +84,16 @@ class EmpleadoController extends Controller
             ]
         );
         $datos = request()->except('_token');
-        Empleado::insert($datos);
-        return redirect('empleados/')->with('mensaje','ok');
+        $existeDato = Empleado::where('nombres', $datos['nombres'])
+        ->orwhere('apellidos', $datos['apellidos'])
+        ->orwhere('cedula', $datos['cedula'])->exists();
+        if ($existeDato) {
+            return redirect('empleados/create')->with('mensaje-error', 'ok');
+        } else {
+            Empleado::insert($datos);
+            return redirect('empleados/')->with('mensaje', 'ok');
+        }
+        
     }
 
     /**

@@ -79,19 +79,25 @@ class EstudianteController extends Controller
                 'sexo_id.required' => 'El sexo es obligatorio.',
             ]
         );
-        $estudiante = new Estudiante();
-        $estudiante->nombres = $request->nombres;
-        $estudiante->apellidos = $request->apellidos;
-        $estudiante->fecha_nacimiento = $request->fecha_nacimiento;
-        $estudiante->edad = Carbon::createFromDate(
-            $request->fecha_nacimiento
-        )->age;
-        $estudiante->direccion = $request->direccion;
-        $estudiante->tutor_id = $request->tutor_id;
-        $estudiante->sexo_id = $request->sexo_id;
-        $estudiante->save();
+        $datos = request()->except('_token');
+        $existeDato = Estudiante::where('nombres', $datos['nombres'])->exists();
+        if ($existeDato) {
+            return redirect('estudiantes/create')->with('mensaje-error', 'ok');
+        } else {
+            $estudiante = new Estudiante();
+            $estudiante->nombres = $request->nombres;
+            $estudiante->apellidos = $request->apellidos;
+            $estudiante->fecha_nacimiento = $request->fecha_nacimiento;
+            $estudiante->edad = Carbon::createFromDate(
+                $request->fecha_nacimiento
+            )->age;
+            $estudiante->direccion = $request->direccion;
+            $estudiante->tutor_id = $request->tutor_id;
+            $estudiante->sexo_id = $request->sexo_id;
+            $estudiante->save();
+            return redirect('estudiantes/')->with('mensaje', 'ok');
+        }
 
-        return redirect('estudiantes')->with('mensaje', 'ok');
     }
 
     /**

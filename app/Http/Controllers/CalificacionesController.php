@@ -18,9 +18,9 @@ class CalificacionesController extends Controller
         $cursos = AsignaturaDocente::query()
             ->with(['asignatura'])
             ->where('empleado_id', auth()->id())->get();
-// dd($cursos);
+        // dd($cursos);
         return view('calificaciones.index', [ 'cursos' => $cursos]);
-    }
+    } 
 
     /**
      * Show the form for creating a new resource.

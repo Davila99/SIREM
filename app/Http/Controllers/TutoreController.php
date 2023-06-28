@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Profession;
 use App\Models\Tutore;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+
 
 class TutoreController extends Controller
 {
@@ -70,8 +70,16 @@ class TutoreController extends Controller
         );
 
         $datos = request()->except('_token');
-        Tutore::insert($datos);
-        return redirect('tutores/')->with('mensaje', 'ok');
+        
+        $existeDato = Tutore::where('nombre', $datos['nombre'])
+        ->orwhere('apellido', $datos['apellido'])
+        ->orwhere('cedula', $datos['cedula'])->exists();
+        if ($existeDato) {
+            return redirect('tutores/create')->with('mensaje-error', 'ok');
+        } else {
+            Tutore::insert($datos);
+            return redirect('tutores/')->with('mensaje', 'ok');
+        }
     }
     /**
      * Display the specified resource.
