@@ -35,7 +35,7 @@
                     @foreach ($empleados as $empleado)
                         <option value="{{ $empleado->id }}"
                             @if (!empty($datos->empleado_id)) {{ $datos->empleado_id == $empleado->id ? 'selected' : '' }} @else {{ old('empleado_id') == $empleado->id ? 'selected' : '' }} @endif>
-                            {{ $empleado->nombres }} </option>
+                            {{ $empleado->nombres }} {{ $empleado->apellidos }} </option>
                     @endforeach
                 @endisset
             </select>

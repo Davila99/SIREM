@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Matricula extends Model
 {
     use HasFactory;
-    
+
     public function estudiante()
     {
         return $this->belongsTo(Estudiante::class);
@@ -22,16 +22,30 @@ class Matricula extends Model
         return $this->belongsTo(User::class);
     }
     public function grupo2()
-    {   
-        return $this->hasOneThrough(Empleado::class,Grupos::class,'empleado_id','id','empleado_id','id');
+    {
+        return $this->hasOneThrough(
+            Empleado::class,
+            Grupos::class,
+            'empleado_id',
+            'id',
+            'empleado_id',
+            'id'
+        );
     }
-   
- 
+
     public function grupo()
     {
-        return $this->hasOneThrough(Grado::class,Grupos::class,'grado_id','id','grupo_id','id');
+        return $this->hasOneThrough(
+            Grado::class,
+            Grupos::class,
+            'grado_id',
+            'id',
+            'grupo_id',
+            'id'
+        );
     }
-    public function users(){
-        return $this->belongsTo(User::class,'user_id');
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -1,6 +1,6 @@
 <div>
     <br>
-    <a href="{{ url('register') }}" class="btn btn-success"> Nuevo Usuario </a>
+    <a href="{{ url('users/create') }}" class="btn btn-success"> Nuevo Usuario </a>
     <br>
     <div class="card">
         <div class="card-header">
@@ -27,8 +27,11 @@
                                     <td>{{ $user->email }}</td>
                                     <td>
                                         <div class="d-flex flex-row bd-highlight mb-6">
-                                            <a href="{{ url('/users/' . $user->id . '/edit') }}" class="btn btn-info">
-                                                Editar </a>|
+                                            <a href="{{ url('/users/' . $user->id . '/editRoles') }}" class="btn btn-info">
+                                                Asignar Roles </a>|
+                                            <a href="{{ url('/users/' . $user->id . '/edit') }}"
+                                                class="btn btn-warning">
+                                                Editar Perfil</a>|
                                             <form class="form-eliminar" action="{{ url('/users/' . $user->id) }}"
                                                 method="post" class="d-inline">
                                                 @csrf

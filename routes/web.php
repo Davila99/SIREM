@@ -64,7 +64,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 
-   
+    //Rutas para actualizar Roles
+    Route::get('/users/{user}/editRoles', [UserController::class, 'editRoles']);
+    Route::get('/users/updateRoles', [UserController::class, 'updateRoles']);
+
+
     Route::resource('users', UserController::class);
     Route::resource('cargos', CargoController::class);
     Route::resource('seccion', SeccionController::class);
@@ -96,6 +100,7 @@ Route::middleware(['auth'])->group(function () {
         OrganizacionAcademicaController::class,
         'changeStatus',
     ]);
+ 
     Route::get('buscar-estudiantes', [EstudianteController::class, 'search']);
     Route::get('buscar-grupos', [GruposController::class, 'search']);
     Route::get('buscador-tipo-matriculas', [

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Empleado;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -18,8 +19,7 @@ class UserController extends Controller
     public $search;
 
     public function index()
-    {   
-
+    {
         return view('admin/users.index');
     }
 
@@ -30,7 +30,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $empleados = Empleado::all();
+        $roles = Role::all();
+
+        return view('user/create', compact('empleados', 'roles'));
+        // return view('user/create');
     }
 
     /**
@@ -41,7 +45,32 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'nombres' => 'required|string|max:100',
+                'apellidos' => 'required|string|max:100',
+                'empleado_id' => 'required',
+            ],
+
+            [
+                'nombres.required' => 'El nombre es obligatorio.',
+                'apellidos.required' => 'El apellido es obligatorio.',
+                'empleado_id.required' => 'La profesion es obligatoria.',
+            ]
+        );
+
+        $datos = request()->except('_token');
+
+        $existeDato = Empleado::where('nombres', $datos['nombre'])
+            ->orwhere('apellidos', $datos['apellidos'])
+            ->orwhere('cedula', $datos['cedula'])
+            ->exists();
+        if ($existeDato) {
+            return redirect('users/create')->with('mensaje-error', 'ok');
+        } else {
+            Empleado::insert($datos);
+            return redirect('users/')->with('mensaje', 'ok');
+        }
     }
 
     /**
@@ -65,8 +94,21 @@ class UserController extends Controller
     {
         $roles = Role::all();
         return view('admin/users.edit', compact('user', 'roles'));
+        // return 'En desarrollo...';
     }
+    // public function editRoles(User $user)
+    // {
+    //     $roles = Role::all();
+    //     return view('admin/users.edit', compact('user', 'roles'));
 
+    //     return 'En desarrollo';
+    // }
+    // public function updateRoles(Request $request,User $user)
+    // {
+    //     $user->roles()->sync($request->roles);
+    //     return redirect()->route('users.edit',$user)->with('mensaje', 'ok');
+
+    // }
     /**
      * Update the specified resource in storage.
      *
@@ -74,11 +116,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,User $user)
+    public function update(Request $request, User $user)
     {
         $user->roles()->sync($request->roles);
-        return redirect()->route('users.edit',$user)->with('mensaje', 'ok');
-
+        return redirect()
+            ->route('users.edit', $user)
+            ->with('mensaje', 'ok');
+        // return 'Funcianando';
     }
 
     /**

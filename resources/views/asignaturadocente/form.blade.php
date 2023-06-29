@@ -50,14 +50,12 @@
                 <h5>Empleado:</h5>
             </label>
             <select class="form-control @error('empleado_id') is-invalid @enderror" name="empleado_id" id="empleado">
-
                 <option value="" selected disabled>--Seleccione--</option>
-
                 @isset($empleados)
                     @foreach ($empleados as $empleado)
                         <option value="{{ $empleado->id }}"
                             @if (!empty($datos->empleado_id)) {{ $datos->empleado_id == $empleado->id ? 'selected' : '' }} @else {{ old('empleado_id') == $empleado->id ? 'selected' : '' }} @endif>
-                            {{ $empleado->nombres }} </option>
+                            {{ $empleado->nombres }} {{ $empleado->apellidos }} </option>
                     @endforeach
                 @endisset
             </select>
@@ -66,7 +64,6 @@
                     <h5> {{ $message }}</h5>
                 </div>
             @enderror
-
         </div>
 
         <div class="form-group">
@@ -86,7 +83,7 @@
         <input type="submit" value="Guardar" class="btn btn-success">
     </div>
 
-    <div class="d-grid mt-1 col-sm-10">
+    <div class="d-grid mt-1 col-sm-1">
         <a type="button" class="btn btn-primary" href="{{ url('asignaturadocente/') }}"> Regresar </a>
     </div>
 
@@ -102,7 +99,7 @@
                     delay: 250,
                     processResults: function(data, params) {
                         let results = [];
-                        if (data) {
+                        if (data) { 
                             results = data.data.map(item => {
                                 return {
                                     id: item.id,
