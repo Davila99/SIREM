@@ -1,6 +1,6 @@
 <fieldset class="border p-4">
     <div class="form-group">
-        <label for="nombre">
+        <label for="name">
             <h5>Nombre de Usuario</h5>
         </label>
         <input type="text" id="name" name="name"class="form-control @error('name') is-invalid @enderror"
@@ -11,6 +11,7 @@
             </div>
         @enderror
     </div>
+
     <div class="form-group">
         <label for="email">
             <h5>Correo Electronico:</h5>
@@ -56,23 +57,20 @@
                     autocomplete="new-password" placeholder="Contraseña"></div>
             <div class="p-2 bd-highlight">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-                        <i class="fa fa-eye"></i>
+                    <button class="btn btn-outline-success" type="button" id="togglePassword">
+                        <i id="togglePassword" class="fa fa-eye"></i>
                     </button>
                 </div>
             </div>
         </div>
-        
 
-        @error('password')
-            <div class="invalid-feedback">
-                <h5> {{ $message }}</h5>
-            </div>
-        @enderror
+        <div class="invalid-feedback">
+            <h5>Las contraseñas no coinciden.</h5>
+        </div>
     </div>
 
-    {{-- <div class="form-group">
-        <label for="password">
+    <div class="form-group">
+        <label for="passwordConfirmation">
             <h5>Confirmar contraseña</h5>
         </label>
         <div class="d-flex bd-highlight">
@@ -81,28 +79,26 @@
                     required autocomplete="new-passwordConfirmation" placeholder="Confirmacion de contraseña"></div>
             <div class="p-2 bd-highlight">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="toggleCondirmadPassword">
-                        <i class="fa fa-eye"></i>
+                    <button class="btn btn-outline-success" type="button" id="passwordConfirmation">
+                        <i id="toggleConfirmPassword" class="fa fa-eye"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        @error('password_confirmation')
-            <div class="invalid-feedback">
-                <h5> {{ $message }}</h5>
-            </div>
-        @enderror
-    </div> --}}
+        <div class="invalid-feedback">
+            <h5>Las contraseñas no coinciden.</h5>
+        </div>
+    </div>
 </fieldset>
 
 <div class="mt-2 row justify-content-center">
     <div class=" d-grid mt-1 col-sm-1">
-        <input type="submit" value="Guardar" class="btn btn-success">
+        <input type="submit" value="Guardar" id="PasswordVerication" class="btn btn-success">
     </div>
 
     <div class="d-grid mt-1 col-sm-10">
-        <a type="button" class="btn btn-primary" href="{{ url('tutores/') }}"> Regresar </a>
+        <a type="button" class="btn btn-primary" href="{{ url('users/') }}"> Regresar </a>
     </div>
 </div>
 
@@ -125,28 +121,59 @@
 
                 if (passwordFieldType === 'password') {
                     passwordInput.attr('type', 'text');
-                    $('#togglePassword i').removeClass('fa-eye').addClass('fa-eye-slash');
+                    $('#togglePassword').removeClass('fa-eye').addClass('fa-eye-slash');
                 } else {
                     passwordInput.attr('type', 'password');
-                    $('#togglePassword i').removeClass('fa-eye-slash').addClass('fa-eye');
+                    $('#togglePassword').removeClass('fa-eye-slash').addClass('fa-eye');
                 }
             });
 
-        });
-        $(document).ready(function() {
-            $('#toggleCondirmadPassword').click(function() {
-                var passworConfirmationdInput = $('#passwordConfirmation');
-                var passwordConfirmationFieldType = passworConfirmationdInput.attr('type');
+            $('#toggleConfirmPassword').click(function() {
+                var passwordConfirmationInput = $('#passwordConfirmation');
+                var passwordConfirmationFieldType = passwordConfirmationInput.attr('type');
 
-                if (passwordConfirmationFieldType === 'passwordConfirmation') {
-                    passworConfirmationdInput.attr('type', 'text');
-                    $('#toggleCondirmadPassword i').removeClass('fa-eye').addClass('fa-eye-slash');
+                if (passwordConfirmationFieldType === 'password') {
+                    passwordConfirmationInput.attr('type', 'text');
+                    $('#toggleConfirmPassword').removeClass('fa-eye').addClass('fa-eye-slash');
                 } else {
-                    passworConfirmationdInput.attr('type', 'passwordConfirmation');
-                    $('#toggleCondirmadPassword i').removeClass('fa-eye-slash').addClass('fa-eye');
+                    passwordConfirmationInput.attr('type', 'password');
+                    $('#toggleConfirmPassword').removeClass('fa-eye-slash').addClass('fa-eye');
                 }
             });
+        });
 
+        document.addEventListener("DOMContentLoaded", function() {
+            const passwordInput = document.getElementById("password");
+            const passwordConfirmationInput = document.getElementById("passwordConfirmation");
+            const errorFeedbacks = document.querySelectorAll(".invalid-feedback");
+
+            function validatePasswords() {
+                const passwordValue = passwordInput.value;
+                const passwordConfirmationValue = passwordConfirmationInput.value;
+
+                if (passwordValue !== passwordConfirmationValue) {
+                    // Mostrar el mensaje de error
+                    errorFeedbacks.forEach(function(feedback) {
+                        feedback.style.display = "block";
+                    });
+
+                    // Aplicar estilo de campo inválido
+                    passwordInput.classList.add("is-invalid");
+                    passwordConfirmationInput.classList.add("is-invalid");
+                } else {
+                    // Ocultar el mensaje de error
+                    errorFeedbacks.forEach(function(feedback) {
+                        feedback.style.display = "none";
+                    });
+
+                    // Remover estilo de campo inválido
+                    passwordInput.classList.remove("is-invalid");
+                    passwordConfirmationInput.classList.remove("is-invalid");
+                }
+            }
+
+            passwordInput.addEventListener("input", validatePasswords);
+            passwordConfirmationInput.addEventListener("input", validatePasswords);
         });
     </script>
 @endsection

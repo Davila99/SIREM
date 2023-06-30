@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Empleado;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -47,28 +48,30 @@ class UserController extends Controller
     {
         $request->validate(
             [
-                'nombres' => 'required|string|max:100',
-                'apellidos' => 'required|string|max:100',
+                'name' => 'required|string|max:100',
+                'email' => 'required|string|max:100',
                 'empleado_id' => 'required',
             ],
 
             [
-                'nombres.required' => 'El nombre es obligatorio.',
-                'apellidos.required' => 'El apellido es obligatorio.',
-                'empleado_id.required' => 'La profesion es obligatoria.',
+                'name.required' => 'El nombre es obligatorio.',
+                'email.required' => 'El email es obligatorio.',
+                'empleado_id.required' => 'La empleado es obligatoria.',
             ]
         );
-
         $datos = request()->except('_token');
-
-        $existeDato = Empleado::where('nombres', $datos['nombre'])
-            ->orwhere('apellidos', $datos['apellidos'])
-            ->orwhere('cedula', $datos['cedula'])
+        $existeDato = User::where('email', $datos['email'])
+            ->orwhere('empleado_id', $datos['empleado_id'])
             ->exists();
         if ($existeDato) {
             return redirect('users/create')->with('mensaje-error', 'ok');
         } else {
-            Empleado::insert($datos);
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->empleado_id = $request->empleado_id;
+            $user->save();
             return redirect('users/')->with('mensaje', 'ok');
         }
     }
@@ -133,6 +136,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+        return redirect('users/')->with('mensaje-eliminar', 'ok');
     }
 }
