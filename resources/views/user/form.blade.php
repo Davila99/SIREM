@@ -152,21 +152,17 @@
                 const passwordConfirmationValue = passwordConfirmationInput.value;
 
                 if (passwordValue !== passwordConfirmationValue) {
-                    // Mostrar el mensaje de error
                     errorFeedbacks.forEach(function(feedback) {
                         feedback.style.display = "block";
                     });
 
-                    // Aplicar estilo de campo inválido
                     passwordInput.classList.add("is-invalid");
                     passwordConfirmationInput.classList.add("is-invalid");
                 } else {
-                    // Ocultar el mensaje de error
                     errorFeedbacks.forEach(function(feedback) {
                         feedback.style.display = "none";
                     });
 
-                    // Remover estilo de campo inválido
                     passwordInput.classList.remove("is-invalid");
                     passwordConfirmationInput.classList.remove("is-invalid");
                 }
