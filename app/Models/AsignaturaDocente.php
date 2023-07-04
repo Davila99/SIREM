@@ -12,6 +12,10 @@ class AsignaturaDocente extends Model
     {
         return $this->belongsTo(Asignatura::class,'asignatura_id','id');
     }
+    public function matricula()
+    {
+        return $this->belongsTo(Matricula::class,'id');
+    }
 
     public function empleado()
     {      

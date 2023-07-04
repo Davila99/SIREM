@@ -15,11 +15,10 @@ class GruposController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:grupos.index')->only('index','show');
-        $this->middleware('can:grupos.edit')->only('edit','update');
-        $this->middleware('can:grupos.create')->only('create','store');
+        $this->middleware('can:grupos.index')->only('index', 'show');
+        $this->middleware('can:grupos.edit')->only('edit', 'update');
+        $this->middleware('can:grupos.create')->only('create', 'store');
         $this->middleware('can:grupos.destroy')->only('destroy');
-        
     }
     /**
      * Display a listing of the resource.
@@ -28,13 +27,12 @@ class GruposController extends Controller
      */
     public function index()
     {
-
-        $datos['grupos'] =Grupos::query()
-        ->with(['grado'])
-        ->with(['empleado'])
-        ->with(['seccion'])
-        ->with(['turno'])
-        ->paginate(10);
+        $datos['grupos'] = Grupos::query()
+            ->with(['grado'])
+            ->with(['empleado'])
+            ->with(['seccion'])
+            ->with(['turno'])
+            ->paginate(10);
         //  dd($datos);
         return view('grupos/index', $datos);
     }
@@ -50,8 +48,11 @@ class GruposController extends Controller
         $secciones = Seccion::all();
         $turnos = Turno::all();
         $empleados = Empleado::where('cargos_id', 1)->get();
-        
-        return view('grupos/create', compact('grados','empleados','secciones','turnos'));
+
+        return view(
+            'grupos/create',
+            compact('grados', 'empleados', 'secciones', 'turnos')
+        );
     }
 
     /**
@@ -61,25 +62,21 @@ class GruposController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $request->validate(
             [
                 'empleado_id' => 'required',
                 'grado_id' => 'required',
                 'seccion_id' => 'required',
-                'turno_id' => 'required'
+                'turno_id' => 'required',
             ],
-    
             [
-
                 'empleado_id.required' => 'El docente es obligatorio.',
                 'grado_id.required' => 'El grado es obligatorio.',
                 'seccion_id.required' => 'El grupo es obligatorio.',
                 'turno_id.required' => 'El grupo es obligatorio.',
             ]
         );
-    
-
 
         $fecha = date('d-m-Y');
         $grupo = new Grupos();
@@ -90,7 +87,6 @@ class GruposController extends Controller
         $grupo->turno_id = $request->turno_id;
         $grupo->save();
         return redirect('grupos/')->with('mensaje', 'ok');
-        
     }
 
     /**
@@ -116,10 +112,15 @@ class GruposController extends Controller
         $grados = Grado::all();
         $secciones = Seccion::all();
         $turnos = Turno::all();
-        $empleados = Empleado::where('cargos_id',1)->get();
-       
-        return view('grupos/edit',["datos"=>$datos,"grados"=>$grados,"empleados"=>$empleados,"secciones"=>$secciones,"turnos"=>$turnos]);
+        $empleados = Empleado::where('cargos_id', 1)->get();
 
+        return view('grupos/edit', [
+            'datos' => $datos,
+            'grados' => $grados,
+            'empleados' => $empleados,
+            'secciones' => $secciones,
+            'turnos' => $turnos,
+        ]);
     }
 
     /**
@@ -130,7 +131,7 @@ class GruposController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
+    {
         $request->validate(
             [
                 'empleado_id' => 'required',
@@ -138,9 +139,8 @@ class GruposController extends Controller
                 'seccion_id' => 'required',
                 'turno_id' => 'required',
             ],
-    
-            [
 
+            [
                 'empleado_id.required' => 'El docente es obligatorio.',
                 'grado_id.required' => 'El grado es obligatorio.',
                 'seccion_id.required' => 'El grupo es obligatorio.',
@@ -163,28 +163,25 @@ class GruposController extends Controller
     public function destroy($id)
     {
         Grupos::destroy($id);
-        return redirect('grupos/')->with('mensaje-eliminar','ok');
+        return redirect('grupos/')->with('mensaje-eliminar', 'ok');
     }
 
     public function search(Request $request)
     {
-
         if (!isset($request->term)) {
             return [
-                'data' => []
+                'data' => [],
             ];
         }
 
-
         $results = Grupos::query()
-            ->with('grado','empleado')
+            ->with('grado', 'empleado')
             ->whereHas('grado', function ($q) use ($request) {
-                $q->where('descripcion', 'like', "%" . $request->term . "%");
+                $q->where('descripcion', 'like', '%' . $request->term . '%');
             })
-            
+
             ->get();
 
-            return new GrupoCollection($results);
-       
+        return new GrupoCollection($results);
     }
 }

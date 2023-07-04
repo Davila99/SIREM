@@ -97,21 +97,27 @@ class UserController extends Controller
     {
         $roles = Role::all();
         return view('admin/users.edit', compact('user', 'roles'));
-        // return 'En desarrollo...';
     }
     // public function editRoles(User $user)
     // {
     //     $roles = Role::all();
     //     return view('admin/users.edit', compact('user', 'roles'));
-
-    //     return 'En desarrollo';
     // }
-    // public function updateRoles(Request $request,User $user)
-    // {
-    //     $user->roles()->sync($request->roles);
-    //     return redirect()->route('users.edit',$user)->with('mensaje', 'ok');
-
-    // }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateRoles(Request $request, User $user)
+    {   
+        $user->roles()->sync($request->roles);
+       
+        return redirect()
+            ->route('users.edit', $user)
+            ->with('mensaje', 'ok');
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -122,6 +128,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->roles()->sync($request->roles);
+        // dd($user);
         return redirect()
             ->route('users.edit', $user)
             ->with('mensaje', 'ok');
