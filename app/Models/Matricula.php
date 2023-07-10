@@ -11,7 +11,7 @@ class Matricula extends Model
 
     public function estudiante()
     {
-        return $this->belongsTo(Estudiante::class);
+        return $this->hasMany(Estudiante::class);
     }
     public function tipo_matricula()
     {

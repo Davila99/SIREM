@@ -18,4 +18,8 @@ class Estudiante extends Model
     {
         return $this->belongsTo(Sexo::class);
     }
+    public function matricula()
+    {
+        return $this->belongsTo(Matricula::class);
+    }
 }

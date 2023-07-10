@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CalificacionDetalle;
 use App\Http\Requests\StoreCalificacionDetalleRequest;
 use App\Http\Requests\UpdateCalificacionDetalleRequest;
+use App\Models\AsignaturaDocente;
 
 class CalificacionDetalleController extends Controller
 {
@@ -15,7 +16,11 @@ class CalificacionDetalleController extends Controller
      */
     public function index()
     {
-        //
+       $cursos = AsignaturaDocente::query()
+            ->with(['matricula'])
+            ->where('empleado_id', auth()->id())->get();
+            dd($cursos);
+        return view('calificaciondetalles.index', [ 'cursos' => $cursos]);
     }
 
     /**

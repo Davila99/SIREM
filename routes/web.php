@@ -6,6 +6,7 @@ use App\Http\Controllers\AsignaturaDocenteController;
 use App\Http\Controllers\BuscadorEmpledado;
 use App\Http\Controllers\BuscadorEstudiante;
 use App\Http\Controllers\BuscadorMatricula;
+use App\Http\Controllers\CalificacionDetalleController;
 use App\Http\Controllers\CalificacionesController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ConsanguiniedadeController;
@@ -16,15 +17,14 @@ use App\Http\Controllers\EstudiantesTutoresController;
 use App\Http\Controllers\GradoController;
 use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\GruposController;
-use App\Http\Controllers\MiDocencia\MiDocenciaController;
 use App\Http\Controllers\NivelesAcademicoController;
 use App\Http\Controllers\OrganizacionAcademicaController;
 use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\RolController;
 use App\Http\Controllers\SeccionController;
 use App\Http\Controllers\TipoMatriculaController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\TutoreController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,10 +65,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 
     //Rutas para actualizar Roles
-    Route::get('/users/{user}/editRoles', [UserController::class, 'editRoles']);
-    Route::get('/users/updateRoles', [UserController::class, 'updateRoles']);
+    Route::get('/users/{user}/editRoles', [UserController::class, 'editRoles'])->name('users.editRoles');
+    Route::put('/users/{user}', [UserController::class, 'updateRoles'])->name('users.updateRoles');
+    //  Route::put('/users/{user}', [UserController::class, 'updateRoles']);
 
-
+    Route::resource('roles', RolController::class);
     Route::resource('users', UserController::class);
     Route::resource('cargos', CargoController::class);
     Route::resource('seccion', SeccionController::class);
@@ -91,6 +92,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('matriculas', MatriculaController::class);
     Route::resource('grupos', GruposController::class);
     Route::resource('calificaciones', CalificacionesController::class);
+    Route::resource('calificacionesDetalles', CalificacionDetalleController::class); 
     Route::resource('tutorestudiante', EstudiantesTutoresController::class);
     Route::resource(
         'organizacionacademica',
