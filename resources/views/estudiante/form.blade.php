@@ -84,20 +84,48 @@
 
     </div>
     <br>
-    <div class="form-group">
-        <label for="sexo">
-            <h5>Sexo:</h5>
-        </label>
-        <select class="form-control @error('sexo_id') is-invalid @enderror" name="sexo_id" id="sexo">
-            <option value="" selected disabled>--Seleccione--</option>
-
-            @isset($sexos)
-                @foreach ($sexos as $sexo)
-                    <option value="{{ $sexo->id }}"
-                        @if (!empty($datos->sexo_id)) {{ $datos->sexo_id == $sexo->id ? 'selected' : '' }} @else {{ old('sexo_id') == $sexo->id ? 'selected' : '' }} @endif>
-                        {{ $sexo->descripcion }} </option>
-                @endforeach
-            @endisset
+        <div class="form-group">
+            <label for="tutor">
+                <h5>Tutor:</h5>
+            </label>
+            <div class="d-flex bd-highlight">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <select class="form-control @error('tutor_id') is-invalid @enderror" name="tutor_id" id="tutor">
+                        <option value="" selected disabled>--Seleccione--</option>
+        
+                        @isset($tutores)
+                            @foreach ($tutores as $tutor)
+                                <option value="{{ $tutor->id }}"
+                                    @if (!empty($datos->tutor_id)) {{ $datos->tutor_id == $tutor->id ? 'selected' : '' }} @else {{ old('tutor_id') == $tutor->id ? 'selected' : '' }} @endif>
+                                    {{ $tutor->nombre }} {{ $tutor->apellido }} </option>
+                            @endforeach
+                        @endisset
+        
+                    </select>
+                    @error('tutor_id')
+                        <div class="invalid-feedback">
+                            <h5> {{ $message }}</h5>
+                        </div>
+                    @enderror
+                </div>
+                <div class="p-2 bd-highlight"><a href="{{ url('tutores/create') }}" class="btn btn-success"> Agregar </a></div>
+                
+              </div>
+        
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="sexo">
+                <h5>Sexo:</h5>
+            </label>
+            <select class="form-control @error('sexo_id') is-invalid @enderror" name="sexo_id" id="sexo">
+                <option value="" selected disabled>--Seleccione--</option>
+                @isset($sexos)
+                    @foreach ($sexos as $sexo)
+                        <option value="{{ $sexo->id }}"
+                            @if (!empty($datos->sexo_id)) {{ $datos->sexo_id == $sexo->id ? 'selected' : '' }} @else {{ old('sexo_id') == $sexo->id ? 'selected' : '' }} @endif>
+                            {{ $sexo->descripcion }} </option>
+                    @endforeach
 
         </select>
         @error('sexo_id')

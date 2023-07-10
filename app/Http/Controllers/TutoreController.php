@@ -71,10 +71,7 @@ class TutoreController extends Controller
 
         $datos = request()->except('_token');
 
-        $existeDato = Tutore::where('nombre', $datos['nombre'])
-            ->orwhere('apellido', $datos['apellido'])
-            ->orwhere('cedula', $datos['cedula'])
-            ->exists();
+        $existeDato = Tutore::where('cedula', $datos['cedula'])->exists();
         if ($existeDato) {
             return redirect('tutores/create')->with('mensaje-error', 'ok');
         } else {
@@ -139,13 +136,36 @@ class TutoreController extends Controller
                 'professions_id.required' => 'La profesion es obligatoria.',
             ]
         );
+        $datos = request()->except(['_token','_method']);
+$existeDato =  Tutore::where('cedula', $datos['cedula'])->where('id', '!=', $id)->exists();
+if ($existeDato) {
+    return redirect('tutores/'.$id.'/edit')->with('mensaje-error', 'ok');
+} else {
+    Tutore::where('id','=',$id)->update($datos);
+    $datos = Tutore::findOrFail($id);
+    return redirect('tutores')->with('mensaje-editar','ok');
+}
 
-        $datos = request()->except(['_token', '_method']);
 
-        Tutore::where('id', '=', $id)->update($datos);
-        $datos = Tutore::findOrFail($id);
+        //$datos = request()->except(['_token','_method']);
+        
+        //$existeDato =  Tutore::where('cedula', $datos)->exists();
+        //if ($existeDato) {
+            //return redirect('tutores/'.$id.'/edit')->with('mensaje-error', 'ok');
+     //   } else {
+       //     Tutore::where('id','=',$id)->update($datos);
+        //    $datos =  Tutore::findOrFail($id);
+        //    return redirect('tutores')->with('mensaje-editar','ok');
+       // }
 
-        return redirect('tutores')->with('mensaje-editar', 'ok');
+        
+
+       // $datos = request()->except(['_token', '_method']);
+
+        //Tutore::where('id', '=', $id)->update($datos);
+        //$datos = Tutore::findOrFail($id);
+
+       // return redirect('tutores')->with('mensaje-editar', 'ok');
     }
 
     /**

@@ -33,7 +33,7 @@
                             <td>{{ $estudiante->fecha_nacimiento }}</td>
                             <td>{{ $estudiante->edad }}</td>
                             <td>{{ $estudiante->direccion }}</td>
-                            <td>{{ $estudiante->tutor->nombre }}</td>
+                            <td>{{ $estudiante->tutor->nombre }} {{ $estudiante->tutor->apellido }}</td>
                             <td>{{ $estudiante->sexo->descripcion }}</td>
                             <td>
                                 <div class="d-flex flex-row bd-highlight mb-6">
