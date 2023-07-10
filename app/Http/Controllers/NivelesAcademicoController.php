@@ -103,10 +103,16 @@ class NivelesAcademicoController extends Controller
             'descripcion.required' => 'El campo es obligatorio.',
         ]
     );
-        $datos = request()->except(['_token', '_method']);
-        Niveles_academico::where('id', '=', $id)->update($datos);
-        $datos = Niveles_academico::findOrFail($id);
+    $datos = request()->except(['_token','_method']);
+    $existeDato =  Niveles_academico::where('descripcion', $datos)->exists();
+    if ($existeDato) {
+        return redirect('nivelacademic/'.$id.'/edit')->with('mensaje-error', 'ok');
+    } else {
+        Niveles_academico::where('id','=',$id)->update($datos);
+        $datos =  Niveles_academico::findOrFail($id);
         return redirect('nivelacademic')->with('mensaje-editar','ok');
+    }
+
     }
 
     /**

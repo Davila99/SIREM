@@ -105,10 +105,16 @@ class ProfessionController extends Controller
             'descripcion.required' => 'El campo es obligatorio.',
         ]
     );
-        $datos = request()->except(['_token', '_method']);
-        Profession::where('id', '=', $id)->update($datos);
+    $datos = request()->except(['_token','_method']);
+    $existeDato = Profession::where('descripcion', $datos)->exists();
+    if ($existeDato) {
+        return redirect('profession/'.$id.'/edit')->with('mensaje-error', 'ok');
+    } else {
+        Profession::where('id','=',$id)->update($datos);
         $datos = Profession::findOrFail($id);
         return redirect('profession')->with('mensaje-editar','ok');
+    }
+
     }
 
     /**

@@ -101,11 +101,18 @@ class CortesEvaluativoController extends Controller
             'descripcion.required' => 'El campo es obligatorio.'
         ]
          );
-        $datos = request()->except(['_token', '_method']);
+         $datos = request()->except(['_token','_method']);
+        $existeDato =  Cortes_evaluativo::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('cevaluativos/'.$id.'/edit')->with('mensaje-error', 'ok');
+        } else {
+            Cortes_evaluativo::where('id','=',$id)->update($datos);
+            $datos =  Cortes_evaluativo::findOrFail($id);
+            return redirect('cevaluativos')->with('mensaje-editar','ok');
+        }
 
-        Cortes_evaluativo::where('id', '=', $id)->update($datos);
-        $datos = Cortes_evaluativo::findOrFail($id);
-        return redirect('cevaluativos')->with('mensaje-editar', 'ok');
+
+        
     }
 
     /**

@@ -104,11 +104,16 @@ class SeccionController extends Controller
             'descripcion.required' => 'El campo es obligatorio.'
         ]
          );
-        $datos = request()->except(['_token', '_method']);
-        Seccion::where('id', '=', $id)->update($datos);
-
-        $datos = Seccion::findOrFail($id);
-        return redirect('seccion/')->with('mensaje-editar','ok');
+         $datos = request()->except(['_token','_method']);
+        $existeDato =  Seccion::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('seccion/'.$id.'/edit')->with('mensaje-error', 'ok');
+        } else {
+            Seccion::where('id','=',$id)->update($datos);
+            $datos =  Seccion::findOrFail($id);
+            return redirect('seccion')->with('mensaje-editar','ok');
+        }
+       
     }
 
     /**

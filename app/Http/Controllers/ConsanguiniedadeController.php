@@ -103,12 +103,21 @@ class ConsanguiniedadeController extends Controller
                 'descripcion.required' => 'El campo es obligatorio.',
             ]
         );
-        $datos = request()->except(['_token', '_method']);
+        $datos = request()->except(['_token','_method']);
+        $existeDato = Consanguiniedade::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('consanguiniedades/'.$id.'/edit')->with('mensaje-error', 'ok');
+        } else {
+            Consanguiniedade::where('id','=',$id)->update($datos);
+            $datos = Consanguiniedade::findOrFail($id);
+            return redirect('consanguiniedades')->with('mensaje-editar','ok');
+        }
+       //// $datos = request()->except(['_token', '_method']);
 
-        Consanguiniedade::where('id', '=', $id)->update($datos);
+        //Consanguiniedade::where('id', '=', $id)->update($datos);
 
-        $datos = Consanguiniedade::findOrFail($id);
-        return redirect('consanguiniedades')->with('mensaje-editar', 'ok');
+        //$datos = Consanguiniedade::findOrFail($id);
+        //return redirect('consanguiniedades')->with('mensaje-editar', 'ok');
     }
 
     /**

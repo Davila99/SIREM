@@ -102,12 +102,16 @@ class AsignaturaController extends Controller
                 'descripcion.required' => 'El campo es obligatorio.',
             ]
         );
-        $datos = request()->except(['_token', '_method']);
-
-        Asignatura::where('id', '=', $id)->update($datos);
-
-        $datos = Asignatura::findOrFail($id);
-        return redirect('asignaturas')->with('mensaje-editar', 'ok');
+        $datos = request()->except(['_token','_method']);
+        $existeDato = Asignatura::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('asignaturas/'.$id.'/edit')->with('mensaje-error', 'ok');
+        } else {
+            Asignatura::where('id','=',$id)->update($datos);
+            $datos = Asignatura::findOrFail($id);
+            return redirect('asignaturas')->with('mensaje-editar','ok');
+        }
+        
     }
 
     /**

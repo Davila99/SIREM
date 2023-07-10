@@ -108,9 +108,15 @@ class GradoController extends Controller
             ]
         );
         $datos = request()->except(['_token','_method']);
-        Grado::where('id','=',$id)->update($datos);
-        $datos = Grado::findOrFail($id);
-        return redirect('grados')->with('mensaje-editar','ok');
+        $existeDato = Grado::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('grados/'.$id.'/edit')->with('mensaje-error', 'ok');
+        } else {
+            Grado::where('id','=',$id)->update($datos);
+            $datos = Grado::findOrFail($id);
+            return redirect('grados')->with('mensaje-editar','ok');
+        }
+   
     }
 
     /**
