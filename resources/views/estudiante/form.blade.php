@@ -66,7 +66,7 @@
                             @foreach ($tutores as $tutor)
                                 <option value="{{ $tutor->id }}"
                                     @if (!empty($datos->tutor_id)) {{ $datos->tutor_id == $tutor->id ? 'selected' : '' }} @else {{ old('tutor_id') == $tutor->id ? 'selected' : '' }} @endif>
-                                    {{ $tutor->nombre }} </option>
+                                    {{ $tutor->nombre }} {{ $tutor->apellido }} </option>
                             @endforeach
                         @endisset
         
