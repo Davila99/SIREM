@@ -105,10 +105,16 @@ class TipoMatriculaController extends Controller
                 'descripcion.required' => 'El campo es obligatorio.',
             ]
         );
-        $datos = request()->except(['_token', '_method']);
-        Tipo_Matricula::where('id', '=', $id)->update($datos);
+        $datos = request()->except(['_token','_method']);
+    $existeDato = Tipo_Matricula::where('descripcion', $datos)->exists();
+    if ($existeDato) {
+        return redirect('tmatricula/'.$id.'/edit')->with('mensaje-error', 'ok');
+    } else {
+        Tipo_Matricula::where('id','=',$id)->update($datos);
         $datos = Tipo_Matricula::findOrFail($id);
-        return redirect('tmatricula')->with('mensaje-editar', 'ok');
+        return redirect('tmatricula')->with('mensaje-editar','ok');
+    }
+
     }
 
     /**

@@ -104,12 +104,16 @@ class TurnoController extends Controller
                 'descripcion.required' => 'El campo es obligatorio.',
             ]
         );
-        $datos = request()->except(['_token', '_method']);
+        $datos = request()->except(['_token','_method']);
+        $existeDato =   Turno::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('turnos/'.$id.'/edit')->with('mensaje-error', 'ok');
+        } else {
+            Turno::where('id','=',$id)->update($datos);
+            $datos =   Turno::findOrFail($id);
+            return redirect('turnos')->with('mensaje-editar','ok');
+        }
 
-        Turno::where('id', '=', $id)->update($datos);
-
-        $datos = Turno::findOrFail($id);
-        return redirect('turnos')->with('mensaje-editar', 'ok');
     }
 
     /**

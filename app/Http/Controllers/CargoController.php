@@ -102,12 +102,20 @@ class CargoController extends Controller
             [
                 'descripcion.required' => 'El campo es obligatorio.',
             ]
-        );
-        $datos = request()->except(['_token', '_method']);
-        Cargo::where('id', '=', $id)->update($datos);
+        );$datos = request()->except(['_token','_method']);
+        $existeDato = Cargo::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('cargos/'.$id.'/edit')->with('mensaje-error', 'ok');
+        } else {
+            Cargo::where('id','=',$id)->update($datos);
+            $datos = Cargo::findOrFail($id);
+            return redirect('cargos')->with('mensaje-editar','ok');
+        }
+       // $datos = request()->except(['_token', '_method']);
+       // Cargo::where('id', '=', $id)->update($datos);
 
-        $datos = Cargo::findOrFail($id);
-        return redirect('cargos/')->with('mensaje-editar', 'ok');
+        //$datos = Cargo::findOrFail($id);
+       // return redirect('cargos/')->with('mensaje-editar', 'ok');
     }
 
     /**
