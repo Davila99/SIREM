@@ -147,9 +147,9 @@ if ($existeDato) {
 }
 
 
-        //$datos = request()->except(['_token','_method']);
         
-        //$existeDato =  Tutore::where('cedula', $datos)->exists();
+        
+      
         //if ($existeDato) {
             //return redirect('tutores/'.$id.'/edit')->with('mensaje-error', 'ok');
      //   } else {
@@ -176,12 +176,13 @@ if ($existeDato) {
      */
     public function destroy($id)
     {
-        $estudiante = Estudiante::exists($id);
-        if ($estudiante) {
-            return redirect('tutores/')->with('mensaje-error-eliminar', 'ok');
-        } else {
-            Tutore::destroy($id);
-            return redirect('tutores/')->with('mensaje-eliminar', 'ok');
-        }
+        $estudiante = Estudiante::find($id);
+    if ($estudiante) {
+    return redirect('tutores/')->with('mensaje-error-eliminar', 'ok');
+
+           } else {
+        Tutore::destroy($id);
+       return redirect('tutores/')->with('mensaje-eliminar', 'ok');
+       }
     }
 }
