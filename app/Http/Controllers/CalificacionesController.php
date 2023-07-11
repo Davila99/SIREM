@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Calificaciones;
+use App\Models\Grupos;
 use Illuminate\Http\Request;
 use App\Models\AsignaturaDocente;
 use App\Models\Estudiante;
@@ -33,22 +34,11 @@ class CalificacionesController extends Controller
     }
     public function getEstudiantes($id)
     {
-        $estudiantes = Estudiante::query()
-            ->leftJoin(
-                'matriculas',
-                'estudiantes.id',
-                '=',
-                'matriculas.estudiante_id'
-            )
-            ->leftJoin(
-                'matricula_rows',
-                'matricula_rows.matricula_id',
-                '=',
-                'matriculas.id'
-            )
-            ->where('matricula_rows.id', '=', $id)
-            ->get();
-        return $estudiantes;
+        return Matricula::query()
+            ->with(['estudiante'])
+            ->where('grupo_id', $id)
+            ->get()
+            ->pluck('estudiante');
     }
     public function getCorte($id)
     {
@@ -61,14 +51,26 @@ class CalificacionesController extends Controller
         return $corte + 1;
     }
 
-    public function generarActa($id, Request $request)
+    public function generarActa($grupoId, $asignaturaId, Request $request)
     {
+        $corte = 1;
+
+        $acta = Calificaciones::query()
+            ->where('asignatura_id', $asignaturaId)
+            ->where('corte', $corte)
+            // ->where('grupo_id', $grupoId) // TODO: agregar grupo_id a la tabla calificaciones
+            ->first();
+
+        if ($acta) {
+            $acta->load('calificaciones.estudiante');
+            return $acta;
+        }
+
         $docente = $this->getDocente();
-        $estudiantes = $this->getEstudiantes($id);
-        $corte = $this->getCorte($id);
+        $estudiantes = $this->getEstudiantes($grupoId);
 
         //TODO: generar acta
-        $acta = $this->setActa($id, $docente, $estudiantes, $corte);
+        $acta = $this->setActa($grupoId, $docente, $estudiantes, $corte);
 
         //TODO: generar acta rows
         $filas = $this->setActaRows($acta, $estudiantes);
@@ -94,12 +96,13 @@ class CalificacionesController extends Controller
             $actaRow->calificacion_id = $acta->id;
             $actaRow->estudiante_id = $estudiante->id;
             $actaRow->calificacion = 0;
+            $actaRow->corte_evaluativo_id = $acta->corte;
             $actaRow->save();
         }
         $filas = CalificacionDetalle::query()
             ->where('calificacion_id', '=', $acta->id)
             ->get();
-            return $filas;
+        return $filas;
     }
     public function index()
     {
