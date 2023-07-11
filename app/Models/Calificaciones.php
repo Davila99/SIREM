@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Calificaciones extends Model
 {
+    protected $fillable = [
+        'fecha',
+        'empleado_id',
+        'asignatura_id',
+        'observaciones',
+        'corte',
+    ];
     use HasFactory;
     public function asignaturadocente()
     {

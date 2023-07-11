@@ -17,6 +17,7 @@ use App\Http\Controllers\EstudiantesTutoresController;
 use App\Http\Controllers\GradoController;
 use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\GruposController;
+use App\Http\Controllers\MatriculaRowController;
 use App\Http\Controllers\NivelesAcademicoController;
 use App\Http\Controllers\OrganizacionAcademicaController;
 use App\Http\Controllers\ProfessionController;
@@ -60,9 +61,10 @@ Route::get('/home', [
 ])->name('home');
 
 Route::middleware(['auth'])->group(function () {
+    Route::post('generar-acta/{id}', [CalificacionesController::class, 'generarActa']);
     // Rutas de registro
     Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
-    Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
+    Route::post(    '/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 
     //Rutas para actualizar Roles
     Route::get('/users/{user}/editRoles', [UserController::class, 'editRoles'])->name('users.editRoles');
@@ -70,6 +72,7 @@ Route::middleware(['auth'])->group(function () {
     //  Route::put('/users/{user}', [UserController::class, 'updateRoles']);
 
     Route::resource('roles', RolController::class);
+    Route::resource('matricula-rows', MatriculaRowController::class);
     Route::resource('users', UserController::class);
     Route::resource('cargos', CargoController::class);
     Route::resource('seccion', SeccionController::class);
@@ -102,7 +105,8 @@ Route::middleware(['auth'])->group(function () {
         OrganizacionAcademicaController::class,
         'changeStatus',
     ]);
- 
+   
+
     Route::get('buscar-estudiantes', [EstudianteController::class, 'search']);
     Route::get('buscar-grupos', [GruposController::class, 'search']);
     Route::get('buscador-tipo-matriculas', [

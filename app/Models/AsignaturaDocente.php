@@ -34,5 +34,10 @@ class AsignaturaDocente extends Model
     {
         return $this->belongsTo(OrganizacionAcademica::class,'organizacion_academica_id');
     }
+    public function matriculaRows()
+    {
+        return $this->hasMany(MatriculaRow::class);
+    }
+
 
 }
