@@ -21,7 +21,7 @@
                                 {{-- <a href="{{ url('/calificacionesDetalles/' . $curso->id) }}" class="btn btn-success">
                                     Estudiantes </a> <div class="d-grid mt-1 col-sm-1"> --}}
 
-                                        <form action="{{ url('/generar-acta/'. $curso->id) }}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('generar-acta', ['grupoId' => $curso->id,  'asignaturaId' => $curso->asignatura->id]) }}" method="post" enctype="multipart/form-data">
                                             @csrf
                                             <input type="hidden" name="curso_id" value="{{ $curso->id }}">
                                             <input type="submit" value="Generar Acta" class="btn btn-warning"/>
