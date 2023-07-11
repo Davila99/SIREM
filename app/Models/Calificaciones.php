@@ -35,4 +35,9 @@ class Calificaciones extends Model
     {
         return $this->belongsTo(Cortes_evaluativo::class);
     }
+
+    public function calificaciones()
+    {
+        return $this->hasMany(CalificacionDetalle::class, 'calificacion_id');
+    }
 }
