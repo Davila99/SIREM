@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\AsignaturaDocente;
 use App\Models\Estudiante;
 use App\Models\CalificacionDetalle;
-
+use App\Models\Cortes_evaluativo;
 use App\Models\Matricula;
 use Illuminate\Support\Facades\Auth;
 
@@ -51,13 +51,13 @@ class CalificacionesController extends Controller
         return $corte + 1;
     }
 
-    public function generarActa($grupoId, $asignaturaId, Request $request)
+    public function generarActa($grupoId, $asignaturaId, $corteId, Request $request)
     {
-        $corte = 1;
+        
 
         $acta = Calificaciones::query()
             ->where('asignatura_id', $asignaturaId)
-            ->where('corte', $corte)
+            ->where('corte', $corteId)
             // ->where('grupo_id', $grupoId) // TODO: agregar grupo_id a la tabla calificaciones
             ->first();
 
@@ -70,7 +70,7 @@ class CalificacionesController extends Controller
         $estudiantes = $this->getEstudiantes($grupoId);
 
         //TODO: generar acta
-        $acta = $this->setActa($grupoId, $docente, $estudiantes, $corte);
+        $acta = $this->setActa($grupoId, $docente, $estudiantes, $corteId);
 
         //TODO: generar acta rows
         $filas = $this->setActaRows($acta, $estudiantes);
@@ -85,7 +85,7 @@ class CalificacionesController extends Controller
         $acta->empleado_id = $docente->id;
         $acta->asignatura_id = $id;
         $acta->observaciones = 'Acta de calificaciones del corte ' . $corte;
-        $acta->corte = $corte;
+        $acta->corte_evaluativo_id = $corte->id;
         $acta->save();
         return $acta;
     }
@@ -96,7 +96,7 @@ class CalificacionesController extends Controller
             $actaRow->calificacion_id = $acta->id;
             $actaRow->estudiante_id = $estudiante->id;
             $actaRow->calificacion = 0;
-            $actaRow->corte_evaluativo_id = $acta->corte;
+            $actaRow->corte_evaluativo_id = $acta->corte->id;
             $actaRow->save();
         }
         $filas = CalificacionDetalle::query()
@@ -111,8 +111,8 @@ class CalificacionesController extends Controller
             ->with(['grupo'])
             ->where('empleado_id', auth()->id())
             ->get();
-        // dd($cursos);
-        return view('calificaciones.index', ['cursos' => $cursos]);
+        $cortes = Cortes_evaluativo::all();
+        return view('calificaciones.index', compact('cursos', 'cortes'));
     }
     /**
      * Show the form for creating a new resource.

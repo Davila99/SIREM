@@ -61,7 +61,7 @@ Route::get('/home', [
 ])->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('generar-acta/{grupoId}/{asignaturaId}', [CalificacionesController::class, 'generarActa'])->name('generar-acta');
+    Route::post('generar-acta/{grupoId}/{asignaturaId}/{corteId}', [CalificacionesController::class, 'generarActa'])->name('generar-acta');
     // Rutas de registro
     Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
