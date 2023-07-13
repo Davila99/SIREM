@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Matricula extends Model
 {
     use HasFactory;
+    
 
     public function estudiante()
     {
@@ -32,20 +33,27 @@ class Matricula extends Model
             'id'
         );
     }
-
     public function grupo()
     {
-        return $this->hasOneThrough(
-            Grado::class,
-            Grupos::class,
-            'grado_id',
-            'id',
-            'grupo_id',
-            'id'
-        );
+        return $this->belongsTo(Grupos::class);
     }
+    // public function grupo()
+    // {
+    //     return $this->hasOneThrough(
+    //         Grado::class,
+    //         Grupos::class,
+    //         'grado_id',
+    //         'id',
+    //         'grupo_id',
+    //         'id'
+    //     );
+    // }
     public function users()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+    public function matriculaRows()
+    {
+        return $this->hasMany(MatriculaRow::class);
     }
 }

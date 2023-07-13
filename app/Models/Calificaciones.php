@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Calificaciones extends Model
 {
+    protected $fillable = [
+        'fecha',
+        'empleado_id',
+        'asignatura_id',
+        'observaciones',
+        'corte',
+    ];
     use HasFactory;
     public function asignaturadocente()
     {
@@ -27,5 +34,10 @@ class Calificaciones extends Model
     public function cortes_evaluativo()
     {
         return $this->belongsTo(Cortes_evaluativo::class);
+    }
+
+    public function calificaciones()
+    {
+        return $this->hasMany(CalificacionDetalle::class, 'calificacion_id');
     }
 }

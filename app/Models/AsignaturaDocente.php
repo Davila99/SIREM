@@ -12,6 +12,10 @@ class AsignaturaDocente extends Model
     {
         return $this->belongsTo(Asignatura::class,'asignatura_id','id');
     }
+    public function matricula()
+    {
+        return $this->belongsTo(Matricula::class,'id');
+    }
 
     public function empleado()
     {      
@@ -30,5 +34,10 @@ class AsignaturaDocente extends Model
     {
         return $this->belongsTo(OrganizacionAcademica::class,'organizacion_academica_id');
     }
+    public function matriculaRows()
+    {
+        return $this->hasMany(MatriculaRow::class);
+    }
+
 
 }

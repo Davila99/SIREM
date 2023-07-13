@@ -22,7 +22,7 @@ class Grupos extends Model
     
     public function asignaturaDocente()
     {
-        return $this->hasMany(AsignaturaDocente::class);
+        return $this->hasMany(AsignaturaDocente::class,'grupo_id','id');
     }
     public function seccion()
     {

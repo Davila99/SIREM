@@ -45,7 +45,7 @@ class User extends Authenticatable
 
      public function empleado()
      {
-         return $this->hasOne(Empleado::class);
+         return $this->hasOne(Empleado::class,'id','empleado_id');
      }
 
     protected $casts = [
@@ -58,6 +58,6 @@ class User extends Authenticatable
         return "Administrador";
     } 
     public function adminlte_profile_url(){
-        return "profile/username";
+        return "home";
     } 
 }
