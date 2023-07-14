@@ -62,11 +62,11 @@ class CalificacionesController extends Controller
             ->where('corte_evaluativo_id', $corteId)
             // ->where('grupo_id', $grupoId) // TODO: agregar grupo_id a la tabla calificaciones
             ->first();
+            
+        if ($acta) {
             $filas = CalificacionDetalle::query()
             ->where('calificacion_id', '=', $acta->id)
             ->get();
-       
-        if ($acta && $filas) {
             $acta->load('calificaciones.estudiante');
             return view('calificaciones.show', compact('acta', 'filas'));
         }
@@ -80,8 +80,6 @@ class CalificacionesController extends Controller
         //TODO: generar acta rows
         //
         $filas = $this->setActaRows($acta, $estudiantes);
-
-        // dd($filas->toArray(), $acta->toArray());
         return view('calificaciones.show', compact('acta', 'filas'));
     }
 
@@ -102,7 +100,7 @@ class CalificacionesController extends Controller
             $actaRow = new CalificacionDetalle();
             $actaRow->calificacion_id = $acta->id;
             $actaRow->estudiante_id = $estudiante->id;
-            $actaRow->calificacion = 20;
+            $actaRow->calificacion = 30;
             $actaRow->corte_evaluativo_id = $acta->corte_evaluativo_id;
             $actaRow->save();
         }
