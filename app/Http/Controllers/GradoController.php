@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Grado;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\TryCatch;
 
 class GradoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:grados.index')->only('index','show');
-        $this->middleware('can:grados.edit')->only('edit','update');
-        $this->middleware('can:grados.create')->only('create','store');
+        $this->middleware('can:grados.index')->only('index', 'show');
+        $this->middleware('can:grados.edit')->only('edit', 'update');
+        $this->middleware('can:grados.create')->only('create', 'store');
         $this->middleware('can:grados.destroy')->only('destroy');
-        
+
     }
 
     /**
@@ -26,8 +24,8 @@ class GradoController extends Controller
     public function index()
     {
         $datos['grados'] = Grado::paginate(10);
-        
-        return view('grado/index',$datos);
+
+        return view('grado/index', $datos);
     }
 
     /**
@@ -87,7 +85,7 @@ class GradoController extends Controller
     public function edit($id)
     {
         $datos = Grado::findOrFail($id);
-        return view('grado/edit',compact('datos'));
+        return view('grado/edit', compact('datos'));
     }
 
     /**
@@ -107,16 +105,16 @@ class GradoController extends Controller
                 'descripcion.required' => 'El campo es obligatorio.',
             ]
         );
-        $datos = request()->except(['_token','_method']);
+        $datos = request()->except(['_token', '_method']);
         $existeDato = Grado::where('descripcion', $datos)->exists();
         if ($existeDato) {
-            return redirect('grados/'.$id.'/edit')->with('mensaje-error', 'ok');
+            return redirect('grados/' . $id . '/edit')->with('mensaje-error', 'ok');
         } else {
-            Grado::where('id','=',$id)->update($datos);
+            Grado::where('id', '=', $id)->update($datos);
             $datos = Grado::findOrFail($id);
-            return redirect('grados')->with('mensaje-editar','ok');
+            return redirect('grados')->with('mensaje-editar', 'ok');
         }
-   
+
     }
 
     /**
@@ -129,9 +127,9 @@ class GradoController extends Controller
     {
         try {
             Grado::destroy($id);
-            return redirect('grados/')->with('mensaje-eliminar','ok');
+            return redirect('grados/')->with('mensaje-eliminar', 'ok');
         } catch (\Throwable $th) {
-            return redirect('grados')->with('mensaje-error-eliminar','ok');
+            return redirect('grados')->with('mensaje-error-eliminar', 'ok');
         }
 
     }

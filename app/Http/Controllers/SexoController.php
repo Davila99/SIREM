@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sexo;
 use App\Http\Requests\StoreSexoRequest;
 use App\Http\Requests\UpdateSexoRequest;
+use App\Models\Sexo;
 
 class SexoController extends Controller
 {

@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Carbon\Carbon;
-
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -18,20 +17,20 @@ class ProfesionSeeder extends Seeder
     {
         DB::table('professions')->insert([
             'descripcion' => 'Ingeniero en sistemas',
-            'created_at'=> Carbon::now(),
-            'updated_at'=> Carbon::now()
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
 
         DB::table('professions')->insert([
             'descripcion' => 'Administrador de empresas',
-            'created_at'=> Carbon::now(),
-            'updated_at'=> Carbon::now()
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
 
         ]);
         DB::table('professions')->insert([
             'descripcion' => 'Ingenerio Agroforestal',
-            'created_at'=> Carbon::now(),
-            'updated_at'=> Carbon::now()
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
 
         ]);
     }

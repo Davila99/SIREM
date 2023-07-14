@@ -10,7 +10,7 @@ class MatriculaRow extends Model
     use HasFactory;
     protected $fillable = [
         'matricula_id',
-        'asignatura_docente_id'
+        'asignatura_docente_id',
     ];
     public function asignaturaDocente()
     {

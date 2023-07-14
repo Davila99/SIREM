@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Grupos;
-
 use App\Http\Resources\GrupoCollection;
-use Illuminate\Http\Request;
 use App\Models\Empleado;
 use App\Models\Grado;
+use App\Models\Grupos;
 use App\Models\Seccion;
 use App\Models\Turno;
+use Illuminate\Http\Request;
 
 class GruposController extends Controller
 {

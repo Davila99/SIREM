@@ -15,10 +15,10 @@ class BuscadorMatricula extends Controller
     public function index()
     {
         $datos['matriculas'] = Matricula::query()
-        ->with(['estudiante'])
-        ->with(['tipo_matricula'])
-        ->with(['grupo'])
-        ->with(['user'])->get();
+            ->with(['estudiante'])
+            ->with(['tipo_matricula'])
+            ->with(['grupo'])
+            ->with(['user'])->get();
         return response()->json($datos);
     }
 

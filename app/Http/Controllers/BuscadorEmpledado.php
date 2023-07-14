@@ -15,8 +15,8 @@ class BuscadorEmpledado extends Controller
     public function index()
     {
         $datos['empleados'] = Empleado::query()
-        ->with(['nivel_academico'])
-        ->with(['cargos'])->get();
+            ->with(['nivel_academico'])
+            ->with(['cargos'])->get();
         return response()->json($datos);
     }
 

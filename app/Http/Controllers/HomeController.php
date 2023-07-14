@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Estudiante;
-use Illuminate\Http\Request;
 use Spatie\FlareClient\View;
 
 class HomeController extends Controller

@@ -9,11 +9,11 @@ class ConsanguiniedadeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:consanguiniedades.index')->only('index','show');
-        $this->middleware('can:consanguiniedades.edit')->only('edit','update');
-        $this->middleware('can:consanguiniedades.create')->only('create','store');
+        $this->middleware('can:consanguiniedades.index')->only('index', 'show');
+        $this->middleware('can:consanguiniedades.edit')->only('edit', 'update');
+        $this->middleware('can:consanguiniedades.create')->only('create', 'store');
         $this->middleware('can:consanguiniedades.destroy')->only('destroy');
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -103,16 +103,16 @@ class ConsanguiniedadeController extends Controller
                 'descripcion.required' => 'El campo es obligatorio.',
             ]
         );
-        $datos = request()->except(['_token','_method']);
+        $datos = request()->except(['_token', '_method']);
         $existeDato = Consanguiniedade::where('descripcion', $datos)->exists();
         if ($existeDato) {
-            return redirect('consanguiniedades/'.$id.'/edit')->with('mensaje-error', 'ok');
+            return redirect('consanguiniedades/' . $id . '/edit')->with('mensaje-error', 'ok');
         } else {
-            Consanguiniedade::where('id','=',$id)->update($datos);
+            Consanguiniedade::where('id', '=', $id)->update($datos);
             $datos = Consanguiniedade::findOrFail($id);
-            return redirect('consanguiniedades')->with('mensaje-editar','ok');
+            return redirect('consanguiniedades')->with('mensaje-editar', 'ok');
         }
-       //// $datos = request()->except(['_token', '_method']);
+        //// $datos = request()->except(['_token', '_method']);
 
         //Consanguiniedade::where('id', '=', $id)->update($datos);
 

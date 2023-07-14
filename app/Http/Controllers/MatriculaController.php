@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Matricula;
 use App\Models\Estudiante;
 use App\Models\Grupos;
+use App\Models\Matricula;
 use App\Models\Tipo_Matricula;
 use Illuminate\Http\Request;
 
@@ -12,11 +12,11 @@ class MatriculaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:matriculas.index')->only('index','show');
-        $this->middleware('can:matriculas.edit')->only('edit','update');
-        $this->middleware('can:matriculas.create')->only('create','store');
+        $this->middleware('can:matriculas.index')->only('index', 'show');
+        $this->middleware('can:matriculas.edit')->only('edit', 'update');
+        $this->middleware('can:matriculas.create')->only('create', 'store');
         $this->middleware('can:matriculas.destroy')->only('destroy');
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -30,9 +30,9 @@ class MatriculaController extends Controller
             ->with(['user'])
             ->paginate(10);
 
-            // dd($datos);
-            return view('matriculas/index', $datos);
-        
+        // dd($datos);
+        return view('matriculas/index', $datos);
+
     }
     public function busqueda()
     {
@@ -62,15 +62,14 @@ class MatriculaController extends Controller
                 'tipo_matricula_id' => 'required',
                 'grupo_id' => 'required',
             ],
-    
+
             [
-    
+
                 'estudiante_id.required' => 'El estudiantes es obligatorio.',
                 'tipo_matricula_id.required' => 'El tipo de matricula es obligatorio.',
                 'grupo_id.required' => 'El grupo es obligatorio.',
             ]
         );
-
 
         $fecha = date('d-m-Y');
         $matricula = new Matricula();
@@ -81,9 +80,9 @@ class MatriculaController extends Controller
         $matricula->tipo_matricula_id = $request->tipo_matricula_id;
         $matricula->grupo_id = $request->grupo_id;
         $matricula->save();
-      
-        return redirect('matriculas/')->with('mensaje','ok');
-        
+
+        return redirect('matriculas/')->with('mensaje', 'ok');
+
     }
 
     /**
@@ -110,8 +109,8 @@ class MatriculaController extends Controller
         $estudiante = Estudiante::all();
         $tipo_matricula = Tipo_Matricula::all();
         $grupos = Grupos::all();
-       
-        return view('matriculas/edit',["datos"=>$datos,"estudiante"=>$estudiante,"tipo_matricula"=>$tipo_matricula,"grupos"=>$grupos]);
+
+        return view('matriculas/edit', ["datos" => $datos, "estudiante" => $estudiante, "tipo_matricula" => $tipo_matricula, "grupos" => $grupos]);
     }
 
     /**
@@ -129,9 +128,9 @@ class MatriculaController extends Controller
                 'tipo_matricula_id' => 'required',
                 'grupo_id' => 'required',
             ],
-    
+
             [
-    
+
                 'estudiante_id.required' => 'El estudiantes es obligatorio.',
                 'tipo_matricula_id.required' => 'El tipo de matricula es obligatorio.',
                 'grupo_id.required' => 'El grupo es obligatorio.',
@@ -141,7 +140,7 @@ class MatriculaController extends Controller
         $datos = request()->except(['_token', '_method']);
         Matricula::where('id', '=', $id)->update($datos);
         $datos = Matricula::findOrFail($id);
-        return redirect('matriculas/')->with('mensaje-editar','ok');
+        return redirect('matriculas/')->with('mensaje-editar', 'ok');
     }
 
     /**
@@ -153,6 +152,6 @@ class MatriculaController extends Controller
     public function destroy($id)
     {
         Matricula::destroy($id);
-        return redirect('matriculas/')->with('mensaje-eliminar','ok');
+        return redirect('matriculas/')->with('mensaje-eliminar', 'ok');
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MatriculaRow;
 use App\Http\Requests\StoreMatriculaRowRequest;
 use App\Http\Requests\UpdateMatriculaRowRequest;
+use App\Models\MatriculaRow;
 
 class MatriculaRowController extends Controller
 {
@@ -15,7 +15,7 @@ class MatriculaRowController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**

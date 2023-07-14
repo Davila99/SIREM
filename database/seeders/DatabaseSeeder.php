@@ -14,7 +14,6 @@ use Database\Seeders\TipoMatriculaSeeder;
 use Database\Seeders\TurnoSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,7 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(
             SexoSeeder::class
         );
-        
+
         $this->call(
             TurnoSeeder::class
         );

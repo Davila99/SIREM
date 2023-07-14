@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Carbon\Carbon;
-
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -18,20 +17,20 @@ class ConsanguinieddSeeder extends Seeder
     {
         DB::table('consanguiniedades')->insert([
             'descripcion' => 'Hermano',
-            'created_at'=> Carbon::now(),
-            'updated_at'=> Carbon::now()
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
 
         DB::table('consanguiniedades')->insert([
             'descripcion' => 'Padre',
-            'created_at'=> Carbon::now(),
-            'updated_at'=> Carbon::now()
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
 
         ]);
         DB::table('consanguiniedades')->insert([
             'descripcion' => 'Madre',
-            'created_at'=> Carbon::now(),
-            'updated_at'=> Carbon::now()
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
 
         ]);
     }
