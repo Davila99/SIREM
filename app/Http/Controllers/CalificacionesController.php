@@ -59,13 +59,16 @@ class CalificacionesController extends Controller
     ) {
         $acta = Calificaciones::query()
             ->where('asignatura_id', $asignaturaId)
-            ->where('corte', $corteId)
+            ->where('corte_evaluativo_id', $corteId)
             // ->where('grupo_id', $grupoId) // TODO: agregar grupo_id a la tabla calificaciones
             ->first();
-
-        if ($acta) {
+            $filas = CalificacionDetalle::query()
+            ->where('calificacion_id', '=', $acta->id)
+            ->get();
+       
+        if ($acta && $filas) {
             $acta->load('calificaciones.estudiante');
-            return $acta;
+            return view('calificaciones.show', compact('acta', 'filas'));
         }
 
         $docente = $this->getDocente();
