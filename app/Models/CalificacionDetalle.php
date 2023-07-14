@@ -13,4 +13,9 @@ class CalificacionDetalle extends Model
     {
         return $this->belongsTo(Estudiante::class);
     }
+    public function corteEvaluativo()
+    {
+        return $this->belongsTo(Cortes_evaluativo::class);
+    }
+
 }
