@@ -126,6 +126,7 @@
                             @if (!empty($datos->sexo_id)) {{ $datos->sexo_id == $sexo->id ? 'selected' : '' }} @else {{ old('sexo_id') == $sexo->id ? 'selected' : '' }} @endif>
                             {{ $sexo->descripcion }} </option>
                     @endforeach
+                @endisset
 
         </select>
         @error('sexo_id')
