@@ -51,10 +51,12 @@ class CalificacionesController extends Controller
         return $corte + 1;
     }
 
-    public function generarActa($grupoId, $asignaturaId, $corteId, Request $request)
-    {
-        
-
+    public function generarActa(
+        $grupoId,
+        $asignaturaId,
+        $corteId,
+        Request $request
+    ) {
         $acta = Calificaciones::query()
             ->where('asignatura_id', $asignaturaId)
             ->where('corte', $corteId)
@@ -73,9 +75,11 @@ class CalificacionesController extends Controller
         $acta = $this->setActa($grupoId, $docente, $estudiantes, $corteId);
 
         //TODO: generar acta rows
+        //
         $filas = $this->setActaRows($acta, $estudiantes);
 
-        dd($filas->toArray(), $acta->toArray());
+        // dd($filas->toArray(), $acta->toArray());
+        return view('calificaciones.show', compact('acta', 'filas'));
     }
 
     public function setActa($id, $docente, $estudiantes, $corte)
@@ -85,7 +89,7 @@ class CalificacionesController extends Controller
         $acta->empleado_id = $docente->id;
         $acta->asignatura_id = $id;
         $acta->observaciones = 'Acta de calificaciones del corte ' . $corte;
-        $acta->corte_evaluativo_id = $corte->id;
+        $acta->corte_evaluativo_id = $corte;
         $acta->save();
         return $acta;
     }
@@ -95,8 +99,8 @@ class CalificacionesController extends Controller
             $actaRow = new CalificacionDetalle();
             $actaRow->calificacion_id = $acta->id;
             $actaRow->estudiante_id = $estudiante->id;
-            $actaRow->calificacion = 0;
-            $actaRow->corte_evaluativo_id = $acta->corte->id;
+            $actaRow->calificacion = 20;
+            $actaRow->corte_evaluativo_id = $acta->corte_evaluativo_id;
             $actaRow->save();
         }
         $filas = CalificacionDetalle::query()

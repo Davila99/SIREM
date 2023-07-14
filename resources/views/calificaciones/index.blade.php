@@ -18,13 +18,7 @@
                         <td>{{ $curso->grupo->grado->descripcion }}</td>
                         <td>
                             <div class="d-flex flex-row bd-highlight mb-6">
-                            
-                                        {{-- <form action="{{ route('generar-acta', ['grupoId' => $curso->id,  'asignaturaId' => $curso->asignatura->id]) }}" method="post" enctype="multipart/form-data">
-                                            @csrf
-                                            <input type="hidden" name="curso_id" value="{{ $curso->id }}">
-                                            <input type="submit" value="Generar Acta" class="btn btn-warning " data-toggle="modal" data-target="#miModal"/>
-                                           
-                                        </form> --}}
+                                <div class="p-2 bd-highlight">
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#miModal">
                                             Actas Ademicas
                                         </button>
@@ -58,8 +52,8 @@
                             @csrf
                             <input type="hidden" name="curso_id" value="{{ $curso->id }}">
                             <input type="submit" value="Generar Acta" class="btn btn-warning " data-toggle="modal" data-target="#miModal"/>
-                        
-                        </form></th>
+                        </form>
+                    </th>
                     </tr>
                 @endforeach
             </tbody>
@@ -71,5 +65,4 @@
             </div>
         </div>
     </div>
-    
 @stop
