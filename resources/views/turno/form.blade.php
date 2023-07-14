@@ -1,4 +1,3 @@
-
 <fieldset class="border p-4">
     <div class="form-group">
         <label for="descripcion">
@@ -15,13 +14,13 @@
     </div>
 </fieldset>
 <div class="mt-5 row justify-content-center">
-<div class="d-grid mt-1 col-sm-1">
-    <input type="submit" value="Guardar" class="btn btn-success">
-</div>
+    <div class="d-grid mt-1 col-sm-1">
+        <input type="submit" value="Guardar" class="btn btn-success">
+    </div>
 
-<div class="d-grid mt-1 col-sm-10">
-    <a  type="button" class="btn btn-primary"  href="{{ url('turnos/') }}"> Regresar </a>
-</div>
+    <div class="d-grid mt-1 col-sm-10">
+        <a type="button" class="btn btn-primary" href="{{ url('turnos/') }}"> Regresar </a>
+    </div>
 </div>
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
