@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('layouts.custom-layout')
 @section('content')
 
     <head>
@@ -116,6 +116,7 @@
 @endsection
 
 @section('js')
+<script src="{{ asset('js/app.js') }}"></script>
     @if (Session::has('mensaje-nota'))
         <script>
             Swal.fire({
@@ -129,23 +130,22 @@
     @endif
     <script>
         $(document).ready(function() {
-            $('#tablaEstudiantes').DataTable({
-                "order": [[0, "asc"]] // Ordenar por la primera columna en orden ascendente (Estudiante)
-            });
+            var tableId = 'tablaEstudiantes';
+            initializeDataTable(tableId);
         });
     </script>
     
     <script>
         $(document).ready(function() {
             $('#miModal').on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget); // Botón que activa el modal
-                var id = button.data('id'); // Obtener el valor del atributo data-id
-                console.log('ID: ' + id); // Mostrar el ID en la consola
+                var button = $(event.relatedTarget); 
+                var id = button.data('id'); 
+                console.log('ID: ' + id);
 
-                // Asignar el valor del ID al input
+            
                 $('#input-id').val(id);
 
-                // Realizar acciones adicionales con el ID aquí
+              
             });
         });
     </script>

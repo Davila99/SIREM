@@ -50,7 +50,7 @@ class CalificacionesController extends Controller
         $acta = Calificaciones::query()
             ->where('asignatura_id', $asignaturaId)
             ->where('corte_evaluativo_id', $corteId)
-            ->where('grupo_id', $grupoId) // TODO: agregar grupo_id a la tabla calificaciones
+            // ->where('grupo_id', $grupoId) // TODO: agregar grupo_id a la tabla calificaciones
             ->first();
             
         if ($acta) {
@@ -91,7 +91,7 @@ class CalificacionesController extends Controller
             $actaRow = new CalificacionDetalle();
             $actaRow->calificacion_id = $acta->id;
             $actaRow->estudiante_id = $estudiante->id;
-            $actaRow->calificacion = 30;
+            $actaRow->calificacion = 0;
             $actaRow->corte_evaluativo_id = $acta->corte_evaluativo_id;
             $actaRow->save();
         }

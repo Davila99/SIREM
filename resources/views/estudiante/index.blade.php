@@ -1,15 +1,14 @@
-@extends('adminlte::page')
+@extends('layouts.custom-layout')
 
 @section('content')
     <div class="container">
-
         <br>
         <div class="form-group ">
             <a href="{{ url('estudiantes/create') }}" class="btn btn-success"> Nuevo Estudiante </a>
         </div>
 
         <div class="table-responsive">
-            <table class="table table-dark">
+            <table id="estudiantes-table" class="table table-dark">
                 <thead class="thead-light">
                     <tr>
                         <th>Nombres</th>
@@ -36,8 +35,11 @@
                             <td>{{ $estudiante->sexo->descripcion }}</td>
                             <td>
                                 <div class="d-flex flex-row bd-highlight mb-6">
-                                    <a href="{{ url('/estudiantes/' . $estudiante->id . '/edit') }}" class="btn btn-info">
-                                        Editar </a>|
+                                    <div class="class=d-inline">
+                                        <a href="{{ url('/estudiantes/' . $estudiante->id . '/edit') }}" class="btn btn-info">
+                                            Editar </a>
+                                    </div>
+                                    |
                                     <form class="form-eliminar" action="{{ url('/estudiantes/' . $estudiante->id) }}"
                                         method="post" class="d-inline">
                                         @csrf
@@ -56,10 +58,36 @@
 
     </div>
 @endsection
+
 @section('js')
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script>
+        $(document).ready(function() {
+            $('#estudiantes-table').DataTable({
+                "responsive": true,
+                "lengthMenu": [
+                    [5, 10, 50, -1],
+                    [5, 10, 50, "All"]
+                ],
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontraron resultados en su busqueda",
+                    "searchPlaceholder": "Buscar registros",
+                    "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+                    "infoEmpty": "No existen registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "search": "Buscar:",
+                    "paginate": {
+                        first: '<i class="fas fa-angle-double-left"></i>', // Icono para ir a la primera página
+                        previous: '<i class="fas fa-angle-left"></i>', // Icono para ir a la página anterior
+                        next: '<i class="fas fa-angle-right"></i>', // Icono para ir a la página siguiente
+                        last: '<i class="fas fa-angle-double-right"></i>'
+                    },
+                }
 
+            });
 
+        });
+    </script>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (Session::has('mensaje'))

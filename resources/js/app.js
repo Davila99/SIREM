@@ -1,30 +1,31 @@
-import * as ReactDOM from "react-dom/client"
+import * as ReactDOM from "react-dom/client";
+
+require("./bootstrap");
 
 
-require('./bootstrap');
-import App from './components/app'
-
-import 'sweetalert2/src/sweetalert2.scss'
+import "sweetalert2/src/sweetalert2.scss";
 import BuscadorEmpleados from "./components/empleados/BuscadorEmpleados";
-import { CrearEstudiante } from "./components/estudiantes/CrearEstudiante";
 import BuscadorEstudiantes from "./components/estudiantes/BuscadorEstudiantes";
 import BuscadorMatriculas from "./components/matriculas/BuscadorMatriculas";
 //importar sweet alert dialog en las vistas eliminar/confirmar
- window.Swal = require('sweetalert2')
 
- if (document.getElementById('reactapp')) {
-    const appReact = document.getElementById('reactapp');
+import { initializeDataTable } from "./funciones";
+initializeDataTable();
+window.Swal = require("sweetalert2");
+
+if (document.getElementById("reactapp")) {
+    const appReact = document.getElementById("reactapp");
     const root = ReactDOM.createRoot(appReact);
-    root.render(<BuscadorEstudiantes/>);
-  }
-  if (document.getElementById('reactAppBuscadorEmpleado')) {
-    const appReact = document.getElementById('reactAppBuscadorEmpleado');
+    root.render(<BuscadorEstudiantes />);
+}
+if (document.getElementById("reactAppBuscadorEmpleado")) {
+    const appReact = document.getElementById("reactAppBuscadorEmpleado");
     const root = ReactDOM.createRoot(appReact);
-    root.render(<BuscadorEmpleados/>);
-  }
-  if (document.getElementById('reactAppBuscadorMatriculas')) {
-    const appReact = document.getElementById('reactAppBuscadorMatriculas');
+    root.render(<BuscadorEmpleados />);
+}
+if (document.getElementById("reactAppBuscadorMatriculas")) {
+    const appReact = document.getElementById("reactAppBuscadorMatriculas");
     const root = ReactDOM.createRoot(appReact);
-    root.render(<BuscadorMatriculas/>);
-  }
-  
+    root.render(<BuscadorMatriculas />);
+}
+
