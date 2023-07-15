@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -18,14 +17,14 @@ class TipoMatriculaSeeder extends Seeder
     {
         DB::table('tipo__matriculas')->insert([
             'descripcion' => 'Primer ingreso',
-            'created_at'=> Carbon::now(),
-            'updated_at'=> Carbon::now()
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
 
         DB::table('tipo__matriculas')->insert([
             'descripcion' => 'Reingreso',
-            'created_at'=> Carbon::now(),
-            'updated_at'=> Carbon::now()
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
 
         ]);
     }

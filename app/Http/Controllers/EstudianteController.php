@@ -9,16 +9,15 @@ use App\Models\Tutore;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-
 class EstudianteController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:estudiantes.index')->only('index','show');
-        $this->middleware('can:estudiantes.edit')->only('edit','update');
-        $this->middleware('can:estudiantes.create')->only('create','store');
+        $this->middleware('can:estudiantes.index')->only('index', 'show');
+        $this->middleware('can:estudiantes.edit')->only('edit', 'update');
+        $this->middleware('can:estudiantes.create')->only('create', 'store');
         $this->middleware('can:estudiantes.destroy')->only('destroy');
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -73,7 +72,7 @@ class EstudianteController extends Controller
                 'nombres.required' => 'El nombre es obligatorio.',
                 'apellidos.required' => 'El apellido es obligatorio.',
                 'fecha_nacimiento.required' =>
-                    'la fecha de nacimiento es obligatoria.',
+                'la fecha de nacimiento es obligatoria.',
                 'direccion.required' => 'La direccion es obligatoria.',
                 'tutor_id.required' => 'La profesion es obligatoria.',
                 'sexo_id.required' => 'El sexo es obligatorio.',
@@ -152,7 +151,7 @@ class EstudianteController extends Controller
                 'nombres.required' => 'El nombre es obligatorio.',
                 'apellidos.required' => 'El apellido es obligatorio.',
                 'fecha_nacimiento.required' =>
-                    'la fecha de nacimiento es obligatoria.',
+                'la fecha de nacimiento es obligatoria.',
                 'direccion.required' => 'La direccion es obligatoria.',
                 'tutor_id.required' => 'La profesion es obligatoria.',
                 'sexo_id.required' => 'El sexo es obligatorio.',

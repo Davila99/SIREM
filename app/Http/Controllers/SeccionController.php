@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateSeccionRequest;
 use App\Models\Seccion;
 use Illuminate\Http\Request;
-use App\Http\Requests\UpdateSeccionRequest;
 
 class SeccionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:seccion.index')->only('index','show');
-        $this->middleware('can:seccion.edit')->only('edit','update');
-        $this->middleware('can:seccion.create')->only('create','store');
+        $this->middleware('can:seccion.index')->only('index', 'show');
+        $this->middleware('can:seccion.edit')->only('edit', 'update');
+        $this->middleware('can:seccion.create')->only('create', 'store');
         $this->middleware('can:seccion.destroy')->only('destroy');
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -26,7 +26,6 @@ class SeccionController extends Controller
         $datos['secciones'] = Seccion::paginate(10);
         return view('seccion/index', $datos);
 
-        
     }
 
     /**
@@ -48,12 +47,12 @@ class SeccionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'descripcion'=>'required' 
+            'descripcion' => 'required',
         ],
-        [
-            'descripcion.required' => 'El campo es obligatorio.'
-        ]
-         );
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
         $datos = request()->except('_token');
         $existeDato = Seccion::where('descripcion', $datos)->exists();
         if ($existeDato) {
@@ -98,22 +97,22 @@ class SeccionController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'descripcion'=>'required' 
+            'descripcion' => 'required',
         ],
-        [
-            'descripcion.required' => 'El campo es obligatorio.'
-        ]
-         );
-         $datos = request()->except(['_token','_method']);
-        $existeDato =  Seccion::where('descripcion', $datos)->exists();
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
+        $datos = request()->except(['_token', '_method']);
+        $existeDato = Seccion::where('descripcion', $datos)->exists();
         if ($existeDato) {
-            return redirect('seccion/'.$id.'/edit')->with('mensaje-error', 'ok');
+            return redirect('seccion/' . $id . '/edit')->with('mensaje-error', 'ok');
         } else {
-            Seccion::where('id','=',$id)->update($datos);
-            $datos =  Seccion::findOrFail($id);
-            return redirect('seccion')->with('mensaje-editar','ok');
+            Seccion::where('id', '=', $id)->update($datos);
+            $datos = Seccion::findOrFail($id);
+            return redirect('seccion')->with('mensaje-editar', 'ok');
         }
-       
+
     }
 
     /**
@@ -126,10 +125,10 @@ class SeccionController extends Controller
     {
         try {
             Seccion::destroy($id);
-            return redirect('seccion')->with('mensaje-eliminar','ok');
+            return redirect('seccion')->with('mensaje-eliminar', 'ok');
         } catch (\Throwable $th) {
 
-            return redirect('seccion')->with('mensaje-error-eliminar','ok');
+            return redirect('seccion')->with('mensaje-error-eliminar', 'ok');
         }
     }
 }

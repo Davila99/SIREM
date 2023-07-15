@@ -16,11 +16,13 @@ class AsignaturaDocenteController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:asignaturadocente.index')->only('index','show');
-        $this->middleware('can:asignaturadocente.edit')->only('edit','update');
-        $this->middleware('can:asignaturadocente.create')->only('create','store');
+        $this->middleware('can:asignaturadocente.index')->only('index', 'show');
+        $this->middleware('can:asignaturadocente.edit')->only('edit', 'update');
+        $this->middleware('can:asignaturadocente.create')->only(
+            'create',
+            'store'
+        );
         $this->middleware('can:asignaturadocente.destroy')->only('destroy');
-        
     }
     /**
      * Display a listing of the resource.
@@ -29,16 +31,15 @@ class AsignaturaDocenteController extends Controller
      */
     public function index()
     {
-
         $datos['asignaturadocentes'] = AsignaturaDocente::query()
-        ->with(['asignatura'])
-        ->with(['empleado'])
-        ->with(['grado'])
-        ->with(['organizacionAcademica'])
-        ->paginate(10);
-       
+            ->with(['asignatura'])
+            ->with(['empleado'])
+            ->with(['grado'])
+            ->with(['organizacionAcademica'])
+            ->paginate(10);
+
         // dd($datos);
-        return view('asignaturadocente/index',$datos,);
+        return view('asignaturadocente/index', $datos);
     }
 
     /**
@@ -51,9 +52,17 @@ class AsignaturaDocenteController extends Controller
         $asignaturas = Asignatura::all();
         $grupos = Grupos::all();
         $organizacion_academicas = OrganizacionAcademica::all();
-        $empleados = Empleado::where('cargos_id',1)->get();
-     
-        return view('asignaturadocente/create',compact('asignaturas','empleados','grupos','organizacion_academicas'));
+        $empleados = Empleado::where('cargos_id', 1)->get();
+
+        return view(
+            'asignaturadocente/create',
+            compact(
+                'asignaturas',
+                'empleados',
+                'grupos',
+                'organizacion_academicas'
+            )
+        );
     }
 
     /**
@@ -65,14 +74,16 @@ class AsignaturaDocenteController extends Controller
     public function store(Request $request)
     {
         $request->validate(
-            [   'organizacion_academica_id' => 'required',
+            [
+                'organizacion_academica_id' => 'required',
                 'asignatura_id' => 'required',
                 'empleado_id' => 'required',
-                'grupo_id' => 'required'
+                'grupo_id' => 'required',
             ],
-    
+
             [
-                'organizacion_academica_id.required' => 'Organización Academica es obligatorio.',
+                'organizacion_academica_id.required' =>
+                    'Organización Academica es obligatorio.',
                 'asignatura_id.required' => 'La asignatura es obligatorio.',
                 'empleado_id.required' => 'El empleado es obligatorio.',
                 'grupo_id.required' => 'El grupo es obligatorio.',
@@ -80,7 +91,7 @@ class AsignaturaDocenteController extends Controller
         );
         $datos = request()->except('_token');
         AsignaturaDocente::insert($datos);
-        return redirect('asignaturadocente/')->with('mensaje','ok');
+        return redirect('asignaturadocente/')->with('mensaje', 'ok');
     }
 
     /**
@@ -107,8 +118,13 @@ class AsignaturaDocenteController extends Controller
         $asignaturas = Asignatura::all();
         $empleados = Empleado::all();
         $grupos = Grupos::all();
-      
-        return view('asignaturadocente/edit',["datos"=>$datos,"asignaturas"=>$asignaturas,"grupos"=>$grupos,"empleados"=>$empleados]);
+
+        return view('asignaturadocente/edit', [
+            'datos' => $datos,
+            'asignaturas' => $asignaturas,
+            'grupos' => $grupos,
+            'empleados' => $empleados,
+        ]);
     }
 
     /**
@@ -119,25 +135,27 @@ class AsignaturaDocenteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {    $request->validate(
-        [   
-            'organizacion_academica_id' => 'required',
-            'asignatura_id' => 'required',
-            'empleado_id' => 'required',
-            'grupo_id' => 'required',
-        ],
+    {
+        $request->validate(
+            [
+                'organizacion_academica_id' => 'required',
+                'asignatura_id' => 'required',
+                'empleado_id' => 'required',
+                'grupo_id' => 'required',
+            ],
 
-        [
-            'organizacion_academica_id.required' => 'Organización Academica es obligatorio.',
-            'asignatura_id.required' => 'La asignatura es obligatorio.',
-            'empleado_id.required' => 'El empleado es obligatorio.',
-            'grupo_id.required' => 'El grupo es obligatorio.',
-        ]
-    );
+            [
+                'organizacion_academica_id.required' =>
+                    'Organización Academica es obligatorio.',
+                'asignatura_id.required' => 'La asignatura es obligatorio.',
+                'empleado_id.required' => 'El empleado es obligatorio.',
+                'grupo_id.required' => 'El grupo es obligatorio.',
+            ]
+        );
         $datos = request()->except(['_token', '_method']);
         AsignaturaDocente::where('id', '=', $id)->update($datos);
         $datos = AsignaturaDocente::findOrFail($id);
-        return redirect('asignaturadocente/')->with('mensaje-editar','ok');
+        return redirect('asignaturadocente/')->with('mensaje-editar', 'ok');
     }
 
     /**
@@ -149,6 +167,6 @@ class AsignaturaDocenteController extends Controller
     public function destroy($id)
     {
         AsignaturaDocente::destroy($id);
-        return redirect('asignaturadocente/')->with('mensaje-eliminar','ok');
+        return redirect('asignaturadocente/')->with('mensaje-eliminar', 'ok');
     }
 }

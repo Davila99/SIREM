@@ -99,7 +99,7 @@
                     delay: 250,
                     processResults: function(data, params) {
                         let results = [];
-                        if (data) { 
+                        if (data) {
                             results = data.data.map(item => {
                                 return {
                                     id: item.id,

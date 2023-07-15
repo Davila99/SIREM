@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateTurnoRequest;
 use App\Models\Turno;
 use Illuminate\Http\Request;
-use App\Http\Requests\UpdateTurnoRequest;
 
 class TurnoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:turnos.index')->only('index','show');
-        $this->middleware('can:turnos.edit')->only('edit','update');
-        $this->middleware('can:turnos.create')->only('create','store');
+        $this->middleware('can:turnos.index')->only('index', 'show');
+        $this->middleware('can:turnos.edit')->only('edit', 'update');
+        $this->middleware('can:turnos.create')->only('create', 'store');
         $this->middleware('can:turnos.destroy')->only('destroy');
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -104,14 +104,14 @@ class TurnoController extends Controller
                 'descripcion.required' => 'El campo es obligatorio.',
             ]
         );
-        $datos = request()->except(['_token','_method']);
-        $existeDato =   Turno::where('descripcion', $datos)->exists();
+        $datos = request()->except(['_token', '_method']);
+        $existeDato = Turno::where('descripcion', $datos)->exists();
         if ($existeDato) {
-            return redirect('turnos/'.$id.'/edit')->with('mensaje-error', 'ok');
+            return redirect('turnos/' . $id . '/edit')->with('mensaje-error', 'ok');
         } else {
-            Turno::where('id','=',$id)->update($datos);
-            $datos =   Turno::findOrFail($id);
-            return redirect('turnos')->with('mensaje-editar','ok');
+            Turno::where('id', '=', $id)->update($datos);
+            $datos = Turno::findOrFail($id);
+            return redirect('turnos')->with('mensaje-editar', 'ok');
         }
 
     }
@@ -122,14 +122,14 @@ class TurnoController extends Controller
      * @param  \App\Models\Turno  $turno
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id )
+    public function destroy($id)
     {
         try {
             Turno::destroy($id);
-            return redirect('turnos')->with('mensaje-eliminar','ok');
+            return redirect('turnos')->with('mensaje-eliminar', 'ok');
         } catch (\Throwable $th) {
 
-            return redirect('turnos')->with('mensaje-error-eliminar','ok');
+            return redirect('turnos')->with('mensaje-error-eliminar', 'ok');
         }
     }
 }

@@ -6,7 +6,7 @@
                 <div class="row pt-2">
                     <div class="col ps-4">
                         <h1 class="display-6 mb-3">
-                            <i class="bi bi-person-lines-fill"></i> Informacion de asignacion docente 
+                            <i class="bi bi-person-lines-fill"></i> Informacion de asignacion docente
                         </h1>
                         <div class="mb-4">
                             <div class="col-sm-8 col-md-9">
@@ -16,46 +16,46 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Nombres:</th>
-                                                <td>{{$asignaturaDocente->empleado->nombres}}</td>
+                                                <td>{{ $asignaturaDocente->empleado->nombres }}</td>
                                                 <th>Apellidos:</th>
-                                                <td>{{$asignaturaDocente->empleado->apellidos}}</td>
+                                                <td>{{ $asignaturaDocente->empleado->apellidos }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Telefono:</th>
-                                                <td>{{$asignaturaDocente->empleado->telefono}}</td>
+                                                <td>{{ $asignaturaDocente->empleado->telefono }}</td>
                                                 <th scope="row">Cedula:</th>
-                                                <td>{{$asignaturaDocente->empleado->cedula}}</td>
+                                                <td>{{ $asignaturaDocente->empleado->cedula }}</td>
                                             </tr>
                                             <tr>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Fecha de Nacimiento:</th>
-                                                <td>{{$asignaturaDocente->empleado->fecha_nacimiento}}</td>
+                                                <td>{{ $asignaturaDocente->empleado->fecha_nacimiento }}</td>
                                                 <th>Nivel Academico:</th>
-                                                <td>{{$asignaturaDocente->empleado->nivel_academico->descripcion}}</td>
+                                                <td>{{ $asignaturaDocente->empleado->nivel_academico->descripcion }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Direccion:</th>
-                                                <td>{{$asignaturaDocente->empleado->direccion}}</td>
+                                                <td>{{ $asignaturaDocente->empleado->direccion }}</td>
                                                 <th>Email:</th>
-                                                <td>{{$asignaturaDocente->empleado->email}}</td>
+                                                <td>{{ $asignaturaDocente->empleado->email }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Fecha de ingreso</th>
-                                                <td>{{$asignaturaDocente->empleado->fecha_ingreso}}</td>
+                                                <td>{{ $asignaturaDocente->empleado->fecha_ingreso }}</td>
                                                 <th>Cargo:</th>
-                                                <td>{{$asignaturaDocente->empleado->cargos->descripcion}}</td>
+                                                <td>{{ $asignaturaDocente->empleado->cargos->descripcion }}</td>
                                             </tr>
                                             <tr>
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div> 
+                                </div>
                             </div>
 
                             <div class="col-sm-8 col-md-9">
                                 <div class="p-3 mb-3 border rounded bg-white">
-                                    <h6>Informacion  </h6>
+                                    <h6>Informacion </h6>
                                     <table class="table table-responsive mt-3">
                                         <tbody>
                                             <tr>
@@ -90,24 +90,23 @@
                                                 <td>
                                                     <div class="status-bar">
                                                         <div class="status-bar">
-                                                            @if($asignaturaDocente->organizacionAcademica->confirmed==true)
-                                                                    <i class="far fa-thumbs-up"></i>          
+                                                            @if ($asignaturaDocente->organizacionAcademica->confirmed == true)
+                                                                <i class="far fa-thumbs-up"></i>
                                                             @else
                                                                 <i class="far fa-thumbs-down"></i>
                                                             @endif
                                                         </div>
-                                                        
+
                                                     </div>
-                                                    
+
                                                 </td>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="row">
-                                    <a  type="button" class="btn btn-primary" href="{{ url('empleados/') }}"> Regresar </a>
+                                    <a type="button" class="btn btn-primary" href="{{ url('empleados/') }}"> Regresar </a>
                                 </div>
                             </div>
-
 
                         </div>
                     </div>

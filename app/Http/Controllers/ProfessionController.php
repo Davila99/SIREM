@@ -5,18 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Profession;
 use Illuminate\Http\Request;
 
-
-
-
 class ProfessionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:profession.index')->only('index','show');
-        $this->middleware('can:profession.edit')->only('edit','update');
-        $this->middleware('can:profession.create')->only('create','store');
+        $this->middleware('can:profession.index')->only('index', 'show');
+        $this->middleware('can:profession.edit')->only('edit', 'update');
+        $this->middleware('can:profession.create')->only('create', 'store');
         $this->middleware('can:profession.destroy')->only('destroy');
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -26,7 +23,7 @@ class ProfessionController extends Controller
     public function index()
     {
         $datos['professions'] = Profession::paginate(10);
-        return view('profession/index',$datos);
+        return view('profession/index', $datos);
     }
 
     /**
@@ -46,7 +43,7 @@ class ProfessionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {    $request->validate(
+    {$request->validate(
         [
             'descripcion' => 'required',
         ],
@@ -56,7 +53,7 @@ class ProfessionController extends Controller
     );
         $datos = request()->except('_token');
         $array = implode($datos);
-        $existeDato = Profession::where('descripcion', 'like', '%'.$array.'%')->exists();
+        $existeDato = Profession::where('descripcion', 'like', '%' . $array . '%')->exists();
         if ($existeDato) {
             return redirect('profession/create')->with('mensaje-error', 'ok');
         } else {
@@ -86,7 +83,7 @@ class ProfessionController extends Controller
     public function edit($id)
     {
         $datos = Profession::findOrFail($id);
-        return view('profession/edit',compact('datos'));
+        return view('profession/edit', compact('datos'));
     }
 
     /**
@@ -96,8 +93,8 @@ class ProfessionController extends Controller
      * @param  \App\Models\Profession  $profession
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
-    {    $request->validate(
+    public function update(Request $request, $id)
+    {$request->validate(
         [
             'descripcion' => 'required',
         ],
@@ -105,15 +102,15 @@ class ProfessionController extends Controller
             'descripcion.required' => 'El campo es obligatorio.',
         ]
     );
-    $datos = request()->except(['_token','_method']);
-    $existeDato = Profession::where('descripcion', $datos)->exists();
-    if ($existeDato) {
-        return redirect('profession/'.$id.'/edit')->with('mensaje-error', 'ok');
-    } else {
-        Profession::where('id','=',$id)->update($datos);
-        $datos = Profession::findOrFail($id);
-        return redirect('profession')->with('mensaje-editar','ok');
-    }
+        $datos = request()->except(['_token', '_method']);
+        $existeDato = Profession::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('profession/' . $id . '/edit')->with('mensaje-error', 'ok');
+        } else {
+            Profession::where('id', '=', $id)->update($datos);
+            $datos = Profession::findOrFail($id);
+            return redirect('profession')->with('mensaje-editar', 'ok');
+        }
 
     }
 
@@ -123,16 +120,16 @@ class ProfessionController extends Controller
      * @param  \App\Models\Profession  $profession
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
-        
+
         try {
             Profession::destroy($id);
-            return redirect('profession')->with('mensaje-eliminar','ok');
+            return redirect('profession')->with('mensaje-eliminar', 'ok');
         } catch (\Throwable $th) {
 
-            return redirect('profession')->with('mensaje-error-eliminar','ok');
+            return redirect('profession')->with('mensaje-error-eliminar', 'ok');
         }
- 
+
     }
 }

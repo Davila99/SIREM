@@ -2,14 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
-
 use Spatie\Permission\Models\Permission;
-
-
-
+use Spatie\Permission\Models\Role;
 
 class RoleSeeder extends Seeder
 {
@@ -21,14 +16,11 @@ class RoleSeeder extends Seeder
     public function run()
     {
 
-
-
-
         //admin, registro, docente
 
-        $admin =  Role::create(['name' => 'admin']);
-        $registro =   Role::create(['name' => 'registro']);
-        $docente =  Role::create(['name' => 'docente']);
+        $admin = Role::create(['name' => 'admin']);
+        $registro = Role::create(['name' => 'registro']);
+        $docente = Role::create(['name' => 'docente']);
 
         //Permisos de Catalogos
         Permission::create(['name' => 'cargos.index'])->syncRoles([$admin]);
@@ -118,12 +110,11 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'grupos.edit'])->syncRoles([$admin, $registro]);
         Permission::create(['name' => 'grupos.destroy'])->syncRoles([$admin, $registro]);
 
-        //Permisos de Recursos Humanos 
+        //Permisos de Recursos Humanos
         Permission::create(['name' => 'empleados.index'])->syncRoles([$admin]);
         Permission::create(['name' => 'empleados.create'])->syncRoles([$admin]);
         Permission::create(['name' => 'empleados.edit'])->syncRoles([$admin]);
         Permission::create(['name' => 'empleados.destroy'])->syncRoles([$admin]);
-
 
         //Calificaciones
         Permission::create(['name' => 'calificaciones.index'])->syncRoles([$admin, $registro, $docente]);

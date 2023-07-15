@@ -1,12 +1,12 @@
 @extends('adminlte::page')
 @section('content')
-<div class="container">
-    <legend class="text">Registrar Nueva Asignatura</legend>
-    <form action="{{ url('/asignaturas') }}" method="post" enctype="multipart/form-data">
-    @csrf
+    <div class="container">
+        <legend class="text">Registrar Nueva Asignatura</legend>
+        <form action="{{ url('/asignaturas') }}" method="post" enctype="multipart/form-data">
+            @csrf
 
-    @include('asignatura.form')
+            @include('asignatura.form')
 
-</form>
-</div>
+        </form>
+    </div>
 @endsection

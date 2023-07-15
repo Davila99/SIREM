@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Matricula;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreMatriculaRowRequest;
+use App\Http\Requests\UpdateMatriculaRowRequest;
+use App\Models\MatriculaRow;
 
-class BuscadorMatricula extends Controller
+class MatriculaRowController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,12 +15,7 @@ class BuscadorMatricula extends Controller
      */
     public function index()
     {
-        $datos['matriculas'] = Matricula::query()
-            ->with(['estudiante'])
-            ->with(['tipo_matricula'])
-            ->with(['grupo'])
-            ->with(['user'])->get();
-        return response()->json($datos);
+
     }
 
     /**
@@ -35,10 +31,10 @@ class BuscadorMatricula extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreMatriculaRowRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMatriculaRowRequest $request)
     {
         //
     }
@@ -46,10 +42,10 @@ class BuscadorMatricula extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\MatriculaRow  $matriculaRow
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(MatriculaRow $matriculaRow)
     {
         //
     }
@@ -57,10 +53,10 @@ class BuscadorMatricula extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\MatriculaRow  $matriculaRow
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(MatriculaRow $matriculaRow)
     {
         //
     }
@@ -68,11 +64,11 @@ class BuscadorMatricula extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateMatriculaRowRequest  $request
+     * @param  \App\Models\MatriculaRow  $matriculaRow
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMatriculaRowRequest $request, MatriculaRow $matriculaRow)
     {
         //
     }
@@ -80,10 +76,10 @@ class BuscadorMatricula extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\MatriculaRow  $matriculaRow
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(MatriculaRow $matriculaRow)
     {
         //
     }
