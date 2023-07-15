@@ -22,4 +22,8 @@ class Estudiante extends Model
     {
         return $this->belongsTo(Matricula::class);
     }
+    public function calificaciones()
+    {
+        return $this->hasMany(Calificaciones::class, 'estudiante_id');
+    }
 }

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Cortes_evaluativo extends Model
 {
     use HasFactory;
+    public function calificaciones()
+    {
+        return $this->hasMany(Calificaciones::class);
+    }
+
+    
 }

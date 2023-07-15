@@ -14,6 +14,7 @@ class CalificacionDetalleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     private $rules = [
         'fecha' => 'required | date',
         'empleado_id' => 'required | numeric',
@@ -50,6 +51,7 @@ class CalificacionDetalleController extends Controller
         //         ->where('empleado_id', auth()->id())->get();
         dd($matriculas);
         // return view('calificaciondetalles.index', [ 'cursos' => $cursos]);
+
     }
 
     /**
@@ -90,9 +92,10 @@ class CalificacionDetalleController extends Controller
      * @param  \App\Models\CalificacionDetalle  $calificacionDetalle
      * @return \Illuminate\Http\Response
      */
-    public function edit(CalificacionDetalle $calificacionDetalle)
+    public function edit($id)
     {
-        //
+        $datos = CalificacionDetalle::findOrFail($id);
+        return response()->modal('calificacionDetalle.edit', compact('datos'));
     }
 
     /**

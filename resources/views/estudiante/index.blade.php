@@ -1,14 +1,13 @@
 @extends('adminlte::page')
 
 @section('content')
-
     <div class="container">
 
         <br>
         <div class="form-group ">
             <a href="{{ url('estudiantes/create') }}" class="btn btn-success"> Nuevo Estudiante </a>
         </div>
-        
+
         <div class="table-responsive">
             <table class="table table-dark">
                 <thead class="thead-light">
@@ -58,7 +57,7 @@
     </div>
 @endsection
 @section('js')
-<script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
 
 

@@ -15,6 +15,10 @@ class Calificaciones extends Model
         'corte',
     ];
     use HasFactory;
+    public function empleado()
+    {      
+        return $this->belongsTo(Empleado::class);
+    }
     public function asignaturadocente()
     {
         return $this->belongsTo(AsignaturaDocente::class);

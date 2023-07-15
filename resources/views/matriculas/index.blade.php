@@ -27,7 +27,7 @@
                         <td>{{ $matricula->estudiante->nombres }}</td>
                         <td>{{ $matricula->user->name }}</td>
                         <td>{{ $matricula->tipo_matricula->descripcion}}</td>
-                        <td>{{ $matricula->grupo->descripcion }}</td>  
+                        <td>{{ $matricula->grupo->grado->descripcion }}</td>  
                         <td><a href="{{ url('/matriculas/' . $matricula->id . '/edit') }}" class="btn btn-info">
                                 Editar </a>|
                                 <a href="{{ url('/matriculas/' . $matricula->id) }}" class="btn btn-warning">

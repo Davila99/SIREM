@@ -20,7 +20,12 @@ return new class extends Migration
             ->restrictOnDelete();
             $table->foreignId('asignatura_id')->constrained('asignaturas')
             ->restrictOnDelete();
+            $table->foreignId('corte_evaluativo_id')->constrained('cortes_evaluativos')
+            ->restrictOnDelete();
+            $table->foreignId('grupo_id')->constrained('cortes_evaluativos')
+            ->restrictOnDelete();
             $table->string('observaciones')->nullable();
+            $table->string('promedio')->nullable();
             $table->timestamps();
         });
     }
