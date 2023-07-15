@@ -111,7 +111,7 @@ class CalificacionesController extends Controller
         $calificacion->calificacion = $request->calificacion;
         $calificacion->save();
         
-        return redirect()->back()->with('success', 'Nota actualizada');
+        return redirect()->back()->with('mensaje-nota', 'ok');
     } else {
         return response()->json([
             'message' => 'No se encontró el detalle de calificación',
