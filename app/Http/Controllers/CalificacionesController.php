@@ -40,16 +40,6 @@ class CalificacionesController extends Controller
             ->get()
             ->pluck('estudiante');
     }
-    public function getCorte($id)
-    {
-        $corte = Calificaciones::query()
-            ->where('asignatura_id', '=', $id)
-            ->max('corte');
-        if ($corte == null) {
-            $corte = 0;
-        }
-        return $corte + 1;
-    }
 
     public function generarActa(
         $grupoId,
@@ -60,7 +50,7 @@ class CalificacionesController extends Controller
         $acta = Calificaciones::query()
             ->where('asignatura_id', $asignaturaId)
             ->where('corte_evaluativo_id', $corteId)
-            // ->where('grupo_id', $grupoId) // TODO: agregar grupo_id a la tabla calificaciones
+            ->where('grupo_id', $grupoId) // TODO: agregar grupo_id a la tabla calificaciones
             ->first();
             
         if ($acta) {
@@ -75,7 +65,7 @@ class CalificacionesController extends Controller
         $estudiantes = $this->getEstudiantes($grupoId);
 
         //TODO: generar acta
-        $acta = $this->setActa($grupoId, $docente, $estudiantes, $corteId);
+        $acta = $this->setActa($grupoId, $docente, $corteId);
 
         //TODO: generar acta rows
         //
@@ -83,7 +73,7 @@ class CalificacionesController extends Controller
         return view('calificaciones.show', compact('acta', 'filas'));
     }
 
-    public function setActa($id, $docente, $estudiantes, $corte)
+    public function setActa($id, $docente, $corte)
     {
         $acta = new Calificaciones();
         $acta->fecha = date('Y-m-d');
@@ -91,6 +81,7 @@ class CalificacionesController extends Controller
         $acta->asignatura_id = $id;
         $acta->observaciones = 'Acta de calificaciones del corte ' . $corte;
         $acta->corte_evaluativo_id = $corte;
+        $acta->grupo_id = $id;
         $acta->save();
         return $acta;
     }
@@ -109,6 +100,25 @@ class CalificacionesController extends Controller
             ->get();
         return $filas;
     }
+
+    public function changeNota(  Request $request)
+{
+    $calificacion = CalificacionDetalle::query()
+        ->where('id', $request->id)
+        ->first();
+
+    if ($calificacion) {
+        $calificacion->calificacion = $request->calificacion;
+        $calificacion->save();
+        
+        return redirect()->back()->with('success', 'Nota actualizada');
+    } else {
+        return response()->json([
+            'message' => 'No se encontró el detalle de calificación',
+        ], 404);
+    }
+}
+
     public function index()
     {
         $cursos = AsignaturaDocente::query()
@@ -157,6 +167,7 @@ class CalificacionesController extends Controller
      */
     public function edit($id)
     {
+        
     }
 
     /**

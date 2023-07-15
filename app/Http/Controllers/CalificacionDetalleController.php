@@ -58,9 +58,10 @@ class CalificacionDetalleController extends Controller
      * @param  \App\Models\CalificacionDetalle  $calificacionDetalle
      * @return \Illuminate\Http\Response
      */
-    public function edit(CalificacionDetalle $calificacionDetalle)
+    public function edit($id)
     {
-        //
+        $datos = CalificacionDetalle::findOrFail($id);
+        return response()->modal('calificacionDetalle.edit', compact('datos'));
     }
 
     /**

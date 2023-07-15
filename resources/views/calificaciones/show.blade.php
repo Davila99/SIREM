@@ -55,9 +55,11 @@
                             <td>{{ $fila->calificacion }}</td>
 
                             <td>
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#miModal">
+
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#miModal" data-id="{{ $fila->id }}">
                                     Editar Nota
                                 </button>
+                              
                             </td>
                         </tr>
                     @endforeach
@@ -76,26 +78,31 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Nota</th>
+                                    <form action="{{ route('change-nota',) }}"
+                                        method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <td>
+                                            <input id="calificacion" name="calificacion" type="number" class="form-control"
+                                                placeholder="Nota">
 
-                        <tbody>
-                            <tr>
-                                <th scope="row">Nota</th>
-                                <td>
-                                    <input id="calificacion" name="calificacion" type="text"
-                                    class="form-control @error('calificacion') is-invalid @enderror" placeholder="Nota" 
-                                    value="{{ isset($datos->calificacion) ? $datos->calificacion : old('calificacion') }}">
-                                @error('calificacion')
-                                    <div class="invalid-feedback">
-                                        <h5> {{ $message }}</h5>
-                                    </div>
-                                @enderror
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-success guardar-btn">Guardar</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                        
+                                            @error('calificacion')
+                                                <div class="invalid-feedback">
+                                                    <h5>{{ $message }}</h5>
+                                                </div>
+                                            @enderror
+                                        </td>
+                                        <td>
+                                            <input type="hidden" name="id" id="input-id" value="">
+                                            <input type="submit" value="Guardar" class="btn btn-success">
+
+                                        </td>
+                                    </form>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                     <div class="modal-footer">
@@ -106,4 +113,23 @@
         </div>
 
     </body>
+
+
+@endsection
+
+@section('js')
+<script>
+    $(document).ready(function() {
+        $('#miModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Botón que activa el modal
+            var id = button.data('id'); // Obtener el valor del atributo data-id
+            console.log('ID: ' + id); // Mostrar el ID en la consola
+            
+            // Asignar el valor del ID al input
+            $('#input-id').val(id);
+
+            // Realizar acciones adicionales con el ID aquí
+        });
+    });
+</script>
 @endsection
