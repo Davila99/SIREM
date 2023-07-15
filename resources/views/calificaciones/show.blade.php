@@ -37,7 +37,7 @@
 
         </div>
         <div class="table-responsive">
-            <table id="tablaEstudiantes" class="table table-dark">
+            <table id="tablaCalificaciones" class="table table-dark">
                 <thead class="thead-light">
                     <tr>
                         <th>Estudiante</th>
@@ -129,9 +129,31 @@
         </script>
     @endif
     <script>
-        $(document).ready(function() {
-            var tableId = 'tablaEstudiantes';
-            initializeDataTable(tableId);
+       $(document).ready(function() {
+            $('#tablaCalificaciones').DataTable({
+                "responsive": true,
+                "lengthMenu": [
+                    [5, 10, 50, -1],
+                    [5, 10, 50, "All"]
+                ],
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontraron resultados en su busqueda",
+                    "searchPlaceholder": "Buscar registros",
+                    "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+                    "infoEmpty": "No existen registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "search": "Buscar:",
+                    "paginate": {
+                        first: '<i class="fas fa-angle-double-left"></i>', // Icono para ir a la primera página
+                        previous: '<i class="fas fa-angle-left"></i>', // Icono para ir a la página anterior
+                        next: '<i class="fas fa-angle-right"></i>', // Icono para ir a la página siguiente
+                        last: '<i class="fas fa-angle-double-right"></i>'
+                    },
+                }
+
+            });
+
         });
     </script>
     

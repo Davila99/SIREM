@@ -1,14 +1,14 @@
-@extends('adminlte::page')
+@extends('layouts.custom-layout')
 @section('content')
     <div class="container">
 
         <br>
         <a href="{{ url('asignaturadocente/create') }}" class="btn btn-success"> Nueva Asignatura Docente </a>
         <br>
-        <br> 
+        <br>
         <div class="table-responsive">
-        <table class="table  table-dark">
-            <thead class="thead-light">
+            <table id="asignaturaDocentes-table" class="table table-dark">
+                <thead class="thead-light">
                     <tr>
                         <th>Asignatura</th>
                         <th>Docente</th>
@@ -16,91 +16,128 @@
                         <th>Organización Docente</th>
                         <th>Acciones</th>
                     </tr>
-            </thead>
+                </thead>
 
-            <tbody>
+                <tbody>
 
-                @foreach ($asignaturadocentes as $asignaturadocente)
-                    <tr>
-                        <td>{{ $asignaturadocente->asignatura->descripcion }}</td>
-                        <td>{{ $asignaturadocente->empleado->nombres }}</td>
-                        <td>{{ $asignaturadocente->grado->descripcion }}</td>
-                        <td>{{ $asignaturadocente->organizacionAcademica->descripcion }}</td>
-                        <td>
-                            <div class="d-flex flex-row bd-highlight mb-6">
-                                <a href="{{ url('/asignaturadocente/' . $asignaturadocente->id . '/edit') }}"
-                                    class="btn btn-info">
-                                    Editar </a>|
-                                    <a href="{{ url('/asignaturadocente/' . $asignaturadocente->id) }}" class="btn btn-warning">
-                                        Detalles </a>|
-                                <form class="form-eliminar" action="{{ url('/asignaturadocente/' . $asignaturadocente->id) }}" method="post" class="d-inline">
-                                    @csrf
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </div>
-                         
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                    @foreach ($asignaturadocentes as $asignaturadocente)
+                        <tr>
+                            <td>{{ $asignaturadocente->asignatura->descripcion }}</td>
+                            <td>{{ $asignaturadocente->empleado->nombres }}</td>
+                            <td>{{ $asignaturadocente->grado->descripcion }}</td>
+                            <td>{{ $asignaturadocente->organizacionAcademica->descripcion }}</td>
+                            <td>
+                                <div class="d-flex flex-row bd-highlight mb-6">
+                                    <div class="d-inline">
+                                        <a href="{{ url('/asignaturadocente/' . $asignaturadocente->id . '/edit') }}"
+                                            class="btn btn-info">
+                                            Editar </a>
+                                    </div>
+                                    |
+                                    <div class="d-inline">
+                                        <a href="{{ url('/asignaturadocente/' . $asignaturadocente->id) }}"
+                                            class="btn btn-warning">
+                                            Detalles </a>
+                                    </div>
+                                    |
+                                    <form class="form-eliminar"
+                                        action="{{ url('/asignaturadocente/' . $asignaturadocente->id) }}" method="post"
+                                        class="d-inline">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    </form>
+                                </div>
+
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection
 
 
 @section('js')
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-@if (Session::has('mensaje'))
     <script>
-        Swal.fire({
-            position: 'top-center',
-            icon: 'success',
-            title: 'Asignatura Docente registrado!',
-            showConfirmButton: false,
-            timer: 2000
-        })
-    </script>
-@endif
-@if (Session::has('mensaje-editar'))
-    <script>
-        Swal.fire({
-            position: 'top-center',
-            icon: 'success',
-            title: 'Asignatura Docente editado exitosamente!',
-            showConfirmButton: false,
-            timer: 2000
-        })
-    </script>
-@endif
-@if (Session::has('mensaje-eliminar'))
-    <script>
-        Swal.fire(
-            'Eliminado!',
-            'Su archivo ha sido eliminado.',
-            'success'
-        )
-    </script>
-@endif
-<script>
-    $('.form-eliminar').submit(function(e) {
-        e.preventDefault();
-        Swal.fire({
-            title: '¿Estas seguro?',
-            text: "No podrás revertir esto.!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si eliminar',
-            cancelButtonText:'Calcelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                this.submit();
-            }
-        })
+        $(document).ready(function() {
+            $('#asignaturaDocentes-table').DataTable({
+                "responsive": true,
+                "lengthMenu": [
+                    [5, 10, 50, -1],
+                    [5, 10, 50, "All"]
+                ],
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontraron resultados en su busqueda",
+                    "searchPlaceholder": "Buscar registros",
+                    "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+                    "infoEmpty": "No existen registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "search": "Buscar:",
+                    "paginate": {
+                        first: '<i class="fas fa-angle-double-left"></i>', // Icono para ir a la primera página
+                        previous: '<i class="fas fa-angle-left"></i>', // Icono para ir a la página anterior
+                        next: '<i class="fas fa-angle-right"></i>', // Icono para ir a la página siguiente
+                        last: '<i class="fas fa-angle-double-right"></i>'
+                    },
+                }
 
-    });
-</script>
+            });
+
+        });
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (Session::has('mensaje'))
+        <script>
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Asignatura Docente registrado!',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        </script>
+    @endif
+    @if (Session::has('mensaje-editar'))
+        <script>
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Asignatura Docente editado exitosamente!',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        </script>
+    @endif
+    @if (Session::has('mensaje-eliminar'))
+        <script>
+            Swal.fire(
+                'Eliminado!',
+                'Su archivo ha sido eliminado.',
+                'success'
+            )
+        </script>
+    @endif
+    <script>
+        $('.form-eliminar').submit(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: '¿Estas seguro?',
+                text: "No podrás revertir esto.!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si eliminar',
+                cancelButtonText: 'Calcelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+        });
+    </script>
 @endsection
