@@ -37,7 +37,7 @@
 
         </div>
         <div class="table-responsive">
-            <table class="table table-dark">
+            <table id="tablaEstudiantes" class="table table-dark">
                 <thead class="thead-light">
                     <tr>
                         <th>Estudiante</th>
@@ -127,6 +127,14 @@
             })
         </script>
     @endif
+    <script>
+        $(document).ready(function() {
+            $('#tablaEstudiantes').DataTable({
+                "order": [[0, "asc"]] // Ordenar por la primera columna en orden ascendente (Estudiante)
+            });
+        });
+    </script>
+    
     <script>
         $(document).ready(function() {
             $('#miModal').on('show.bs.modal', function(event) {
