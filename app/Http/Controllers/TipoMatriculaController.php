@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\GrupoCollection;
 use App\Http\Resources\TipoMatriculaCollection;
 use App\Models\Tipo_Matricula;
-
 use Illuminate\Http\Request;
+
 class TipoMatriculaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:tmatricula.index')->only('index','show');
-        $this->middleware('can:tmatricula.edit')->only('edit','update');
-        $this->middleware('can:tmatricula.create')->only('create','store');
+        $this->middleware('can:tmatricula.index')->only('index', 'show');
+        $this->middleware('can:tmatricula.edit')->only('edit', 'update');
+        $this->middleware('can:tmatricula.create')->only('create', 'store');
         $this->middleware('can:tmatricula.destroy')->only('destroy');
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -105,15 +104,15 @@ class TipoMatriculaController extends Controller
                 'descripcion.required' => 'El campo es obligatorio.',
             ]
         );
-        $datos = request()->except(['_token','_method']);
-    $existeDato = Tipo_Matricula::where('descripcion', $datos)->exists();
-    if ($existeDato) {
-        return redirect('tmatricula/'.$id.'/edit')->with('mensaje-error', 'ok');
-    } else {
-        Tipo_Matricula::where('id','=',$id)->update($datos);
-        $datos = Tipo_Matricula::findOrFail($id);
-        return redirect('tmatricula')->with('mensaje-editar','ok');
-    }
+        $datos = request()->except(['_token', '_method']);
+        $existeDato = Tipo_Matricula::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('tmatricula/' . $id . '/edit')->with('mensaje-error', 'ok');
+        } else {
+            Tipo_Matricula::where('id', '=', $id)->update($datos);
+            $datos = Tipo_Matricula::findOrFail($id);
+            return redirect('tmatricula')->with('mensaje-editar', 'ok');
+        }
 
     }
 

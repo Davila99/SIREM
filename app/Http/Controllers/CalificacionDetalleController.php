@@ -15,8 +15,42 @@ class CalificacionDetalleController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    private $rules = [
+        'fecha' => 'required | date',
+        'empleado_id' => 'required | numeric',
+        'asignatura_id' => 'required | numeric',
+        'observaciones' => 'nullable | string | max:255',
+        'corte' => 'required | numeric',
+    ];
+    public function generarActa()
+    {
+        $asignaturaid = 1;
+        $grupoid = 1;
+        $matriculas = Matricula::query()
+            ->with([
+                'estudiante',
+            ])
+            ->where('grupo_id', $grupoid)
+            ->get();
+        dd($matriculas);
+    }
+
     public function index()
     {
+        $asignaturaid = 1;
+        $grupoid = 1;
+        $matriculas = Matricula::query()
+            ->with([
+                'estudiante',
+            ])
+            ->where('grupo_id', $grupoid)
+            ->get();
+
+        //    $cursos = AsignaturaDocente::query()
+        //         ->with(['grupo.'])
+        //         ->where('empleado_id', auth()->id())->get();
+        dd($matriculas);
+        // return view('calificaciondetalles.index', [ 'cursos' => $cursos]);
 
     }
 

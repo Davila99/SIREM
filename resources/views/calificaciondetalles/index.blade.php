@@ -8,7 +8,7 @@
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
-        
+
             <tbody>
                 @foreach ($cursos as $curso)
                     <tr>
@@ -16,11 +16,11 @@
                         <td>{{ $curso->matricula }}</td>
                         <td>
                             <div class="d-flex flex-row bd-highlight mb-6">
-                            
+
                                 <a href="{{ url('/calificacionesDetalles/' . $curso->id . '/edit') }}" class="btn btn-info">
                                     Editar </a>|
-                                <form class="form-eliminar" action="{{ url('/calificaciones/' . $curso->id) }}"
-                                    method="post" class="d-inline">
+                                <form class="form-eliminar" action="{{ url('/calificaciones/' . $curso->id) }}" method="post"
+                                    class="d-inline">
                                     @csrf
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-danger">Eliminar</button>

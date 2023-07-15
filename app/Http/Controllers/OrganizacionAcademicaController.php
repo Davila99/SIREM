@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AsignaturaDocente;
 use App\Models\OrganizacionAcademica;
 use Illuminate\Http\Request;
 
@@ -10,11 +9,11 @@ class OrganizacionAcademicaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:organizacionacademica.index')->only('index','show');
-        $this->middleware('can:organizacionacademica.edit')->only('edit','update');
-        $this->middleware('can:organizacionacademica.create')->only('create','store');
+        $this->middleware('can:organizacionacademica.index')->only('index', 'show');
+        $this->middleware('can:organizacionacademica.edit')->only('edit', 'update');
+        $this->middleware('can:organizacionacademica.create')->only('create', 'store');
         $this->middleware('can:organizacionacademica.destroy')->only('destroy');
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -65,9 +64,9 @@ class OrganizacionAcademicaController extends Controller
     public function changeStatus(Request $request)
     {
         $organizacionacademica = OrganizacionAcademica::find($request->organizacionacademica);
-        $organizacionacademica->confirmed =$request->confirmed;
+        $organizacionacademica->confirmed = $request->confirmed;
         $organizacionacademica->save();
-        return response()->json(['success'=>'Cambio de estado con éxito.']);
+        return response()->json(['success' => 'Cambio de estado con éxito.']);
     }
     /**
      * Display the specified resource.
@@ -91,7 +90,7 @@ class OrganizacionAcademicaController extends Controller
     public function edit($id)
     {
         $datos = OrganizacionAcademica::findOrFail($id);
-        return view('organizacionacademica/edit',compact('datos'));
+        return view('organizacionacademica/edit', compact('datos'));
     }
 
     /**
@@ -101,8 +100,8 @@ class OrganizacionAcademicaController extends Controller
      * @param  \App\Models\organizacion_academica  $organizacion_academica
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
-    {   
+    public function update(Request $request, $id)
+    {
         $request->validate(
             [
                 'descripcion' => 'required',
@@ -115,7 +114,7 @@ class OrganizacionAcademicaController extends Controller
         $datos = request()->except(['_token', '_method']);
         OrganizacionAcademica::where('id', '=', $id)->update($datos);
         $datos = OrganizacionAcademica::findOrFail($id);
-        return redirect('organizacionacademica')->with('mensaje-editar','ok');
+        return redirect('organizacionacademica')->with('mensaje-editar', 'ok');
     }
 
     /**

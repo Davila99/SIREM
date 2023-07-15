@@ -17,14 +17,14 @@ class SexoSeeder extends Seeder
     {
         DB::table('sexos')->insert([
             'descripcion' => 'Femenino',
-            'created_at'=> Carbon::now(),
-            'updated_at'=> Carbon::now()
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
 
         DB::table('sexos')->insert([
             'descripcion' => 'Masculino',
-            'created_at'=> Carbon::now(),
-            'updated_at'=> Carbon::now()
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
 
         ]);
 

@@ -9,11 +9,10 @@ class AsignaturaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:asignaturas.index')->only('index','show');
-        $this->middleware('can:asignaturas.edit')->only('edit','update');
-        $this->middleware('can:cargos.create')->only('create','store');
+        $this->middleware('can:asignaturas.index')->only('index', 'show');
+        $this->middleware('can:asignaturas.edit')->only('edit', 'update');
+        $this->middleware('can:cargos.create')->only('create', 'store');
         $this->middleware('can:asignaturas.destroy')->only('destroy');
-        
     }
     /**
      * Display a listing of the resource.
@@ -102,16 +101,18 @@ class AsignaturaController extends Controller
                 'descripcion.required' => 'El campo es obligatorio.',
             ]
         );
-        $datos = request()->except(['_token','_method']);
+        $datos = request()->except(['_token', '_method']);
         $existeDato = Asignatura::where('descripcion', $datos)->exists();
         if ($existeDato) {
-            return redirect('asignaturas/'.$id.'/edit')->with('mensaje-error', 'ok');
+            return redirect('asignaturas/' . $id . '/edit')->with(
+                'mensaje-error',
+                'ok'
+            );
         } else {
-            Asignatura::where('id','=',$id)->update($datos);
+            Asignatura::where('id', '=', $id)->update($datos);
             $datos = Asignatura::findOrFail($id);
-            return redirect('asignaturas')->with('mensaje-editar','ok');
+            return redirect('asignaturas')->with('mensaje-editar', 'ok');
         }
-        
     }
 
     /**

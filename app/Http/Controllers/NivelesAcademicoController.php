@@ -9,11 +9,11 @@ class NivelesAcademicoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:nivelacademic.index')->only('index','show');
-        $this->middleware('can:nivelacademic.edit')->only('edit','update');
-        $this->middleware('can:nivelacademic.create')->only('create','store');
+        $this->middleware('can:nivelacademic.index')->only('index', 'show');
+        $this->middleware('can:nivelacademic.edit')->only('edit', 'update');
+        $this->middleware('can:nivelacademic.create')->only('create', 'store');
         $this->middleware('can:nivelacademic.destroy')->only('destroy');
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -95,7 +95,7 @@ class NivelesAcademicoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   $request->validate(
+    {$request->validate(
         [
             'descripcion' => 'required',
         ],
@@ -103,15 +103,15 @@ class NivelesAcademicoController extends Controller
             'descripcion.required' => 'El campo es obligatorio.',
         ]
     );
-    $datos = request()->except(['_token','_method']);
-    $existeDato =  Niveles_academico::where('descripcion', $datos)->exists();
-    if ($existeDato) {
-        return redirect('nivelacademic/'.$id.'/edit')->with('mensaje-error', 'ok');
-    } else {
-        Niveles_academico::where('id','=',$id)->update($datos);
-        $datos =  Niveles_academico::findOrFail($id);
-        return redirect('nivelacademic')->with('mensaje-editar','ok');
-    }
+        $datos = request()->except(['_token', '_method']);
+        $existeDato = Niveles_academico::where('descripcion', $datos)->exists();
+        if ($existeDato) {
+            return redirect('nivelacademic/' . $id . '/edit')->with('mensaje-error', 'ok');
+        } else {
+            Niveles_academico::where('id', '=', $id)->update($datos);
+            $datos = Niveles_academico::findOrFail($id);
+            return redirect('nivelacademic')->with('mensaje-editar', 'ok');
+        }
 
     }
 
@@ -124,12 +124,12 @@ class NivelesAcademicoController extends Controller
     public function destroy($id)
     {
         try {
-            Niveles_academico::destroy($id);;
-            return redirect('nivelacademic')->with('mensaje-eliminar','ok');
+            Niveles_academico::destroy($id);
+            return redirect('nivelacademic')->with('mensaje-eliminar', 'ok');
         } catch (\Throwable $th) {
 
-            return redirect('nivelacademic')->with('mensaje-error-eliminar','ok');
+            return redirect('nivelacademic')->with('mensaje-error-eliminar', 'ok');
         }
-        
+
     }
 }

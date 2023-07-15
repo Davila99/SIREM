@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EstudiantesTutores;
-use Illuminate\Http\Request;
 use App\Models\Estudiante;
+use App\Models\EstudiantesTutores;
 use App\Models\Tutore;
+use Illuminate\Http\Request;
 
 class EstudiantesTutoresController extends Controller
 {

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
 use App\Models\Profession;
-
 use App\Models\Tutore;
 use Illuminate\Http\Request;
 
@@ -136,36 +135,30 @@ class TutoreController extends Controller
                 'professions_id.required' => 'La profesion es obligatoria.',
             ]
         );
-        $datos = request()->except(['_token','_method']);
-$existeDato =  Tutore::where('cedula', $datos['cedula'])->where('id', '!=', $id)->exists();
-if ($existeDato) {
-    return redirect('tutores/'.$id.'/edit')->with('mensaje-error', 'ok');
-} else {
-    Tutore::where('id','=',$id)->update($datos);
-    $datos = Tutore::findOrFail($id);
-    return redirect('tutores')->with('mensaje-editar','ok');
-}
+        $datos = request()->except(['_token', '_method']);
+        $existeDato = Tutore::where('cedula', $datos['cedula'])->where('id', '!=', $id)->exists();
+        if ($existeDato) {
+            return redirect('tutores/' . $id . '/edit')->with('mensaje-error', 'ok');
+        } else {
+            Tutore::where('id', '=', $id)->update($datos);
+            $datos = Tutore::findOrFail($id);
+            return redirect('tutores')->with('mensaje-editar', 'ok');
+        }
 
-
-        
-        
-      
         //if ($existeDato) {
-            //return redirect('tutores/'.$id.'/edit')->with('mensaje-error', 'ok');
-     //   } else {
-       //     Tutore::where('id','=',$id)->update($datos);
+        //return redirect('tutores/'.$id.'/edit')->with('mensaje-error', 'ok');
+        //   } else {
+        //     Tutore::where('id','=',$id)->update($datos);
         //    $datos =  Tutore::findOrFail($id);
         //    return redirect('tutores')->with('mensaje-editar','ok');
-       // }
+        // }
 
-        
-
-       // $datos = request()->except(['_token', '_method']);
+        // $datos = request()->except(['_token', '_method']);
 
         //Tutore::where('id', '=', $id)->update($datos);
         //$datos = Tutore::findOrFail($id);
 
-       // return redirect('tutores')->with('mensaje-editar', 'ok');
+        // return redirect('tutores')->with('mensaje-editar', 'ok');
     }
 
     /**
@@ -177,12 +170,12 @@ if ($existeDato) {
     public function destroy($id)
     {
         $estudiante = Estudiante::find($id);
-    if ($estudiante) {
-    return redirect('tutores/')->with('mensaje-error-eliminar', 'ok');
+        if ($estudiante) {
+            return redirect('tutores/')->with('mensaje-error-eliminar', 'ok');
 
-           } else {
-        Tutore::destroy($id);
-       return redirect('tutores/')->with('mensaje-eliminar', 'ok');
-       }
+        } else {
+            Tutore::destroy($id);
+            return redirect('tutores/')->with('mensaje-eliminar', 'ok');
+        }
     }
 }

@@ -9,11 +9,11 @@ class CortesEvaluativoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:cevaluativos.index')->only('index','show');
-        $this->middleware('can:cevaluativos.edit')->only('edit','update');
-        $this->middleware('can:cevaluativos.create')->only('create','store');
+        $this->middleware('can:cevaluativos.index')->only('index', 'show');
+        $this->middleware('can:cevaluativos.edit')->only('edit', 'update');
+        $this->middleware('can:cevaluativos.create')->only('create', 'store');
         $this->middleware('can:cevaluativos.destroy')->only('destroy');
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -95,24 +95,22 @@ class CortesEvaluativoController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'descripcion'=>'required' 
+            'descripcion' => 'required',
         ],
-        [
-            'descripcion.required' => 'El campo es obligatorio.'
-        ]
-         );
-         $datos = request()->except(['_token','_method']);
-        $existeDato =  Cortes_evaluativo::where('descripcion', $datos)->exists();
+            [
+                'descripcion.required' => 'El campo es obligatorio.',
+            ]
+        );
+        $datos = request()->except(['_token', '_method']);
+        $existeDato = Cortes_evaluativo::where('descripcion', $datos)->exists();
         if ($existeDato) {
-            return redirect('cevaluativos/'.$id.'/edit')->with('mensaje-error', 'ok');
+            return redirect('cevaluativos/' . $id . '/edit')->with('mensaje-error', 'ok');
         } else {
-            Cortes_evaluativo::where('id','=',$id)->update($datos);
-            $datos =  Cortes_evaluativo::findOrFail($id);
-            return redirect('cevaluativos')->with('mensaje-editar','ok');
+            Cortes_evaluativo::where('id', '=', $id)->update($datos);
+            $datos = Cortes_evaluativo::findOrFail($id);
+            return redirect('cevaluativos')->with('mensaje-editar', 'ok');
         }
 
-
-        
     }
 
     /**

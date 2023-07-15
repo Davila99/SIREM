@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Cargo;
 use App\Models\Empleado;
 use App\Models\Grupos;
 use App\Models\Niveles_academico;
 use Illuminate\Http\Request;
+
 class EmpleadoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:empleados.index')->only('index','show');
-        $this->middleware('can:empleados.edit')->only('edit','update');
-        $this->middleware('can:empleados.create')->only('create','store');
+        $this->middleware('can:empleados.index')->only('index', 'show');
+        $this->middleware('can:empleados.edit')->only('edit', 'update');
+        $this->middleware('can:empleados.create')->only('create', 'store');
         $this->middleware('can:empleados.destroy')->only('destroy');
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -26,10 +26,10 @@ class EmpleadoController extends Controller
     public function index()
     {
         $datos['empleados'] = Empleado::query()
-        ->with(['nivel_academico'])
-        ->with(['cargos'])  
-        ->paginate(10);
-      
+            ->with(['nivel_academico'])
+            ->with(['cargos'])
+            ->paginate(10);
+
         return view('empleados/index', $datos);
     }
     public function busqueda()
@@ -46,7 +46,7 @@ class EmpleadoController extends Controller
     {
         $niveles_academicos = Niveles_academico::all();
         $cargos = Cargo::all();
-        return view('empleados/create', compact('niveles_academicos','cargos'));
+        return view('empleados/create', compact('niveles_academicos', 'cargos'));
     }
 
     /**
@@ -56,7 +56,7 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $request->validate(
             [
                 'nombres' => 'required|string|max:100',
@@ -86,15 +86,15 @@ class EmpleadoController extends Controller
         );
         $datos = request()->except('_token');
         $existeDato = Empleado::where('nombres', $datos['nombres'])
-        ->orwhere('apellidos', $datos['apellidos'])
-        ->orwhere('cedula', $datos['cedula'])->exists();
+            ->orwhere('apellidos', $datos['apellidos'])
+            ->orwhere('cedula', $datos['cedula'])->exists();
         if ($existeDato) {
             return redirect('empleados/create')->with('mensaje-error', 'ok');
         } else {
             Empleado::insert($datos);
             return redirect('empleados/')->with('mensaje', 'ok');
         }
-        
+
     }
 
     /**
@@ -104,7 +104,7 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
+    {
         $empleado = Empleado::findOrFail($id);
         return view('empleados/perfil', compact('empleado'));
     }
@@ -120,7 +120,7 @@ class EmpleadoController extends Controller
         $datos = Empleado::findOrFail($id);
         $niveles_academicos = Niveles_academico::all();
         $cargos = Cargo::all();
-        return view('empleados/edit', compact('datos','cargos','niveles_academicos'));
+        return view('empleados/edit', compact('datos', 'cargos', 'niveles_academicos'));
     }
 
     /**
@@ -131,8 +131,7 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-
-    {   $request->validate(
+    {$request->validate(
         [
             'nombres' => 'required|string|max:100',
             'apellidos' => 'required|string|max:100',
@@ -163,7 +162,7 @@ class EmpleadoController extends Controller
         $datos = request()->except(['_token', '_method']);
         Empleado::where('id', '=', $id)->update($datos);
         $datos = Empleado::findOrFail($id);
-        return redirect('empleados')->with('mensaje-editar','ok');
+        return redirect('empleados')->with('mensaje-editar', 'ok');
     }
 
     /**

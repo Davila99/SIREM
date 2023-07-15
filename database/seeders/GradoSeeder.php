@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Carbon\Carbon;
-
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -18,18 +17,18 @@ class GradoSeeder extends Seeder
     {
         DB::table('grados')->insert([
             'descripcion' => 'Primero',
-            'created_at'=> Carbon::now(),
-            'updated_at'=> Carbon::now()
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
         DB::table('grados')->insert([
             'descripcion' => 'Segundo',
-            'created_at'=> Carbon::now(),
-            'updated_at'=> Carbon::now()
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
         DB::table('grados')->insert([
             'descripcion' => 'Tercero',
-            'created_at'=> Carbon::now(),
-            'updated_at'=> Carbon::now()
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
     }
 }

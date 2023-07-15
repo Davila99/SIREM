@@ -1,10 +1,10 @@
 @extends('adminlte::page')
-@section('title','Sirem')
+@section('title', 'Sirem')
 
 
 @section('content')
 
-@livewire('admin.users-index')
+    @livewire('admin.users-index')
 @endsection
 
 @section('css')
@@ -12,5 +12,7 @@
 @endsection
 
 @section('js')
-    <script>console.log('HI veificando prueba de la plataforma')</script>
+    <script>
+        console.log('HI veificando prueba de la plataforma')
+    </script>
 @endsection

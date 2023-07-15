@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Cargo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Throwable;
 
 class CargoController extends Controller
 {
@@ -102,20 +101,21 @@ class CargoController extends Controller
             [
                 'descripcion.required' => 'El campo es obligatorio.',
             ]
-        );$datos = request()->except(['_token','_method']);
+        );
+        $datos = request()->except(['_token', '_method']);
         $existeDato = Cargo::where('descripcion', $datos)->exists();
         if ($existeDato) {
-            return redirect('cargos/'.$id.'/edit')->with('mensaje-error', 'ok');
+            return redirect('cargos/' . $id . '/edit')->with('mensaje-error', 'ok');
         } else {
-            Cargo::where('id','=',$id)->update($datos);
+            Cargo::where('id', '=', $id)->update($datos);
             $datos = Cargo::findOrFail($id);
-            return redirect('cargos')->with('mensaje-editar','ok');
+            return redirect('cargos')->with('mensaje-editar', 'ok');
         }
-       // $datos = request()->except(['_token', '_method']);
-       // Cargo::where('id', '=', $id)->update($datos);
+        // $datos = request()->except(['_token', '_method']);
+        // Cargo::where('id', '=', $id)->update($datos);
 
         //$datos = Cargo::findOrFail($id);
-       // return redirect('cargos/')->with('mensaje-editar', 'ok');
+        // return redirect('cargos/')->with('mensaje-editar', 'ok');
     }
 
     /**
