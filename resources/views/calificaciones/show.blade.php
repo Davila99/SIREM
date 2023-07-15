@@ -56,10 +56,11 @@
 
                             <td>
 
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#miModal" data-id="{{ $fila->id }}">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#miModal"
+                                    data-id="{{ $fila->id }}">
                                     Editar Nota
                                 </button>
-                              
+
                             </td>
                         </tr>
                     @endforeach
@@ -82,8 +83,7 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Nota</th>
-                                    <form action="{{ route('change-nota',) }}"
-                                        method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('change-nota') }}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <td>
                                             <input id="calificacion" name="calificacion" type="number" class="form-control"
@@ -113,23 +113,32 @@
         </div>
 
     </body>
-
-
 @endsection
 
 @section('js')
-<script>
-    $(document).ready(function() {
-        $('#miModal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget); // Botón que activa el modal
-            var id = button.data('id'); // Obtener el valor del atributo data-id
-            console.log('ID: ' + id); // Mostrar el ID en la consola
-            
-            // Asignar el valor del ID al input
-            $('#input-id').val(id);
+    @if (Session::has('mensaje-nota'))
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Nota actualizada correctamente',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    @endif
+    <script>
+        $(document).ready(function() {
+            $('#miModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget); // Botón que activa el modal
+                var id = button.data('id'); // Obtener el valor del atributo data-id
+                console.log('ID: ' + id); // Mostrar el ID en la consola
 
-            // Realizar acciones adicionales con el ID aquí
+                // Asignar el valor del ID al input
+                $('#input-id').val(id);
+
+                // Realizar acciones adicionales con el ID aquí
+            });
         });
-    });
-</script>
+    </script>
 @endsection
