@@ -67,8 +67,14 @@
                                             <tr>
                                                 <th scope="row">Asignatura:</th>
                                                 <td>{{ $asignaturaDocente->asignatura->descripcion }}</td>
+                                                <th scope="row">Empleado:</th>
+                                                <td>{{ $asignaturaDocente->empleado->descripcion }}</td>
                                                 <th scope="row">Grado:</th>
                                                 <td>{{ $asignaturaDocente->grado->descripcion }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Empleado:</th>
+                                                <td>{{ $asignaturaDocente->empleado->descripcion }}</td>
                                             </tr>
                                         </tbody>
                                     </table>

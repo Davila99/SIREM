@@ -60,7 +60,7 @@ class EstudiantesTutoresController extends Controller
     {
         $datos = request()->except('_token');
         EstudiantesTutores::insert($datos);
-        return redirect('tutorestudiante/perfil')->with('mensaje', 'ok');
+        return redirect('tutorestudiante')->with('mensaje', 'ok');
     }
 
     /**
@@ -72,7 +72,7 @@ class EstudiantesTutoresController extends Controller
     public function show($id)
     {
         $estudianteTutor = EstudiantesTutores::findOrFail($id);
-        return view('estudianteTutor/perfil', compact('estudianteTutor'));
+        return view('estudianteTutor', compact('estudianteTutor'));
     }
 
     /**
