@@ -47,10 +47,12 @@ class CalificacionesController extends Controller
         $corteId,
         Request $request
     ) {
+        dd($grupoId, $asignaturaId, $corteId, $request->all());
+
         $acta = Calificaciones::query()
             ->where('asignatura_id', $asignaturaId)
             ->where('corte_evaluativo_id', $corteId)
-            // ->where('grupo_id', $grupoId) // TODO: agregar grupo_id a la tabla calificaciones
+            ->where('grupo_id', $grupoId) // TODO: agregar grupo_id a la tabla calificaciones
             ->first();
             
         if ($acta) {
