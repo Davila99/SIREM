@@ -9,8 +9,7 @@ use App\Models\Empleado;
 use App\Models\Grupos;
 
 use App\Models\OrganizacionAcademica;
-use App\Models\Seccion;
-use App\Models\Turno;
+
 
 class AsignaturaDocenteController extends Controller
 {
@@ -138,15 +137,12 @@ class AsignaturaDocenteController extends Controller
     {
         $request->validate(
             [
-                'organizacion_academica_id' => 'required',
                 'asignatura_id' => 'required',
                 'empleado_id' => 'required',
                 'grupo_id' => 'required',
             ],
 
             [
-                'organizacion_academica_id.required' =>
-                    'Organización Academica es obligatorio.',
                 'asignatura_id.required' => 'La asignatura es obligatorio.',
                 'empleado_id.required' => 'El empleado es obligatorio.',
                 'grupo_id.required' => 'El grupo es obligatorio.',

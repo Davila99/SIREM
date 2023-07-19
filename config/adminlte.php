@@ -418,6 +418,7 @@ return [
             'text' => 'Usuarios',
             'route'  => 'users.index',
             'icon' => 'fas fa-users fa-fw',
+            'can' =>'admin/users.index'
         ],
         [
             'text' => 'Cambio de Contraseña',

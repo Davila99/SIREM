@@ -16,7 +16,6 @@ class EmpleadoController extends Controller
         $this->middleware('can:empleados.edit')->only('edit', 'update');
         $this->middleware('can:empleados.create')->only('create', 'store');
         $this->middleware('can:empleados.destroy')->only('destroy');
-
     }
     /**
      * Display a listing of the resource.
