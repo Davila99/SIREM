@@ -54,15 +54,23 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Grado:</th>
-                                                <td>{{ $matriculas->grupo->descripcion}}</td>
+                                                <td>{{ $matriculas->grado->descripcion}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Fechade registro:</th>
                                                 <td>{{ $matriculas->fecha }}</td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">Empleado:</th>
-                                                <td>{{ $matriculas->user->name }}</td>
+                                                <th scope="row">Docente Guia:</th>
+                                                <td>{{ $matriculas->empleado->nombres }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Seccion:</th>
+                                                <td>{{ $matriculas->seccion->descripcion }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Turno:</th>
+                                                <td>{{ $matriculas->turno->descripcion }}</td>
                                             </tr>
                                             <tr>
                                             </tr>
@@ -98,9 +106,16 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="row">
-                                    <a  type="button" class="btn btn-primary" href="{{ url('matriculas/') }}"> Regresar </a>
+                                <div class="row justify-content-center">
+                                    <div class="d-grid mt-2 col-sm-4">
+                                        <a type="button" class="btn btn-primary btn-sm" href="{{ url('matriculas/') }}">Regresar</a>
+                                    </div>
+                            
                                 </div>
+                                
+                                
+                                
+                                
                             </div>
                         </div>
                     </div>
