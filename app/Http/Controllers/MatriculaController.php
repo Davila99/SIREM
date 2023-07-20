@@ -7,6 +7,8 @@ use App\Models\Grupos;
 use App\Models\Matricula;
 use App\Models\Tipo_Matricula;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Dompdf\Dompdf;
 
 class MatriculaController extends Controller
 {
@@ -16,7 +18,6 @@ class MatriculaController extends Controller
         $this->middleware('can:matriculas.edit')->only('edit', 'update');
         $this->middleware('can:matriculas.create')->only('create', 'store');
         $this->middleware('can:matriculas.destroy')->only('destroy');
-
     }
     /**
      * Display a listing of the resource.
@@ -32,7 +33,6 @@ class MatriculaController extends Controller
 
         // dd($datos);
         return view('matriculas/index', $datos);
-
     }
     public function busqueda()
     {
@@ -46,6 +46,20 @@ class MatriculaController extends Controller
     public function create()
     {
         return view('matriculas/create');
+    }
+    public function pdf($id)
+    {
+        try {
+            $matriculas = Matricula::findOrFail($id);
+            $pdf = PDF::loadView(
+                'matriculas.pdf',
+                compact('matriculas')
+            )->setPaper('letter');
+
+            return $pdf->stream('matriculas.pdf', ['Attachment' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Matricula not found'], 404);
+        }
     }
 
     /**
@@ -64,9 +78,9 @@ class MatriculaController extends Controller
             ],
 
             [
-
                 'estudiante_id.required' => 'El estudiantes es obligatorio.',
-                'tipo_matricula_id.required' => 'El tipo de matricula es obligatorio.',
+                'tipo_matricula_id.required' =>
+                    'El tipo de matricula es obligatorio.',
                 'grupo_id.required' => 'El grupo es obligatorio.',
             ]
         );
@@ -82,7 +96,6 @@ class MatriculaController extends Controller
         $matricula->save();
 
         return redirect('matriculas/')->with('mensaje', 'ok');
-
     }
 
     /**
@@ -110,7 +123,12 @@ class MatriculaController extends Controller
         $tipo_matricula = Tipo_Matricula::all();
         $grupos = Grupos::all();
 
-        return view('matriculas/edit', ["datos" => $datos, "estudiante" => $estudiante, "tipo_matricula" => $tipo_matricula, "grupos" => $grupos]);
+        return view('matriculas/edit', [
+            'datos' => $datos,
+            'estudiante' => $estudiante,
+            'tipo_matricula' => $tipo_matricula,
+            'grupos' => $grupos,
+        ]);
     }
 
     /**
@@ -130,9 +148,9 @@ class MatriculaController extends Controller
             ],
 
             [
-
                 'estudiante_id.required' => 'El estudiantes es obligatorio.',
-                'tipo_matricula_id.required' => 'El tipo de matricula es obligatorio.',
+                'tipo_matricula_id.required' =>
+                    'El tipo de matricula es obligatorio.',
                 'grupo_id.required' => 'El grupo es obligatorio.',
             ]
         );

@@ -41,6 +41,11 @@
                                             Detalles
                                         </a>
                                     </div>
+                                    <div class="d-inline">
+                                        <a type="button" class="btn btn-success " href="{{ url('/matriculas/pdf/' . $matricula->id) }}">Imprimir Hoja de Matricula</a>
+                                    </div>
+                                       
+                                    
                                     <form class="form-eliminar" action="{{ url('/matriculas/' . $matricula->id) }}"
                                         method="post" class="d-inline">
                                         @csrf

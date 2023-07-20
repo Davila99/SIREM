@@ -93,6 +93,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'matriculas.create'])->syncRoles([$admin, $registro]);
         Permission::create(['name' => 'matriculas.edit'])->syncRoles([$admin, $registro]);
         Permission::create(['name' => 'matriculas.destroy'])->syncRoles([$admin, $registro]);
+        Permission::create(['name' => 'matriculas.pdf'])->syncRoles([$admin, $registro]);
 
         //Permisos de Academia
         Permission::create(['name' => 'asignaturadocente.index'])->syncRoles([$admin, $registro]);
