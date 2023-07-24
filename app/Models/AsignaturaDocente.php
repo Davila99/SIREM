@@ -10,7 +10,7 @@ class AsignaturaDocente extends Model
     use HasFactory;
     public function asignatura()
     {
-        return $this->belongsTo(Asignatura::class, 'asignaturaDocente_id', 'id');
+        return $this->belongsTo(Asignatura::class);
     }
     public function empleado() {
         return $this->belongsTo(Empleado::class);
@@ -26,7 +26,7 @@ class AsignaturaDocente extends Model
 
     public function organizacionAcademica()
     {
-        return $this->belongsTo(organizacion_academica::class, 'id');
+        return $this->belongsTo(OrganizacionAcademica::class, 'organizacion_academica_id');
     }
 
 }
