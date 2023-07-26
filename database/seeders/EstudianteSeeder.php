@@ -16,8 +16,8 @@ class EstudianteSeeder extends Seeder
     public function run()
     {
         DB::table('estudiantes')->insert([
-            'nombres' => 'Paola',
-            'apellidos' => 'Perez',
+            'nombres' => 'Paola Andrea',
+            'apellidos' => 'Perez Lopez',
             'fecha_nacimiento' => '1990-01-01',
             'edad' => '30',
             'direccion' => 'San Pedro Sula',
@@ -27,11 +27,110 @@ class EstudianteSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
         DB::table('estudiantes')->insert([
-            'nombres' => 'Maria',
-            'apellidos' => 'Lopez',
+            'nombres' => 'Maria Luisa',
+            'apellidos' => 'Lopez Perez',
              'edad' => '30',
             'fecha_nacimiento' => '1990-01-01',
             'direccion' => 'San Pedro Sula',
+            'tutor_id' => '2',
+            'sexo_id' => '1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('estudiantes')->insert([
+            'nombres' => 'Ruben Dario',
+            'apellidos' => 'Jerez Lopez',
+             'edad' => '30',
+            'fecha_nacimiento' => '1990-01-01',
+            'direccion' => 'San Pedro Sula',
+            'tutor_id' => '2',
+            'sexo_id' => '1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('estudiantes')->insert([
+            'nombres' => 'Luis Alberto',
+            'apellidos' => 'Lopez Jerez',
+             'edad' => '30',
+            'fecha_nacimiento' => '1990-01-01',
+            'direccion' => 'Monterrey',
+            'tutor_id' => '2',
+            'sexo_id' => '1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('estudiantes')->insert([
+            'nombres' => 'ana maria',
+            'apellidos' => 'Perez Lopez',
+             'edad' => '30',
+            'fecha_nacimiento' => '1990-01-01',
+            'direccion' => 'la ceiba',
+            'tutor_id' => '2',
+            'sexo_id' => '1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('estudiantes')->insert([
+            'nombres' => 'karla maria',
+            'apellidos' => 'yanez Lopez',
+             'edad' => '45',
+            'fecha_nacimiento' => '1990-01-01',
+            'direccion' => 'Korea del sur',
+            'tutor_id' => '2',
+            'sexo_id' => '1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('estudiantes')->insert([
+            'nombres' => 'KUmar maria',
+            'apellidos' => 'juan Lopez',
+             'edad' => '45',
+            'fecha_nacimiento' => '1990-01-01',
+            'direccion' => 'Korea del sur',
+            'tutor_id' => '2',
+            'sexo_id' => '1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('estudiantes')->insert([
+            'nombres' => 'ku maria',
+            'apellidos' => 'juan Lopez',
+             'edad' => '30',
+            'fecha_nacimiento' => '1990-01-01',
+            'direccion' => 'Korea del sur',
+            'tutor_id' => '2',
+            'sexo_id' => '1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('estudiantes')->insert([
+            'nombres' => 'Maria maria',
+            'apellidos' => 'Ramos Lopez',
+             'edad' => '30',
+            'fecha_nacimiento' => '1990-01-01',
+            'direccion' => 'Colombia',
+            'tutor_id' => '2',
+            'sexo_id' => '1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('estudiantes')->insert([
+            'nombres' => 'Eliseo Andres',
+            'apellidos' => 'Davila Lopez',
+             'edad' => '30',
+            'fecha_nacimiento' => '1990-01-01',
+            'direccion' => 'Colombia',
+            'tutor_id' => '2',
+            'sexo_id' => '1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('estudiantes')->insert([
+            'nombres' => 'Carlos Andres',
+            'apellidos' => 'Davila Lopez',
+             'edad' => '30',
+            'fecha_nacimiento' => '1990-01-01',
+            'direccion' => 'Colombia',
             'tutor_id' => '2',
             'sexo_id' => '1',
             'created_at' => Carbon::now(),
