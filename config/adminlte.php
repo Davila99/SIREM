@@ -351,11 +351,11 @@ return [
                     'icon' => 'fas fa-solid fa-briefcase',
                     'can' =>'matriculas.index'
                 ],
-                [
-                    'text'        => 'Buscador de estudiantes',
-                    'url'         => 'search/',
-                    'icon'        => 'fas fa-search',
-                ],    
+                // [
+                //     'text'        => 'Buscador de estudiantes',
+                //     'url'         => 'search/',
+                //     'icon'        => 'fas fa-search',
+                // ],    
             ],
         ],
         [
@@ -396,11 +396,11 @@ return [
                     'icon'        => 'fas fa-solid fa-layer-group',
                     'can' =>'empleados.index'
                 ],
-                [
-                    'text'        => 'Buscador Empleados',
-                    'url'         => 'search-empleado/',
-                    'icon'        => 'fas fa-search ',
-                ],
+                // [
+                //     'text'        => 'Buscador Empleados',
+                //     'url'         => 'search-empleado/',
+                //     'icon'        => 'fas fa-search ',
+                // ],
 
                     
             ],
