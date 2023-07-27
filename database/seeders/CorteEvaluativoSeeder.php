@@ -30,5 +30,10 @@ class CorteEvaluativoSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+        DB::table('cortes_evaluativos')->insert([
+            'descripcion' => 'IV Corte',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
     }
 }
