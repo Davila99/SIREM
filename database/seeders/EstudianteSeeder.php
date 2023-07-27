@@ -128,7 +128,7 @@ class EstudianteSeeder extends Seeder
         DB::table('estudiantes')->insert([
             'nombres' => 'Carlos Andres',
             'apellidos' => 'Davila Lopez',
-             'edad' => '30',
+            'edad' => '30',
             'fecha_nacimiento' => '1990-01-01',
             'direccion' => 'Colombia',
             'tutor_id' => '2',

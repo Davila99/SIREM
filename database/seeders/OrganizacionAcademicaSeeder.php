@@ -16,16 +16,23 @@ class OrganizacionAcademicaSeeder extends Seeder
     public function run()
     {
         DB::table('organizacion_academicas')->insert([
-            'descripcion' => 'Organización Académica primaria',
+            'descripcion' => 'Organización Académica primer ciclo de educación primaria',
             'fecha' => '2023-01-01',
-            'confirmed' => 'true',
+            'confirmed' => true,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
         DB::table('organizacion_academicas')->insert([
-            'descripcion' => 'Organización Académica secundaria',
+            'descripcion' => 'Organización Académica primer ciclo de educacion secundaria',
             'fecha' => '2023-01-01',
-            'confirmed' => 'true',
+            'confirmed' => true,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('organizacion_academicas')->insert([
+            'descripcion' => 'Organización Académica primer ciclo de educación básica',
+            'fecha' => '2023-01-01',
+            'confirmed' => true,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

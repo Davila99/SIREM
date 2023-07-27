@@ -14,6 +14,7 @@ use Database\Seeders\GruposSeeder;
 use Database\Seeders\MatriculaSeeder;
 use Database\Seeders\ModelHasRolesSeeder;
 use Database\Seeders\NivelAcademicoSeeder;
+use Database\Seeders\OrganizacionAcademicaSeeder;
 use Database\Seeders\ProfesionSeeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\SeccionSeeder;
@@ -71,6 +72,9 @@ class DatabaseSeeder extends Seeder
         );
         $this->call(
             EmpleadoSeeder::class
+        );
+        $this->call(
+            OrganizacionAcademicaSeeder::class
         );
         $this->call(
             UserSeeder::class
