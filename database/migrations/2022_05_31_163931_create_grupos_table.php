@@ -19,14 +19,14 @@ return new class extends Migration {
             ->restrictOnDelete();
             $table->string('fecha');
             $table->foreignId('empleado_id')->constrained()
-                ->references('id')->on('empleados')
-                ->restrictOnDelete();
-            $table->integer('seccion_id')->foreign('seccion_id')
-                ->references('id')->on('seccions')
-                ->restrictOnDelete();
-            $table->integer('turno_id')->foreign('turno_id')
-                ->references('id')->on('turnos')
-                ->restrictOnDelete();
+            ->references('id')->on('empleados')
+            ->restrictOnDelete();   
+            $table->foreignId('seccion_id')->constrained()
+            ->references('id')->on('seccions')
+            ->restrictOnDelete();
+            $table->foreignId('turno_id')->constrained()
+            ->references('id')->on('turnos')
+            ->restrictOnDelete();
             $table->timestamps();
         });
     }

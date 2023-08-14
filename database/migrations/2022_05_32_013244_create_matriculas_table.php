@@ -18,16 +18,15 @@ return new class extends Migration
             $table->string('fecha');
             $table->foreignId('user_id')->constrained('users')
             ->restrictOnDelete();
-            $table->integer('estudiante_id')->foreign('estudiante_id')
+            $table->foreignId('estudiante_id')->constrained()
             ->references('id')->on('estudiantes')
-            ->onDelete('set null');
-            $table->integer('tipo_matricula_id')->foreign('tipo_matricula_id')
-            ->references('id')->on('tipo_matriculas')
-            ->onDelete('set null');
-            
-            $table->integer('grupo_id')->foreign('grupo_id')
+            ->restrictOnDelete(); 
+            $table->foreignId('grupo_id')->constrained()
             ->references('id')->on('grupos')
-            ->onDelete('set null');
+            ->restrictOnDelete();  
+            $table->foreignId('tipo_matricula_id')->constrained()
+            ->references('id')->on('tipo__matriculas')
+            ->restrictOnDelete();   
             $table->timestamps();
         });
     }

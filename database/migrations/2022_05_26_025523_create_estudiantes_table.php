@@ -20,12 +20,12 @@ return new class extends Migration
             $table->string('fecha_nacimiento');
             $table->string('edad');
             $table->string('direccion');
-            $table->integer('tutor_id')->foreign('tutor_id')
+            $table->foreignId('tutor_id')->constrained()
             ->references('id')->on('tutores')
             ->restrictOnDelete();
-            $table->integer('sexo_id')->foreign('sexo_id')
+            $table->foreignId('sexo_id')->constrained()
             ->references('id')->on('sexos')
-            ->onDelete('set null');
+            ->restrictOnDelete();
             $table->timestamps();
         });
     }

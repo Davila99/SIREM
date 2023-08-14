@@ -92,11 +92,12 @@ class DatabaseSeeder extends Seeder
             EstudianteSeeder::class
         );
         $this->call(
-            MatriculaSeeder::class
-        );
-        $this->call(
             GruposSeeder::class
         );
+        $this->call(
+            MatriculaSeeder::class
+        );
+
         $this->call(
             AsignaturaDocenteSeeder::class
         );

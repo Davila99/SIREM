@@ -15,16 +15,16 @@ return new class extends Migration
     {
         Schema::create('asignatura_docentes', function (Blueprint $table) {
             $table->id();
-            $table->integer('organizacion_academica_id')->foreign('organizacion_academica_id')
+            $table->foreignId('organizacion_academica_id')->constrained()
             ->references('id')->on('organizacion_academicas')
             ->restrictOnDelete();
-            $table->integer('asignatura_id')->foreign('asignaturas_id')
-            ->references('id')->on('asignatura')
+            $table->foreignId('asignatura_id')->constrained()
+            ->references('id')->on('asignaturas')
             ->restrictOnDelete();
-            $table->integer('empleado_id')->foreign('empleados_id')
-            ->references('id')->on('empleado')
-            ->restrictOnDelete();         
-            $table->integer('grupo_id')->foreign('grupo_id')
+            $table->foreignId('empleado_id')->constrained()
+            ->references('id')->on('empleados')
+            ->restrictOnDelete();
+            $table->foreignId('grupo_id')->constrained()
             ->references('id')->on('grupos')
             ->restrictOnDelete();
             $table->timestamps();
