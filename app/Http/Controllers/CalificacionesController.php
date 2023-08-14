@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Calificaciones;
-use App\Models\Grupos;
 use Illuminate\Http\Request;
 use App\Models\AsignaturaDocente;
-use App\Models\Estudiante;
 use App\Models\CalificacionDetalle;
 use App\Models\Cortes_evaluativo;
 use App\Models\Matricula;
@@ -42,12 +40,13 @@ class CalificacionesController extends Controller
     }
 
     public function generarActa(
-        $grupoId,
-        $asignaturaId,
-        $corteId,
         Request $request
     ) {
-        dd($grupoId, $asignaturaId, $corteId, $request->all());
+        $grupoId = $request->input('grupoId');
+        $asignaturaId = $request->input('asignaturaId');
+        $corteId = $request->input('corteId');
+        // dd($grupoId, $asignaturaId, $corteId);
+     
 
         $acta = Calificaciones::query()
             ->where('asignatura_id', $asignaturaId)
@@ -129,7 +128,13 @@ class CalificacionesController extends Controller
             ->where('empleado_id', auth()->id())
             ->get();
         $cortes = Cortes_evaluativo::all();
-        return view('calificaciones.index', compact('cursos', 'cortes'));
+        if ($cursos->count() > 0) {
+            return view('calificaciones.index', compact('cursos', 'cortes'));
+        } else {
+            return view('calificaciones.mensaje')->with('mensaje','ok');
+        }
+        
+
     }
     /**
      * Show the form for creating a new resource.
