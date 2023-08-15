@@ -29,7 +29,7 @@ class EstudianteController extends Controller
         $datos['estudiantes'] = Estudiante::query()
             ->with(['tutor'])
             ->with(['sexo'])
-            ->paginate(10);
+            ->get();
 
         return view('estudiante/index', $datos);
     }

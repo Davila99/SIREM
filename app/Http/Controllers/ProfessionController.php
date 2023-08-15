@@ -22,7 +22,7 @@ class ProfessionController extends Controller
      */
     public function index()
     {
-        $datos['professions'] = Profession::paginate(10);
+        $datos['professions'] = Profession::get();
         return view('profession/index', $datos);
     }
 

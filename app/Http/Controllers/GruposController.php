@@ -31,7 +31,7 @@ class GruposController extends Controller
             ->with(['empleado'])
             ->with(['seccion'])
             ->with(['turno'])
-            ->paginate(10);
+            ->get();
         //  dd($datos);
         return view('grupos/index', $datos);
     }

@@ -23,7 +23,7 @@ class TurnoController extends Controller
      */
     public function index()
     {
-        $datos['turnos'] = Turno::paginate(10);
+        $datos['turnos'] = Turno::get();
         return view('turno/index', $datos);
     }
 

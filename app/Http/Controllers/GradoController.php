@@ -23,7 +23,7 @@ class GradoController extends Controller
      */
     public function index()
     {
-        $datos['grados'] = Grado::paginate(10);
+        $datos['grados'] = Grado::get();
 
         return view('grado/index', $datos);
     }

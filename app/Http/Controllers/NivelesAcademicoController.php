@@ -22,7 +22,7 @@ class NivelesAcademicoController extends Controller
      */
     public function index()
     {
-        $datos['niveles_academicos'] = Niveles_academico::paginate(10);
+        $datos['niveles_academicos'] = Niveles_academico::get();
         return view('nivelacademico/index', $datos);
     }
 

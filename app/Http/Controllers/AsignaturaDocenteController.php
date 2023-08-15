@@ -35,7 +35,7 @@ class AsignaturaDocenteController extends Controller
             ->with(['empleado'])
             ->with(['grado'])
             ->with(['organizacionAcademica'])
-            ->paginate(10);
+            ->get();
 
         // dd($datos);
         return view('asignaturadocente/index', $datos);
@@ -115,7 +115,7 @@ class AsignaturaDocenteController extends Controller
     {
         $datos = AsignaturaDocente::findOrFail($id);
         $asignaturas = Asignatura::all();
-        $empleados = Empleado::all();
+        $empleados = Empleado::where('cargos_id', 1)->get();
         $grupos = Grupos::all();
 
         return view('asignaturadocente/edit', [

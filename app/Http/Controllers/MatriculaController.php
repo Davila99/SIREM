@@ -29,7 +29,7 @@ class MatriculaController extends Controller
             ->with(['tipo_matricula'])
             ->with(['grupo'])
             ->with(['user'])
-            ->paginate(10);
+            ->get();
 
         // dd($datos);
         return view('matriculas/index', $datos);

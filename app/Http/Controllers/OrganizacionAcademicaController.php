@@ -22,7 +22,7 @@ class OrganizacionAcademicaController extends Controller
      */
     public function index()
     {
-        $datos['organizacionacademicas'] = OrganizacionAcademica::paginate(10);
+        $datos['organizacionacademicas'] = OrganizacionAcademica::get();
         // dd($datos);
         return view('organizacionacademica/index', $datos);
     }

@@ -23,7 +23,7 @@ class TipoMatriculaController extends Controller
      */
     public function index()
     {
-        $datos['tipo__matriculas'] = Tipo_Matricula::paginate(10);
+        $datos['tipo__matriculas'] = Tipo_Matricula::get();
         return view('tipoMatricula/index', $datos);
     }
 

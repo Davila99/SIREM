@@ -23,7 +23,7 @@ class SeccionController extends Controller
      */
     public function index()
     {
-        $datos['secciones'] = Seccion::paginate(10);
+        $datos['secciones'] = Seccion::get();
         return view('seccion/index', $datos);
 
     }

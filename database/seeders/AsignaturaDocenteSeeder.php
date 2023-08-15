@@ -25,7 +25,13 @@ class AsignaturaDocenteSeeder extends Seeder
         DB::table('asignatura_docentes')->insert([
             'organizacion_academica_id' => 1,
             'asignatura_id' => 2,
-            'empleado_id' => 1,
+            'empleado_id' => 2,
+            'grupo_id' => 1,
+        ]);
+        DB::table('asignatura_docentes')->insert([
+            'organizacion_academica_id' => 1,
+            'asignatura_id' => 3,
+            'empleado_id' => 3,
             'grupo_id' => 1,
         ]);
     }

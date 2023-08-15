@@ -21,7 +21,7 @@ class AsignaturaController extends Controller
      */
     public function index()
     {
-        $datos['asignaturas'] = Asignatura::paginate(10);
+        $datos['asignaturas'] = Asignatura::get();
         return view('asignatura/index', $datos);
     }
 

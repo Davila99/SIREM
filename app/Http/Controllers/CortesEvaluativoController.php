@@ -22,7 +22,7 @@ class CortesEvaluativoController extends Controller
      */
     public function index()
     {
-        $datos['cortes_evaluativos'] = Cortes_evaluativo::paginate(10);
+        $datos['cortes_evaluativos'] = Cortes_evaluativo::get();
         return view('cortes/index', $datos);
     }
 

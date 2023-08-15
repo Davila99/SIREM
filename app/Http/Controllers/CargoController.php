@@ -22,7 +22,7 @@ class CargoController extends Controller
      */
     public function index()
     {
-        $datos['cargos'] = Cargo::paginate(10);
+        $datos['cargos'] = Cargo::get();
         return view('cargo/index', $datos);
     }
 
@@ -111,11 +111,6 @@ class CargoController extends Controller
             $datos = Cargo::findOrFail($id);
             return redirect('cargos')->with('mensaje-editar', 'ok');
         }
-        // $datos = request()->except(['_token', '_method']);
-        // Cargo::where('id', '=', $id)->update($datos);
-
-        //$datos = Cargo::findOrFail($id);
-        // return redirect('cargos/')->with('mensaje-editar', 'ok');
     }
 
     /**
