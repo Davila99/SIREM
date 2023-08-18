@@ -128,10 +128,11 @@ class CalificacionesController extends Controller
             ->where('empleado_id', auth()->id())
             ->get();
         $cortes = Cortes_evaluativo::all();
-        if ($cursos->count() > 0) {
-            return view('calificaciones.index', compact('cursos', 'cortes'));
-        } else {
+        if ($cursos->isEmpty()) {
             return view('calificaciones.mensaje')->with('mensaje','ok');
+            
+        } else {
+            return view('calificaciones.index', compact('cursos', 'cortes'));
         }
         
 
