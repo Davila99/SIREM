@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empleado;
+use App\Models\User;
 use Spatie\FlareClient\View;
 
 class HomeController extends Controller
@@ -23,6 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('perfil/index');
+        $perfil  = User::query()
+        ->with(['empleado'])
+        ->where('empleado_id', auth()->id())
+        ->first();
+        // dd($perfil);
+        return view('perfil/index',compact('perfil'));
     }
 }
