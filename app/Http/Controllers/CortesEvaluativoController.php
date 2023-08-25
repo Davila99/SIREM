@@ -121,7 +121,13 @@ class CortesEvaluativoController extends Controller
      */
     public function destroy($id)
     {
-        Cortes_evaluativo::destroy($id);
-        return redirect('cevaluativos/')->with('mensaje-eliminar', 'ok');
+        
+        try {
+            Cortes_evaluativo::destroy($id);
+            return redirect('cevaluativos/')->with('mensaje-eliminar', 'ok');
+        } catch (\Throwable $th) {
+            return redirect('grados')->with('mensaje-error-eliminar', 'ok');
+        }
+
     }
 }

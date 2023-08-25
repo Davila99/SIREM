@@ -145,20 +145,6 @@ class TutoreController extends Controller
             return redirect('tutores')->with('mensaje-editar', 'ok');
         }
 
-        //if ($existeDato) {
-        //return redirect('tutores/'.$id.'/edit')->with('mensaje-error', 'ok');
-        //   } else {
-        //     Tutore::where('id','=',$id)->update($datos);
-        //    $datos =  Tutore::findOrFail($id);
-        //    return redirect('tutores')->with('mensaje-editar','ok');
-        // }
-
-        // $datos = request()->except(['_token', '_method']);
-
-        //Tutore::where('id', '=', $id)->update($datos);
-        //$datos = Tutore::findOrFail($id);
-
-        // return redirect('tutores')->with('mensaje-editar', 'ok');
     }
 
     /**
