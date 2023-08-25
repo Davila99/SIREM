@@ -82,7 +82,7 @@
                  text: 'Este dato esta siendo utilizado',
              })
          </script>
-     @endifs
+     @endif
      <script>
          $('.form-eliminar').submit(function(e) {
              e.preventDefault();
