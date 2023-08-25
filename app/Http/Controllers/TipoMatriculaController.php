@@ -124,8 +124,12 @@ class TipoMatriculaController extends Controller
      */
     public function destroy($id)
     {
-        Tipo_Matricula::destroy($id);
-        return redirect('tmatricula/')->with('mensaje-eliminar', 'ok');
+        try {
+            Tipo_Matricula::destroy($id);
+            return redirect('tmatricula/')->with('mensaje-eliminar', 'ok');
+        } catch (\Throwable $th) {
+            return redirect('tmatricula')->with('mensaje-error-eliminar', 'ok');
+        }
     }
     public function search(Request $request)
     {

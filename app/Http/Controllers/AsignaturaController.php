@@ -123,7 +123,12 @@ class AsignaturaController extends Controller
      */
     public function destroy($id)
     {
-        Asignatura::destroy($id);
-        return redirect('asignaturas/')->with('mensaje-eliminar', 'ok');
+        try {
+            Asignatura::destroy($id);
+            return redirect('asignaturas/')->with('mensaje-eliminar', 'ok');
+        } catch (\Throwable $th) {
+            return redirect('asignaturas/')->with('mensaje-error-eliminar', 'ok');
+        }
+
     }
 }

@@ -68,7 +68,7 @@
                       text: 'Este dato esta siendo utilizado',
                   })
               </script>
-     @endif
+          @endif
      @if (Session::has('mensaje-editar'))
          <script>
              Swal.fire({
