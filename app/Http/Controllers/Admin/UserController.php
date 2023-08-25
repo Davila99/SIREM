@@ -38,6 +38,7 @@ class UserController extends Controller
         // return view('user/create');
     }
 
+    public function Changepassword()
     {
         return "En desarrollo";
     }
