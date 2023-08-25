@@ -40,12 +40,12 @@ class CalificacionesController extends Controller
     }
 
     public function generarActa(
+        $grupoId,
+        $asignaturaId,
+        $corteId,
         Request $request
     ) {
-        $grupoId = $request->input('grupoId');
-        $asignaturaId = $request->input('asignaturaId');
-        $corteId = $request->input('corteId');
-        // dd($grupoId, $asignaturaId, $corteId);
+         dd($grupoId, $asignaturaId, $corteId);
      
 
         $acta = Calificaciones::query()

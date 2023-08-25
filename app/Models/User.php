@@ -50,7 +50,7 @@ class User extends Authenticatable
     ];
     public function adminlte_image()
     {
-        return 'https://picsum.photos/300/300';
+        return 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp';
     }
     public function adminlte_desc()
     {

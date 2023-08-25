@@ -63,6 +63,7 @@ Route::get('/home', [
 Route::middleware(['auth'])->group(function () {
     Route::get('matriculas/pdf/{id}',[MatriculaController::class, 'pdf'])->name('matriculas.pdf');
     Route::post('change-nota/', [CalificacionesController::class, 'changeNota'])->name('change-nota');
+    Route::post('change-password/', [UserController::class, 'Changepassword'])->name('change-password');
     Route::get('generar-acta/{grupoId}/{asignaturaId}/{corteId}', [CalificacionesController::class, 'generarActa'])->name('generar-acta');
     Route::post('generar-acta/{grupoId}/{asignaturaId}/{corteId}', [CalificacionesController::class, 'generarActa'])->name('generar-acta');
     // Rutas de registro

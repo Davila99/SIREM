@@ -38,6 +38,9 @@ class UserController extends Controller
         // return view('user/create');
     }
 
+    {
+        return "En desarrollo";
+    }
     /**
      * Store a newly created resource in storage.
      *
