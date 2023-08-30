@@ -45,7 +45,7 @@ class CalificacionesController extends Controller
         $corteId,
         Request $request
     ) {
-         dd($grupoId, $asignaturaId, $corteId);
+        //  dd($grupoId, $asignaturaId, $corteId);
      
 
         $acta = Calificaciones::query()

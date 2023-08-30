@@ -45,10 +45,11 @@
                     
         <table class="table">
             <tbody>
+                {{-- @dd($curso) --}}
                 @foreach($cortes as $corte)
                     <tr>
                         <td>{{ $corte->descripcion }}</td>
-                        <th><form action="{{ route('generar-acta', ['grupoId' => $curso->id,  'asignaturaId' => $curso->asignatura->id,'corteId' => $corte->id]) }}" method="post" enctype="multipart/form-data">
+                        <th><form action="{{ route('generar-acta', ['grupoId' => $curso->grupo_id,  'asignaturaId' => $curso->asignatura->id,'corteId' => $corte->id]) }}" method="post" enctype="multipart/form-data">
                             @csrf 
                             <input type="hidden" name="curso_id" value="{{ $curso->id }}">
                             <input type="submit" value="Generar Acta" class="btn btn-warning " data-toggle="modal" data-target="#miModal"/>
