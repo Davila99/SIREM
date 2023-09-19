@@ -66,6 +66,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('change-password/', [UserController::class, 'Changepassword'])->name('change-password');
     Route::get('generar-acta/{grupoId}/{asignaturaId}/{corteId}', [CalificacionesController::class, 'generarActa'])->name('generar-acta');
     Route::post('generar-acta/{grupoId}/{asignaturaId}/{corteId}', [CalificacionesController::class, 'generarActa'])->name('generar-acta');
+    Route::post('imprimir-acta', [CalificacionesController::class, 'imprimirActa'])->name('imprimir-acta');
     // Rutas de registro
     Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CalificacionesExport;
 use App\Models\Calificaciones;
 use Illuminate\Http\Request;
 use App\Models\AsignaturaDocente;
@@ -9,6 +10,7 @@ use App\Models\CalificacionDetalle;
 use App\Models\Cortes_evaluativo;
 use App\Models\Matricula;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CalificacionesController extends Controller
 {
@@ -73,6 +75,7 @@ class CalificacionesController extends Controller
         $filas = $this->setActaRows($acta, $estudiantes);
         return view('calificaciones.show', compact('acta', 'filas'));
     }
+    
 
     public function setActa($id, $docente, $corte)
     {
@@ -118,6 +121,11 @@ class CalificacionesController extends Controller
             'message' => 'No se encontró el detalle de calificación',
         ], 404);
     }
+}
+
+public function imprimirActa(Request $request)  { 
+  
+    return Excel::download(new CalificacionesExport, 'calificaciones.xlsx');  
 }
 
     public function index()

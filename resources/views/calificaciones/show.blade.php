@@ -13,10 +13,19 @@
                     <tr>
                         <th scope="col" colspan="4" class="text-center">
                             <h1 class="font-weight-bold font-italic">Cabecera de Acta</h1>
+                            <form action="{{ route('imprimir-acta') }}" method="post" enctype="multipart/form-data">
+                                @csrf 
+                                <input type="submit" value="Imprimir Acta" class="btn btn-warning " />
+                            </form>
                         </th>
                     </tr>
                 </thead>
-
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="4" class="text-center">
+                            <h1 class="font-weight-bold font-italic">Acta Academica</h1>
+                        </th>
+                    </tr>                                                                                                                   
                 <tbody>
                     <tr>
                         <th>Fecha de generacion</th>

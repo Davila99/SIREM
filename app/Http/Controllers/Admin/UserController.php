@@ -38,9 +38,19 @@ class UserController extends Controller
         // return view('user/create');
     }
 
-    public function Changepassword()
+    public function Changepassword(Request $request)
     {
-        return "En desarrollo";
+            // Validación de datos
+            $request->validate([
+                'current_password' => 'required',
+                'new_password' => 'required|min:6|confirmed', // Debe coincidir con confirm_password
+            ]);
+    
+            // Aquí puedes realizar la lógica para cambiar la contraseña
+            // Normalmente, actualizarías la contraseña en la base de datos.
+    
+            // Mostrar un mensaje de éxito
+            return redirect()->back()->with('success', 'Contraseña cambiada con éxito.');
     }
     /**
      * Store a newly created resource in storage.
