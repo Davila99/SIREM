@@ -18,11 +18,16 @@
                         <td>{{ $curso->grupo->grado->descripcion }}</td>
                         <td>
                             <div class="d-flex flex-row bd-highlight mb-6">
-                                <div class="p-2 bd-highlight">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#miModal">
-                                            Actas Ademicas
-                                        </button>
-                                    </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#miModal">
+                                        Actas Académicas
+                                    </button> |
+                                    <form action="{{ route('imprimir-acta') }}" method="post" enctype="multipart/form-data">
+                                        @csrf 
+                                        <input type="submit" value="Imprimir Acta" class="btn btn-warning" />
+                                    </form>
+                                </div>
+                                
                             </div>
 
                         </td>

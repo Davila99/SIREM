@@ -54,8 +54,9 @@ class CalificacionesController extends Controller
             ->where('asignatura_id', $asignaturaId)
             ->where('corte_evaluativo_id', $corteId)
             ->where('grupo_id', $grupoId) // TODO: agregar grupo_id a la tabla calificaciones
-            ->first();
-            
+            ->exists();
+        // $acta = Calificaciones::find(45);
+            dd($acta);
         if ($acta) {
             $filas = CalificacionDetalle::query()
             ->where('calificacion_id', '=', $acta->id)
@@ -107,7 +108,7 @@ class CalificacionesController extends Controller
 
     public function changeNota(  Request $request)
 {
-    $calificacion = CalificacionDetalle::query()
+    $calificacion = CalificacionDetalle::query()    
         ->where('id', $request->id)
         ->first();
 
@@ -123,9 +124,11 @@ class CalificacionesController extends Controller
     }
 }
 
-public function imprimirActa(Request $request)  { 
-  
-    return Excel::download(new CalificacionesExport, 'calificaciones.xlsx');  
+public function imprimirActa(Request $request )  { 
+ 
+    $acta = Calificaciones::find($request->actaId);
+    // dd($acta);
+   return Excel::download(new CalificacionesExport($acta), 'acta.xlsx');
 }
 
     public function index()

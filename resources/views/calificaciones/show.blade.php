@@ -13,10 +13,12 @@
                     <tr>
                         <th scope="col" colspan="4" class="text-center">
                             <h1 class="font-weight-bold font-italic">Cabecera de Acta</h1>
-                            <form action="{{ route('imprimir-acta') }}" method="post" enctype="multipart/form-data">
-                                @csrf 
-                                <input type="submit" value="Imprimir Acta" class="btn btn-warning " />
+                            <form action="{{ route('imprimir-acta', ['actaId' => $acta->id]) }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="actaId" value="{{ $acta->id }}">
+                                <input type="submit" value="Imprimir Acta" class="btn btn-warning" />
                             </form>
+                            
                         </th>
                     </tr>
                 </thead>
