@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -8,35 +8,42 @@
 
     <!-- Incluye los archivos de Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
-      body {
-          font-size: 12px; /* Tamaño de fuente reducido */
-      }
-      .container {
-          max-width: 800px;
-          margin: 0 auto;
-          padding: 20px;
-          border: 1px solid #ccc;
-      }
-      /* ... (otros estilos) ... */
-      .footer {
-          position: absolute;
-          bottom: 20px;
-          left: 0;
-          right: 0;
-      }
-     
-  </style>
+        /* Establece el tamaño de fuente y otros estilos para que quepa en una página */
+        body {
+            font-size: 13px; /* Tamaño de fuente reducido */
+        }
+
+        .container {
+            max-width: 95%; /* Aprovecha todo el ancho disponible */
+            margin: 0; /* Elimina los márgenes para aprovechar al máximo el espacio */
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        /* Evita que las tablas se dividan entre páginas */
+        table {
+            page-break-inside: avoid;
+        }
+
+        /* Estilos adicionales... */
+
+        .footer {
+            position: absolute;
+            bottom: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container mt-5">
-        <h4 class="text-center mb-4">Hoja de Matrícula</h4>
+    <div class="container">
+        <h4 class="text-center mb-3">Hoja de Matrícula</h4>
         {{-- <div class="d-flex justify-content-center mb-4">
          <img src="{{ asset('/image/lo') }}" alt="">
       </div> --}}
-        <div class="section mb-4 p-3 border rounded bg-white">
+
+        <!-- Información del Estudiante -->
+        <div class="section mb-3 bg-white">
             <h4>Información del Estudiante</h4>
             <table class="table table-bordered">
                 <tbody>
@@ -47,28 +54,29 @@
                         <td>{{ $matriculas->estudiante->apellidos }}</td>
                     </tr>
                     <tr>
-                      <th>Fecha de Nacimiento:</th>
-                      <td>{{ $matriculas->estudiante->fecha_nacimiento }}</td>
-                      <th>Edad:</th>
-                      <td>{{ $matriculas->estudiante->edad }}</td>
-                  </tr>
-                  <tr>
-                      <th>Dirección:</th>
-                      <td>{{ $matriculas->estudiante->direccion }}</td>
-                      <th>Fecha de registro:</th>
-                      <td>{{ $matriculas->fecha }}</td>
-                  </tr>
-                  <tr>
-                      <th>Sexo:</th>
-                      <td>{{ $matriculas->estudiante->sexo->descripcion }}</td>
-                      <th>Tipo de Matrícula:</th>
-                      <td>{{ $matriculas->tipo_matricula->descripcion }}</td>
-                  </tr>
+                        <th>Fecha de Nacimiento:</th>
+                        <td>{{ $matriculas->estudiante->fecha_nacimiento }}</td>
+                        <th>Edad:</th>
+                        <td>{{ $matriculas->estudiante->edad }}</td>
+                    </tr>
+                    <tr>
+                        <th>Dirección:</th>
+                        <td>{{ $matriculas->estudiante->direccion }}</td>
+                        <th>Fecha de registro:</th>
+                        <td>{{ $matriculas->fecha }}</td>
+                    </tr>
+                    <tr>
+                        <th>Sexo:</th>
+                        <td>{{ $matriculas->estudiante->sexo->descripcion }}</td>
+                        <th>Tipo de Matrícula:</th>
+                        <td>{{ $matriculas->tipo_matricula->descripcion }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="section mb-4 p-3 border rounded bg-white">
+        <!-- Información del Grupo -->
+        <div class="section mb-3 bg-white">
             <h4>Información del Grupo</h4>
             <table class="table table-bordered">
                 <tbody>
@@ -79,22 +87,23 @@
                         <td>{{ $matriculas->fecha }}</td>
                     </tr>
                     <tr>
-                      <th>Docente Guía:</th>
-                      <td>{{ $matriculas->empleado->nombres }}</td>
-                      <th>Sección:</th>
-                      <td>{{ $matriculas->seccion->descripcion }}</td>
-                  </tr>
-                  <tr>
-                      <th>Turno:</th>
-                      <td>{{ $matriculas->turno->descripcion }}</td>
-                      <td></td>
-                      <td></td>
-                  </tr>
+                        <th>Docente Guía:</th>
+                        <td>{{ $matriculas->empleado->nombres }}</td>
+                        <th>Sección:</th>
+                        <td>{{ $matriculas->seccion->descripcion }}</td>
+                    </tr>
+                    <tr>
+                        <th>Turno:</th>
+                        <td>{{ $matriculas->turno->descripcion }}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="section mb-4 p-3 border rounded bg-white">
+        <!-- Información del Tutor -->
+        <div class="section mb-3 bg-white">
             <h4>Información del Tutor</h4>
             <table class="table table-bordered">
                 <tbody>
@@ -105,39 +114,48 @@
                         <td>{{ $matriculas->estudiante->tutor->apellido }}</td>
                     </tr>
                     <tr>
-                      <th>Cédula:</th>
-                      <td>{{ $matriculas->estudiante->tutor->cedula }}</td>
-                      <th>Teléfono:</th>
-                      <td>{{ $matriculas->estudiante->tutor->telefono }}</td>
-                  </tr>
-                  <tr>
-                      <th>Profesión:</th>
-                      <td>{{ $matriculas->estudiante->tutor->professions->descripcion }}</td>
-                      <td></td>
-                      <td></td>
-                  </tr>
+                        <th>Cédula:</th>
+                        <td>{{ $matriculas->estudiante->tutor->cedula }}</td>
+                        <th>Teléfono:</th>
+                        <td>{{ $matriculas->estudiante->tutor->telefono }}</td>
+                    </tr>
+                    <tr>
+                        <th>Profesión:</th>
+                        <td>{{ $matriculas->estudiante->tutor->professions->descripcion }}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="signature d-flex justify-content-between mt-5">
+<!-- Firmas del Tutor y del Director -->
+<div class="section mb-4">
+    <table class="table">
+        <tbody>
+            <tr>
+                <td class="text-center">
+                    <div class="signature-box p-3">
+                        <h6 class="mb-0">Firma del Tutor</h6>
+                        <hr>
+                    </div>
+                </td>
+                <td class="text-center">
+                    <div class="signature-box p-3">
+                        <h6 class="mb-0">Firma del Director</h6>
+                        <hr>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-       
-          <div class="signature-box border rounded p-3">
-              <h4 class="text-center">Firma del Tutor</h4>
-              <hr>
-          </div>
-          <div class="signature-box border rounded p-3">
-              <h4 class="text-center">Firma del Director</h4>
-              <hr>
 
-         </div>
-      
-
-
-        <div class="footer mt-5">
-          <p class="text-center font-weight-bold text-primary">Colegio Cristiano Manto de Gracia</p>
-      </div>
+        <!-- Pie de página -->
+        <div class="footer mt-4">
+            <p class="text-center font-weight-bold text-primary">Colegio Cristiano Manto de Gracia</p>
+        </div>
     </div>
 
     <!-- Incluye el script de jQuery requerido por Bootstrap -->
