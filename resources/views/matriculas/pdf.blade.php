@@ -11,14 +11,15 @@
     <style>
         /* Establece el tamaño de fuente y otros estilos para que quepa en una página */
         body {
-            font-size: 13px; /* Tamaño de fuente reducido */
+            font-size: 14px; /* Tamaño de fuente reducido */
         }
 
         .container {
             max-width: 95%; /* Aprovecha todo el ancho disponible */
             margin: 0; /* Elimina los márgenes para aprovechar al máximo el espacio */
             padding: 20px;
-            /* border: 1px solid #ccc; */
+            border: 1px solid #ccc; /* Agrega un borde a la página */
+
         }
 
         /* Evita que las tablas se dividan entre páginas */
@@ -32,6 +33,7 @@
             position: absolute;
             bottom: 20px;
         }
+        
         /* Estilo para la imagen */
         .imagen-arriba {
             position: absolute;
@@ -46,7 +48,8 @@
         <h4 class="text-center mb-3">Hoja de Matrícula</h4>
         <!-- Imagen -->
         <!-- <div class="d-flex align-items margin-right"> -->
-        <img src="images/logo.jpeg" alt="Imagen de Matrícula" width="100px" class="imagen-arriba">
+        <div class="imagen-container">
+        <img src="images/logo.jpeg" alt="Imagen de Matrícula" width="113px" class="imagen-arriba">
 
         </div>
 
