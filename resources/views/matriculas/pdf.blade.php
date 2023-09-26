@@ -43,7 +43,7 @@
       </div> --}}
 
         <!-- Información del Estudiante -->
-        <div class="section mb-3 p-2 border rounded bg-white">
+        <div class="section mb-3 bg-white">
             <h4>Información del Estudiante</h4>
             <table class="table table-bordered">
                 <tbody>
@@ -76,7 +76,7 @@
         </div>
 
         <!-- Información del Grupo -->
-        <div class="section mb-3 p-2 border rounded bg-white">
+        <div class="section mb-3 bg-white">
             <h4>Información del Grupo</h4>
             <table class="table table-bordered">
                 <tbody>
@@ -103,7 +103,7 @@
         </div>
 
         <!-- Información del Tutor -->
-        <div class="section mb-3 p-2 border rounded bg-white">
+        <div class="section mb-3 bg-white">
             <h4>Información del Tutor</h4>
             <table class="table table-bordered">
                 <tbody>
@@ -131,23 +131,26 @@
 
 <!-- Firmas del Tutor y del Director -->
 <div class="section mb-4">
-            <table class="table table-bordered">
-                <tbody>
-                    <tr>
-                        <td class="text-center">
-                            <div class="signature-box border rounded p-3">
-                                <h4 class="mb-0">Firma del Tutor</h4>
-                            </div>
-                        </td>
-                        <td class="text-center">
-                            <div class="signature-box border rounded p-3">
-                                <h4 class="mb-0">Firma del Director</h4>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td class="text-center">
+                    <div class="signature-box p-3">
+                        <h6 class="mb-0">Firma del Tutor</h6>
+                        <hr>
+                    </div>
+                </td>
+                <td class="text-center">
+                    <div class="signature-box p-3">
+                        <h6 class="mb-0">Firma del Director</h6>
+                        <hr>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 
         <!-- Pie de página -->
         <div class="footer mt-4">
