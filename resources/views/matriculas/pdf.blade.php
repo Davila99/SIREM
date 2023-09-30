@@ -11,14 +11,15 @@
     <style>
         /* Establece el tamaño de fuente y otros estilos para que quepa en una página */
         body {
-            font-size: 13px; /* Tamaño de fuente reducido */
+            font-size: 14px; /* Tamaño de fuente reducido */
         }
 
         .container {
             max-width: 95%; /* Aprovecha todo el ancho disponible */
             margin: 0; /* Elimina los márgenes para aprovechar al máximo el espacio */
             padding: 20px;
-            border: 1px solid #ccc;
+            border: 1px solid #ccc; /* Agrega un borde a la página */
+
         }
 
         /* Evita que las tablas se dividan entre páginas */
@@ -32,18 +33,28 @@
             position: absolute;
             bottom: 20px;
         }
+        
+        /* Estilo para la imagen */
+        .imagen-arriba {
+            position: absolute;
+            top: 10px; /* Espacio a la derecha de la imagen */
+            left: 10px; /* Espacio arriba de la imagen */
+        }
     </style>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container"> <!-- Añade el margen superior -->
         <h4 class="text-center mb-3">Hoja de Matrícula</h4>
-        {{-- <div class="d-flex justify-content-center mb-4">
-         <img src="{{ asset('/image/lo') }}" alt="">
-      </div> --}}
+        <!-- Imagen -->
+        <!-- <div class="d-flex align-items margin-right"> -->
+        <div class="imagen-container">
+        <img src="images/logo.jpeg" alt="Imagen de Matrícula" width="113px" class="imagen-arriba">
+
+        </div>
 
         <!-- Información del Estudiante -->
-        <div class="section mb-3 bg-white">
+        <div class="section mt-5 mb-3 bg-white">
             <h4>Información del Estudiante</h4>
             <table class="table table-bordered">
                 <tbody>
