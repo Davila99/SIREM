@@ -2,7 +2,7 @@
 @section('content')
 
     @csrf
-    <div class="table-responsive">
+    <div class="table-responsive" style="min-height: 250px">
         <table class="table table-dark">
             <thead class="thead-light">
                 <tr>
@@ -19,15 +19,24 @@
                         <td>
                             <div class="d-flex flex-row bd-highlight mb-6">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#miModal">
-                                        Actas Académicas
-                                    </button> |
-                                    <form action="{{ route('imprimir-acta') }}" method="post" enctype="multipart/form-data">
-                                        @csrf 
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Generar Acta
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            @include('calificaciones.dropdown-cortes')
+                                        </div>
+                                    </div>
+
+                                    <form action="{{ route('imprimir-acta') }}" method="post"
+                                        enctype="multipart/form-data">
+                                        @csrf
                                         <input type="submit" value="Imprimir Acta" class="btn btn-warning" />
                                     </form>
                                 </div>
-                                
+
                             </div>
 
                         </td>
@@ -37,38 +46,5 @@
         </table>
     </div>
 
-    <div id="miModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="miModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="miModalLabel">Cortes</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    
-        <table class="table">
-            <tbody>
-                {{-- @dd($curso) --}}
-                @foreach($cortes as $corte)
-                    <tr>
-                        <td>{{ $corte->descripcion }}</td>
-                        <th><form action="{{ route('generar-acta', ['grupoId' => $curso->grupo_id,  'asignaturaId' => $curso->asignatura_id,'corteId' => $corte->id]) }}" method="post" enctype="multipart/form-data">
-                            @csrf 
-                            <input type="hidden" name="curso_id" value="{{ $curso->id }}">
-                            <input type="submit" value="Generar Acta" class="btn btn-warning " data-toggle="modal" data-target="#miModal"/>
-                        </form>
-                    </th>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 @stop

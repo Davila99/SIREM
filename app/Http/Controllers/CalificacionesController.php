@@ -54,9 +54,9 @@ class CalificacionesController extends Controller
             ->where('asignatura_id', $asignaturaId)
             ->where('corte_evaluativo_id', $corteId)
             ->where('grupo_id', $grupoId) // TODO: agregar grupo_id a la tabla calificaciones
-            ->exists();
+            ->first();
         // $acta = Calificaciones::find(45);
-            dd($acta);
+            // dd($acta);
         if ($acta) {
             $filas = CalificacionDetalle::query()
             ->where('calificacion_id', '=', $acta->id)
