@@ -25,14 +25,14 @@
                                  <div class="d-flex flex-row bd-highlight mb-6">
                                     @can('cargos.edit')
                                     <a href="{{ url('/cargos/' . $cargo->id . '/edit') }}" class="btn btn-info">
-                                        Editar </a>|
+                                        @include('components.buttons.edit-button')</a>|
                                     @endcan
                                 
                                      <form class="form-eliminar" action="{{ url('/cargos/' . $cargo->id) }}" method="post"
                                          class="d-inline">
                                          @csrf
                                          {{ method_field('DELETE') }}
-                                         <button type="submit" class="btn btn-danger">Eliminar</button>
+                                         <button type="submit" class="btn btn-danger"> @include('components.buttons.delete-button')</button>
                                      </form>
                                  </div>
 

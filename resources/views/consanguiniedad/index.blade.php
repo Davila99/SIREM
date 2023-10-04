@@ -24,13 +24,13 @@
                                 <div class="d-flex flex-row bd-highlight mb-6">
                                     <a href="{{ url('/consanguiniedades/' . $consanguiniedade->id . '/edit') }}"
                                         class="btn btn-info">
-                                        Editar </a>|
+                                        @include('components.buttons.edit-button') </a>|
                                     <form class="form-eliminar"
                                         action="{{ url('/consanguiniedades/' . $consanguiniedade->id) }}" method="post"
                                         class="d-inline">
                                         @csrf
                                         {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        <button type="submit" class="btn btn-danger"> @include('components.buttons.delete-button')</button>
                                     </form>
                                 </div>
 

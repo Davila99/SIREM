@@ -21,12 +21,12 @@
                     <td>
                         <div class="d-flex flex-row bd-highlight mb-6">
                             <a href="{{ url('/profession/' . $profession->id . '/edit') }}" class="btn btn-info">
-                                Editar </a>|
+                                @include('components.buttons.edit-button') </a>|
                             <form class="form-eliminar" action="{{ url('/profession/' . $profession->id) }}" method="post"
                                 class="d-inline">
                                 @csrf
                                 {{ method_field('DELETE') }}
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <button type="submit" class="btn btn-danger"> @include('components.buttons.delete-button')</button>
                             </form>
                         </div>
 
