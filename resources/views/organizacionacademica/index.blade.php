@@ -6,51 +6,51 @@
     <br>
     <br>
     <div class="table-responsive">
-    <table class="table table-dark">
-        <thead class="thead-light">
-            <tr>
-                <th>Organizacion Academica</th>
-                <th>Fecha</th>
-                <th>Autorización</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            @foreach ($organizacionacademicas as $organizacionacademica)
+        <table class="table table-dark">
+            <thead class="thead-light">
                 <tr>
-                    <td>{{ $organizacionacademica->descripcion }}</td>
-                    <td>{{ $organizacionacademica->fecha }}</td>
-                    <td>
-                        <input data-id="{{ $organizacionacademica->id }}" class="toggle-class" type="checkbox"
-                            data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active"
-                            data-off="InActive" {{ $organizacionacademica->confirmed ? 'checked' : '' }}>
-                    </td>
-                    <td>
-                        <div class="d-flex flex-row bd-highlight mb-6">
-                            <a href="{{ url('/organizacionacademica/' . $organizacionacademica->id . '/edit') }}"
-                                class="btn btn-info">
-                                Editar </a>|
-                            <a href="{{ url('/organizacionacademica/' . $organizacionacademica->id) }}"
-                                class="btn btn-warning">
-                                Detalles </a>|
-                            <form class="form-eliminar"
-                                action="{{ url('/organizacionacademica/' . $organizacionacademica->id) }}" method="post"
-                                class="d-inline">
-                                @csrf
-                                {{ method_field('DELETE') }}
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
-                        </div>
-
-                    </td>
-
+                    <th>Organizacion Academica</th>
+                    <th>Fecha</th>
+                    <th>Autorización</th>
+                    <th>Acciones</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+            </thead>
+
+            <tbody>
+
+                @foreach ($organizacionacademicas as $organizacionacademica)
+                    <tr>
+                        <td>{{ $organizacionacademica->descripcion }}</td>
+                        <td>{{ $organizacionacademica->fecha }}</td>
+                        <td>
+                            <input data-id="{{ $organizacionacademica->id }}" class="toggle-class" type="checkbox"
+                                data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active"
+                                data-off="InActive" {{ $organizacionacademica->confirmed ? 'checked' : '' }}>
+                        </td>
+                        <td>
+                            <div class="d-flex flex-row bd-highlight mb-6">
+                                <a href="{{ url('/organizacionacademica/' . $organizacionacademica->id . '/edit') }}"
+                                    class="btn btn-info">
+                                    @include('components.buttons.edit-button')</a>|
+                                <a href="{{ url('/organizacionacademica/' . $organizacionacademica->id) }}"
+                                    class="btn btn-warning">
+                                    @include('components.buttons.details-button')</a>|
+                                <form class="form-eliminar"
+                                    action="{{ url('/organizacionacademica/' . $organizacionacademica->id) }}"
+                                    method="post" class="d-inline">
+                                    @csrf
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger">@include('components.buttons.delete-button')</button>
+                                </form>
+                            </div>
+
+                        </td>
+
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
     </div>
 @stop
 @section('js')
@@ -144,7 +144,7 @@
                                 console.log(data.success)
                             }
                         });
-                    }else{
+                    } else {
                         location.reload();
                     }
                 })
