@@ -32,26 +32,28 @@
                                     <div class="d-inline">
                                         <a href="{{ url('/matriculas/' . $matricula->id . '/edit') }}"
                                             class="btn btn-info me-1">
-                                            Editar
+                                          @include('components.buttons.edit-button')
                                         </a>
                                     </div>
                                     |
                                     <div class="d-inline">
                                         <a href="{{ url('/matriculas/' . $matricula->id) }}" class="btn btn-warning me-1">
-                                            Detalles
+                                           @include('components.buttons.details-button')
                                         </a>
                                     </div>
+                                    |
                                     <div class="d-inline">
-                                        <a type="button" class="btn btn-success " href="{{ url('/matriculas/pdf/' . $matricula->id) }}" target="blank">Imprimir Hoja de Matricula</a>
+                                        <a type="button" class="btn btn-success " href="{{ url('/matriculas/pdf/' . $matricula->id) }}" target="blank">
+                                            @include('components.buttons.pdf-button')
+                                        </a>
                                     </div>
-                                       
-                                    
+                                    |      
                                     <form class="form-eliminar" action="{{ url('/matriculas/' . $matricula->id) }}"
                                         method="post" class="d-inline">
                                         @csrf
                                         {{ method_field('DELETE') }}
                                         <button type="submit" class="btn btn-danger">
-                                            Eliminar
+                                            @include('components.buttons.delete-button')
                                         </button>
                                     </form>
                                 </div>

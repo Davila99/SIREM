@@ -32,13 +32,13 @@
                             <div class="d-flex justify-content-center">
                                 <div class="d-inline">
                                     <a href="{{ url('/empleados/' . $empleado->id . '/edit') }}" class="btn btn-info me-1">
-                                        Editar
+                                        @include('components.buttons.edit-button')
                                     </a>
                                 </div>
                                 |
                                 <div class="d-inline">
                                     <a href="{{ url('/empleados/' . $empleado->id) }}" class="btn btn-warning me-1">
-                                        Perfil
+                                        @include('components.buttons.details-button')
                                     </a>
                                 </div>
 
@@ -47,7 +47,7 @@
                                     @csrf
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-danger">
-                                        Eliminar
+                                        @include('components.buttons.delete-button')
                                     </button>
                                 </form>
                             </div>

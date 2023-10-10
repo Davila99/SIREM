@@ -31,13 +31,13 @@
                                     <div class="d-inline">
                                         <a href="{{ url('/asignaturadocente/' . $asignaturadocente->id . '/edit') }}"
                                             class="btn btn-info">
-                                            Editar </a>
+                                            @include('components.buttons.edit-button') </a>
                                     </div>
                                     |
                                     <div class="d-inline">
                                         <a href="{{ url('/asignaturadocente/' . $asignaturadocente->id) }}"
                                             class="btn btn-warning">
-                                            Detalles </a>
+                                            @include('components.buttons.details-button') </a>
                                     </div>
                                     |
                                     <form class="form-eliminar"
@@ -45,7 +45,7 @@
                                         class="d-inline">
                                         @csrf
                                         {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        <button type="submit" class="btn btn-danger">@include('components.buttons.delete-button')</button>
                                     </form>
                                 </div>
 

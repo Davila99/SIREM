@@ -22,12 +22,12 @@
                             <td>
                                 <div class="d-flex flex-row bd-highlight mb-6">
                                     <a href="{{ url('/asignaturas/' . $asignatura->id . '/edit') }}" class="btn btn-info">
-                                        Editar </a>|
+                                        @include('components.buttons.edit-button') </a>|
                                     <form class="form-eliminar" action="{{ url('/asignaturas/' . $asignatura->id) }}"
                                         method="post" class="d-inline">
                                         @csrf
                                         {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        <button type="submit" class="btn btn-danger"> @include('components.buttons.delete-button')</button>
                                     </form>
                                 </div>
 
@@ -59,9 +59,9 @@
                     "infoFiltered": "(filtrado de un total de _MAX_ registros)",
                     "search": "Buscar:",
                     "paginate": {
-                        first: '<i class="fas fa-angle-double-left"></i>', // Icono para ir a la primera página
-                        previous: '<i class="fas fa-angle-left"></i>', // Icono para ir a la página anterior
-                        next: '<i class="fas fa-angle-right"></i>', // Icono para ir a la página siguiente
+                        first: '<i class="fas fa-angle-double-left"></i>', 
+                        previous: '<i class="fas fa-angle-left"></i>', 
+                        next: '<i class="fas fa-angle-right"></i>', 
                         last: '<i class="fas fa-angle-double-right"></i>'
                     },
                 }
@@ -94,14 +94,14 @@
         </script>
     @endif
     @if (Session::has('mensaje-error-eliminar'))
-              <script>
-                  Swal.fire({
-                      icon: 'error',
-                      title: 'Lo sentimos',
-                      text: 'Este dato esta siendo utilizado',
-                  })
-              </script>
-          @endif
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Lo sentimos',
+                text: 'Este dato esta siendo utilizado',
+            })
+        </script>
+    @endif
     @if (Session::has('mensaje-eliminar'))
         <script>
             Swal.fire(
