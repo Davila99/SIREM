@@ -15,15 +15,16 @@ return new class extends Migration
     {
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->id();
-            $table->string('nombres');
-            $table->string('apellidos');
-            $table->string('fecha_nacimiento');
-            $table->string('edad');
-            $table->string('direccion');
-            $table->foreignId('tutor_id')->constrained()
+            $table->string('nombres')->nullable();
+            $table->string('apellidos')->nullable();
+            $table->string('codigo_estudiante')->nullable();
+            $table->string('fecha_nacimiento')->nullable();
+            $table->string('edad')->nullable();
+            $table->string('direccion')->nullable();
+            $table->foreignId('tutor_id')->nullable()->constrained()
             ->references('id')->on('tutores')
             ->restrictOnDelete();
-            $table->foreignId('sexo_id')->constrained()
+            $table->foreignId('sexo_id')->nullable()->constrained()
             ->references('id')->on('sexos')
             ->restrictOnDelete();
             $table->timestamps();

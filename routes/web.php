@@ -91,6 +91,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('tutores', TutoreController::class);
     Route::resource('consanguiniedades', ConsanguiniedadeController::class);
     Route::resource('empleados', EmpleadoController::class);
+    Route::post('estudiantes-importar', [EstudianteController::class, 'importarEstudiante']);
     Route::resource('estudiantes', EstudianteController::class);
     Route::resource('estudianteTutores', EstudiantesTutoresController::class);
     Route::resource('empleados', EmpleadoController::class);

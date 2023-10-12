@@ -88,19 +88,19 @@ class DatabaseSeeder extends Seeder
         $this->call(
             TutoreSeeder::class
         );
-        $this->call(
-            EstudianteSeeder::class
-        );
-        $this->call(
-            GruposSeeder::class
-        );
-        $this->call(
-            MatriculaSeeder::class
-        );
+        // $this->call(
+        //     EstudianteSeeder::class
+        // );
+        // $this->call(
+        //     GruposSeeder::class
+        // );
+        // $this->call(
+        //     MatriculaSeeder::class
+        // );
 
-        $this->call(
-            AsignaturaDocenteSeeder::class
-        );
+        // $this->call(
+        //     AsignaturaDocenteSeeder::class
+        // );
         $this->call(
             ModelHasRolesSeeder::class
         );

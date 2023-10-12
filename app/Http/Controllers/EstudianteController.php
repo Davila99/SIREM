@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\EstudianteCollection;
+use App\Imports\EstudiantesImport;
 use App\Models\Estudiante;
 use App\Models\Sexo;
 use App\Models\Tutore;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class EstudianteController extends Controller
 {
@@ -200,5 +203,15 @@ class EstudianteController extends Controller
             ->get();
 
         return new EstudianteCollection($results);
+    }
+
+    public function importarEstudiante (Request $request){
+        
+        if ($request->hasFile('documento')) {
+            $file = $request->file('documento');
+            Excel::import(new EstudiantesImport, $file);
+        }
+    
+        return back()->with('mensaje', 'ok');
     }
 }
