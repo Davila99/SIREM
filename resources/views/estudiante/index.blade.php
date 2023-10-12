@@ -118,6 +118,17 @@
             })
         </script>
     @endif
+    @if (Session::has('mensaje-registro'))
+    <script>
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Estudiantes registrados exitosamentes!',
+            showConfirmButton: false,
+            timer: 2000
+        })
+    </script>
+@endif
     @if (Session::has('mensaje-editar'))
         <script>
             Swal.fire({
