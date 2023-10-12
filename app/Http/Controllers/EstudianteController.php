@@ -212,6 +212,6 @@ class EstudianteController extends Controller
             Excel::import(new EstudiantesImport, $file);
         }
     
-        return back()->with('mensaje', 'ok');
+        return back()->with('mensaje-registro', 'ok');
     }
 }

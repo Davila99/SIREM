@@ -26,7 +26,13 @@ return new class extends Migration
             ->restrictOnDelete();  
             $table->foreignId('tipo_matricula_id')->constrained()
             ->references('id')->on('tipo__matriculas')
-            ->restrictOnDelete();   
+            ->restrictOnDelete();
+            $table->boolean('partida_nacimiento')->nullable();
+            $table->boolean('tarjeta_vacuna')->nullable();
+            $table->boolean('diploma_prescolar')->nullable();
+            $table->boolean('cedula_padres')->nullable();
+            $table->boolean('hoja_traslado')->nullable();
+            $table->boolean('diploma_secundaria')->nullable();   
             $table->timestamps();
         });
     }
