@@ -333,12 +333,12 @@ return [
                     'can' =>'estudiantes.index'
                     
                 ],
-                // [
-                //     'text'        => 'Estudiantes Tutores',
-                //     'route'         => 'estudianteTutores.index',
-                //     'icon'        => 'fas fa-people-arrows',
-                //     'can' =>'estudianteTutores.index'
-                // ],
+                [
+                    'text'        => 'Estudiantes Tutores',
+                    'route'         => 'estudianteTutores.index',
+                    'icon'        => 'fas fa-people-arrows',
+                    'can' =>'estudianteTutores.index'
+                ],
                 [
                     'text'        => 'Tutores',
                     'route'       => 'tutores.index',

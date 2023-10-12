@@ -3,9 +3,19 @@
 @section('content')
     <div class="container">
         <br>
-        <div class="form-group ">
-            <a href="{{ url('estudiantes/create') }}" class="btn btn-success"> Nuevo Estudiante </a>
+        <div class="row">
+            <div class="col">
+                <a href="{{ url('estudiantes/create') }}" class="btn btn-success btn-block">Nuevo Estudiante</a>
+            </div>
+            <div class="col d-flex">
+                <form action="{{ url('estudiantes-importar/') }}" method="POST" enctype="multipart/form-data" class="form-inline d-flex">
+                    @csrf
+                    <input type="file" name="documento" class="form-control-file">
+                    <button type="submit" class="btn btn-primary">Importar</button>
+                </form>
+            </div>
         </div>
+        
 
         <div class="table-responsive">
             <table id="estudiantes-table" class="table table-dark">
@@ -26,17 +36,24 @@
 
                     @foreach ($estudiantes as $estudiante)
                         <tr>
-                            <td>{{ $estudiante->nombres }}</td>
-                            <td>{{ $estudiante->apellidos }}</td>
-                            <td>{{ $estudiante->fecha_nacimiento }}</td>
-                            <td>{{ $estudiante->edad }}</td>
-                            <td>{{ $estudiante->direccion }}</td>
-                            <td>{{ $estudiante->tutor->nombre }} {{ $estudiante->tutor->apellido }}</td>
-                            <td>{{ $estudiante->sexo->descripcion }}</td>
+                            <td>{{ $estudiante->nombres ?? 'N/A' }}</td>
+                            <td>{{ $estudiante->apellidos ?? 'N/A' }}</td>
+                            <td>{{ $estudiante->fecha_nacimiento ?? 'N/A' }}</td>
+                            <td>{{ $estudiante->edad ?? 'N/A' }}</td>
+                            <td>{{ $estudiante->direccion ?? 'N/A' }}</td>
+                            <td>
+                                @if ($estudiante->tutor)
+                                    {{ $estudiante->tutor->nombre }} {{ $estudiante->tutor->apellido }}
+                                @else
+                                    N/A
+                                @endif
+                            </td>
+                            <td>{{ $estudiante->sexo ? $estudiante->sexo->descripcion : 'N/A' }}</td>
                             <td>
                                 <div class="d-flex flex-row bd-highlight mb-6">
                                     <div class="class=d-inline">
-                                        <a href="{{ url('/estudiantes/' . $estudiante->id . '/edit') }}" class="btn btn-info">
+                                        <a href="{{ url('/estudiantes/' . $estudiante->id . '/edit') }}"
+                                            class="btn btn-info">
                                             @include('components.buttons.edit-button') </a>
                                     </div>
                                     |
@@ -77,9 +94,9 @@
                     "infoFiltered": "(filtrado de un total de _MAX_ registros)",
                     "search": "Buscar:",
                     "paginate": {
-                        first: '<i class="fas fa-angle-double-left"></i>', // Icono para ir a la primera página
-                        previous: '<i class="fas fa-angle-left"></i>', // Icono para ir a la página anterior
-                        next: '<i class="fas fa-angle-right"></i>', // Icono para ir a la página siguiente
+                        first: '<i class="fas fa-angle-double-left"></i>', 
+                        previous: '<i class="fas fa-angle-left"></i>', 
+                        next: '<i class="fas fa-angle-right"></i>',
                         last: '<i class="fas fa-angle-double-right"></i>'
                     },
                 }

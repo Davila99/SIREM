@@ -27,6 +27,20 @@
     </div>
 
     <div class="form-group">
+        <label for="codigo_estudiante">
+            <h5>Codigo Estudiante:</h5>
+        </label>
+        <input id="codigo_estudiante" name="codigo_estudiante" type="text" placeholder="codigo_estudiante"
+            class="form-control @error('codigo_estudiante') is-invalid @enderror"
+            value="{{ isset($datos->codigo_estudiante) ? $datos->codigo_estudiante : old('codigo_estudiante') }}">
+        @error('codigo_estudiante')
+            <div class="invalid-feedback">
+                <h5> {{ $message }}</h5>
+            </div>
+        @enderror
+    </div>
+
+    <div class="form-group">
         <label for="fecha_nacimiento">
             <h5>Fecha de Nacimiento:</h5>
         </label>
