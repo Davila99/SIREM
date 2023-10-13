@@ -115,6 +115,7 @@ class MatriculaController extends Controller
     public function show($id)
     {
         $matriculas = Matricula::findOrFail($id);
+        // dd($matriculas);
         return view('matriculas/detalles', compact('matriculas'));
     }
 

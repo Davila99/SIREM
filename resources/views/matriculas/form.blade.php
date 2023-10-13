@@ -1,4 +1,4 @@
-<div class="mt-5 row justify-content-center ">
+<div class="container">
     <fieldset class="border p-4">
         @if (request()->route()->getName() == 'matriculas.create')
         <div class="form-group">
@@ -106,15 +106,17 @@
 
 
     </fieldset>
-    <div class=" d-grid mt-2 col-sm-4">
-        <input type="submit" value="Guardar" class="btn btn-success">
-    </div>
 
-    <div class="d-grid mt-2 col-sm-4">
-        <a type="button" class="btn btn-primary" href="{{ url('matriculas/') }}"> Regresar </a>
+    <div class="mt-2 row justify-content-center ">
+        <div class=" d-grid mt-2 col-sm-4">
+            <input type="submit" value="Guardar" class="btn btn-success">
+        </div>
+    
+        <div class="d-grid mt-2 col-sm-4">
+            <a type="button" class="btn btn-primary mt-2" href="{{ url('matriculas/') }}">Regresar</a>
     </div>
+    
 </div>
-
 
 @section('scripts')
     <script type="text/javascript">
