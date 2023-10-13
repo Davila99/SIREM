@@ -44,8 +44,9 @@ class MatriculaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('matriculas/create');
+    {   $tipoMatriculas = Tipo_Matricula::all();
+        $grupos = Grupos::all();
+        return view('matriculas/create',compact('tipoMatriculas','grupos'));
     }
     public function pdf($id)
     {
@@ -70,6 +71,7 @@ class MatriculaController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate(
             [
                 'estudiante_id' => 'required',
@@ -93,6 +95,12 @@ class MatriculaController extends Controller
         $matricula->estudiante_id = $request->estudiante_id;
         $matricula->tipo_matricula_id = $request->tipo_matricula_id;
         $matricula->grupo_id = $request->grupo_id;
+        $matricula->partida_nacimiento = $request->partida_nacimiento;
+        $matricula->tarjeta_vacuna = $request->tarjeta_vacuna;
+        $matricula->diploma_prescolar = $request->diploma_prescolar;
+        $matricula->cedula_padres = $request->cedula_padres;
+        $matricula->hoja_traslado = $request->hoja_traslado;
+        $matricula->diploma_secundaria = $request->diploma_secundaria;
         $matricula->save();
 
         return redirect('matriculas/')->with('mensaje', 'ok');
@@ -120,13 +128,13 @@ class MatriculaController extends Controller
     {
         $datos = Matricula::findOrFail($id);
         $estudiante = Estudiante::all();
-        $tipo_matricula = Tipo_Matricula::all();
+        $tipoMatriculas = Tipo_Matricula::all();
         $grupos = Grupos::all();
 
         return view('matriculas/edit', [
             'datos' => $datos,
             'estudiante' => $estudiante,
-            'tipo_matricula' => $tipo_matricula,
+            'tipoMatriculas' => $tipoMatriculas,
             'grupos' => $grupos,
         ]);
     }
@@ -142,15 +150,13 @@ class MatriculaController extends Controller
     {
         $request->validate(
             [
-                'estudiante_id' => 'required',
                 'tipo_matricula_id' => 'required',
                 'grupo_id' => 'required',
             ],
 
             [
-                'estudiante_id.required' => 'El estudiantes es obligatorio.',
                 'tipo_matricula_id.required' =>
-                    'El tipo de matricula es obligatorio.',
+                'El tipo de matricula es obligatorio.',
                 'grupo_id.required' => 'El grupo es obligatorio.',
             ]
         );
