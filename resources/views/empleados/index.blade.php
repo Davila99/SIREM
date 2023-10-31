@@ -14,6 +14,7 @@
                         <th>Telefono</th>
                         <th>Nivel Academico</th>
                         <th>Fecha ingreso</th>
+                        <th>Antiguedad</th>
                         <th>Cargo</th>
                         <th>Acciones</th>
                     </tr>
@@ -27,6 +28,11 @@
                         <td>{{ $empleado->telefono }}</td>
                         <td>{{ $empleado->nivel_academico->descripcion }}</td>
                         <td>{{ $empleado->fecha_ingreso }}</td>
+                        @php
+                            $fecha_ingreso = $empleado->fecha_ingreso ?? null;
+                            $antiguedad = $fecha_ingreso ? \Carbon\Carbon::parse($fecha_ingreso)->age : 'N/A';
+                        @endphp
+                        <td>{{ $antiguedad }} años</td>
                         <td>{{ $empleado->cargos->descripcion }}</td>
                         <td>
                             <div class="d-flex justify-content-center">
@@ -42,8 +48,8 @@
                                     </a>
                                 </div>
 
-                                <form class="form-eliminar" action="{{ url('/empleados/' . $empleado->id) }}" method="post"
-                                    class="d-inline">
+                                <form class="form-eliminar" action="{{ url('/empleados/' . $empleado->id) }}"
+                                    method="post" class="d-inline">
                                     @csrf
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-danger">
