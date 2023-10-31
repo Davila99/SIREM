@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('apellidos')->nullable();
             $table->string('codigo_estudiante')->nullable();
             $table->string('fecha_nacimiento')->nullable();
-            $table->string('edad')->nullable();
             $table->string('direccion')->nullable();
             $table->foreignId('tutor_id')->nullable()->constrained()
             ->references('id')->on('tutores')

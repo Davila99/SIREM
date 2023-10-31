@@ -8,14 +8,15 @@
                 <a href="{{ url('estudiantes/create') }}" class="btn btn-success btn-block">Nuevo Estudiante</a>
             </div>
             <div class="col d-flex">
-                <form action="{{ url('estudiantes-importar/') }}" method="POST" enctype="multipart/form-data" class="form-inline d-flex">
+                <form action="{{ url('estudiantes-importar/') }}" method="POST" enctype="multipart/form-data"
+                    class="form-inline d-flex">
                     @csrf
                     <input type="file" name="documento" class="form-control-file">
                     <button type="submit" class="btn btn-primary">Importar</button>
                 </form>
             </div>
         </div>
-        
+
 
         <div class="table-responsive">
             <table id="estudiantes-table" class="table table-dark">
@@ -39,7 +40,11 @@
                             <td>{{ $estudiante->nombres ?? 'N/A' }}</td>
                             <td>{{ $estudiante->apellidos ?? 'N/A' }}</td>
                             <td>{{ $estudiante->fecha_nacimiento ?? 'N/A' }}</td>
-                            <td>{{ $estudiante->edad ?? 'N/A' }}</td>
+                            @php
+                                $fechaNacimiento = $estudiante->fecha_nacimiento ?? null;
+                                $edad = $fechaNacimiento ? \Carbon\Carbon::parse($fechaNacimiento)->age : 'N/A';
+                            @endphp
+                            <td>{{ $edad }}</td>
                             <td>{{ $estudiante->direccion ?? 'N/A' }}</td>
                             <td>
                                 @if ($estudiante->tutor)
@@ -94,8 +99,8 @@
                     "infoFiltered": "(filtrado de un total de _MAX_ registros)",
                     "search": "Buscar:",
                     "paginate": {
-                        first: '<i class="fas fa-angle-double-left"></i>', 
-                        previous: '<i class="fas fa-angle-left"></i>', 
+                        first: '<i class="fas fa-angle-double-left"></i>',
+                        previous: '<i class="fas fa-angle-left"></i>',
                         next: '<i class="fas fa-angle-right"></i>',
                         last: '<i class="fas fa-angle-double-right"></i>'
                     },
@@ -119,16 +124,16 @@
         </script>
     @endif
     @if (Session::has('mensaje-registro'))
-    <script>
-        Swal.fire({
-            position: 'top-center',
-            icon: 'success',
-            title: 'Estudiantes registrados exitosamentes!',
-            showConfirmButton: false,
-            timer: 2000
-        })
-    </script>
-@endif
+        <script>
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Estudiantes registrados exitosamentes!',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        </script>
+    @endif
     @if (Session::has('mensaje-editar'))
         <script>
             Swal.fire({
