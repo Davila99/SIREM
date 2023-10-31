@@ -31,8 +31,15 @@
                                 <div class="d-flex flex-row bd-highlight mb-6">
                                     <a href="{{ url('/tutores/' . $tutore->id . '/edit') }}" class="btn btn-info">
                                         @include('components.buttons.edit-button') </a>|
-                                    <a href="{{ url('/tutores/' . $tutore->id) }}" class="btn btn-warning">
-                                        Perfil @include('components.buttons.details-button')</a>|
+                                        <a href="#" class="btn btn-warning view-profile" data-toggle="modal" data-target="#infoTutorModal"
+                                        data-nombre="{{ $tutore->nombre }}"
+                                        data-apellido="{{ $tutore->apellido }}"
+                                        data-cedula="{{ $tutore->cedula }}"
+                                        data-telefono="{{ $tutore->telefono }}"
+                                    >
+                                        Perfil @include('components.buttons.details-button')
+                                    </a>
+                                    |
                                     <form class="form-eliminar" action="{{ url('/tutores/' . $tutore->id) }}" method="post"
                                         class="d-inline">
                                         @csrf
@@ -46,12 +53,59 @@
                 </tbody>
             </table>
         </div>
-
-    </div>
+        <!-- Modal -->
+        <div class="modal fade" id="infoTutorModal" tabindex="-1" aria-labelledby="infoTutorModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="infoTutorModalLabel">Información del tutor</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-responsive">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Primer Nombre:</th>
+                                    <td id="modal-nombre"></td>
+                                    <th>Apellidos:</th>
+                                    <td id="modal-apellido"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Cédula:</th>
+                                    <td id="modal-cedula"></td>
+                                    <th scope="row">Teléfono:</th>
+                                    <td id="modal-telefono"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
 
 @stop
 
 @section('js')
+<script>
+    $(document).ready(function() {
+        $('.view-profile').click(function() {
+            var nombre = $(this).data('nombre');
+            var apellido = $(this).data('apellido');
+            var cedula = $(this).data('cedula');
+            var telefono = $(this).data('telefono');
+
+            $('#modal-nombre').text(nombre);
+            $('#modal-apellido').text(apellido);
+            $('#modal-cedula').text(cedula);
+            $('#modal-telefono').text(telefono);
+        });
+    });
+</script>
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (Session::has('mensaje'))
         <script>
