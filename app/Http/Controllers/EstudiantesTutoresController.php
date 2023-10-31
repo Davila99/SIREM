@@ -28,7 +28,7 @@ class EstudiantesTutoresController extends Controller
     {
         $datos['estudiantestutores'] = EstudiantesTutores::query()
             ->with(['estudiante'])
-            ->with(['tutores'])
+            ->with(['tutor'])
             ->get();
 
         return view('estudianteTutor/index', $datos);
