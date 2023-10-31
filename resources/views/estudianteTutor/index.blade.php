@@ -22,8 +22,8 @@
                     @foreach ($estudiantestutores as $estudiantestutor)
                         <tr>
                             <td>{{ $estudiantestutor->estudiante->nombres }}  {{ $estudiantestutor->estudiante->apellidos }}</td>
-                            <td>{{ $estudiantestutor->tutor->nombre }}  {{ $estudiantestutor->tutor->apellido }} </td>
-                            <td>{{ $estudiantestutor->tutor->telefono }} </td>
+                            <td>{{ $estudiantestutor->tutores->nombre }}  {{ $estudiantestutor->tutores->apellido }} </td>
+                            <td>{{ $estudiantestutor->tutores->telefono }} </td>
                             <td>
                                 <div class="d-flex flex-row bd-highlight mb-6">
                                     <div class="class=d-inline">
@@ -32,6 +32,10 @@
                                             @include('components.buttons.edit-button') </a>
                                     </div>
                                     |
+                                    <button type="button" class="btn btn-primary view-details" data-toggle="modal" data-target="#detailsModal">
+                                        Ver Detalles
+                                    </button>
+                                    |                                    
                                     <form class="form-eliminar" action="{{ url('/estudianteTutores/' . $estudiantestutor->id) }}"
                                         method="post" class="d-inline">
                                         @csrf
@@ -46,10 +50,46 @@
                 </tbody>
             </table>
         </div>
+        <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="detailsModalLabel">Detalles del Elemento</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Contenido de los detalles a mostrar -->
+                        <p id="detailName"></p>
+                        <p id="detailDescription"></p>
+                        <!-- Agrega aquí más campos para mostrar los detalles -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
 
 @endsection
 @section('js')
+<script>
+    $(document).ready(function() {
+        // Asignar detalles al modal al hacer clic en el botón
+        $('.view-details').click(function() {
+            // Ejemplo de asignación de detalles (sustituye con los datos reales)
+            var detailName = "Nombre del detalle";
+            var detailDescription = "Descripción del detalle";
+            
+            // Asignar los detalles a la vista modal
+            $('#detailName').text("Nombre: " + detailName);
+            $('#detailDescription').text("Descripción: " + detailDescription);
+            // Asigna aquí más detalles si es necesario
+
+            // Muestra la vista modal
+            $('#detailsModal').modal('show');
+        });
+    });
+</script>
+
 <script>
     $(document).ready(function() {
         $('#estudiantes-tutores-table').DataTable({

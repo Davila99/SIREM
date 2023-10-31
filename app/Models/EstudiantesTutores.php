@@ -12,7 +12,7 @@ public function estudiante()
 {
     return $this->belongsTo(Estudiante::class);
 }
-public function tutor()
+public function tutores()
 {
     return $this->belongsTo(Tutore::class);
 }
