@@ -14,38 +14,55 @@
             font-size: 14px; /* Tamaño de fuente reducido */
         }
 
-        .container {
-            max-width: 95%; /* Aprovecha todo el ancho disponible */
-            margin: 0; /* Elimina los márgenes para aprovechar al máximo el espacio */
-            padding: 20px;
-            border: 1px solid #ccc; /* Agrega un borde a la página */
+.container {
+    max-width: 100%; /* Aprovecha todo el ancho disponible */
+    margin: 0; /* Elimina los márgenes para aprovechar al máximo el espacio */
+    padding: 10px; /* Reducción del espacio de relleno */
+    border: 1px solid #ccc; /* Agrega un borde a la página */
+}
 
-        }
+/* Reduce el espacio entre las tablas */
+table {
+    margin-bottom: 0;
+    border-collapse: collapse; /* Elimina los bordes de la tabla */
+}
 
-        /* Evita que las tablas se dividan entre páginas */
-        table {
-            page-break-inside: avoid;
-        }
+/* Estilos adicionales... */
 
-        /* Estilos adicionales... */
+.footer {
+    position: absolute;
+    bottom: 10px;
+    right: 10px; /* Alinea el pie de página a la derecha */
+}
 
-        .footer {
-            position: absolute;
-            bottom: 20px;
-        }
-        
-        /* Estilo para la imagen */
-        .imagen-arriba {
-            position: absolute;
-            top: 10px; /* Espacio a la derecha de la imagen */
-            left: 10px; /* Espacio arriba de la imagen */
-        }
-    </style>
+/* Estilo para la imagen */
+.imagen-arriba {
+    position: absolute;
+    top: 10px; /* Espacio a la derecha de la imagen */
+    left: 10px; /* Espacio arriba de la imagen */
+}
+
+/* Reduce el espacio vertical entre los elementos dentro de cada cuadro */
+.section h5 {
+    margin-bottom: 5px;
+}
+
+.section table th,
+.section table td {
+    padding: 2px;
+}
+
+/* Añade un borde inferior a las celdas de la tabla */
+.section table th,
+.section table td {
+    border-bottom: 1px solid #ccc;
+}
+</style>
 </head>
 
 <body>
     <div class="container"> <!-- Añade el margen superior -->
-        <h4 class="text-center mb-3">Hoja de Matrícula</h4>
+        <h3 class="text-center mb-3">Hoja de Matrícula</h3>
         <!-- Imagen -->
         <!-- <div class="d-flex align-items margin-right"> -->
         <div class="imagen-container">
@@ -133,13 +150,45 @@
                     <tr>
                         <th>Profesión:</th>
                         <td>{{ $matriculas->estudiante->tutor->professions->descripcion }}</td>
-                        <td></td>
-                        <td></td>
+                        <td><b>Tiene WhatsApp:</b></td>
+                        <td><input type="checkbox" id="whatsapp" name="whatsapp" value="Sí"> Sí
+                        <input type="checkbox" id="whatsapp" name="whatsapp" value="No"> No</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
+  <!-- Documentos Entregados -->
+  <div class="section mb-3 bg-white">
+            <h4>Documentos Entregados</h4>
+            <table class="table table-bordered">
+                <tbody>
+            <tr>
+                <th>Partida De Nacimiento:</th>
+                <td><input type="checkbox" id="partida_nacimiento" name="partida_nacimiento" value="Sí"> Sí</td>
+                <th>Tarjeta De Vacuna:</th>
+                <td><input type="checkbox" id="tarjeta_vacuna" name="tarjeta_vacuna" value="Sí"> Sí</td>
+            </tr>
+            <tr>
+                <th>Diploma De Prescolar:</th>
+                <td><input type="checkbox" id="diploma_prescolar" name="diploma_prescolar" value="Sí"> Sí</td>
+                <th>Cédula De Los Padres:</th>
+                <td><input type="checkbox" id="cedula_padres" name="cedula_padres" value="Sí"> Sí</td>
+            </tr>
+            <tr>
+                <th>Bolotín del Año Anterior:</th>
+                <td><input type="checkbox" id="bolotin_anterior" name="bolotin_anterior" value="Sí"> Sí</td>
+                <th>Hoja De Traslado:</th>
+                <td><input type="checkbox" id="hoja_traslado" name="hoja_traslado" value="Sí"> Sí</td>
+            </tr>
+            <tr>
+                <th>Diploma De Sexto:</th>
+                <td><input type="checkbox" id="diploma_sexto" name="diploma_sexto" value="Sí"> Sí</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 <!-- Firmas del Tutor y del Director -->
 <div class="section mb-4">
     <table class="table">
@@ -162,13 +211,11 @@
     </table>
 </div>
 
-
-        <!-- Pie de página -->
-        <div class="footer mt-4">
-            <p class="text-center font-weight-bold text-primary">Colegio Cristiano Manto de Gracia</p>
+<!-- Pie de página -->
+<div class="footer mt-4">
+            <p class="font-weight-bold text-primary">Colegio Cristiano Manto de Gracia</p>
         </div>
     </div>
-
     <!-- Incluye el script de jQuery requerido por Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 </body>
