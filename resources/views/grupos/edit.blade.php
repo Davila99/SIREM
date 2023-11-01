@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.custom-layout')
 @section('content')
     <div class="container">
         <legend class="text">Editar Grupo Docente</legend>
