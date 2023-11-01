@@ -1,5 +1,7 @@
-@extends('adminlte::page')
+@extends('layouts.custom-layout')
 @section('content')
+
+<body>
     <div class="container">
 
         <br>
@@ -54,45 +56,60 @@
             </table>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="infoTutorModal" tabindex="-1" aria-labelledby="infoTutorModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="infoTutorModalLabel">Información del tutor</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row mb-2">
-                                <div class="col-md-4 text-end"><strong>Primer Nombre:</strong></div>
-                                <div class="col-md-8" id="modal-nombre"></div>
-                            </div>
-                            <div class="row mb-2">
-                                <div class="col-md-4 text-end"><strong>Apellidos:</strong></div>
-                                <div class="col-md-8" id="modal-apellido"></div>
-                            </div>
-                            <div class="row mb-2">
-                                <div class="col-md-4 text-end"><strong>Cédula:</strong></div>
-                                <div class="col-md-8" id="modal-cedula"></div>
-                            </div>
-                            <div class="row mb-2">
-                                <div class="col-md-4 text-end"><strong>Teléfono:</strong></div>
-                                <div class="col-md-8" id="modal-telefono"></div>
-                            </div>
+ 
+        
+   
+    </div>
+    <div class="modal fade" id="infoTutorModal" tabindex="-1" aria-labelledby="infoTutorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoTutorModalLabel">Información del tutor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModalButton"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-md-4 text-end"><strong>Primer Nombre:</strong></div>
+                            <div class="col-md-8" id="modal-nombre"></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 text-end"><strong>Apellidos:</strong></div>
+                            <div class="col-md-8" id="modal-apellido"></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 text-end"><strong>Cédula:</strong></div>
+                            <div class="col-md-8" id="modal-cedula"></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 text-end"><strong>Teléfono:</strong></div>
+                            <div class="col-md-8" id="modal-telefono"></div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
-                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="cerrarModal()">Cerrar Modal</button>
                 </div>
             </div>
         </div>
+    </div>
+</body>
+
+
         
 
 @stop
 
 @section('js')
+<script>
+        <script>
+            function cerrarModal() {
+                var myModal = new bootstrap.Modal(document.getElementById('infoTutorModal'));
+                myModal.hide();
+            }
+        </script>
+</script>
+
 <script>
     $(document).ready(function() {
         $('.view-profile').click(function() {
