@@ -43,11 +43,11 @@
                                 </div>
                                 |
                                 <div class="d-inline">
-                                    <a href="{{ url('/empleados/' . $empleado->id) }}" class="btn btn-warning me-1">
+                                    <a  class="btn btn-warning me-1" data-toggle="modal"
+                                    data-target="#empleadoModal">
                                         @include('components.buttons.details-button')
                                     </a>
                                 </div>
-
                                 <form class="form-eliminar" action="{{ url('/empleados/' . $empleado->id) }}"
                                     method="post" class="d-inline">
                                     @csrf
@@ -64,8 +64,72 @@
                 </tbody>
             </table>
         </div>
+        <div class="modal fade" id="empleadoModal" tabindex="-1" aria-labelledby="empleadoModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="empleadoModalLabel">
+                      <i class="bi bi-person-lines-fill"></i> Información de Empleado
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+
+                  </div>
+                  <div class="modal-body">
+                    <h6>Informacion de empleado</h6>
+                    <table class="table table-responsive mt-3">
+                      <tbody>
+                          <tr>
+                              <th scope="row">Nombres:</th>
+                              <td>{{$empleado->nombres}}</td>
+                              <th>Apellidos:</th>
+                              <td>{{$empleado->apellidos}}</td>
+                          </tr>
+                          <tr>
+                              <th scope="row">Telefono:</th>
+                              <td>{{$empleado->telefono}}</td>
+                              <th scope="row">Cedula:</th>
+                              <td>{{$empleado->cedula}}</td>
+                          </tr>
+                          <tr>
+                          </tr>
+                          <tr>
+                              <th scope="row">Fecha de Nacimiento:</th>
+                              <td>{{$empleado->fecha_nacimiento}}</td>
+                              <th>Nivel Academico:</th>
+                              <td>{{$empleado->nivel_academico->descripcion}}</td>
+                          </tr>
+                          <tr>
+                              <th scope="row">Direccion:</th>
+                              <td>{{$empleado->direccion}}</td>
+                              <th>Email:</th>
+                              <td>{{$empleado->email}}</td>
+                          </tr>
+                          <tr>
+                              <th scope="row">Fecha de ingreso</th>
+                              <td>{{$empleado->fecha_ingreso}}</td>
+                              <th>Cargo:</th>
+                              <td>{{$empleado->cargos->descripcion}}</td>
+                          </tr>
+                          <tr>
+                          </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+        </div>
 
     </div>
+    
+
+      </div>
+
+      
 @endsection
 
 @section('js')
