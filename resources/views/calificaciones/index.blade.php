@@ -30,11 +30,11 @@
                                         </div>
                                     </div>
 
-                                    <form action="{{ route('imprimir-acta') }}" method="post"
+                                    {{-- <form action="{{ route('imprimir-acta') }}" method="post"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <input type="submit" value="Imprimir Acta" class="btn btn-warning" />
-                                    </form>
+                                    </form> --}}
                                 </div>
 
                             </div>

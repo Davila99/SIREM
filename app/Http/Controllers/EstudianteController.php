@@ -7,7 +7,6 @@ use App\Imports\EstudiantesImport;
 use App\Models\Estudiante;
 use App\Models\Sexo;
 use App\Models\Tutore;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -90,9 +89,6 @@ class EstudianteController extends Controller
             $estudiante->nombres = $request->nombres;
             $estudiante->apellidos = $request->apellidos;
             $estudiante->fecha_nacimiento = $request->fecha_nacimiento;
-            $estudiante->edad = Carbon::createFromDate(
-                $request->fecha_nacimiento
-            )->age;
             $estudiante->direccion = $request->direccion;
             $estudiante->tutor_id = $request->tutor_id;
             $estudiante->sexo_id = $request->sexo_id;
@@ -165,9 +161,6 @@ class EstudianteController extends Controller
         $estudiante->nombres = $request->nombres;
         $estudiante->apellidos = $request->apellidos;
         $estudiante->fecha_nacimiento = $request->fecha_nacimiento;
-        $estudiante->edad = Carbon::createFromDate(
-            $request->fecha_nacimiento
-        )->age;
         $estudiante->direccion = $request->direccion;
         $estudiante->tutor_id = $request->tutor_id;
         $estudiante->sexo_id = $request->sexo_id;
