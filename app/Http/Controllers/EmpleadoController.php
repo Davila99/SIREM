@@ -157,11 +157,20 @@ class EmpleadoController extends Controller
             'cargos_id.required' => 'El cargo es obligatorio.',
         ]
     );
-
-        $datos = request()->except(['_token', '_method']);
-        Empleado::where('id', '=', $id)->update($datos);
+    $datos = request()->except(['_token','_method']);
+    $existeDato =  Empleado::where('cedula', $datos['cedula'])->where('id', '!=', $id)->exists();
+    if ($existeDato) {
+        return redirect('empleados/'.$id.'/edit')->with('mensaje-error', 'ok');
+    } else {
+        Empleado::where('id','=',$id)->update($datos);
         $datos = Empleado::findOrFail($id);
         return redirect('empleados')->with('mensaje-editar', 'ok');
+    }
+
+       // $datos = request()->except(['_token', '_method']);
+        //Empleado::where('id', '=', $id)->update($datos);
+        //$datos = Empleado::findOrFail($id);
+        //return redirect('empleados')->with('mensaje-editar','ok');
     }
 
     /**
