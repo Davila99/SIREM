@@ -10,7 +10,7 @@ use App\Models\CalificacionDetalle;
 use App\Models\Cortes_evaluativo;
 use App\Models\Matricula;
 use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CalificacionesController extends Controller
 {
@@ -125,10 +125,22 @@ class CalificacionesController extends Controller
 }
 
 public function imprimirActa(Request $request )  { 
- 
-    $acta = Calificaciones::find($request->actaId);
-    // dd($acta);
-   return Excel::download(new CalificacionesExport($acta), 'acta.xlsx');
+    
+    $acta = Calificaciones::findOrFail($request->actaId)
+    ->first();
+if ($acta) {
+    $filas = CalificacionDetalle::query()
+    ->where('calificacion_id', '=', $acta->id)
+    ->get();
+    $acta->load('calificaciones.estudiante');
+    try {
+        $pdf = PDF::loadView('calificaciones.reporte', compact('acta', 'filas'));
+        return $pdf->stream('acta.pdf');
+    } catch (\Throwable $th) {
+        return redirect()->back()->with('mensaje-error', 'ok');
+    }
+}
+  
 }
 
     public function index()
