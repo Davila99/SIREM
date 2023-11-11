@@ -59,7 +59,7 @@ class MatriculaController extends Controller
 
             return $pdf->stream('matriculas.pdf', ['Attachment' => true]);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Matricula not found'], 404);
+            return redirect('matriculas/')->with('mensaje-error-pdf', 'ok');
         }
     }
 

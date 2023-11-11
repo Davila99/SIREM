@@ -129,6 +129,15 @@
             )
         </script>
     @endif
+    @if (Session::has('mensaje-error-pdf'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Lo sentimos',
+                text: 'La Matricula se encuentra incompleta',
+            })
+        </script>
+    @endif
     <script>
         $('.form-eliminar').submit(function(e) {
             e.preventDefault();
