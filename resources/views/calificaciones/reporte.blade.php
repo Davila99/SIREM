@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Acta Académica</title>
@@ -7,32 +8,46 @@
         body {
             font-family: Arial, sans-serif;
         }
+
         .table {
             width: 100%;
             border-collapse: collapse;
             border: 1px solid #000;
         }
-        .table th, .table td {
+
+        .table th,
+        .table td {
             border: 1px solid #000;
             padding: 8px;
         }
+
         .text-center {
             text-align: center;
         }
+
         .font-weight-bold {
             font-weight: bold;
         }
+
         .font-italic {
             font-style: italic;
         }
+        .imagen-arriba {
+            position: absolute;
+            top: 10px; /* Espacio a la derecha de la imagen */
+            left: 10px; /* Espacio arriba de la imagen */
+        }
     </style>
 </head>
+
 <body>
     <div class="table-responsive">
         <table class="table">
-            <thead> 
+            <thead>
                 <tr>
                     <th scope="col" colspan="4" class="text-center">
+                        <img src="images/logo.jpeg" alt="Imagen de Matrícula" width="80px" class="imagen-arriba">
+
                         <h1 class="font-weight-bold font-italic">Colegio Cristiano Manto de Gracia</h1>
                     </th>
                 </tr>
@@ -80,4 +95,6 @@
         </table>
     </div>
 </body>
+
 </html>
+
