@@ -17,35 +17,13 @@
             <h5>Correo Electronico:</h5>
         </label>
         <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror"
-            placeholder="Correo electronico" value="{{ isset($datos->email) ? $datos->apellido : old('email') }}">
+            placeholder="Correo electronico" value="{{ isset($datos->email) ? $datos->email : old('email') }}">
         @error('email')
             <div class="invalid-feedback">
                 <h5> {{ $message }}</h5>
             </div>
         @enderror
     </div>
-
-    {{-- <div class="form-group">
-        <label for="empleado">
-            <h5>Rol:</h5>
-        </label>
-        <select class="form-control @error('empleado_id') is-invalid @enderror" name="empleado_id" id="empleados">
-            <option value="" selected disabled>--Seleccione--</option>
-
-            @isset($empleados)
-                @foreach ($empleados as $empleado)
-                    <option value="{{ $empleado->id }}"
-                        @if (!empty($datos->empleado_id)) {{ $datos->empleado_id == $empleado->id ? 'selected' : '' }} @else {{ old('empleado_id') == $empleado->id ? 'selected' : '' }} @endif>
-                        {{ $empleado->nombres }} {{ $empleado->apellidos }} </option>
-                @endforeach
-            @endisset
-        </select>
-        @error('empleado_id')
-            <div class="invalid-feedback">
-                <h5> {{ $message }}</h5>
-            </div>
-        @enderror
-    </div> --}}
     <div class="form-group">
         <label for="empleado">
             <h5>Empleado:</h5>

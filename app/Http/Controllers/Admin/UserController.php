@@ -40,17 +40,19 @@ class UserController extends Controller
 
     public function Changepassword(Request $request)
     {
-            // Validación de datos
-            $request->validate([
-                'current_password' => 'required',
-                'new_password' => 'required|min:6|confirmed', // Debe coincidir con confirm_password
-            ]);
-    
-            // Aquí puedes realizar la lógica para cambiar la contraseña
-            // Normalmente, actualizarías la contraseña en la base de datos.
-    
-            // Mostrar un mensaje de éxito
-            return redirect()->back()->with('success', 'Contraseña cambiada con éxito.');
+        // Validación de datos
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:6|confirmed', // Debe coincidir con confirm_password
+        ]);
+
+        // Aquí puedes realizar la lógica para cambiar la contraseña
+        // Normalmente, actualizarías la contraseña en la base de datos.
+
+        // Mostrar un mensaje de éxito
+        return redirect()
+            ->back()
+            ->with('success', 'Contraseña cambiada con éxito.');
     }
     /**
      * Store a newly created resource in storage.
@@ -112,12 +114,45 @@ class UserController extends Controller
         $roles = Role::all();
         return view('admin/users.edit', compact('user', 'roles'));
     }
-    public function editUser(User $user)
-    {return "Funcionando"   ;
-    }
-    public function updateUser(User $user)
+    public function editUser($id)
     {
-       return "Funcionando" ;
+        $datos = User::findOrFail($id);
+        $empleados = Empleado::all();
+        return view('user/edit', compact('datos', 'empleados'));
+    }
+    public function updateUser(Request $request, $id)
+    {
+        dd($request->all());
+        $request->validate(
+            [
+                'name' => 'required|string|max:100',
+                'email' => 'required|string|max:100',
+                'empleado_id' => 'required',
+                'current_password' => 'required|string|max:100',
+            ],
+
+            [
+                'name.required' => 'El nombre es obligatorio.',
+                'email.required' => 'El email es obligatorio.',
+                'empleado_id.required' => 'La empleado es obligatoria.',
+                'current_password.required' => 'La contraseña es obligatoria.',
+            ]
+        );
+        $datos = request()->except('_token');
+        $existeDato = User::where('email', $datos['email'])
+            ->orwhere('empleado_id', $datos['empleado_id'])
+            ->exists();
+        if ($existeDato) {
+            return redirect('users/create')->with('mensaje-error', 'ok');
+        } else {
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->empleado_id = $request->empleado_id;
+            $user->save();
+            return redirect('users/')->with('mensaje', 'ok');
+        }
     }
     /**
      * Update the specified resource in storage.
@@ -127,9 +162,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function updateRoles(Request $request, User $user)
-    {   
+    {
         $user->roles()->sync($request->roles);
-       
+
         return redirect()
             ->route('users.edit', $user)
             ->with('mensaje', 'ok');

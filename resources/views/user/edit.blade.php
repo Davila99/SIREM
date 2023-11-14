@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('layouts.custom-layout')
 @section('content')
     <div class="container">
         <legend class="text">Editar Usuario</legend>

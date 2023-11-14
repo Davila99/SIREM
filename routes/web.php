@@ -74,7 +74,7 @@ Route::middleware(['auth'])->group(function () {
     //Rutas para actualizar Roles usuarios
     Route::get('/users/{user}/editRoles', [UserController::class, 'editRoles'])->name('users.editRoles');
     Route::get('/users/{user}/editUser', [UserController::class, 'editUser'])->name('users.editUser');
-    Route::put('/users/{user}/updateUser', [UserController::class, 'updateUser'])->name('users.updateUser');
+    Route::patch('/users/{user}/updateUser', [UserController::class, 'updateUser'])->name('users.updateUser');
     Route::put('/users/{user}', [UserController::class, 'updateRoles'])->name('users.updateRoles');
 
     Route::resource('roles', RolController::class);
