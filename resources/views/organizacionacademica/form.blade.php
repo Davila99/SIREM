@@ -1,7 +1,7 @@
 
     <fieldset class="border p-4">
         <div class="form-group">
-            <label for="descripcion"><h5>Orgalnización Academica:</h5></label>
+            <label for="descripcion"><h5>Organización Academica:</h5></label>
             <input id="descripcion" name="descripcion"  type="text"
                 class="form-control @error('descripcion') is-invalid @enderror" placeholder="Organización Academica" 
                 value="{{ isset($datos->descripcion) ? $datos->descripcion : old('descripcion') }}">
