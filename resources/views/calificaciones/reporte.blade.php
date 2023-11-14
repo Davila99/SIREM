@@ -32,10 +32,34 @@
         .font-italic {
             font-style: italic;
         }
+
         .imagen-arriba {
             position: absolute;
             top: 10px; /* Espacio a la derecha de la imagen */
             left: 10px; /* Espacio arriba de la imagen */
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .footer hr {
+            margin-top: 5px; /* Ajusta el espacio entre la raya y la firma del docente */
+            width: 50%; /* Ancho de la raya */
+        }
+
+        .firma-docente {
+            margin-top: 10px; /* Ajusta el espacio entre la raya y la firma */
+        }
+
+        .signature-box {
+            display: inline-block;
+            margin-top: 10px; /* Ajusta el espacio entre la raya y la firma del docente */
         }
     </style>
 </head>
@@ -47,7 +71,6 @@
                 <tr>
                     <th scope="col" colspan="4" class="text-center">
                         <img src="images/logo.jpeg" alt="Imagen de Matrícula" width="80px" class="imagen-arriba">
-
                         <h1 class="font-weight-bold font-italic">Colegio Cristiano Manto de Gracia</h1>
                     </th>
                 </tr>
@@ -94,7 +117,14 @@
             </tbody>
         </table>
     </div>
+    
+    <!-- Firmas del Tutor y del Director -->
+    <div class="footer">
+        <hr>
+        <div class="signature-box p-3">
+            <h4 class="mb-0">Firma del Docente</h4>
+        </div>
+    </div>
 </body>
 
 </html>
-
