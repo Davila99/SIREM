@@ -27,11 +27,11 @@
                                     <td>{{ $user->email }}</td>
                                     <td>
                                         <div class="d-flex flex-row bd-highlight mb-6">
-                                            <a href="{{ url('/roles/' . $user->id . '/edit') }}" class="btn btn-info">
-                                                Asignar Roles </a>|
+                                            <a href="{{ url('/users/' . $user->id . '/editUser') }}" class="btn btn-info">
+                                                Editar Perfil </a>|
                                             <a href="{{ url('/users/' . $user->id . '/edit') }}"
                                                 class="btn btn-warning">
-                                                Editar Perfil</a>|
+                                                Asignar Rol</a>|
                                             <form class="form-eliminar" action="{{ url('/users/' . $user->id) }}"
                                                 method="post" class="d-inline">
                                                 @csrf

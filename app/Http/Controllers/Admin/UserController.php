@@ -112,11 +112,13 @@ class UserController extends Controller
         $roles = Role::all();
         return view('admin/users.edit', compact('user', 'roles'));
     }
-    // public function editRoles(User $user)
-    // {
-    //     $roles = Role::all();
-    //     return view('admin/users.edit', compact('user', 'roles'));
-    // }
+    public function editUser(User $user)
+    {return "Funcionando"   ;
+    }
+    public function updateUser(User $user)
+    {
+       return "Funcionando" ;
+    }
     /**
      * Update the specified resource in storage.
      *

@@ -71,10 +71,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 
-    //Rutas para actualizar Roles
+    //Rutas para actualizar Roles usuarios
     Route::get('/users/{user}/editRoles', [UserController::class, 'editRoles'])->name('users.editRoles');
+    Route::get('/users/{user}/editUser', [UserController::class, 'editUser'])->name('users.editUser');
+    Route::put('/users/{user}/updateUser', [UserController::class, 'updateUser'])->name('users.updateUser');
     Route::put('/users/{user}', [UserController::class, 'updateRoles'])->name('users.updateRoles');
-    //  Route::put('/users/{user}', [UserController::class, 'updateRoles']);
 
     Route::resource('roles', RolController::class);
 
