@@ -140,7 +140,7 @@ class UserController extends Controller
         );
         $datos = request()->except('_token');
         $existeDato = User::where('email', $datos['email'])
-            ->orwhere('empleado_id', $datos['empleado_id'])
+            ->orwhere($id, $datos[$id])
             ->exists();
         if ($existeDato) {
             return redirect('users/create')->with('mensaje-error', 'ok');

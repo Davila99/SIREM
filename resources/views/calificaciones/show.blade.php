@@ -32,7 +32,7 @@
                     <tr>
                         <th>Fecha de generacion</th>
                         <td>{{ $acta->fecha }}</td>
-                        <th scope="row">Empleado</th>
+                        <th scope="row">Docente</th>
                         <td>{{ $acta->empleado->nombres }} {{ $acta->empleado->apellidos }}</td>
                     </tr>
                     <tr>
