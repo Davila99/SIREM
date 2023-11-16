@@ -351,11 +351,11 @@ return [
                     'icon' => 'fas fa-solid fa-briefcase',
                     'can' =>'matriculas.index'
                 ],
-                // [
-                //     'text'        => 'Buscador de estudiantes',
-                //     'url'         => 'search/',
-                //     'icon'        => 'fas fa-search',
-                // ],    
+                [
+                    'text'        => 'Reportes Matriculas',
+                    'url'         => 'search/',
+                    'icon'        => 'fas fa-solid fa-clipboard-list',
+                ],    
             ],
         ],
         [
