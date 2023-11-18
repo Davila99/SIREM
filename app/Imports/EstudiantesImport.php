@@ -9,17 +9,17 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 class EstudiantesImport implements ToModel, WithHeadingRow
 {
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+     * @param array $row
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
     public function model(array $row)
     {
         return new Estudiante([
             'id' => $row['id'],
-            'nombres' => $row['nombres'],
-            'apellidos' => $row['apellidos'],
-            'codigo_estudiante' => $row['codigo_estudiante'],
+            'nombres' => trim($row['nombres']),
+            'apellidos' => trim($row['apellidos']),
+            'codigo_estudiante' => trim($row['codigo_estudiante']),
         ]);
     }
 }
