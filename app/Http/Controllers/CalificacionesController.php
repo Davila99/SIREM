@@ -11,6 +11,7 @@ use App\Models\Cortes_evaluativo;
 use App\Models\Matricula;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 
 class CalificacionesController extends Controller
 {
@@ -63,9 +64,18 @@ class CalificacionesController extends Controller
         $docente = $this->getDocente();
         $estudiantes = $this->getEstudiantes($grupoId);
 
-        $acta = $this->alamacenarActa($grupoId, $docente, $corteId);
-        $filas = $this->setActaRows($acta, $estudiantes);
+        $filas = [];
+        DB::beginTransaction();
+        try {
+            $acta = $this->alamacenarActa($grupoId, $docente, $corteId);
+            $filas = $this->almacenarFilasActa($acta, $estudiantes);
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->with('mensaje-error', 'No se pudo generar el acta de calificaciones');
+        }
 
+        $filas = $acta->calificaciones;
         return view('calificaciones.show', compact('acta', 'filas'));
     }
 
@@ -82,20 +92,14 @@ class CalificacionesController extends Controller
         $acta->save();
         return $acta;
     }
-    public function setActaRows(Calificaciones $acta, $estudiantes)
+    public function almacenarFilasActa(Calificaciones $acta, $estudiantes)
     {
         foreach ($estudiantes as $estudiante) {
-            $actaRow = new CalificacionDetalle();
-            $actaRow->calificacion_id = $acta->id;
-            $actaRow->estudiante_id = $estudiante->id;
-            $actaRow->calificacion = 0;
-            $actaRow->corte_evaluativo_id = $acta->corte_evaluativo_id;
-            $actaRow->save();
+            $acta->calificaciones()->create([
+                'estudiante_id' => $estudiante->id,
+                'corte_evaluativo_id' => $acta->corte_evaluativo_id,
+            ]);
         }
-        $filas = CalificacionDetalle::query()
-            ->where('calificacion_id', '=', $acta->id)
-            ->get();
-        return $filas;
     }
 
     public function changeNota(Request $request)
