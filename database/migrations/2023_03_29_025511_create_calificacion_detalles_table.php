@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -16,13 +15,13 @@ return new class extends Migration
         Schema::create('calificacion_detalles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('estudiante_id')->constrained('estudiantes')
-            ->restrictOnDelete();
+                ->restrictOnDelete();
             $table->foreignId('calificacion_id')->constrained('calificaciones')
-            ->restrictOnDelete();
+                ->restrictOnDelete();
             $table->foreignId('corte_evaluativo_id')->constrained('cortes_evaluativos')
-            ->restrictOnDelete();
-            
-            $table->decimal('calificacion',4,2);
+                ->restrictOnDelete();
+
+            $table->decimal('calificacion', 4, 2)->default(0);
             $table->string('observaciones')->nullable();
             $table->timestamps();
         });

@@ -11,6 +11,7 @@ use App\Models\Cortes_evaluativo;
 use App\Models\Matricula;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 
 class CalificacionesController extends Controller
 {
@@ -47,38 +48,39 @@ class CalificacionesController extends Controller
         $corteId,
         Request $request
     ) {
-        //  dd($grupoId, $asignaturaId, $corteId);
-     
-
         $acta = Calificaciones::query()
             ->where('asignatura_id', $asignaturaId)
             ->where('corte_evaluativo_id', $corteId)
-            ->where('grupo_id', $grupoId) // TODO: agregar grupo_id a la tabla calificaciones
+            ->where('grupo_id', $grupoId)
             ->first();
-        // $acta = Calificaciones::find(45);
-            // dd($acta);
+
         if ($acta) {
-            $filas = CalificacionDetalle::query()
-            ->where('calificacion_id', '=', $acta->id)
-            ->get();
             $acta->load('calificaciones.estudiante');
+            $filas = $acta->calificaciones;
+
             return view('calificaciones.show', compact('acta', 'filas'));
         }
 
         $docente = $this->getDocente();
         $estudiantes = $this->getEstudiantes($grupoId);
 
-        //TODO: generar acta
-        $acta = $this->setActa($grupoId, $docente, $corteId);
+        $filas = [];
+        DB::beginTransaction();
+        try {
+            $acta = $this->alamacenarActa($grupoId, $docente, $corteId);
+            $filas = $this->almacenarFilasActa($acta, $estudiantes);
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->with('mensaje-error', 'No se pudo generar el acta de calificaciones');
+        }
 
-        //TODO: generar acta rows
-        //
-        $filas = $this->setActaRows($acta, $estudiantes);
+        $filas = $acta->calificaciones;
         return view('calificaciones.show', compact('acta', 'filas'));
     }
-    
 
-    public function setActa($id, $docente, $corte)
+
+    public function alamacenarActa($id, $docente, $corte)
     {
         $acta = new Calificaciones();
         $acta->fecha = date('Y-m-d');
@@ -90,58 +92,53 @@ class CalificacionesController extends Controller
         $acta->save();
         return $acta;
     }
-    public function setActaRows(Calificaciones $acta, $estudiantes)
+    public function almacenarFilasActa(Calificaciones $acta, $estudiantes)
     {
         foreach ($estudiantes as $estudiante) {
-            $actaRow = new CalificacionDetalle();
-            $actaRow->calificacion_id = $acta->id;
-            $actaRow->estudiante_id = $estudiante->id;
-            $actaRow->calificacion = 0;
-            $actaRow->corte_evaluativo_id = $acta->corte_evaluativo_id;
-            $actaRow->save();
+            $acta->calificaciones()->create([
+                'estudiante_id' => $estudiante->id,
+                'corte_evaluativo_id' => $acta->corte_evaluativo_id,
+            ]);
         }
-        $filas = CalificacionDetalle::query()
-            ->where('calificacion_id', '=', $acta->id)
-            ->get();
-        return $filas;
     }
 
-    public function changeNota(  Request $request)
-{
-    $calificacion = CalificacionDetalle::query()    
-        ->where('id', $request->id)
-        ->first();
+    public function changeNota(Request $request)
+    {
+        $calificacion = CalificacionDetalle::query()
+            ->where('id', $request->id)
+            ->first();
 
-    if ($calificacion) {
-        $calificacion->calificacion = $request->calificacion;
-        $calificacion->save();
-        
-        return redirect()->back()->with('mensaje-nota', 'ok');
-    } else {
-        return response()->json([
-            'message' => 'No se encontró el detalle de calificación',
-        ], 404);
-    }
-}
+        if ($calificacion) {
+            $calificacion->calificacion = $request->calificacion;
+            $calificacion->save();
 
-public function imprimirActa(Request $request )  { 
-    
-    $acta = Calificaciones::findOrFail($request->actaId)
-    ->first();
-if ($acta) {
-    $filas = CalificacionDetalle::query()
-    ->where('calificacion_id', '=', $acta->id)
-    ->get();
-    $acta->load('calificaciones.estudiante');
-    try {
-        $pdf = PDF::loadView('calificaciones.reporte', compact('acta', 'filas'));
-        return $pdf->stream('acta.pdf');
-    } catch (\Throwable $th) {
-        return redirect()->back()->with('mensaje-error', 'ok');
+            return redirect()->back()->with('mensaje-nota', 'ok');
+        } else {
+            return response()->json([
+                'message' => 'No se encontró el detalle de calificación',
+            ], 404);
+        }
     }
-}
-  
-}
+
+    public function imprimirActa(Request $request)
+    {
+
+        $acta = Calificaciones::findOrFail($request->actaId)
+            ->first();
+        if ($acta) {
+            $filas = CalificacionDetalle::query()
+                ->where('calificacion_id', '=', $acta->id)
+                ->get();
+            $acta->load('calificaciones.estudiante');
+            try {
+                $pdf = PDF::loadView('calificaciones.reporte', compact('acta', 'filas'));
+                return $pdf->stream('acta.pdf');
+            } catch (\Throwable $th) {
+                return redirect()->back()->with('mensaje-error', 'ok');
+            }
+        }
+
+    }
 
     public function index()
     {
@@ -152,12 +149,12 @@ if ($acta) {
             ->get();
         $cortes = Cortes_evaluativo::all();
         if ($cursos->isEmpty()) {
-            return view('calificaciones.mensaje')->with('mensaje','ok');
-            
+            return view('calificaciones.mensaje')->with('mensaje', 'ok');
+
         } else {
             return view('calificaciones.index', compact('cursos', 'cortes'));
         }
-        
+
 
     }
     /**
@@ -198,7 +195,7 @@ if ($acta) {
      */
     public function edit($id)
     {
-        
+
     }
 
     /**

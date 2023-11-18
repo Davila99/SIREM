@@ -8,6 +8,8 @@ use App\Http\Controllers\BuscadorEstudiante;
 use App\Http\Controllers\BuscadorMatricula;
 use App\Http\Controllers\CalificacionDetalleController;
 use App\Http\Controllers\CalificacionesController;
+use App\Http\Controllers\ActaCalificacionFinalController;
+use App\Http\Controllers\PdfActaCalificacionFinalController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\ConsanguiniedadeController;
 use App\Http\Controllers\CortesEvaluativoController;
@@ -61,7 +63,7 @@ Route::get('/home', [
 ])->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('matriculas/pdf/{id}',[MatriculaController::class, 'pdf'])->name('matriculas.pdf');
+    Route::get('matriculas/pdf/{id}', [MatriculaController::class, 'pdf'])->name('matriculas.pdf');
     Route::post('change-nota/', [CalificacionesController::class, 'changeNota'])->name('change-nota');
     Route::post('change-password/', [UserController::class, 'Changepassword'])->name('change-password');
     Route::get('generar-acta/{grupoId}/{asignaturaId}/{corteId}', [CalificacionesController::class, 'generarActa'])->name('generar-acta');
@@ -102,6 +104,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('matriculas', MatriculaController::class);
     Route::resource('grupos', GruposController::class);
     Route::resource('calificaciones', CalificacionesController::class);
+    Route::resource('calificaciones-final', ActaCalificacionFinalController::class)->only(['index']);
+    Route::resource('calificaciones-final-pdf', PdfActaCalificacionFinalController::class)->only(['index']);
     Route::resource('calificacionesDetalles', CalificacionDetalleController::class);
     Route::resource('tutorestudiante', EstudiantesTutoresController::class);
     Route::resource(
@@ -112,7 +116,7 @@ Route::middleware(['auth'])->group(function () {
         OrganizacionAcademicaController::class,
         'changeStatus',
     ]);
-   
+
 
 
     Route::get('buscar-estudiantes', [EstudianteController::class, 'search']);
