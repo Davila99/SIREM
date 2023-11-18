@@ -59,41 +59,17 @@ class EstudianteController extends Controller
      * @param  \App\Http\Requests\StoreEstudianteRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EstudianteRequest $request)
     {
-        $request->validate(
-            [
-                'nombres' => 'required|string|max:100',
-                'apellidos' => 'required|string|max:100',
-                'fecha_nacimiento' => 'required|string|max:12',
-                'direccion' => 'required|string|max:100',
-                'tutor_id' => 'required',
-                'sexo_id' => 'required',
-            ],
-
-            [
-                'nombres.required' => 'El nombre es obligatorio.',
-                'apellidos.required' => 'El apellido es obligatorio.',
-                'fecha_nacimiento.required' =>
-                    'la fecha de nacimiento es obligatoria.',
-                'direccion.required' => 'La direccion es obligatoria.',
-                'tutor_id.required' => 'La profesion es obligatoria.',
-                'sexo_id.required' => 'El sexo es obligatorio.',
-            ]
-        );
         $datos = request()->except('_token');
-        $existeDato = Estudiante::where('nombres', $datos['nombres'])->exists();
+        $existeDato = Estudiante::query()
+            ->where('nombres', $datos['nombres'])
+            ->where('apellidos', $datos['apellidos'])
+            ->exists();
         if ($existeDato) {
             return redirect('estudiantes/create')->with('mensaje-error', 'ok');
         } else {
-            $estudiante = new Estudiante();
-            $estudiante->nombres = $request->nombres;
-            $estudiante->apellidos = $request->apellidos;
-            $estudiante->fecha_nacimiento = $request->fecha_nacimiento;
-            $estudiante->direccion = $request->direccion;
-            $estudiante->tutor_id = $request->tutor_id;
-            $estudiante->sexo_id = $request->sexo_id;
-            $estudiante->save();
+            Estudiante::create($datos);
             return redirect('estudiantes/')->with('mensaje', 'ok');
         }
 
