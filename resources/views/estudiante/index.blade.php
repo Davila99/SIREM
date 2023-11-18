@@ -3,19 +3,24 @@
 @section('content')
     <div class="container">
         <br>
-        <div class="row">
+        <div class="row mb-3">
             <div class="col">
                 <a href="{{ url('estudiantes/create') }}" class="btn btn-success btn-block">Nuevo Estudiante</a>
             </div>
-            <div class="col d-flex">
-                <form action="{{ url('estudiantes-importar/') }}" method="POST" enctype="multipart/form-data"
-                    class="form-inline d-flex">
+            <div class="col">
+                <form action="{{ url('estudiantes-importar/') }}" method="POST" enctype="multipart/form-data" class="row g-2 align-items-center" onsubmit="return validarFormulario()">
                     @csrf
-                    <input type="file" name="documento" class="form-control-file">
-                    <button type="submit" class="btn btn-primary">Importar</button>
-                </form>
+                    <div class="col-auto">
+                        <label for="documento" class="form-label">Seleccionar archivo:</label>
+                        <input type="file" name="documento" class="form-control-file" id="documento" required>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Importar</button>
+                    </div>
+                </form>                
             </div>
         </div>
+        
 
 
         <div class="table-responsive">
