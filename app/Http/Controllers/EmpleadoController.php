@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreEmpleadoRequest;
+use App\Http\Requests\UpdateEmpleadoRequest;
 use App\Models\Cargo;
 use App\Models\Empleado;
 use App\Models\Grupos;
@@ -54,35 +56,8 @@ class EmpleadoController extends Controller
      * @param  \App\Http\Requests\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEmpleadoRequest $request)
     {
-        $request->validate(
-            [
-                'nombres' => 'required|string|max:100',
-                'apellidos' => 'required|string|max:100',
-                'telefono' => 'required|string|max:12',
-                'cedula' => 'required|string|max:16',
-                'fecha_nacimiento' => 'required',
-                'nivel_academico_id' => 'required',
-                'direccion' => 'required|string|max:100',
-                'email' => 'required',
-                'fecha_ingreso' => 'required',
-                'cargos_id' => 'required',
-            ],
-
-            [
-                'nombres.required' => 'El nombre es obligatorio.',
-                'apellidos.required' => 'El apellido es obligatorio.',
-                'telefono.required' => 'El numero telefono es obligatorio.',
-                'cedula.required' => 'El numero cedula es obligatorio.',
-                'fecha_nacimiento.required' => 'La fecha de nacimiento es obligatoria.',
-                'nivel_academico_id.required' => 'El nivel academico es obligatorio.',
-                'direccion.required' => 'La dirección es obligatoria.',
-                'email.required' => 'El email es obligatoria.',
-                'fecha_ingreso.required' => 'La fecha de ingresp es obligatoria.',
-                'cargos_id.required' => 'El cargo es obligatorio.',
-            ]
-        );
         $datos = request()->except('_token');
         $existeDato = Empleado::where('nombres', $datos['nombres'])
             ->orwhere('apellidos', $datos['apellidos'])
@@ -129,38 +104,9 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {$request->validate(
-        [
-            'nombres' => 'required|string|max:100',
-            'apellidos' => 'required|string|max:100',
-            'telefono' => 'required|string|max:12',
-            'cedula' => 'required|string|max:16',
-            'fecha_nacimiento' => 'required',
-            'nivel_academico_id' => 'required',
-            'direccion' => 'required|string|max:100',
-            'email' => 'required',
-            'fecha_ingreso' => 'required',
-            'cargos_id' => 'required',
-        ],
-
-        [
-            'nombres.required' => 'El nombre es obligatorio.',
-            'apellidos.required' => 'El apellido es obligatorio.',
-            'telefono.required' => 'El numero telefono es obligatorio.',
-            'cedula.required' => 'El numero cedula es obligatorio.',
-            'fecha_nacimiento.required' => 'La fecha de nacimiento es obligatoria.',
-            'nivel_academico_id.required' => 'El nivel academico es obligatorio.',
-            'direccion.required' => 'La dirección es obligatoria.',
-            'email.required' => 'El email es obligatoria.',
-            'fecha_ingreso.required' => 'La fecha de ingresp es obligatoria.',
-            'cargos_id.required' => 'El cargo es obligatorio.',
-        ]
-    );
-
-        $datos = request()->except(['_token', '_method']);
-        Empleado::where('id', '=', $id)->update($datos);
-        $datos = Empleado::findOrFail($id);
+    public function update(UpdateEmpleadoRequest $request,Empleado $empleado)
+    {
+        $empleado->update($request->validated());
         return redirect('empleados')->with('mensaje-editar', 'ok');
     }
 

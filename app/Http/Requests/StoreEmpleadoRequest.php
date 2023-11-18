@@ -13,7 +13,7 @@ class StoreEmpleadoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,18 @@ class StoreEmpleadoRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $datenow = date('Y-m-d');
+        return  [
+            'nombres' => 'required|string|max:100',
+            'apellidos' => 'required|string|max:100',
+            'telefono' => 'required|string|max:12',
+            'cedula' => 'required|string|max:16',
+            'fecha_nacimiento' => 'required|date|before_or_equal:'. $datenow,
+            'nivel_academico_id' => 'required',
+            'direccion' => 'required|string|max:100',
+            'email' => 'required',
+            'fecha_ingreso' => 'required|date|before_or_equal:'. $datenow,
+            'cargos_id' => 'required',
         ];
     }
 }
