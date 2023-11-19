@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CorteRequest;
 use App\Models\Cortes_evaluativo;
 use Illuminate\Http\Request;
 
@@ -42,16 +43,8 @@ class CortesEvaluativoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CorteRequest $request)
     {
-        $request->validate(
-            [
-                'descripcion' => 'required',
-            ],
-            [
-                'descripcion.required' => 'El campo es obligatorio.',
-            ]
-        );
         $datos = request()->except('_token');
         $existeDato = Cortes_evaluativo::where('descripcion', $datos)->exists();
         if ($existeDato) {
@@ -92,22 +85,15 @@ class CortesEvaluativoController extends Controller
      * @param  \App\Models\Cortes_evaluativo  $cortes_evaluativo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Cortes_evaluativo $corte)
     {
-        $request->validate([
-            'descripcion' => 'required',
-        ],
-            [
-                'descripcion.required' => 'El campo es obligatorio.',
-            ]
-        );
+
         $datos = request()->except(['_token', '_method']);
         $existeDato = Cortes_evaluativo::where('descripcion', $datos)->exists();
         if ($existeDato) {
-            return redirect('cevaluativos/' . $id . '/edit')->with('mensaje-error', 'ok');
+            return redirect('cevaluativos/' . $corte . '/edit')->with('mensaje-error', 'ok');
         } else {
-            Cortes_evaluativo::where('id', '=', $id)->update($datos);
-            $datos = Cortes_evaluativo::findOrFail($id);
+            $corte->update($request->validated());
             return redirect('cevaluativos')->with('mensaje-editar', 'ok');
         }
 

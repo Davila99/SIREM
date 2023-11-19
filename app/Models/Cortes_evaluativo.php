@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Cortes_evaluativo extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'descripcion'
+    ];
     public function calificaciones()
     {
         return $this->hasMany(Calificaciones::class);
