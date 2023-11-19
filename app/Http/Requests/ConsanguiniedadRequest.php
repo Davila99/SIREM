@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreConsanguinieddRequest extends FormRequest
+class ConsanguiniedadRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,18 +13,24 @@ class StoreConsanguinieddRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function rules()
     {
         return [
-            //
+         'descripcion' => 'required|string|max:255',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'descripcion.required' => 'La campo consanguinedad es requerido',
         ];
     }
 }

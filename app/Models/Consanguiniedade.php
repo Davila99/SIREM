@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Consanguiniedade extends Model
 {
     use HasFactory;
+    protected $fillable = ['descripcion'];
 }

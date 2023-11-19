@@ -91,7 +91,7 @@ class CargoController extends Controller
         if ($existeDato) {
             return redirect('cargos/' . $cargo . '/edit')->with('mensaje-error', 'ok');
         } else {
-            $cargo->update($request->validate());
+            $cargo->update($request->validated());
             return redirect('cargos')->with('mensaje-editar', 'ok');
         }
     }

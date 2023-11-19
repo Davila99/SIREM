@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ConsanguiniedadRequest;
 use App\Models\Consanguiniedade;
 use Illuminate\Http\Request;
 
@@ -42,16 +43,9 @@ class ConsanguiniedadeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ConsanguiniedadRequest $request)
     {
-        $request->validate(
-            [
-                'descripcion' => 'required',
-            ],
-            [
-                'descripcion.required' => 'El campo es obligatorio.',
-            ]
-        );
+    
         $datos = request()->except('_token');
 
         $existeDato = Consanguiniedade::where('descripcion', $datos)->exists();
@@ -93,31 +87,16 @@ class ConsanguiniedadeController extends Controller
      * @param  \App\Models\Consanguiniedade  $consanguiniedade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ConsanguiniedadRequest $request,Consanguiniedade $consanguiniedad)
     {
-        $request->validate(
-            [
-                'descripcion' => 'required',
-            ],
-            [
-                'descripcion.required' => 'El campo es obligatorio.',
-            ]
-        );
-        $datos = request()->except(['_token', '_method']);
-        $existeDato = Consanguiniedade::where('descripcion', $datos)->exists();
+   
+        $existeDato = Consanguiniedade::where('descripcion', $request)->exists();
         if ($existeDato) {
-            return redirect('consanguiniedades/' . $id . '/edit')->with('mensaje-error', 'ok');
+            return redirect('consanguiniedades/' . $consanguiniedad . '/edit')->with('mensaje-error', 'ok');
         } else {
-            Consanguiniedade::where('id', '=', $id)->update($datos);
-            $datos = Consanguiniedade::findOrFail($id);
+            $consanguiniedad->update($request->validated());
             return redirect('consanguiniedades')->with('mensaje-editar', 'ok');
         }
-        //// $datos = request()->except(['_token', '_method']);
-
-        //Consanguiniedade::where('id', '=', $id)->update($datos);
-
-        //$datos = Consanguiniedade::findOrFail($id);
-        //return redirect('consanguiniedades')->with('mensaje-editar', 'ok');
     }
 
     /**
