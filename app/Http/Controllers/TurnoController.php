@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTurnoRequest;
 use App\Http\Requests\UpdateTurnoRequest;
 use App\Models\Turno;
 use Illuminate\Http\Request;
@@ -43,16 +44,9 @@ class TurnoController extends Controller
      * @param  \App\Http\Requests\StoreTurnoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTurnoRequest $request)
     {
-        $request->validate(
-            [
-                'descripcion' => 'required',
-            ],
-            [
-                'descripcion.required' => 'El campo es obligatorio.',
-            ]
-        );
+
         $datos = request()->except('_token');
         $existeDato = Turno::where('descripcion', $datos)->exists();
         if ($existeDato) {
@@ -94,23 +88,15 @@ class TurnoController extends Controller
      * @param  \App\Models\Turno  $turno
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTurnoRequest $request,Turno $turno)
     {
-        $request->validate(
-            [
-                'descripcion' => 'required',
-            ],
-            [
-                'descripcion.required' => 'El campo es obligatorio.',
-            ]
-        );
+
         $datos = request()->except(['_token', '_method']);
         $existeDato = Turno::where('descripcion', $datos)->exists();
         if ($existeDato) {
-            return redirect('turnos/' . $id . '/edit')->with('mensaje-error', 'ok');
+            return redirect('turnos/' . $turno . '/edit')->with('mensaje-error', 'ok');
         } else {
-            Turno::where('id', '=', $id)->update($datos);
-            $datos = Turno::findOrFail($id);
+            $turno->update($request->validated());
             return redirect('turnos')->with('mensaje-editar', 'ok');
         }
 

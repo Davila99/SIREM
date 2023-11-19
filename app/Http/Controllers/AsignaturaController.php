@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AsignaturaRequest;
 use App\Models\Asignatura;
 use Illuminate\Http\Request;
 
@@ -41,16 +42,8 @@ class AsignaturaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AsignaturaRequest $request)
     {
-        $request->validate(
-            [
-                'descripcion' => 'required',
-            ],
-            [
-                'descripcion.required' => 'El campo es obligatorio.',
-            ]
-        );
         $datos = request()->except('_token');
         $existeDato = Asignatura::where('descripcion', $datos)->exists();
         if ($existeDato) {
@@ -91,26 +84,16 @@ class AsignaturaController extends Controller
      * @param  \App\Models\Asignatura  $asignatura
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AsignaturaRequest $request,Asignatura $asignatura)
     {
-        $request->validate(
-            [
-                'descripcion' => 'required',
-            ],
-            [
-                'descripcion.required' => 'El campo es obligatorio.',
-            ]
-        );
-        $datos = request()->except(['_token', '_method']);
-        $existeDato = Asignatura::where('descripcion', $datos)->exists();
+        $existeDato = Asignatura::where('descripcion', $request)->exists();
         if ($existeDato) {
-            return redirect('asignaturas/' . $id . '/edit')->with(
+            return redirect('asignaturas/' . $asignatura . '/edit')->with(
                 'mensaje-error',
                 'ok'
             );
         } else {
-            Asignatura::where('id', '=', $id)->update($datos);
-            $datos = Asignatura::findOrFail($id);
+            $asignatura->update($request->validated());
             return redirect('asignaturas')->with('mensaje-editar', 'ok');
         }
     }

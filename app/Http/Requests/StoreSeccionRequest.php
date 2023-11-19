@@ -13,7 +13,7 @@ class StoreSeccionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,14 @@ class StoreSeccionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'descripcion' => 'required|string|max:255',
+            ];
+        
+    }
+    public function messages()
+    {
+        return [
+            'descripcion.required' => 'La campo seccion es requerido',
         ];
     }
 }

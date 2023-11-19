@@ -13,7 +13,7 @@ class StoreTurnoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,13 @@ class StoreTurnoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'descripcion' => 'required|unique:turnos,descripcion'
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'descripcion.required' => 'El campo Turno es obligatorio',
         ];
     }
 }
