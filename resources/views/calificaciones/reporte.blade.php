@@ -122,7 +122,7 @@
     <div class="footer">
         <hr>
         <div class="signature-box p-3">
-            <h4 class="mb-0">Firma del Docente</h4>
+        <h4 class="mb-0">Firma del Docente: {{ $acta->empleado->nombres }} {{ $acta->empleado->apellidos }}</h4>
         </div>
     </div>
 </body>
