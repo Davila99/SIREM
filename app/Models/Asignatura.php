@@ -9,6 +9,7 @@ class Asignatura extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'id',
         'descripcion'
     ];
 }

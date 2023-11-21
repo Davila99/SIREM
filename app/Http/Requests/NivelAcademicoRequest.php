@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTurnoRequest extends FormRequest
+class NivelAcademicoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,13 @@ class UpdateTurnoRequest extends FormRequest
     public function rules()
     {
         return [
-            'descripcion' => 'required|unique:turnos,descripcion,'
-        
+            'descripcion' => 'required|string|max:100',
         ];
     }
     public function messages()
     {
         return [
-            'descripcion.required' => 'El campo Turno es obligatorio',
+            'descripcion.required' => 'El campo Nivel Academico es requerido',
         ];
     }
 }

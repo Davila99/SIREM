@@ -46,7 +46,6 @@ class TurnoController extends Controller
      */
     public function store(StoreTurnoRequest $request)
     {
-
         $datos = request()->except('_token');
         $existeDato = Turno::where('descripcion', $datos)->exists();
         if ($existeDato) {
@@ -90,11 +89,10 @@ class TurnoController extends Controller
      */
     public function update(UpdateTurnoRequest $request,Turno $turno)
     {
-
         $datos = request()->except(['_token', '_method']);
         $existeDato = Turno::where('descripcion', $datos)->exists();
         if ($existeDato) {
-            return redirect('turnos/' . $turno . '/edit')->with('mensaje-error', 'ok');
+            return redirect('turnos/' . $turno->id . '/edit')->with('mensaje-error', 'ok');
         } else {
             $turno->update($request->validated());
             return redirect('turnos')->with('mensaje-editar', 'ok');

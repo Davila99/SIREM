@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfessionRequest;
 use App\Models\Profession;
-use Illuminate\Http\Request;
+
 
 class ProfessionController extends Controller
 {
@@ -42,15 +43,8 @@ class ProfessionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {$request->validate(
-        [
-            'descripcion' => 'required',
-        ],
-        [
-            'descripcion.required' => 'El campo es obligatorio.',
-        ]
-    );
+    public function store(ProfessionRequest $request)
+    {
         $datos = request()->except('_token');
         $array = implode($datos);
         $existeDato = Profession::where('descripcion', 'like', '%' . $array . '%')->exists();
@@ -93,22 +87,15 @@ class ProfessionController extends Controller
      * @param  \App\Models\Profession  $profession
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {$request->validate(
-        [
-            'descripcion' => 'required',
-        ],
-        [
-            'descripcion.required' => 'El campo es obligatorio.',
-        ]
-    );
-        $datos = request()->except(['_token', '_method']);
+    public function update(ProfessionRequest $request,Profession $profession)
+    {
+      
+        $datos = request()->except(['_token', '_method']);  
         $existeDato = Profession::where('descripcion', $datos)->exists();
         if ($existeDato) {
-            return redirect('profession/' . $id . '/edit')->with('mensaje-error', 'ok');
+            return redirect('profession/' . $profession->id . '/edit')->with('mensaje-error', 'ok');
         } else {
-            Profession::where('id', '=', $id)->update($datos);
-            $datos = Profession::findOrFail($id);
+            $profession->update($request->validated());
             return redirect('profession')->with('mensaje-editar', 'ok');
         }
 
