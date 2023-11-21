@@ -87,12 +87,12 @@ class ConsanguiniedadeController extends Controller
      * @param  \App\Models\Consanguiniedade  $consanguiniedade
      * @return \Illuminate\Http\Response
      */
-    public function update(ConsanguiniedadRequest $request,Consanguiniedade $consanguiniedad)
+    public function update(ConsanguiniedadRequest $request,Consanguiniedade $consanguiniedad, $id)
     {
-   
-        $existeDato = Consanguiniedade::where('descripcion', $request)->exists();
+        $datos = request()->except(['_token', '_method']);    
+        $existeDato = Consanguiniedade::where('descripcion', $datos)->exists();
         if ($existeDato) {
-            return redirect('consanguiniedades/' . $consanguiniedad . '/edit')->with('mensaje-error', 'ok');
+            return redirect('consanguiniedades/' . $id . '/edit')->with('mensaje-error', 'ok');
         } else {
             $consanguiniedad->update($request->validated());
             return redirect('consanguiniedades')->with('mensaje-editar', 'ok');

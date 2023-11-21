@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NivelAcademicoRequest;
 use App\Models\Niveles_academico;
 use Illuminate\Http\Request;
 
@@ -42,16 +43,8 @@ class NivelesAcademicoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NivelAcademicoRequest $request)
     {
-        $request->validate(
-            [
-                'descripcion' => 'required',
-            ],
-            [
-                'descripcion.required' => 'El campo es obligatorio.',
-            ]
-        );
         $datos = request()->except('_token');
 
         $existeDato = Niveles_academico::where('descripcion', $datos)->exists();
@@ -94,22 +87,14 @@ class NivelesAcademicoController extends Controller
      * @param  \App\Models\Niveles_academico  $niveles_academico
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {$request->validate(
-        [
-            'descripcion' => 'required',
-        ],
-        [
-            'descripcion.required' => 'El campo es obligatorio.',
-        ]
-    );
-        $datos = request()->except(['_token', '_method']);
+    public function update(NivelAcademicoRequest $request,Niveles_academico $niveles_academico, $id)
+    {
+        $datos = request()->except(['_token', '_method']);     
         $existeDato = Niveles_academico::where('descripcion', $datos)->exists();
         if ($existeDato) {
             return redirect('nivelacademic/' . $id . '/edit')->with('mensaje-error', 'ok');
         } else {
-            Niveles_academico::where('id', '=', $id)->update($datos);
-            $datos = Niveles_academico::findOrFail($id);
+            $niveles_academico->update($request->validated());
             return redirect('nivelacademic')->with('mensaje-editar', 'ok');
         }
 

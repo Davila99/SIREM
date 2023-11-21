@@ -52,7 +52,7 @@ class CargoController extends Controller
         } else {
             Cargo::insert($datos);
             return redirect('cargos/')->with('mensaje', 'ok');
-        }
+        }   
     }
 
     /**
@@ -85,11 +85,13 @@ class CargoController extends Controller
      * @param  \App\Models\Cargo  $cargo
      * @return \Illuminate\Http\Response
      */
-    public function update(CargoRequest $request,Cargo $cargo)
+    public function update(CargoRequest $request,Cargo $cargo, $id)
     {
-        $existeDato = Cargo::where('descripcion', $request)->exists();
+        $datos = request()->except(['_token', '_method']);    
+        $existeDato = Cargo::where('descripcion', $datos)->exists();
+        dd($existeDato);
         if ($existeDato) {
-            return redirect('cargos/' . $cargo . '/edit')->with('mensaje-error', 'ok');
+            return redirect('cargos/' . $id . '/edit')->with('mensaje-error', 'ok');
         } else {
             $cargo->update($request->validated());
             return redirect('cargos')->with('mensaje-editar', 'ok');
