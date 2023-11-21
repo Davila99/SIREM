@@ -62,7 +62,7 @@
             })
         </script>
     @endif
-    @if (Session::has('mensaje-error-eliminar'))
+    @if (Session::has('mensaje-error'))
         <script>
             Swal.fire({
                 icon: 'error',

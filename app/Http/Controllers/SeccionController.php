@@ -89,7 +89,7 @@ class SeccionController extends Controller
         $datos = request()->except(['_token', '_method']);
         $existeDato = Seccion::where('descripcion', $datos)->exists();
         if ($existeDato) {
-            return redirect('seccion/' . $seccion . '/edit')->with(
+            return redirect('seccion/' . $seccion->id . '/edit')->with(
                 'mensaje-error',
                 'ok'
             );

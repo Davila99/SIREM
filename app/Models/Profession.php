@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Profession extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'descripcion'
+    ];
     public function tutores()
     {
         return $this->hasMany(Tutore::class,'tutor_id','id');

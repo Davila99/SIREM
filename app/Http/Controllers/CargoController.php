@@ -85,13 +85,12 @@ class CargoController extends Controller
      * @param  \App\Models\Cargo  $cargo
      * @return \Illuminate\Http\Response
      */
-    public function update(CargoRequest $request,Cargo $cargo, $id)
+    public function update(CargoRequest $request,Cargo $cargo)
     {
         $datos = request()->except(['_token', '_method']);    
         $existeDato = Cargo::where('descripcion', $datos)->exists();
-        dd($existeDato);
         if ($existeDato) {
-            return redirect('cargos/' . $id . '/edit')->with('mensaje-error', 'ok');
+            return redirect('cargos/' . $cargo->id . '/edit')->with('mensaje-error', 'ok');
         } else {
             $cargo->update($request->validated());
             return redirect('cargos')->with('mensaje-editar', 'ok');

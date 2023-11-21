@@ -84,12 +84,12 @@ class AsignaturaController extends Controller
      * @param  \App\Models\Asignatura  $asignatura
      * @return \Illuminate\Http\Response
      */
-    public function update(AsignaturaRequest $request,Asignatura $asignatura, $id)
+    public function update(AsignaturaRequest $request,Asignatura $asignatura)
     {
         $datos = request()->except(['_token', '_method']);   
         $existeDato = Asignatura::where('descripcion', $datos)->exists();
         if ($existeDato) {
-            return redirect('asignaturas/' . $id . '/edit')->with(
+            return redirect('asignaturas/' . $asignatura->id . '/edit')->with(
                 'mensaje-error',
                 'ok'
             );

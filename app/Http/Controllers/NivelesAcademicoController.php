@@ -89,6 +89,7 @@ class NivelesAcademicoController extends Controller
      */
     public function update(NivelAcademicoRequest $request,Niveles_academico $niveles_academico, $id)
     {
+    
         $datos = request()->except(['_token', '_method']);     
         $existeDato = Niveles_academico::where('descripcion', $datos)->exists();
         if ($existeDato) {
