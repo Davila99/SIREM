@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTutorRequest;
 use App\Models\Estudiante;
 use App\Models\Profession;
 use App\Models\Tutore;
@@ -48,26 +49,8 @@ class TutoreController extends Controller
      * @param  \App\Http\Requests\StoreTutoreRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTutorRequest $request)
     {
-        $request->validate(
-            [
-                'nombre' => 'required|string|max:100',
-                'apellido' => 'required|string|max:100',
-                'telefono' => 'required|string|max:12',
-                'cedula' => 'required|string|max:16',
-                'professions_id' => 'required',
-            ],
-
-            [
-                'nombre.required' => 'El nombre es obligatorio.',
-                'apellido.required' => 'El apellido es obligatorio.',
-                'telefono.required' => 'El numero telefono es obligatorio.',
-                'cedula.required' => 'El numero cedula es obligatorio.',
-                'professions_id.required' => 'La profesion es obligatoria.',
-            ]
-        );
-
         $datos = request()->except('_token');
 
         $existeDato = Tutore::where('cedula', $datos['cedula'])->exists();
@@ -116,25 +99,9 @@ class TutoreController extends Controller
      * @param  \App\Models\Tutore  $tutore
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreTutorRequest $request, $id)
     {
-        $request->validate(
-            [
-                'nombre' => 'required|string|max:100',
-                'apellido' => 'required|string|max:100',
-                'telefono' => 'required|string|max:12',
-                'cedula' => 'required|string|max:16',
-                'professions_id' => 'required',
-            ],
 
-            [
-                'nombre.required' => 'El nombre es obligatorio.',
-                'apellido.required' => 'El apellido es obligatorio.',
-                'telefono.required' => 'El numero telefono es obligatorio.',
-                'cedula.required' => 'El numero cedula es obligatorio.',
-                'professions_id.required' => 'La profesion es obligatoria.',
-            ]
-        );
         $datos = request()->except(['_token', '_method']);
         $existeDato = Tutore::where('cedula', $datos['cedula'])->where('id', '!=', $id)->exists();
         if ($existeDato) {

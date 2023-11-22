@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTipo_MatriculaRequest;
 use App\Http\Resources\TipoMatriculaCollection;
 use App\Models\Tipo_Matricula;
 use Illuminate\Http\Request;
@@ -43,16 +44,8 @@ class TipoMatriculaController extends Controller
      * @param  \App\Http\Requests\StoreTipo_MatriculaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTipo_MatriculaRequest $request)
     {
-        $request->validate(
-            [
-                'descripcion' => 'required',
-            ],
-            [
-                'descripcion.required' => 'El campo es obligatorio.',
-            ]
-        );
         $datos = request()->except('_token');
         $existeDato = Tipo_Matricula::where('descripcion', $datos)->exists();
         if ($existeDato) {
@@ -94,23 +87,14 @@ class TipoMatriculaController extends Controller
      * @param  \App\Models\Tipo_Matricula  $tipo_Matricula
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreTipo_MatriculaRequest $request, Tipo_Matricula $tipo_Matricula, $id)
     {
-        $request->validate(
-            [
-                'descripcion' => 'required',
-            ],
-            [
-                'descripcion.required' => 'El campo es obligatorio.',
-            ]
-        );
         $datos = request()->except(['_token', '_method']);
         $existeDato = Tipo_Matricula::where('descripcion', $datos)->exists();
         if ($existeDato) {
             return redirect('tmatricula/' . $id . '/edit')->with('mensaje-error', 'ok');
         } else {
-            Tipo_Matricula::where('id', '=', $id)->update($datos);
-            $datos = Tipo_Matricula::findOrFail($id);
+            $tipo_Matricula->update($request->validated());
             return redirect('tmatricula')->with('mensaje-editar', 'ok');
         }
 

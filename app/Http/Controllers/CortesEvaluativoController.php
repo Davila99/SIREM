@@ -85,13 +85,12 @@ class CortesEvaluativoController extends Controller
      * @param  \App\Models\Cortes_evaluativo  $cortes_evaluativo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Cortes_evaluativo $corte)
+    public function update(CorteRequest $request,Cortes_evaluativo $corte, $id)
     {
-
         $datos = request()->except(['_token', '_method']);
         $existeDato = Cortes_evaluativo::where('descripcion', $datos)->exists();
         if ($existeDato) {
-            return redirect('cevaluativos/' . $corte . '/edit')->with('mensaje-error', 'ok');
+            return redirect('cevaluativos/' . $id. '/edit')->with('mensaje-error', 'ok');
         } else {
             $corte->update($request->validated());
             return redirect('cevaluativos')->with('mensaje-editar', 'ok');

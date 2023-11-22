@@ -13,7 +13,7 @@ class StoreGruposRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,19 @@ class StoreGruposRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'empleado_id' => 'required',
+            'grado_id' => 'required',
+            'seccion_id' => 'required',
+            'turno_id' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'empleado_id.required' => 'El campo Docente es obligatorio',
+            'grado_id.required' => 'El campo Grado es obligatorio',
+            'seccion_id.required' => 'El campo Seccion es obligatorio',
+            'turno_id.required' => 'El campo Turno es obligatorio',
         ];
     }
 }
