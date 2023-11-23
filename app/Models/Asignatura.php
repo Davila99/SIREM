@@ -13,3 +13,4 @@ class Asignatura extends Model
         'descripcion'
     ];
 }
+    

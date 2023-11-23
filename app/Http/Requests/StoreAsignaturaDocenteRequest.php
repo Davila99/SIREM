@@ -13,7 +13,7 @@ class StoreAsignaturaDocenteRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,20 @@ class StoreAsignaturaDocenteRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'organizacion_academica_id' => 'required',
+            'asignatura_id' => 'required',
+            'empleado_id' => 'required',
+            'grupo_id' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'organizacion_academica_id.required' =>
+                'Organización Academica es obligatorio.',
+            'asignatura_id.required' => 'La asignatura es obligatorio.',
+            'empleado_id.required' => 'El empleado es obligatorio.',
+            'grupo_id.required' => 'El grupo es obligatorio.',
         ];
     }
 }

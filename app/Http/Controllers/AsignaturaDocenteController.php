@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAsignaturaDocenteRequest;
 use App\Models\AsignaturaDocente;
 use Illuminate\Http\Request;
 use App\Models\Asignatura;
@@ -36,8 +37,6 @@ class AsignaturaDocenteController extends Controller
             ->with(['grado'])
             ->with(['organizacionAcademica'])
             ->get();
-
-        // dd($datos);
         return view('asignaturadocente/index', $datos);
     }
 
@@ -70,24 +69,8 @@ class AsignaturaDocenteController extends Controller
      * @param  \App\Http\Requests\StoreAsignaturaDocenteRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAsignaturaDocenteRequest $request)
     {
-        $request->validate(
-            [
-                'organizacion_academica_id' => 'required',
-                'asignatura_id' => 'required',
-                'empleado_id' => 'required',
-                'grupo_id' => 'required',
-            ],
-
-            [
-                'organizacion_academica_id.required' =>
-                    'Organización Academica es obligatorio.',
-                'asignatura_id.required' => 'La asignatura es obligatorio.',
-                'empleado_id.required' => 'El empleado es obligatorio.',
-                'grupo_id.required' => 'El grupo es obligatorio.',
-            ]
-        );
         $datos = request()->except('_token');
         AsignaturaDocente::insert($datos);
         return redirect('asignaturadocente/')->with('mensaje', 'ok');
@@ -133,21 +116,8 @@ class AsignaturaDocenteController extends Controller
      * @param  \App\Models\AsignaturaDocente  $asignaturaDocente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreAsignaturaDocenteRequest $request, $id)
     {
-        $request->validate(
-            [
-                'asignatura_id' => 'required',
-                'empleado_id' => 'required',
-                'grupo_id' => 'required',
-            ],
-
-            [
-                'asignatura_id.required' => 'La asignatura es obligatorio.',
-                'empleado_id.required' => 'El empleado es obligatorio.',
-                'grupo_id.required' => 'El grupo es obligatorio.',
-            ]
-        );
         $datos = request()->except(['_token', '_method']);
         AsignaturaDocente::where('id', '=', $id)->update($datos);
         $datos = AsignaturaDocente::findOrFail($id);

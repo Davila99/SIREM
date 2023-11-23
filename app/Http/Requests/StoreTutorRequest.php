@@ -13,7 +13,7 @@ class StoreTutorRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,21 @@ class StoreTutorRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre' => 'required|string|max:100',
+            'apellido' => 'required|string|max:100',
+            'telefono' => 'required|string|max:12',
+            'cedula' => 'required|string|max:16',
+            'professions_id' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'nombre.required' => 'El campo nombre es requerido',
+            'apellido.required' => 'El campo apellido es requerido',
+            'telefono.required' => 'El campo telefono es requerido',
+            'cedula.required' => 'El campo cedula es requerido',
+            'professions_id.required' => 'El campo profesion es requerido',
         ];
     }
 }

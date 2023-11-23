@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\GradoRequest;
 use App\Models\Grado;
-use Illuminate\Http\Request;
+
 
 class GradoController extends Controller
 {

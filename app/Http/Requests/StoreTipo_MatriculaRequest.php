@@ -13,7 +13,7 @@ class StoreTipo_MatriculaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,13 @@ class StoreTipo_MatriculaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'descripcion'=>['required','string','max:100']
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'descripcion.required'=>'La campo tipo de matricula es requerido',
         ];
     }
 }
