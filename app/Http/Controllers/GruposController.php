@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreGruposRequest;
 use App\Http\Resources\GrupoCollection;
 use App\Models\Empleado;
 use App\Models\Grado;
@@ -60,32 +61,27 @@ class GruposController extends Controller
      * @param  \App\Http\Requests\StoreGruposRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreGruposRequest $request)
     {
-        $request->validate(
-            [
-                'empleado_id' => 'required',
-                'grado_id' => 'required',
-                'seccion_id' => 'required',
-                'turno_id' => 'required',
-            ],
-            [
-                'empleado_id.required' => 'El docente es obligatorio.',
-                'grado_id.required' => 'El grado es obligatorio.',
-                'seccion_id.required' => 'El grupo es obligatorio.',
-                'turno_id.required' => 'El grupo es obligatorio.',
-            ]
-        );
-
-        $fecha = date('d-m-Y');
-        $grupo = new Grupos();
-        $grupo->grado_id = $request->grado_id;
-        $grupo->fecha = $fecha;
-        $grupo->empleado_id = $request->empleado_id;
-        $grupo->seccion_id = $request->seccion_id;
-        $grupo->turno_id = $request->turno_id;
-        $grupo->save();
-        return redirect('grupos/')->with('mensaje', 'ok');
+        $datos = request()->except('_token');
+        $existeDato = Grupos::where('grado_id', $datos['grado_id'])
+            ->where('seccion_id', $datos['seccion_id'])
+            ->where('turno_id', $datos['turno_id'])
+            ->exists();
+        if ($existeDato) {
+            return redirect('grupos/create')->with('mensaje-error', 'ok');
+        } else {
+            $fecha = date('d-m-Y');
+            $grupo = new Grupos();
+            $grupo->grado_id = $request->grado_id;
+            $grupo->fecha = $fecha;
+            $grupo->empleado_id = $request->empleado_id;
+            $grupo->seccion_id = $request->seccion_id;
+            $grupo->turno_id = $request->turno_id;
+            $grupo->save();
+            // Grupos::insert($datos);
+            return redirect('grupos/')->with('mensaje', 'ok');
+        }
     }
 
     /**
@@ -129,28 +125,23 @@ class GruposController extends Controller
      * @param  \App\Models\Grupos  $grupos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreGruposRequest $request, $id)
     {
-        $request->validate(
-            [
-                'empleado_id' => 'required',
-                'grado_id' => 'required',
-                'seccion_id' => 'required',
-                'turno_id' => 'required',
-            ],
-
-            [
-                'empleado_id.required' => 'El docente es obligatorio.',
-                'grado_id.required' => 'El grado es obligatorio.',
-                'seccion_id.required' => 'El grupo es obligatorio.',
-                'turno_id.required' => 'El grupo es obligatorio.',
-            ]
-        );
-
-        $datos = request()->except(['_token', '_method']);
-        Grupos::where('id', '=', $id)->update($datos);
-        $datos = Grupos::findOrFail($id);
-        return redirect('grupos/')->with('mensaje-editar', 'ok');
+        $existeDato = Grupos::where('grado_id', $request->grado_id)
+            ->where('seccion_id', $request->seccion_id)
+            ->where('turno_id', $request->turno_id)
+            ->exists();
+        if ($existeDato) {
+            return redirect('grupos/' . $id . '/edit')->with(
+                'mensaje-error',
+                'ok'
+            );
+        } else {
+            $datos = request()->except(['_token', '_method']);
+            Grupos::where('id', '=', $id)->update($datos);
+            $datos = Grupos::findOrFail($id);
+            return redirect('grupos/')->with('mensaje-editar', 'ok');
+        }
     }
 
     /**

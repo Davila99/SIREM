@@ -37,8 +37,6 @@ class AsignaturaDocenteController extends Controller
             ->with(['grado'])
             ->with(['organizacionAcademica'])
             ->get();
-
-        // dd($datos);
         return view('asignaturadocente/index', $datos);
     }
 

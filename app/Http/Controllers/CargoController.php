@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CargoRequest;
 use App\Models\Cargo;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+
 
 class CargoController extends Controller
 {

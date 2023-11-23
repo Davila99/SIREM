@@ -15,13 +15,6 @@ use Illuminate\Support\Facades\DB;
 
 class CalificacionesController extends Controller
 {
-    private $rules = [
-        'fecha' => 'required | date',
-        'empleado_id' => 'required | numeric',
-        'asignatura_id' => 'required | numeric',
-        'observaciones' => 'nullable | string | max:255',
-        'corte' => 'required | numeric',
-    ];
 
     /**
      * Display a listing of the resource.
