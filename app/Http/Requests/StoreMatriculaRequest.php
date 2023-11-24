@@ -13,7 +13,7 @@ class StoreMatriculaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,17 @@ class StoreMatriculaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'estudiante_id' => 'required',
+            'tipo_matricula_id' => 'required',
+            'grupo_id' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'estudiante_id.required' => 'El campo estudiante es requerido',
+            'tipo_matricula_id.required' => 'El campo tipo de matricula es requerido',
+            'grupo_id.required' => 'El campo grupo es requerido',
         ];
     }
 }

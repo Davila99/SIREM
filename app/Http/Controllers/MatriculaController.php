@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMatriculaRequest;
 use App\Models\Estudiante;
 use App\Models\Grupos;
 use App\Models\Matricula;
@@ -69,41 +70,37 @@ class MatriculaController extends Controller
      * @param  \App\Http\Requests\StoreMatriculaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        // dd($request);
-        $request->validate(
-            [
-                'estudiante_id' => 'required',
-                'tipo_matricula_id' => 'required',
-                'grupo_id' => 'required',
-            ],
-
-            [
-                'estudiante_id.required' => 'El estudiantes es obligatorio.',
-                'tipo_matricula_id.required' =>
-                    'El tipo de matricula es obligatorio.',
-                'grupo_id.required' => 'El grupo es obligatorio.',
-            ]
-        );
-
+    public function store(StoreMatriculaRequest $request)
+    {  
         $fecha = date('d-m-Y');
-        $matricula = new Matricula();
-        $user_id = auth()->id();
-        $matricula->user_id = $user_id;
-        $matricula->fecha = $fecha;
-        $matricula->estudiante_id = $request->estudiante_id;
-        $matricula->tipo_matricula_id = $request->tipo_matricula_id;
-        $matricula->grupo_id = $request->grupo_id;
-        $matricula->partida_nacimiento = $request->partida_nacimiento;
-        $matricula->tarjeta_vacuna = $request->tarjeta_vacuna;
-        $matricula->diploma_prescolar = $request->diploma_prescolar;
-        $matricula->cedula_padres = $request->cedula_padres;
-        $matricula->hoja_traslado = $request->hoja_traslado;
-        $matricula->diploma_secundaria = $request->diploma_secundaria;
-        $matricula->save();
+        $existe = Matricula::where('estudiante_id', $request->estudiante_id)
+        ->where('fecha', '=', $fecha)
+        ->where('tipo_matricula_id', '=',  $request->tipo_matricula_id) 
+        ->where('grupo_id', '=',  $request->grupo_id) 
+        ->exists();
+        if ($existe) {
+            return redirect('matriculas/')->with('mensaje-error', 'ok');
+        }else
+        {
+            $matricula = new Matricula();
+            $user_id = auth()->id();
+            $matricula->user_id = $user_id;
+            $matricula->fecha = $fecha;
+            $matricula->estudiante_id = $request->estudiante_id;
+            $matricula->tipo_matricula_id = $request->tipo_matricula_id;
+            $matricula->grupo_id = $request->grupo_id;
+            $matricula->partida_nacimiento = $request->partida_nacimiento;
+            $matricula->tarjeta_vacuna = $request->tarjeta_vacuna;
+            $matricula->diploma_prescolar = $request->diploma_prescolar;
+            $matricula->cedula_padres = $request->cedula_padres;
+            $matricula->hoja_traslado = $request->hoja_traslado;
+            $matricula->diploma_secundaria = $request->diploma_secundaria;
+            $matricula->save();
+    
+            return redirect('matriculas/')->with('mensaje', 'ok');
+        }
 
-        return redirect('matriculas/')->with('mensaje', 'ok');
+
     }
 
     /**
@@ -115,7 +112,6 @@ class MatriculaController extends Controller
     public function show($id)
     {
         $matriculas = Matricula::findOrFail($id);
-        // dd($matriculas);
         return view('matriculas/detalles', compact('matriculas'));
     }
 
@@ -147,21 +143,8 @@ class MatriculaController extends Controller
      * @param  \App\Models\Matricula  $matricula
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreMatriculaRequest $request, $id)
     {
-        $request->validate(
-            [
-                'tipo_matricula_id' => 'required',
-                'grupo_id' => 'required',
-            ],
-
-            [
-                'tipo_matricula_id.required' =>
-                'El tipo de matricula es obligatorio.',
-                'grupo_id.required' => 'El grupo es obligatorio.',
-            ]
-        );
-
         $datos = request()->except(['_token', '_method']);
         Matricula::where('id', '=', $id)->update($datos);
         $datos = Matricula::findOrFail($id);

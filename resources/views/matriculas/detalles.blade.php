@@ -16,29 +16,29 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Nombres:</th>
-                                                <td>{{ $matriculas->estudiante->nombres }}</td>
+                                                <td>{{ $matriculas->estudiante->nombres ?? 'N/A' }}</td>
                                                 <th>Apellidos:</th>
-                                                <td>{{ $matriculas->estudiante->apellidos }}</td>
+                                                <td>{{ $matriculas->estudiante->apellidos ?? 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Fecha de Nacimiento:</th>
-                                                <td>{{ $matriculas->estudiante->fecha_nacimiento }}</td>
+                                                <td>{{ $matriculas->estudiante->fecha_nacimiento ?? 'N/A' }}</td>
                                                 <th scope="row">Edad:</th>
-                                                <td>{{ $matriculas->estudiante->edad }}</td>
+                                                <td>{{ $matriculas->estudiante->edad ?? 'N/A'}}</td>
                                             </tr>
                                             <tr>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Direcion:</th>
-                                                <td>{{ $matriculas->estudiante->direccion }}</td>
+                                                <td>{{ $matriculas->estudiante->direccion ?? 'N/A'}}</td>
                                                 <th>Fecha de registro:</th>
-                                                <td>{{ $matriculas->fecha }}</td>
+                                                <td>{{ $matriculas->fecha ?? 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Sexo:</th>
-                                                <td>{{ $matriculas->estudiante->sexo->descripcion }}</td>
+                                                <td>{{ $matriculas->estudiante->sexo->descripcion ?? 'N/A' }}</td>
                                                 <th>Tipo de Matricula:</th>
-                                                <td>{{ $matriculas->tipo_matricula->descripcion }}</td>
+                                                <td>{{ $matriculas->tipo_matricula->descripcion ?? 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                             </tr>
@@ -54,23 +54,23 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Grado:</th>
-                                                <td>{{ $matriculas->grado->descripcion }}</td>
+                                                <td>{{ $matriculas->grado->descripcion ?? 'N/A'}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Fechade registro:</th>
-                                                <td>{{ $matriculas->fecha }}</td>
+                                                <td>{{ $matriculas->fecha ?? 'N/A'}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Docente Guia:</th>
-                                                <td>{{ $matriculas->empleado->nombres }}</td>
+                                                <td>{{ $matriculas->empleado->nombres ?? 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Seccion:</th>
-                                                <td>{{ $matriculas->seccion->descripcion }}</td>
+                                                <td>{{ $matriculas->seccion->descripcion ?? 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Turno:</th>
-                                                <td>{{ $matriculas->turno->descripcion }}</td>
+                                                <td>{{ $matriculas->turno->descripcion ?? 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                             </tr>
@@ -85,21 +85,21 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Nombres:</th>
-                                                <td>{{ $matriculas->estudiante->tutor->nombre }}</td>
+                                                <td>{{ $matriculas->estudiante->tutor->nombre ?? 'N/A' }}</td>
                                                 <th>Apellidos:</th>
-                                                <td>{{ $matriculas->estudiante->tutor->apellido }}</td>
+                                                <td>{{ $matriculas->estudiante->tutor->apellido ?? 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Cedula:</th>
-                                                <td>{{ $matriculas->estudiante->tutor->cedula }}</td>
+                                                <td>{{ $matriculas->estudiante->tutor->cedula ?? 'N/A' }}</td>
                                                 <th scope="row">Telefono:</th>
-                                                <td>{{ $matriculas->estudiante->tutor->telefono }}</td>
+                                                <td>{{ $matriculas->estudiante->tutor->telefono ?? 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Profesion:</th>
-                                                <td>{{ $matriculas->estudiante->tutor->professions->descripcion }}</td>
+                                                <td>{{ $matriculas->estudiante->tutor->professions->descripcion ?? 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                             </tr>
