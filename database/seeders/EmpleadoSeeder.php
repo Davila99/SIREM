@@ -57,5 +57,19 @@ class EmpleadoSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+        DB::table('empleados')->insert([
+            'nombres' => 'Jose',
+            'apellidos' => 'Gonzales',
+            'telefono' => '7645-1234',
+            'cedula' => '616-123456-1234O',
+            'fecha_nacimiento' => '1990-01-04',
+            'nivel_academico_id' => '1',
+            'direccion' => 'San Pedro Sula',
+            'email'=> 'root@gmail.com',
+            'fecha_ingreso'=>'2021-01-04',
+            'cargos_id'=>'1',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
     }
 }
