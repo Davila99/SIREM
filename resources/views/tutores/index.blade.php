@@ -24,11 +24,11 @@
 
                     @foreach ($tutores as $tutore)
                         <tr>
-                            <td>{{ $tutore->nombre }}</td>
-                            <td>{{ $tutore->apellido }}</td>
-                            <td>{{ $tutore->cedula }}</td>
-                            <td>{{ $tutore->telefono }}</td>
-                            <td>{{ $tutore->professions->descripcion }}</td>
+                            <td>{{ $tutore->nombre ?? 'N/A'}}</td>
+                            <td>{{ $tutore->apellido ?? 'N/A'}}</td>
+                            <td>{{ $tutore->cedula ?? 'N/A' }}</td>
+                            <td>{{ $tutore->telefono ?? 'N/A'}}</td>
+                            <td>{{ $tutore->professions->descripcion ?? 'N/A' }}</td>
                             <td>
                                 <div class="d-flex flex-row bd-highlight mb-6">
                                     <a href="{{ url('/tutores/' . $tutore->id . '/edit') }}" class="btn btn-info">

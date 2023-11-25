@@ -1,20 +1,5 @@
 <div class="container">
     <fieldset class="border p-4">
-        @if (request()->route()->getName() == 'matriculas.create')
-        <div class="form-group">
-            <label for="descripcion">
-                <h5>Estudiante</h5>
-            </label><br>
-            <select name="estudiante_id" class="buscador-estudiantes col-12 @error('estudiante_id') is-invalid @enderror">
-            </select>
-            @error('estudiante_id')
-                <div class="invalid-feedback">
-                    <h5> {{ $message }}</h5>
-                </div>
-            @enderror
-        </div> 
-        @endif
-
     
         <div class="form-group">
             <label for="professions">

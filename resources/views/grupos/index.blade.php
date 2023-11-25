@@ -23,12 +23,11 @@
 
                     @foreach ($grupos as $grupo)
                         <tr>
-                            <td>{{ $grupo->grado->descripcion }}</td>
-                            <td>{{ $grupo->fecha }}</td>
-                            <td>{{ $grupo->empleado->nombres }}</td>
-                            <td>{{ $grupo->seccion->descripcion }}</td>
-                            <td>{{ $grupo->turno->descripcion }}</td>
-
+                            <td>{{ $grupo->grado->descripcion ?? 'N/A'}}</td>
+                            <td>{{ $grupo->fecha ?? 'N/A'}}</td>
+                            <td>{{ $grupo->empleado->nombres ?? 'N/A' }}</td>
+                            <td>{{ $grupo->seccion->descripcion ?? 'N/A' }}</td>
+                            <td>{{ $grupo->turno->descripcion ?? 'N/A'}}</td>
                             <td>
                                 <div class="d-flex flex-row bd-highlight mb-6">
                                     <div class="in-diline">
@@ -44,9 +43,7 @@
                                         <button type="submit" class="btn btn-danger">@include('components.buttons.delete-button')</button>
                                     </form>
                                 </div>
-
                             </td>
-
                         </tr>
                     @endforeach
                 </tbody>

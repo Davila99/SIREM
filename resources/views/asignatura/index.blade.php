@@ -18,7 +18,7 @@
 
                     @foreach ($asignaturas as $asignatura)
                         <tr>
-                            <td>{{ $asignatura->descripcion }}</td>
+                            <td>{{ $asignatura->descripcion ?? 'N/A' }}</td>
                             <td>
                                 <div class="d-flex flex-row bd-highlight mb-6">
                                     <a href="{{ url('/asignaturas/' . $asignatura->id . '/edit') }}" class="btn btn-info">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="eS">
 
 <head>
     <meta charset="UTF-8">
@@ -35,8 +35,8 @@
 
         .imagen-arriba {
             position: absolute;
-            top: 10px; /* Espacio a la derecha de la imagen */
-            left: 10px; /* Espacio arriba de la imagen */
+            top: 10px; 
+            left: 10px;
         }
 
         .footer {
@@ -49,17 +49,17 @@
         }
 
         .footer hr {
-            margin-top: 5px; /* Ajusta el espacio entre la raya y la firma del docente */
-            width: 50%; /* Ancho de la raya */
+            margin-top: 5px; 
+            width: 50%; 
         }
 
         .firma-docente {
-            margin-top: 10px; /* Ajusta el espacio entre la raya y la firma */
+            margin-top: 10px; 
         }
 
         .signature-box {
             display: inline-block;
-            margin-top: 10px; /* Ajusta el espacio entre la raya y la firma del docente */
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -85,15 +85,15 @@
             <tbody>
                 <tr>
                     <th>Fecha de generación</th>
-                    <td>{{ $acta->fecha }}</td>
+                    <td>{{ $acta->fecha ?? 'N/A' }}</td>
                     <th scope="row">Docente</th>
-                    <td>{{ $acta->empleado->nombres }} {{ $acta->empleado->apellidos }}</td>
+                    <td>{{ $acta->empleado->nombres ?? 'N/A'}} {{ $acta->empleado->apellidos ?? 'N/A' }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Asignatura</th>
-                    <td>{{ $acta->asignatura->descripcion }}</td>
+                    <td>{{ $acta->asignatura->descripcion ?? 'N/A' }}</td>
                     <th scope="row">Observaciones</th>
-                    <td>{{ $acta->observaciones }}</td>
+                    <td>{{ $acta->observaciones 'N/A' }}</td>
                 </tr>
             </tbody>
         </table>
@@ -110,19 +110,19 @@
             <tbody>
                 @foreach ($filas as $fila)
                     <tr>
-                        <td>{{ $fila->estudiante->nombres }} {{ $fila->estudiante->apellidos }}</td>
-                        <td>{{ $fila->calificacion }}</td>
+                        <td>{{ $fila->estudiante->nombres ?? 'N/A' }} {{ $fila->estudiante->apellidos 'N/A' }}</td>
+                        <td>{{ $fila->calificacion ?? 'N/A' }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
     
-    <!-- Firmas del Tutor y del Director -->
+   
     <div class="footer">
         <hr>
         <div class="signature-box p-3">
-        <h4 class="mb-0">Firma del Docente: {{ $acta->empleado->nombres }} {{ $acta->empleado->apellidos }}</h4>
+        <h4 class="mb-0">Firma del Docente: {{ $acta->empleado->nombres ?? 'N/A' }} {{ $acta->empleado->apellidos ?? 'N/A' }}</h4>
         </div>
     </div>
 </body>
