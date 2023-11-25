@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMatriculaRequest;
+use App\Http\Requests\UpdateMatriculaRequest;
 use App\Models\Estudiante;
 use App\Models\Grupos;
 use App\Models\Matricula;
@@ -143,11 +144,9 @@ class MatriculaController extends Controller
      * @param  \App\Models\Matricula  $matricula
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreMatriculaRequest $request, $id)
+    public function update(UpdateMatriculaRequest $request,Matricula $matricula)
     {
-        $datos = request()->except(['_token', '_method']);
-        Matricula::where('id', '=', $id)->update($datos);
-        $datos = Matricula::findOrFail($id);
+        $matricula->update($request->validated());
         return redirect('matriculas/')->with('mensaje-editar', 'ok');
     }
 

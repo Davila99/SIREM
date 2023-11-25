@@ -8,6 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Matricula extends Model
 {
     use HasFactory;
+    
+    protected $fillable = [
+        'fecha',
+        'user_id',
+        'estudiante_id',
+        'grupo_id',
+        'tipo_matricula_id',
+        'partida_nacimiento',
+        'tarjeta_vacuna',
+        'diploma_prescolar',
+        'cedula_padres',
+        'hoja_traslado',
+        'diploma_secundaria',
+    ];
 
     public function estudiante()
     {

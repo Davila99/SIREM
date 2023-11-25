@@ -13,7 +13,7 @@ class UpdateMatriculaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class UpdateMatriculaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'tipo_matricula_id' => 'required',
+            'grupo_id' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'tipo_matricula_id.required' => 'El campo tipo de matricula es requerido',
+            'grupo_id.required' => 'El campo grupo es requerido',
         ];
     }
 }
