@@ -136,6 +136,15 @@
         @endsection
         @section('js')
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            @if (Session::has('mensaje-error-ruta'))
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lo sentimos',
+                        text: ' Por problemas técnicos, no se puede mostrar la página en este momento.',
+                    })
+                </script>
+            @endif
             <script>
                 $('.form-eliminar').submit(function(e) {
                     e.preventDefault();

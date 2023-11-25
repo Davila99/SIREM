@@ -27,7 +27,8 @@
                                     <td>{{ $user->email }}</td>
                                     <td>
                                         <div class="d-flex flex-row bd-highlight mb-6">
-                                            <a href="{{ url('/users/' . $user->id . '/editUser') }}" class="btn btn-info">
+                                            <a href="{{ url('/users/' . $user->id . '/editUser') }}"
+                                                class="btn btn-info">
                                                 Editar Perfil </a>|
                                             <a href="{{ url('/users/' . $user->id . '/edit') }}"
                                                 class="btn btn-warning">
@@ -58,6 +59,15 @@
     </div>
     @section('js')
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        @if (Session::has('mensaje-error-ruta'))
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Lo sentimos',
+                    text: ' Por problemas técnicos, no se puede mostrar la página en este momento.',
+                })
+            </script>
+        @endif
         @if (Session::has('mensaje'))
             <script>
                 Swal.fire({

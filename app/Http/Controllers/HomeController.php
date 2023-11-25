@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }
+        }
 
     /**
      * Show the application dashboard.
@@ -29,7 +29,6 @@ class HomeController extends Controller
         ->with(['empleado'])
         ->where('empleado_id', auth()->id())
         ->first();
-        // dd($perfil);
         return view('perfil/index',compact('perfil'));
     }
 }
