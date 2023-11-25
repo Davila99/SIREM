@@ -19,7 +19,7 @@
 
                     @foreach ($consanguiniedades as $consanguiniedade)
                         <tr>
-                            <td>{{ $consanguiniedade->descripcion }}</td>
+                            <td>{{ $consanguiniedade->descripcion ?? 'N/A'}}</td>
                             <td>
                                 <div class="d-flex flex-row bd-highlight mb-6">
                                     <a href="{{ url('/consanguiniedades/' . $consanguiniedade->id . '/edit') }}"

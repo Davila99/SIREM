@@ -18,7 +18,7 @@
 
                      @foreach ($cortes_evaluativos as $cortes_evaluativo)
                          <tr>
-                             <td>{{ $cortes_evaluativo->descripcion }}</td>
+                             <td>{{ $cortes_evaluativo->descripcion ?? 'N/A' }}</td>
                              <td>
                                  <div class="d-flex flex-row bd-highlight mb-6">
                                      <a href="{{ url('/cevaluativos/' . $cortes_evaluativo->id . '/edit') }}"

@@ -21,9 +21,9 @@
     
                     @foreach ($estudiantestutores as $estudiantestutor)
                         <tr>
-                            <td>{{ $estudiantestutor->estudiante->nombres }}  {{ $estudiantestutor->estudiante->apellidos }}</td>
-                            <td>{{ $estudiantestutor->tutores->nombre }}  {{ $estudiantestutor->tutores->apellido }} </td>
-                            <td>{{ $estudiantestutor->tutores->telefono }} </td>
+                            <td>{{ $estudiantestutor->estudiante->nombres ?? 'N/A' }}  {{ $estudiantestutor->estudiante->apellidos ?? 'N/A' }}</td>
+                            <td>{{ $estudiantestutor->tutores->nombre ?? 'N/A' }}  {{ $estudiantestutor->tutores->apellido ?? 'N/A' }} </td>
+                            <td>{{ $estudiantestutor->tutores->telefono ?? 'N/A' }} </td>
                             <td>
                                 <div class="d-flex flex-row bd-highlight mb-6">
                                     <div class="class=d-inline">
@@ -58,10 +58,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <!-- Contenido de los detalles a mostrar -->
                         <p id="detailName"></p>
                         <p id="detailDescription"></p>
-                        <!-- Agrega aquí más campos para mostrar los detalles -->
                     </div>
                 </div>
             </div>

@@ -23,17 +23,17 @@
                 <tbody>
 
                     @foreach ($empleados as $empleado)
-                        <td>{{ $empleado->nombres }}</td>
-                        <td>{{ $empleado->apellidos }}</td>
-                        <td>{{ $empleado->telefono }}</td>
-                        <td>{{ $empleado->nivel_academico->descripcion }}</td>
-                        <td>{{ $empleado->fecha_ingreso }}</td>
+                        <td>{{ $empleado->nombres ?? 'N/A'}}</td>
+                        <td>{{ $empleado->apellidos ?? 'N/A' }}</td>
+                        <td>{{ $empleado->telefono  ?? 'N/A'}}</td>
+                        <td>{{ $empleado->nivel_academico->descripcion ?? 'N/A' }}</td>
+                        <td>{{ $empleado->fecha_ingreso ?? 'N/A' }}</td>
                         @php
                             $fecha_ingreso = $empleado->fecha_ingreso ?? null;
                             $antiguedad = $fecha_ingreso ? \Carbon\Carbon::parse($fecha_ingreso)->age : 'N/A';
                         @endphp
-                        <td>{{ $antiguedad }} años</td>
-                        <td>{{ $empleado->cargos->descripcion }}</td>
+                        <td>{{ $antiguedad ?? 'N/A' }} años</td>
+                        <td>{{ $empleado->cargos->descripcion ?? 'N/A' }}</td>
                         <td>
                             <div class="d-flex justify-content-center">
                                 <div class="d-inline">

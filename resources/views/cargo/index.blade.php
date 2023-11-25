@@ -19,7 +19,7 @@
 
                      @foreach ($cargos as $cargo)
                          <tr>
-                             <td>{{ $cargo->descripcion }}</td>
+                             <td>{{ $cargo->descripcion ?? 'N/A' }}</td>
 
                              <td>
                                  <div class="d-flex flex-row bd-highlight mb-6">

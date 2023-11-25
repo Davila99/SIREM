@@ -20,8 +20,8 @@
 
                 @foreach ($organizacionacademicas as $organizacionacademica)
                     <tr>
-                        <td>{{ $organizacionacademica->descripcion }}</td>
-                        <td>{{ $organizacionacademica->fecha }}</td>
+                        <td>{{ $organizacionacademica->descripcion ?? 'N/A'}}</td>
+                        <td>{{ $organizacionacademica->fecha ?? 'N/A' }}</td>
                         <td>
                             <input data-id="{{ $organizacionacademica->id }}" class="toggle-class" type="checkbox"
                                 data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active"

@@ -17,7 +17,7 @@
 
             @foreach ($professions as $profession)
                 <tr>
-                    <td>{{ $profession->descripcion }}</td>
+                    <td>{{ $profession->descripcion ?? 'N/A' }}</td>
                     <td>
                         <div class="d-flex flex-row bd-highlight mb-6">
                             <a href="{{ url('/profession/' . $profession->id . '/edit') }}" class="btn btn-info">

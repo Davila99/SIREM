@@ -22,10 +22,10 @@
 
                     @foreach ($asignaturadocentes as $asignaturadocente)
                         <tr>
-                            <td>{{ $asignaturadocente->asignatura->descripcion }}</td>
-                            <td>{{ $asignaturadocente->empleado->nombres }}</td>
-                            <td>{{ $asignaturadocente->grado->descripcion }}</td>
-                            <td>{{ $asignaturadocente->organizacionAcademica->descripcion }}</td>
+                            <td>{{ $asignaturadocente->asignatura->descripcion ?? 'N/A' }}</td>
+                            <td>{{ $asignaturadocente->empleado->nombres ?? 'N/A' }}</td>
+                            <td>{{ $asignaturadocente->grado->descripcion ?? 'N/A' }}</td>
+                            <td>{{ $asignaturadocente->organizacionAcademica->descripcion ?? 'N/A'}}</td>
                             <td>
                                 <div class="d-flex flex-row bd-highlight mb-6">
                                     <div class="d-inline">

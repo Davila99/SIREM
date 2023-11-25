@@ -22,11 +22,11 @@
 
                     @foreach ($matriculas as $matricula)
                         <tr>
-                            <td>{{ $matricula->fecha }}</td>
-                            <td>{{ $matricula->estudiante->nombres }}</td>
-                            <td>{{ $matricula->user->name }}</td>
-                            <td>{{ $matricula->tipo_matricula->descripcion }}</td>
-                            <td>{{ $matricula->grupo->grado->descripcion }}</td>
+                            <td>{{ $matricula->fecha ?? 'N/A' }}</td>
+                            <td>{{ $matricula->estudiante->nombres ?? 'N/A' }}</td>
+                            <td>{{ $matricula->user->name ?? 'N/A' }}</td>
+                            <td>{{ $matricula->tipo_matricula->descripcion ?? 'N/A' }}</td>
+                            <td>{{ $matricula->grupo->grado->descripcion ?? 'N/A' }}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <div class="d-inline">

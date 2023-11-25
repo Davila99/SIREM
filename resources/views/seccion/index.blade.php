@@ -17,7 +17,7 @@
 
             @foreach ($secciones as $seccion)
                 <tr>
-                    <td>{{ $seccion->descripcion }}</td>
+                    <td>{{ $seccion->descripcion ?? 'N/A' }}</td>
                     <td>
                         <div class="d-flex flex-row bd-highlight mb-6">
                             <a href="{{ url('/seccion/' . $seccion->id . '/edit') }}" class="btn btn-info">

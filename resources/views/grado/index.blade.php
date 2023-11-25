@@ -19,7 +19,7 @@
 
                     @foreach ($grados as $grado)
                         <tr>
-                            <td>{{ $grado->descripcion }}</td>
+                            <td>{{ $grado->descripcion ??'N/A' }}</td>
                             <td>
                                 <div class="d-flex flex-row bd-highlight mb-6">
                                     <a href="{{ url('/grados/' . $grado->id . '/edit') }}" class="btn btn-info">

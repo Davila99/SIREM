@@ -17,7 +17,7 @@
 
                 @foreach ($turnos as $turno)
                     <tr>
-                        <td>{{ $turno->descripcion }}</td>
+                        <td>{{ $turno->descripcion ?? 'N/A' }}</td>
                         <td>
                             <div class="d-flex flex-row bd-highlight mb-6">
                                 <a href="{{ url('/turnos/' . $turno->id . '/edit') }}" class="btn btn-info">
