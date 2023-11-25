@@ -26,6 +26,12 @@ class UpdateMatriculaRequest extends FormRequest
         return [
             'tipo_matricula_id' => 'required',
             'grupo_id' => 'required',
+            'partida_nacimiento' => 'nullable',
+            'tarjeta_vacuna' => 'nullable',
+            'diploma_prescolar' => 'nullable',
+            'cedula_padres' => 'nullable',
+            'hoja_traslado' => 'nullable',
+            'diploma_secundaria' => 'nullable',
         ];
     }
     public function messages()
