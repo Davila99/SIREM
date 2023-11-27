@@ -29,12 +29,13 @@
                                             @include('calificaciones.dropdown-cortes')
                                         </div>
                                     </div>
+                                    | <div class="d-inline">
+                                        <a type="button" class="btn btn-warning "
+                                            href="{{ url('/calificaciones-final' . $curso->id) }}" target="blank">
+                                            <input type="submit" value="Imprimir Acta General" class="btn btn-warning" />
+                                        </a>
+                                    </div>
 
-                                    {{-- <form action="{{ route('imprimir-acta') }}" method="post"
-                                        enctype="multipart/form-data">
-                                        @csrf
-                                        <input type="submit" value="Imprimir Acta" class="btn btn-warning" />
-                                    </form> --}}
                                 </div>
 
                             </div>
