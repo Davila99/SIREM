@@ -100,12 +100,14 @@ class AsignaturaDocenteController extends Controller
         $asignaturas = Asignatura::all();
         $empleados = Empleado::where('cargos_id', 1)->get();
         $grupos = Grupos::all();
+        $organizacion_academicas = OrganizacionAcademica::all();
 
         return view('asignaturadocente/edit', [
             'datos' => $datos,
             'asignaturas' => $asignaturas,
             'grupos' => $grupos,
             'empleados' => $empleados,
+            'organizacion_academicas' => $organizacion_academicas,
         ]);
     }
 
