@@ -44,4 +44,9 @@ class Calificaciones extends Model
     {
         return $this->hasMany(CalificacionDetalle::class, 'calificacion_id');
     }
+
+    public function grupo()
+    {
+        return $this->belongsTo(Grupos::class);
+    }
 }

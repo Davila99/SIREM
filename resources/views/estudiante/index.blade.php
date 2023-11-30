@@ -71,6 +71,12 @@
                                             @include('components.buttons.edit-button') </a>
                                     </div>
                                     |
+                                    <div class="d-inline">
+                                        <a href="{{ url('/historial-academico/' . $estudiante->id) }}" class="btn btn-warning btn-block me-1">
+                                            Historial Académico
+                                        </a>
+                                    </div>
+                                    |
                                     <form class="form-eliminar" action="{{ url('/estudiantes/' . $estudiante->id) }}"
                                         method="post" class="d-inline">
                                         @csrf

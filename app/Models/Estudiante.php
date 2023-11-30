@@ -34,6 +34,6 @@ class Estudiante extends Model
     }
     public function calificaciones()
     {
-        return $this->hasMany(Calificaciones::class, 'estudiante_id');
+        return $this->hasMany(CalificacionDetalle::class, 'estudiante_id');
     }
 }

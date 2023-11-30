@@ -6,54 +6,45 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Incluye los archivos de Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Establece el tamaño de fuente y otros estilos para que quepa en una página */
         body {
-            font-size: 14px; /* Tamaño de fuente reducido */
+            font-size: 14px;
         }
 
         .container {
-            max-width: 95%; /* Aprovecha todo el ancho disponible */
-            margin: 0; /* Elimina los márgenes para aprovechar al máximo el espacio */
+            max-width: 95%;
+            margin: 0;
             padding: 20px;
-            border: 1px solid #ccc; /* Agrega un borde a la página */
+            border: 1px solid #ccc;
 
         }
 
-        /* Evita que las tablas se dividan entre páginas */
         table {
             page-break-inside: avoid;
         }
-
-        /* Estilos adicionales... */
 
         .footer {
             position: absolute;
             bottom: 20px;
         }
-        
-        /* Estilo para la imagen */
+
         .imagen-arriba {
             position: absolute;
-            top: 10px; /* Espacio a la derecha de la imagen */
-            left: 10px; /* Espacio arriba de la imagen */
+            top: 10px;
+            left: 10px;
         }
     </style>
 </head>
 
 <body>
-    <div class="container"> <!-- Añade el margen superior -->
+    <div class="container">
         <h4 class="text-center mb-3">Hoja de Matrícula</h4>
-        <!-- Imagen -->
-        <!-- <div class="d-flex align-items margin-right"> -->
         <div class="imagen-container">
-        <img src="images/logo.jpeg" alt="Imagen de Matrícula" width="113px" class="imagen-arriba">
+            <img src="images/logo.jpeg" alt="Imagen de Matrícula" width="113px" class="imagen-arriba">
 
         </div>
 
-        <!-- Información del Estudiante -->
         <div class="section mt-5 mb-3 bg-white">
             <h4>Información del Estudiante</h4>
             <table class="table table-bordered">
@@ -86,7 +77,6 @@
             </table>
         </div>
 
-        <!-- Información del Grupo -->
         <div class="section mb-3 bg-white">
             <h4>Información del Grupo</h4>
             <table class="table table-bordered">
@@ -113,7 +103,7 @@
             </table>
         </div>
 
-        <!-- Información del Tutor -->
+
         <div class="section mb-3 bg-white">
             <h4>Información del Tutor</h4>
             <table class="table table-bordered">
@@ -140,36 +130,33 @@
             </table>
         </div>
 
-<!-- Firmas del Tutor y del Director -->
-<div class="section mb-4">
-    <table class="table">
-        <tbody>
-            <tr>
-                <td class="text-center">
-                    <div class="signature-box p-3">
-                        <h6 class="mb-0">Firma del Tutor</h6>
-                        <hr>
-                    </div>
-                </td>
-                <td class="text-center">
-                    <div class="signature-box p-3">
-                        <h6 class="mb-0">Firma del Director</h6>
-                        <hr>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+        <div class="section mb-4">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td class="text-center">
+                            <div class="signature-box p-3">
+                                <h6 class="mb-0">Firma del Tutor</h6>
+                                <hr>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="signature-box p-3">
+                                <h6 class="mb-0">Firma del Director</h6>
+                                <hr>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-
-        <!-- Pie de página -->
         <div class="footer mt-4">
             <p class="text-center font-weight-bold text-primary">Colegio Cristiano Manto de Gracia</p>
         </div>
     </div>
 
-    <!-- Incluye el script de jQuery requerido por Bootstrap -->
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 </body>
 
