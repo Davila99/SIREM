@@ -93,7 +93,7 @@
                     <th scope="row">Asignatura</th>
                     <td>{{ $acta->asignatura->descripcion ?? 'N/A' }}</td>
                     <th scope="row">Observaciones</th>
-                    <td>{{ $acta->observaciones 'N/A' }}</td>
+                    <td>{{ $acta->observaciones ??'N/A' }}</td>
                 </tr>
             </tbody>
         </table>
@@ -110,7 +110,7 @@
             <tbody>
                 @foreach ($filas as $fila)
                     <tr>
-                        <td>{{ $fila->estudiante->nombres ?? 'N/A' }} {{ $fila->estudiante->apellidos 'N/A' }}</td>
+                        <td>{{ $fila->estudiante->nombres ?? 'N/A' }} {{ $fila->estudiante->apellidos ?? 'N/A' }}</td>
                         <td>{{ $fila->calificacion ?? 'N/A' }}</td>
                     </tr>
                 @endforeach
