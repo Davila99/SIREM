@@ -77,9 +77,9 @@
                     "infoFiltered": "(filtrado de un total de _MAX_ registros)",
                     "search": "Buscar:",
                     "paginate": {
-                        first: '<i class="fas fa-angle-double-left"></i>', // Icono para ir a la primera página
-                        previous: '<i class="fas fa-angle-left"></i>', // Icono para ir a la página anterior
-                        next: '<i class="fas fa-angle-right"></i>', // Icono para ir a la página siguiente
+                        first: '<i class="fas fa-angle-double-left"></i>', 
+                        previous: '<i class="fas fa-angle-left"></i>',
+                        next: '<i class="fas fa-angle-right"></i>', 
                         last: '<i class="fas fa-angle-double-right"></i>'
                     },
                 }
@@ -88,7 +88,7 @@
 
         });
     </script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     @if (Session::has('mensaje'))
         <script>
             Swal.fire({
