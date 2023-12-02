@@ -108,10 +108,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('historial-academico/{estudiante}', [HistorialAcademicoController::class, 'index'])->name('index');
     //Route::get('descargar-acta', [HistorialAcademicoController::class, 'index'])->name('index');
 
-    Route::resource('calificaciones-final', ActaCalificacionFinalController::class)->only(['index']);
+    // Route::resource('calificaciones-final', ActaCalificacionFinalController::class)->only(['index']);
     Route::get('calificaciones-final/{asignatura_id}/{grupo_id}', [ActaCalificacionFinalController::class, 'index'])->name('index');
-    Route::post('/generate-pdf', [ActaCalificacionFinalController::class,'generatePDF'])->name('generate-pdf');
-    Route::post('/download-excel', [ActaCalificacionFinalController::class,'downloadExcel'])->name('download-excel');
+    Route::post('/generate-pdf', [ActaCalificacionFinalController::class, 'generatePDF'])->name('generate-pdf');
+    Route::post('/download-excel', [ActaCalificacionFinalController::class, 'downloadExcel'])->name('download-excel');
     // Route::get('calificaciones-final-pdf/{asignatura_id}/{grupo_id}', [PdfActaCalificacionFinalController::class, 'index'])->name('index');
     Route::resource('calificaciones-final-pdf', PdfActaCalificacionFinalController::class)->only(['index']);
     Route::resource('calificacionesDetalles', CalificacionDetalleController::class);
