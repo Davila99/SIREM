@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\CalificacionesExport;
 use App\Models\Calificaciones;
 use Illuminate\Http\Request;
 use App\Models\AsignaturaDocente;
@@ -51,7 +50,7 @@ class CalificacionesController extends Controller
             $acta->load('calificaciones.estudiante');
             $filas = $acta->calificaciones;
 
-            return view('calificaciones.show', compact('acta', 'filas'));
+            return redirect()->route('detalle-acta', ['actaId' => $acta->id]);
         }
 
         $docente = $this->getDocente();
@@ -60,7 +59,17 @@ class CalificacionesController extends Controller
         $filas = [];
         DB::beginTransaction();
         try {
-            $acta = $this->alamacenarActa($grupoId, $docente, $corteId);
+            $acta = new Calificaciones();
+            $acta->fecha = date('Y-m-d');
+            $acta->empleado_id = $docente->id;
+            $acta->asignatura_id = $asignaturaId;
+            $acta->observaciones = 'Acta de calificaciones del corte ' . $corteId;
+            $acta->corte_evaluativo_id = $corteId;
+            $acta->grupo_id = $grupoId;
+            $acta->save();
+
+
+
             $filas = $this->almacenarFilasActa($acta, $estudiantes);
             DB::commit();
         } catch (\Throwable $th) {
@@ -69,22 +78,9 @@ class CalificacionesController extends Controller
         }
 
         $filas = $acta->calificaciones;
-        return view('calificaciones.show', compact('acta', 'filas'));
+        return redirect()->route('detalle-acta', ['actaId' => $acta->id]);
     }
 
-
-    public function alamacenarActa($id, $docente, $corte)
-    {
-        $acta = new Calificaciones();
-        $acta->fecha = date('Y-m-d');
-        $acta->empleado_id = $docente->id;
-        $acta->asignatura_id = $id;
-        $acta->observaciones = 'Acta de calificaciones del corte ' . $corte;
-        $acta->corte_evaluativo_id = $corte;
-        $acta->grupo_id = $id;
-        $acta->save();
-        return $acta;
-    }
     public function almacenarFilasActa(Calificaciones $acta, $estudiantes)
     {
         foreach ($estudiantes as $estudiante) {
@@ -103,7 +99,7 @@ class CalificacionesController extends Controller
         if ($calificacion) {
             $calificacion->calificacion = $request->calificacion;
             $calificacion->save();
-            return redirect()->route('detalle-acta',['actaId'=>$calificacion->calificacion_id]);
+            return redirect()->route('detalle-acta', ['actaId' => $calificacion->calificacion_id]);
         } else {
             return response()->json([
                 'message' => 'No se encontró el detalle de calificación',
