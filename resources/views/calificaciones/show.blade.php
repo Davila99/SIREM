@@ -60,11 +60,11 @@
             </thead>
 
             <tbody>
-
                 @foreach ($filas as $fila)
                 <tr>
                     <td>{{ $fila->estudiante->nombres }} {{ $fila->estudiante->apellidos }}</td>
-                    <td>{{ $fila->calificacion }}</td>
+                    <td>{{ $fila->calificacion }} - {{ $fila->calificacion_cualitativa }}
+                    </td>
 
                     <td>
 
