@@ -11,6 +11,7 @@ use App\Models\Matricula;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class CalificacionesController extends Controller
 {
@@ -93,6 +94,13 @@ class CalificacionesController extends Controller
 
     public function changeNota(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'calificacion' => 'required|integer|min:0|max:100',
+        ]);
+        if ($validator->fails()) {
+            return back()->with('mensaje-error', 'ok sdfsdfsdfsdfsdf');
+        }
+
         $calificacion = CalificacionDetalle::query()
             ->where('id', $request->id)
             ->first();
