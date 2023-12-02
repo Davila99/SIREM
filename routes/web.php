@@ -67,7 +67,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('matriculas/pdf/{id}', [MatriculaController::class, 'pdf'])->name('matriculas.pdf');
     Route::post('change-nota/', [CalificacionesController::class, 'changeNota'])->name('change-nota');
     Route::post('change-password/', [UserController::class, 'Changepassword'])->name('change-password');
-    Route::get('generar-acta/{grupoId}/{asignaturaId}/{corteId}', [CalificacionesController::class, 'generarActa'])->name('generar-acta');
+    Route::get('detalle-acta/{actaId}', [CalificacionesController::class, 'detalleActa'])->name('detalle-acta');
     Route::post('generar-acta/{grupoId}/{asignaturaId}/{corteId}', [CalificacionesController::class, 'generarActa'])->name('generar-acta');
     Route::post('imprimir-acta', [CalificacionesController::class, 'imprimirActa'])->name('imprimir-acta');
     // Rutas de registro

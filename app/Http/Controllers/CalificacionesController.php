@@ -100,19 +100,31 @@ class CalificacionesController extends Controller
         $calificacion = CalificacionDetalle::query()
             ->where('id', $request->id)
             ->first();
-
         if ($calificacion) {
             $calificacion->calificacion = $request->calificacion;
             $calificacion->save();
-
-            return redirect()->back()->with('mensaje-nota', 'ok');
+            return redirect()->route('detalle-acta',['actaId'=>$calificacion->calificacion_id]);
         } else {
             return response()->json([
                 'message' => 'No se encontró el detalle de calificación',
             ], 404);
         }
     }
-
+    public function detalleActa(Request $request)
+    {
+        $acta = Calificaciones::query()
+            ->where('id', $request->actaId)
+            ->first();
+        if ($acta) {
+            $acta->load('calificaciones.estudiante');
+            $filas = $acta->calificaciones;
+            return view('calificaciones.show', compact('acta', 'filas'));
+        } else {
+            return response()->json([
+                'message' => 'No se encontró el acta',
+            ], 404);
+        }
+    }
     public function imprimirActa(Request $request)
     {
 
