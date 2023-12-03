@@ -25,21 +25,22 @@
             z-index: -1;
         }
 
-.footer {
-    text-align: center;
-    padding: 10px;
-    color: #343a40;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: none;
-    border-top: 1px solid #ddd;
-    margin-top: 15px; /* Ajusta el valor según sea necesario para separar del contenido anterior */
-    border: 1px solid transparent;
-    border-radius: 4px;
-    position: fixed;
-    bottom: 0;
-}
+        .footer {
+            text-align: center;
+            padding: 10px;
+            color: #343a40;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: none;
+            border-top: 1px solid #ddd;
+            margin-top: 15px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            position: fixed;
+            bottom: 0;
+        }
+
         .table {
             width: 100%;
             border-collapse: collapse;
@@ -70,18 +71,13 @@
             left: 10px;
         }
 
-        .footer hr {
-            margin-top: 5px;
-            width: 50%;
-        }
-
         .firma-docente {
             margin-top: 10px;
         }
 
         .signature-box {
-    display: inline-block;
-    margin-top: 10px; /* Ajusta este valor según sea necesario */
+            display: inline-block;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -140,14 +136,19 @@
         </table>
     </div>
     
-    <div class="footer">
-        <hr>
+    <footer class="footer text-center mt-4">
+        <!-- Línea horizontal con margen inferior para separación -->
+        
+        
         <div class="signature-box p-3">
+        <hr style="margin-bottom: 10px; border-top: 1px solid #ddd;">
             <h4 class="mb-0">Firma del Docente: {{ $acta->empleado->nombres ?? 'N/A' }} {{ $acta->empleado->apellidos ?? 'N/A' }}</h4>
         </div>
-    </div>
-    <footer class="footer text-center mt-4">
-        <p>&copy; {{ date('Y') }} Colegio Cristiano Manto de Gracia</p>
+    </footer>
+
+    <!-- Footer estándar sin línea horizontal encima -->
+    <footer class="footer text-center">
+        &copy; {{ date('Y') }} Colegio Cristiano Manto de Gracia
     </footer>
 </body>
 
