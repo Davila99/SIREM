@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="eS">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,37 @@
             font-family: Arial, sans-serif;
         }
 
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/logo2.png');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: contain;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+.footer {
+    text-align: center;
+    padding: 10px;
+    color: #343a40;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: none;
+    border-top: 1px solid #ddd;
+    margin-top: 15px; /* Ajusta el valor según sea necesario para separar del contenido anterior */
+    border: 1px solid transparent;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 0;
+}
         .table {
             width: 100%;
             border-collapse: collapse;
@@ -35,31 +66,22 @@
 
         .imagen-arriba {
             position: absolute;
-            top: 10px; 
+            top: 10px;
             left: 10px;
         }
 
-        .footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            padding: 10px;
-        }
-
         .footer hr {
-            margin-top: 5px; 
-            width: 50%; 
+            margin-top: 5px;
+            width: 50%;
         }
 
         .firma-docente {
-            margin-top: 10px; 
+            margin-top: 10px;
         }
 
         .signature-box {
-            display: inline-block;
-            margin-top: 10px;
+    display: inline-block;
+    margin-top: 10px; /* Ajusta este valor según sea necesario */
         }
     </style>
 </head>
@@ -118,13 +140,15 @@
         </table>
     </div>
     
-   
     <div class="footer">
         <hr>
         <div class="signature-box p-3">
-        <h4 class="mb-0">Firma del Docente: {{ $acta->empleado->nombres ?? 'N/A' }} {{ $acta->empleado->apellidos ?? 'N/A' }}</h4>
+            <h4 class="mb-0">Firma del Docente: {{ $acta->empleado->nombres ?? 'N/A' }} {{ $acta->empleado->apellidos ?? 'N/A' }}</h4>
         </div>
     </div>
+    <footer class="footer text-center mt-4">
+        <p>&copy; {{ date('Y') }} Colegio Cristiano Manto de Gracia</p>
+    </footer>
 </body>
 
 </html>
