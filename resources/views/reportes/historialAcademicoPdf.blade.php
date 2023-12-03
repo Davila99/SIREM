@@ -15,28 +15,63 @@
             padding: 0;
             box-sizing: border-box;
         }
+        /* Estilos para la marca de agua */
+        body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/logo2.png'); /* Ruta de tu imagen */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: contain;
+    opacity: 0.2; /* Ajusta este valor según la opacidad deseada (0 a 1) */
+    z-index: -1; /* Para colocar la imagen detrás del contenido */
+}
 
         /* Contenedor principal */
         .container-fluid {
             max-width: 800px;
-            margin: 10px auto 0; /* Ajustado margen superior */
-            padding: 10px; /* Reducido padding */
-            border: 1px solid #ddd; /* Añadido borde */
+            margin: 10px auto 0;
+            padding: 10px;
+            border: 1px solid #ddd;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            position: relative; /* Para que la posición absoluta de otros elementos sea relativa a este contenedor */
         }
 
         /* Logotipo */
         .logo {
             width: 80px;
-            /* Estilos de borde eliminados */
         }
+
+        /* Pie de página */
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+            margin-top: auto;
+            position: sticky;
+            bottom: 0;
+        }
+
+        /* Centrar texto */
+        .text-center {
+            text-align: center;
+        }
+
+        /* Resto de tus estilos... */
 
         /* Tarjeta de contenido */
         .card {
-            margin-bottom: 10px; /* Ajustado margen */
+            margin-bottom: 10px;
             border: 1px solid #ddd;
-            border-radius: 4px; /* Ajustado borde redondeado */
+            border-radius: 4px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -49,16 +84,16 @@
 
         /* Cuerpo de la tarjeta */
         .card-body {
-            padding: 10px; /* Ajustado padding */
+            padding: 10px;
         }
 
         /* Tabla de calificaciones */
         .table {
             width: 100%;
-            margin-bottom: 0.25rem; /* Reducido margen inferior */
+            margin-bottom: 0.25rem;
             color: #212529;
-            border: 1px solid #ddd; /* Añadido borde */
-            border-radius: 4px; /* Ajustado borde redondeado */
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
 
         /* Estilos de celda en la tabla */
@@ -96,11 +131,21 @@
         }
 
         /* Pie de página */
-        .footer {
-            background-color: #343a40;
-            color: white;
-            padding: 10px 0;
-            border-top: 1px solid #ddd; /* Añadido borde */
+.footer {
+    padding: 10px;
+    color: white;
+    left: 0;
+    width: 100%;
+    color: #343a40; /* Color del texto del footer */
+    z-index: 1000; /* Puedes ajustar este valor según sea necesario */
+    background: none; /* Eliminamos la propiedad de fondo */
+    border-top: 1px solid #ddd; /* Mantenemos el borde superior si lo necesitas */
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 0;
+    z-index: 1000; /* Puedes ajustar este valor según sea necesario */
         }
 
         /* Centrar texto */
