@@ -6,7 +6,7 @@
     <br>
     <br>
     <div class="table-responsive">
-        <table class="table table-dark">
+        <table id="organizacionAcademica-table" class="table table-dark">
             <thead class="thead-light">
                 <tr>
                     <th>Organizacion Academica</th>
@@ -55,6 +55,34 @@
 @stop
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
+            $('#organizacionAcademica-table').DataTable({
+                "responsive": true,
+                "lengthMenu": [
+                    [5, 10, 50, -1],
+                    [5, 10, 50, "All"]
+                ],
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "No se encontraron resultados en su busqueda",
+                    "searchPlaceholder": "Buscar registros",
+                    "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+                    "infoEmpty": "No existen registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "search": "Buscar:",
+                    "paginate": {
+                        first: '<i class="fas fa-angle-double-left"></i>', 
+                        previous: '<i class="fas fa-angle-left"></i>',
+                        next: '<i class="fas fa-angle-right"></i>', 
+                        last: '<i class="fas fa-angle-double-right"></i>'
+                    },
+                }
+
+            });
+
+        });
+    </script>
     @if (Session::has('mensaje'))
         <script>
             Swal.fire({
