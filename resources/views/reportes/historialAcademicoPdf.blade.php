@@ -129,8 +129,7 @@
             background-color: #d1ecf1;
             border-color: #bee5eb;
         }
-
-        /* Pie de página */
+/* Pie de página */
 .footer {
     padding: 10px;
     color: white;
@@ -144,9 +143,9 @@
     border: 1px solid transparent;
     border-radius: 4px;
     position: fixed;
-    bottom: 0;
+    bottom: 20px; /* Ajusta este valor para cambiar la posición vertical */
     z-index: 1000; /* Puedes ajustar este valor según sea necesario */
-        }
+}
 
         /* Centrar texto */
         .text-center {
