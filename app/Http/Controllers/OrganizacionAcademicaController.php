@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AsignaturaDocente;
+use App\Models\Cortes_evaluativo;
 use App\Models\OrganizacionAcademica;
 use Illuminate\Http\Request;
 
@@ -76,9 +78,19 @@ class OrganizacionAcademicaController extends Controller
      */
     public function show($id)
     {
-        $orgizacionacademica = OrganizacionAcademica::findOrFail($id);
-        dd($orgizacionacademica);
-        return view('organizacionacademica/detalles', compact('orgizacionacademica'));
+        $datos = AsignaturaDocente::query()
+            ->with(['asignatura'])
+            ->with(['grado'])
+            ->with(['organizacionAcademica'])
+            ->where('organizacion_academica_id', $id)
+            ->get();
+        if ($datos->isEmpty()) {
+            return view('calificaciones.mensaje')->with('mensaje', 'ok');
+
+        } else {
+            return view('asignaturadocente/index', compact('datos'));
+        }
+
     }
 
     /**
