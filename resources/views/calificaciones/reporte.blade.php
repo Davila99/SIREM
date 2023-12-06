@@ -122,7 +122,8 @@
             <thead>
                 <tr>
                     <th>Estudiante</th>
-                    <th>Calificacion</th>
+                    <th>Calificacion Cuantitativa</th>
+                    <th>Calificacion Cualitativa</th>
                 </tr>
             </thead>
             <tbody>
@@ -130,6 +131,7 @@
                     <tr>
                         <td>{{ $fila->estudiante->nombres ?? 'N/A' }} {{ $fila->estudiante->apellidos ?? 'N/A' }}</td>
                         <td>{{ $fila->calificacion ?? 'N/A' }}</td>
+                        <td>{{ $fila->calificacion_cualitativa ?? 'N/A' }}</td>
                     </tr>
                 @endforeach
             </tbody>
