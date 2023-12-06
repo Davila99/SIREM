@@ -77,19 +77,17 @@ class OrganizacionAcademicaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $datos = AsignaturaDocente::query()
+    {   
+     
+    
+        $datos['asignaturadocentes'] = AsignaturaDocente::query()
             ->with(['asignatura'])
+            ->with(['empleado'])
             ->with(['grado'])
             ->with(['organizacionAcademica'])
             ->where('organizacion_academica_id', $id)
             ->get();
-        if ($datos->isEmpty()) {
-            return view('calificaciones.mensaje')->with('mensaje', 'ok');
-
-        } else {
-            return view('asignaturadocente/index', compact('datos'));
-        }
+            return view('asignaturadocente/index', $datos);
 
     }
 

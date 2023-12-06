@@ -132,9 +132,9 @@
 @stop
 
 @section('js')
-`<script>
+<script>
     $(document).ready(function() {
-        $('#calificaciones-table').DataTable({
+        $('#empleados-table').DataTable({
             "responsive": true,
             "lengthMenu": [
                 [5, 10, 50, -1],

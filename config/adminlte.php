@@ -363,12 +363,12 @@ return [
             'icon'    => 'fas fa-solid fa-school',
             'can' =>'asignaturadocente.index',
             'submenu' => [
-                [
-                    'text'        => 'Asignturas Docentes',
-                    'route'         => 'asignaturadocente.index',
-                    'icon' => 'fas fa-solid fa-signature',
-                    'can' =>'asignaturadocente.index'
-                ],
+                // [
+                //     'text'        => 'Asignturas Docentes',
+                //     'route'         => 'asignaturadocente.index',
+                //     'icon' => 'fas fa-solid fa-signature',
+                //     'can' =>'asignaturadocente.index'
+                // ],
                 [
                     'text'        => 'Organización Academica',
                     'route'         => 'organizacionacademica.index',
