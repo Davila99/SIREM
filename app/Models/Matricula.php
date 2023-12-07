@@ -48,7 +48,7 @@ class Matricula extends Model
     }
     public function grupo()
     {
-        return $this->belongsTo(Grupos::class);
+        return $this->belongsTo(Grupos::class, 'grupo_id');
     }
     public function grado()
     {

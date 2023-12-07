@@ -12,12 +12,12 @@ export function ReporteMatriculas() {
     const [estudiantes, setEstudiantes] = useState([]);
     const [search, setSearch] = useState("");
 
-    const URL = "http://127.0.0.1:8000/search-estudiantes";
+    const URL = "http://127.0.0.1:8000/reporte-matricula";
 
     const getEstudiantes = async () => {
         const response = await fetch(URL);
         const data = await response.json();
-        setEstudiantes(data.estudiantes);
+        setEstudiantes(data.matriculas);
     };
 
     useEffect(() => {

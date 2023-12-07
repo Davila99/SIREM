@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class AsignaturaDocente extends Model
 {
     use HasFactory;
+    protected $guarded = [];
     public function asignatura()
     {
         return $this->belongsTo(Asignatura::class);

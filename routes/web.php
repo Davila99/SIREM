@@ -24,6 +24,7 @@ use App\Http\Controllers\MatriculaRowController;
 use App\Http\Controllers\NivelesAcademicoController;
 use App\Http\Controllers\OrganizacionAcademicaController;
 use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\ReporteMatriculaController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SeccionController;
 use App\Http\Controllers\TipoMatriculaController;
@@ -120,12 +121,14 @@ Route::middleware(['auth'])->group(function () {
         'organizacionacademica',
         OrganizacionAcademicaController::class
     );
+    Route::resource(
+        'organizacionacademica.asignaturadocente',
+        AsignaturaDocenteController::class
+    );
     Route::get('changeStatus/', [
         OrganizacionAcademicaController::class,
         'changeStatus',
     ]);
-
-
 
     Route::get('buscar-estudiantes', [EstudianteController::class, 'search']);
     Route::get('buscar-grupos', [GruposController::class, 'search']);
@@ -142,6 +145,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/search-estudiantes/{id}', 'update');
         Route::post('/search-estudiantes/{id}', 'destroy');
     });
+    Route::get('/reporte-matricula', [ReporteMatriculaController::class, 'index']);
     Route::get('/search-empleado', [EmpleadoController::class, 'busqueda']);
     Route::get('/search-empleados', [BuscadorEmpledado::class, 'index']);
 
