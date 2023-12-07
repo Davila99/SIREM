@@ -134,9 +134,10 @@ class CalificacionesController extends Controller
 
         $acta = Calificaciones::findOrFail($request->actaId)
             ->first();
+            // dd($acta);
         if ($acta) {
             $filas = CalificacionDetalle::query()
-                ->where('calificacion_id', '=', $acta->id)
+                ->where('calificacion_id', '=', $request->actaId)
                 ->get();
             $acta->load('calificaciones.estudiante');
             try {
