@@ -24,6 +24,7 @@ use App\Http\Controllers\MatriculaRowController;
 use App\Http\Controllers\NivelesAcademicoController;
 use App\Http\Controllers\OrganizacionAcademicaController;
 use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\ReporteCalificacionesController;
 use App\Http\Controllers\ReporteMatriculaController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SeccionController;
@@ -137,15 +138,16 @@ Route::middleware(['auth'])->group(function () {
         'search',
     ]);
 
-    Route::get('search/', [EstudianteController::class, 'busqueda']);
+    Route::get('/reporte-matricula', [EstudianteController::class, 'busqueda']);
+    Route::get('/data-reporte-matricula', [ReporteMatriculaController::class, 'index']);
+
     Route::controller(BuscadorEstudiante::class)->group(function () {
         Route::get('/search-estudiantes', 'index');
-        Route::post('/search-estudiantes', 'store');
-        Route::get('/search-estudiantes/{id}', 'show');
-        Route::post('/search-estudiantes/{id}', 'update');
-        Route::post('/search-estudiantes/{id}', 'destroy');
     });
-    Route::get('/reporte-matricula', [ReporteMatriculaController::class, 'index']);
+    Route::get('/reporte-calificaciones', [ReporteCalificacionesController::class, 'busqueda']);
+    Route::get('/data-reporte-calificaciones', [ReporteCalificacionesController::class, 'index']);
+
+
     Route::get('/search-empleado', [EmpleadoController::class, 'busqueda']);
     Route::get('/search-empleados', [BuscadorEmpledado::class, 'index']);
 

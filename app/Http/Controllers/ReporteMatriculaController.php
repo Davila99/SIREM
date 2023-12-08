@@ -102,7 +102,6 @@ class ReporteMatriculaController extends Controller
             )
 
             ->get();
-        // ->paginate(10);
         return response()->json($datos);
     }
 }
