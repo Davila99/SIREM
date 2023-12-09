@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Title
@@ -227,205 +226,206 @@ return [
     'menu' => [
         // Navbar items:
         [
-            'type'         => 'navbar-search',
-            'text'         => 'Busqueda',
+            'type' => 'navbar-search',
+            'text' => 'Busqueda',
             'topnav_right' => true,
         ],
         [
-            'type'         => 'fullscreen-widget',
+            'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-        
+
         [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
         [
             'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'url' => 'admin/blog',
+            'can' => 'manage-blog',
         ],
         [
             'text' => 'Dashboard',
-            'url'  => 'home',
+            'url' => 'home',
             'icon' => 'fas fa-fw fa-home',
             'label_color' => 'primary',
-
         ],
         [
-            'text'    => 'Catalogos',
-            'icon'    => 'fas fa-solid fa-bars',
-            'can' =>'cargos.index',
+            'text' => 'Catalogos',
+            'icon' => 'fas fa-solid fa-bars',
+            'can' => 'cargos.index',
             'submenu' => [
                 [
-                    'text'    => 'Cargo',
-                    'route'     => 'cargos.index',
+                    'text' => 'Cargo',
+                    'route' => 'cargos.index',
                     'icon' => 'fas fa-solid fa-address-book',
-                    'can' =>'cargos.index'
+                    'can' => 'cargos.index',
                 ],
                 [
-                    'text'    => 'Consanguiniedad',
-                    'route'     => 'consanguiniedades.index',
+                    'text' => 'Consanguiniedad',
+                    'route' => 'consanguiniedades.index',
                     'icon' => 'fab fa-adn',
-                    'can' =>'consanguiniedades.index'
+                    'can' => 'consanguiniedades.index',
                 ],
                 [
                     'text' => 'Asignaturas',
-                    'route'  => 'asignaturas.index',
+                    'route' => 'asignaturas.index',
                     'icon' => 'fas fa-solid fa-book',
-                    'can' =>'asignaturas.index'
+                    'can' => 'asignaturas.index',
                 ],
                 [
                     'text' => 'Secciones',
-                    'route'  => 'seccion.index',
+                    'route' => 'seccion.index',
                     'icon' => 'fas fa-house-user',
-                    'can' =>'seccion.index'
+                    'can' => 'seccion.index',
                 ],
                 [
                     'text' => 'Turnos',
-                    'route'  => 'turnos.index',
+                    'route' => 'turnos.index',
                     'icon' => 'fas fa-window-restore',
-                    'can' =>'turnos.index'
+                    'can' => 'turnos.index',
                 ],
                 [
                     'text' => 'Cortes-Evaluativos',
-                    'route'  => 'cevaluativos.index',
+                    'route' => 'cevaluativos.index',
                     'icon' => 'fas fa-solid fa-copyright',
-                    'can' =>'cevaluativos.index'
+                    'can' => 'cevaluativos.index',
                 ],
                 [
                     'text' => 'Grados',
-                    'route'  => 'grados.index',
+                    'route' => 'grados.index',
                     'icon' => 'fas fa-solid fa-user-graduate',
-                    'can' =>'cevaluativos.index'
+                    'can' => 'cevaluativos.index',
                 ],
                 [
                     'text' => 'Nivel Academico',
-                    'route'  => 'nivelacademic.index',
+                    'route' => 'nivelacademic.index',
                     'icon' => 'fas fa-graduation-cap',
-                    'can' =>'nivelacademic.index'
+                    'can' => 'nivelacademic.index',
                 ],
                 [
                     'text' => 'Profesion',
-                    'route'  => 'profession.index',
+                    'route' => 'profession.index',
                     'icon' => 'fas fa-solid fa-user-tie',
-                    'can' =>'profession.index'
-
+                    'can' => 'profession.index',
                 ],
                 [
                     'text' => 'Tipo de Matricula',
-                    'route'  => 'tmatricula.index',
+                    'route' => 'tmatricula.index',
                     'icon' => 'fas fa-solid fa-file-signature',
-                    'can' =>'tmatricula.index'
+                    'can' => 'tmatricula.index',
                 ],
-                
             ],
         ],
         [
-            'text'    => 'Registro',
-            'icon'    => 'fas fa-solid fa-layer-group',
-            'can' =>'estudiantes.index',
+            'text' => 'Registro',
+            'icon' => 'fas fa-solid fa-layer-group',
+            'can' => 'estudiantes.index',
             'submenu' => [
                 [
-                    'text'        => 'Estudiantes',
-                    'route'         => 'estudiantes.index',
-                    'icon'        => 'fas fa-solid fa-user-graduate',
-                    'can' =>'estudiantes.index'
-                    
+                    'text' => 'Estudiantes',
+                    'route' => 'estudiantes.index',
+                    'icon' => 'fas fa-solid fa-user-graduate',
+                    'can' => 'estudiantes.index',
                 ],
                 [
-                    'text'        => 'Estudiantes Tutores',
-                    'route'         => 'estudianteTutores.index',
-                    'icon'        => 'fas fa-people-arrows',
-                    'can' =>'estudianteTutores.index'
+                    'text' => 'Estudiantes Tutores',
+                    'route' => 'estudianteTutores.index',
+                    'icon' => 'fas fa-people-arrows',
+                    'can' => 'estudianteTutores.index',
                 ],
                 [
-                    'text'        => 'Tutores',
-                    'route'       => 'tutores.index',
+                    'text' => 'Tutores',
+                    'route' => 'tutores.index',
                     'icon' => 'fas fa-user-friends',
-                    'can' =>'tutores.index'
+                    'can' => 'tutores.index',
                 ],
                 [
-                    'text'        => 'Matriculas',
-                    'route'         => 'matriculas.index',
+                    'text' => 'Matriculas',
+                    'route' => 'matriculas.index',
                     'icon' => 'fas fa-solid fa-briefcase',
-                    'can' =>'matriculas.index'
+                    'can' => 'matriculas.index',
                 ],
                 [
-                    'text'        => 'Reportes Matriculas',
-                    'url'         => 'search/',
-                    'icon'        => 'fas fa-solid fa-clipboard-list',
-                ],    
+                    'text' => 'Reportes Matriculas',
+                    'url' => '/reporte-matricula',
+                    'icon' => 'fas fa-solid fa-clipboard-list',
+                ],
             ],
         ],
         [
-            'text'    => 'Academia',
-            'icon'    => 'fas fa-solid fa-school',
-            'can' =>'asignaturadocente.index',
+            'text' => 'Academia',
+            'icon' => 'fas fa-solid fa-school',
+            'can' => 'asignaturadocente.index',
             'submenu' => [
+                // [
+                //     'text'        => 'Asignturas Docentes',
+                //     'route'         => 'asignaturadocente.index',
+                //     'icon' => 'fas fa-solid fa-signature',
+                //     'can' =>'asignaturadocente.index'
+                // ],
                 [
-                    'text'        => 'Asignturas Docentes',
-                    'route'         => 'asignaturadocente.index',
-                    'icon' => 'fas fa-solid fa-signature',
-                    'can' =>'asignaturadocente.index'
-                ],
-                [
-                    'text'        => 'Organización Academica',
-                    'route'         => 'organizacionacademica.index',
+                    'text' => 'Organización Academica',
+                    'route' => 'organizacionacademica.index',
                     'icon' => 'fas fa-sitemap',
-                    'can' =>'organizacionacademica.index'
+                    'can' => 'organizacionacademica.index',
                 ],
                 [
-                    'text'        => 'Grupos',
-                    'route'         => 'grupos.index',
-                    'icon'        => 'fas fa-solid fa-users',
-                    'can' =>'grupos.index'
-        
+                    'text' => 'Grupos',
+                    'route' => 'grupos.index',
+                    'icon' => 'fas fa-solid fa-users',
+                    'can' => 'grupos.index',
                 ],
-                    
             ],
         ],
         [
-            'text'    => 'Recursos Humanos',
-            'icon'    => 'fas fa-solid fa-address-book',
-            'can' =>'empleados.index',
+            'text' => 'Recursos Humanos',
+            'icon' => 'fas fa-solid fa-address-book',
+            'can' => 'empleados.index',
             'submenu' => [
                 [
-                    'text'        => 'Empleados',
-                    'route'       => 'empleados.index',
-                    'icon'        => 'fas fa-solid fa-layer-group',
-                    'can' =>'empleados.index'
+                    'text' => 'Empleados',
+                    'route' => 'empleados.index',
+                    'icon' => 'fas fa-solid fa-layer-group',
+                    'can' => 'empleados.index',
                 ],
                 // [
                 //     'text'        => 'Buscador Empleados',
                 //     'url'         => 'search-empleado/',
                 //     'icon'        => 'fas fa-search ',
                 // ],
-
-                    
             ],
         ],
-      
-
 
         [
-            'text'        => 'Calificaciones',
-            'route'         => 'calificaciones.index',
-            'icon' => 'fas fa-solid fa-book',
+            'text' => 'Calificaciones',
+            'icon' => 'fas fa-solid fa-address-book',
+            'submenu' => [
+                [
+                    'text' => 'Registro Calificaciones',
+                    'route' => 'calificaciones.index',
+                    'icon' => 'fas fa-solid fa-book',
+                ],
+                [
+                    'text' => 'Reportes Calificaciones',
+                    'url' => '/reporte-calificaciones',
+                    'icon' => 'fas fa-solid fa-clipboard-list',
+                ],
+            ],
         ],
+
         ['header' => 'CONFIGURACION DE CUENTA'],
         [
             'text' => 'Usuarios',
-            'route'  => 'users.index',
+            'route' => 'users.index',
             'icon' => 'fas fa-users fa-fw',
-            'can' =>'admin/users.index'
+            'can' => 'admin/users.index',
         ],
         [
             'text' => 'Cambio de Contraseña',
-            'url'  => 'admin/settings',
+            'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ]
-
+        ],
     ],
 
     /*
@@ -469,17 +469,20 @@ return [
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
+                    'location' =>
+                        '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
+                    'location' =>
+                        '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => true,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                    'location' =>
+                        '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
             ],
         ],
@@ -489,12 +492,14 @@ return [
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
+                    'location' =>
+                        '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => true,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
+                    'location' =>
+                        '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
                 ],
             ],
         ],
@@ -504,7 +509,8 @@ return [
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
+                    'location' =>
+                        '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
                 ],
             ],
         ],
@@ -524,12 +530,14 @@ return [
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css',
+                    'location' =>
+                        '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css',
                 ],
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+                    'location' =>
+                        '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
                 ],
             ],
         ],
@@ -561,7 +569,7 @@ return [
             'scroll_right' => true,
             'fullscreen' => true,
         ],
-        'options' => [
+            'options' => [
             'loading_screen' => 1000,
             'auto_show_new_tab' => true,
             'use_navbar_items' => true,

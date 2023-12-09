@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="eS">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,38 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/logo2.png');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: contain;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            color: #343a40;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: none;
+            border-top: 1px solid #ddd;
+            margin-top: 15px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            position: fixed;
+            bottom: 0;
         }
 
         .table {
@@ -35,26 +67,12 @@
 
         .imagen-arriba {
             position: absolute;
-            top: 10px; 
+            top: 10px;
             left: 10px;
         }
 
-        .footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            padding: 10px;
-        }
-
-        .footer hr {
-            margin-top: 5px; 
-            width: 50%; 
-        }
-
         .firma-docente {
-            margin-top: 10px; 
+            margin-top: 10px;
         }
 
         .signature-box {
@@ -104,7 +122,8 @@
             <thead>
                 <tr>
                     <th>Estudiante</th>
-                    <th>Calificacion</th>
+                    <th>Calificacion Cuantitativa</th>
+                    <th>Calificacion Cualitativa</th>
                 </tr>
             </thead>
             <tbody>
@@ -112,19 +131,27 @@
                     <tr>
                         <td>{{ $fila->estudiante->nombres ?? 'N/A' }} {{ $fila->estudiante->apellidos ?? 'N/A' }}</td>
                         <td>{{ $fila->calificacion ?? 'N/A' }}</td>
+                        <td>{{ $fila->calificacion_cualitativa ?? 'N/A' }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
     
-   
-    <div class="footer">
-        <hr>
+    <footer class="footer text-center mt-4">
+        <!-- Línea horizontal con margen inferior para separación -->
+        
+        
         <div class="signature-box p-3">
-        <h4 class="mb-0">Firma del Docente: {{ $acta->empleado->nombres ?? 'N/A' }} {{ $acta->empleado->apellidos ?? 'N/A' }}</h4>
+        <hr style="margin-bottom: 10px; border-top: 1px solid #ddd;">
+            <h4 class="mb-0">Firma del Docente: {{ $acta->empleado->nombres ?? 'N/A' }} {{ $acta->empleado->apellidos ?? 'N/A' }}</h4>
         </div>
-    </div>
+    </footer>
+
+    <!-- Footer estándar sin línea horizontal encima -->
+    <footer class="footer text-center">
+        &copy; {{ date('Y') }} Colegio Cristiano Manto de Gracia
+    </footer>
 </body>
 
 </html>

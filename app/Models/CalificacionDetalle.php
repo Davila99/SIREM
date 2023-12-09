@@ -25,4 +25,29 @@ class CalificacionDetalle extends Model
         return $this->belongsTo(Calificaciones::class, 'calificacion_id');
     }
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            $model->calificacion_cualitativa = self::getCalificacionCualitativa($model->calificacion);
+        });
+    }
+
+    public static function getCalificacionCualitativa($calificacion)
+    {
+        if ($calificacion >= 0 && $calificacion <= 59) {
+            return 'AI';
+        }
+        if ($calificacion >= 60 && $calificacion <= 75) {
+            return 'AE/AF';
+        }
+        if ($calificacion >= 76 && $calificacion <= 89) {
+            return 'AS';
+        }
+        if ($calificacion >= 90 && $calificacion <= 100) {
+            return 'AA';
+        }
+    }
+
 }

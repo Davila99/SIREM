@@ -24,6 +24,8 @@ use App\Http\Controllers\MatriculaRowController;
 use App\Http\Controllers\NivelesAcademicoController;
 use App\Http\Controllers\OrganizacionAcademicaController;
 use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\ReporteCalificacionesController;
+use App\Http\Controllers\ReporteMatriculaController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SeccionController;
 use App\Http\Controllers\TipoMatriculaController;
@@ -67,7 +69,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('matriculas/pdf/{id}', [MatriculaController::class, 'pdf'])->name('matriculas.pdf');
     Route::post('change-nota/', [CalificacionesController::class, 'changeNota'])->name('change-nota');
     Route::post('change-password/', [UserController::class, 'Changepassword'])->name('change-password');
-    Route::get('generar-acta/{grupoId}/{asignaturaId}/{corteId}', [CalificacionesController::class, 'generarActa'])->name('generar-acta');
+    Route::get('detalle-acta/{actaId}', [CalificacionesController::class, 'detalleActa'])->name('detalle-acta');
     Route::post('generar-acta/{grupoId}/{asignaturaId}/{corteId}', [CalificacionesController::class, 'generarActa'])->name('generar-acta');
     Route::post('imprimir-acta', [CalificacionesController::class, 'imprimirActa'])->name('imprimir-acta');
     // Rutas de registro
@@ -108,10 +110,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('historial-academico/{estudiante}', [HistorialAcademicoController::class, 'index'])->name('index');
     //Route::get('descargar-acta', [HistorialAcademicoController::class, 'index'])->name('index');
 
-    Route::resource('calificaciones-final', ActaCalificacionFinalController::class)->only(['index']);
+    // Route::resource('calificaciones-final', ActaCalificacionFinalController::class)->only(['index']);
     Route::get('calificaciones-final/{asignatura_id}/{grupo_id}', [ActaCalificacionFinalController::class, 'index'])->name('index');
-    Route::post('/generate-pdf', [ActaCalificacionFinalController::class,'generatePDF'])->name('generate-pdf');
-    Route::post('/download-excel', [ActaCalificacionFinalController::class,'downloadExcel'])->name('download-excel');
+    Route::post('/generate-pdf', [ActaCalificacionFinalController::class, 'generatePDF'])->name('generate-pdf');
+    Route::post('/download-excel', [ActaCalificacionFinalController::class, 'downloadExcel'])->name('download-excel');
     // Route::get('calificaciones-final-pdf/{asignatura_id}/{grupo_id}', [PdfActaCalificacionFinalController::class, 'index'])->name('index');
     Route::resource('calificaciones-final-pdf', PdfActaCalificacionFinalController::class)->only(['index']);
     Route::resource('calificacionesDetalles', CalificacionDetalleController::class);
@@ -120,12 +122,14 @@ Route::middleware(['auth'])->group(function () {
         'organizacionacademica',
         OrganizacionAcademicaController::class
     );
+    Route::resource(
+        'organizacionacademica.asignaturadocente',
+        AsignaturaDocenteController::class
+    );
     Route::get('changeStatus/', [
         OrganizacionAcademicaController::class,
         'changeStatus',
     ]);
-
-
 
     Route::get('buscar-estudiantes', [EstudianteController::class, 'search']);
     Route::get('buscar-grupos', [GruposController::class, 'search']);
@@ -134,14 +138,16 @@ Route::middleware(['auth'])->group(function () {
         'search',
     ]);
 
-    Route::get('search/', [EstudianteController::class, 'busqueda']);
+    Route::get('/reporte-matricula', [EstudianteController::class, 'busqueda']);
+    Route::get('/data-reporte-matricula', [ReporteMatriculaController::class, 'index']);
+
     Route::controller(BuscadorEstudiante::class)->group(function () {
         Route::get('/search-estudiantes', 'index');
-        Route::post('/search-estudiantes', 'store');
-        Route::get('/search-estudiantes/{id}', 'show');
-        Route::post('/search-estudiantes/{id}', 'update');
-        Route::post('/search-estudiantes/{id}', 'destroy');
     });
+    Route::get('/reporte-calificaciones', [ReporteCalificacionesController::class, 'busqueda']);
+    Route::get('/data-reporte-calificaciones', [ReporteCalificacionesController::class, 'index']);
+
+
     Route::get('/search-empleado', [EmpleadoController::class, 'busqueda']);
     Route::get('/search-empleados', [BuscadorEmpledado::class, 'index']);
 

@@ -14,14 +14,14 @@ class CheckEmptyRoute
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle($request, Closure $next)
-    {
-        $response = $next($request);
+    // public function handle($request, Closure $next)
+    // {
+    //     $response = $next($request);
 
-        if (empty($response->content()) || str_contains($response->content(), 'mensaje-de-error')) {
-            return redirect('/home')->with('mensaje-error', 'Por problemas técnicos, no se puede mostrar la página en este momento.');
-        }
+    //     if (empty($response->content()) || str_contains($response->content(), 'mensaje-de-error')) {
+    //         return redirect('/home')->with('mensaje-error', 'Por problemas técnicos, no se puede mostrar la página en este momento.');
+    //     }
 
-        return $response;
-    }
+    //     return $response;
+    // }
 }

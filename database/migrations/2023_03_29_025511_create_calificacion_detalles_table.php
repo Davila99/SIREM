@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->foreignId('calificacion_id')->constrained('calificaciones')
                 ->restrictOnDelete();
             $table->decimal('calificacion', 4, 2)->default(0);
+            $table->string('calificacion_cualitativa')->nullable();
             $table->string('observaciones')->nullable();
             $table->timestamps();
         });

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\CalificacionesExport;
 use App\Models\Calificaciones;
 use Illuminate\Http\Request;
 use App\Models\AsignaturaDocente;
@@ -12,6 +11,7 @@ use App\Models\Matricula;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class CalificacionesController extends Controller
 {
@@ -51,7 +51,7 @@ class CalificacionesController extends Controller
             $acta->load('calificaciones.estudiante');
             $filas = $acta->calificaciones;
 
-            return view('calificaciones.show', compact('acta', 'filas'));
+            return redirect()->route('detalle-acta', ['actaId' => $acta->id]);
         }
 
         $docente = $this->getDocente();
@@ -60,7 +60,17 @@ class CalificacionesController extends Controller
         $filas = [];
         DB::beginTransaction();
         try {
-            $acta = $this->alamacenarActa($grupoId, $docente, $corteId);
+            $acta = new Calificaciones();
+            $acta->fecha = date('Y-m-d');
+            $acta->empleado_id = $docente->id;
+            $acta->asignatura_id = $asignaturaId;
+            $acta->observaciones = 'Acta de calificaciones del corte ' . $corteId;
+            $acta->corte_evaluativo_id = $corteId;
+            $acta->grupo_id = $grupoId;
+            $acta->save();
+
+
+
             $filas = $this->almacenarFilasActa($acta, $estudiantes);
             DB::commit();
         } catch (\Throwable $th) {
@@ -69,22 +79,9 @@ class CalificacionesController extends Controller
         }
 
         $filas = $acta->calificaciones;
-        return view('calificaciones.show', compact('acta', 'filas'));
+        return redirect()->route('detalle-acta', ['actaId' => $acta->id]);
     }
 
-
-    public function alamacenarActa($id, $docente, $corte)
-    {
-        $acta = new Calificaciones();
-        $acta->fecha = date('Y-m-d');
-        $acta->empleado_id = $docente->id;
-        $acta->asignatura_id = $id;
-        $acta->observaciones = 'Acta de calificaciones del corte ' . $corte;
-        $acta->corte_evaluativo_id = $corte;
-        $acta->grupo_id = $id;
-        $acta->save();
-        return $acta;
-    }
     public function almacenarFilasActa(Calificaciones $acta, $estudiantes)
     {
         foreach ($estudiantes as $estudiante) {
@@ -97,30 +94,50 @@ class CalificacionesController extends Controller
 
     public function changeNota(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'calificacion' => 'required|integer|min:0|max:100',
+        ]);
+        if ($validator->fails()) {
+            return back()->with('mensaje-error', 'ok sdfsdfsdfsdfsdf');
+        }
+
         $calificacion = CalificacionDetalle::query()
             ->where('id', $request->id)
             ->first();
-
         if ($calificacion) {
             $calificacion->calificacion = $request->calificacion;
             $calificacion->save();
-
-            return redirect()->back()->with('mensaje-nota', 'ok');
+            return redirect()->route('detalle-acta', ['actaId' => $calificacion->calificacion_id]);
         } else {
             return response()->json([
                 'message' => 'No se encontró el detalle de calificación',
             ], 404);
         }
     }
-
+    public function detalleActa(Request $request)
+    {
+        $acta = Calificaciones::query()
+            ->where('id', $request->actaId)
+            ->first();
+        if ($acta) {
+            $acta->load('calificaciones.estudiante');
+            $filas = $acta->calificaciones;
+            return view('calificaciones.show', compact('acta', 'filas'));
+        } else {
+            return response()->json([
+                'message' => 'No se encontró el acta',
+            ], 404);
+        }
+    }
     public function imprimirActa(Request $request)
     {
 
         $acta = Calificaciones::findOrFail($request->actaId)
             ->first();
+            // dd($acta);
         if ($acta) {
             $filas = CalificacionDetalle::query()
-                ->where('calificacion_id', '=', $acta->id)
+                ->where('calificacion_id', '=', $request->actaId)
                 ->get();
             $acta->load('calificaciones.estudiante');
             try {

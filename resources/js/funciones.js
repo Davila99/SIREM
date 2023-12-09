@@ -1,4 +1,4 @@
-function initializeDataTable(tableId) {
+export function initializeDataTable(tableId) {
     $("#" + tableId).DataTable({
         responsive: true,
         lengthChange: [

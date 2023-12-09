@@ -72,8 +72,10 @@ class AsignaturaDocenteController extends Controller
     public function store(StoreAsignaturaDocenteRequest $request)
     {
         $datos = request()->except('_token');
-        AsignaturaDocente::insert($datos);
-        return redirect('asignaturadocente/')->with('mensaje', 'ok');
+       
+        $organizacionDocente =   AsignaturaDocente::create($datos);
+      
+        return redirect()->route('organizacionacademica.show', $organizacionDocente->organizacion_academica_id);
     }
 
     /**

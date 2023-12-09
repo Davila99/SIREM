@@ -20,7 +20,7 @@
         <hr class="my-4">
 
         @forelse ($data as $gradoId => $asignaturas)
-            <div class="card mb-4">
+            <div class="card mb-2">
                 <div class="card-header text-center">
                     <h2> {{ $gradoId }} Grado</h2>
                 </div>
