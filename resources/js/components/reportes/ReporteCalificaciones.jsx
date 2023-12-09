@@ -22,7 +22,7 @@ const ReporteMatriculas = () => {
     <div className="container">
       <div className="row">
         <div className="col-md-12">
-          <h1>Reporte de Matriculas</h1>
+          <h1>Reporte de calificaciones</h1>
         </div>
       </div>
       <PivotTable data={calificaciones} />
