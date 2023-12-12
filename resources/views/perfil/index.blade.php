@@ -135,42 +135,66 @@
             </div>
         @endsection
         @section('js')
-            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-            @if (Session::has('mensaje-error-ruta'))
-                <script>
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Lo sentimos',
-                        text: ' Por problemas técnicos, no se puede mostrar la página en este momento.',
-                    })
-                </script>
-            @endif
-            <script>
-                $('.form-eliminar').submit(function(e) {
-                    e.preventDefault();
-                    Swal.fire({
-                        title: '¿Estás seguro de cambiar la contraseña?',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Cambiar',
-                        cancelButtonText: 'Cancelar'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            $('#cambiarContraseñaModal').modal('show');
-                        }
-                    });
-                });
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (Session::has('mensaje-error-ruta'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Lo sentimos',
+                text: ' Por problemas técnicos, no se puede mostrar la página en este momento.',
+            })
+        </script>
+    @endif
+    @section('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (Session::has('mensaje-error-ruta'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Lo sentimos',
+                text: ' Por problemas técnicos, no se puede mostrar la página en este momento.',
+            })
+        </script>
+    @endif
+    <script>
+        $('.form-eliminar').submit(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: '¿Estás seguro de cambiar la contraseña?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Cambiar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#cambiarContraseñaModal').modal('show');
+                }
+            });
+        });
 
-                $('#form-cambiar-contrasena').submit(function(e) {
-                    e.preventDefault();
+        $('#form-cambiar-contrasena').submit(function(e) {
+            e.preventDefault();
+            // Agrega la validación de la contraseña y su confirmación
+            var newPassword = $('#new_password').val();
+            var confirmPassword = $('#confirm_password').val();
 
+            if (newPassword !== confirmPassword) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Contraseña no coincide',
+                    text: 'La nueva contraseña y la confirmación no coinciden. Por favor, inténtalo de nuevo.',
                 });
-            </script>
-        @endsection
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+                return;
+            }
+
+            // Si las contraseñas coinciden, puedes continuar con el envío del formulario
+            // Aquí puedes agregar código adicional o enviar el formulario mediante AJAX si es necesario
+            // ...
+
+            // Ejemplo de envío del formulario
+            // $('#form-cambiar-contrasena').unbind('submit').submit();
+        });
+    </script>
+@endsection
