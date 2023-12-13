@@ -21,8 +21,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
+
             <div class="col-lg-8">
                 <div class="card mb-4">
                     <div class="card-body">
@@ -33,7 +33,7 @@
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{ $perfil->empleado->nombres ?? 'N/A' }}
                                     {{ $perfil->empleado->apellidos ?? 'N/A' }}</p>
-                            </div>
+                                    </div>
                         </div>
                         <hr>
                         <div class="row">
@@ -92,7 +92,8 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="cambiarContraseñaModal" tabindex="-1" role="dialog"
+             <!-- Modal para cambiar contraseña -->
+             <div class="modal fade" id="cambiarContraseñaModal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -125,37 +126,41 @@
                             </form>
                         </div>
                         <div class="modal-footer">
+                            @if (Session::has('error'))
+                                <div class="alert alert-danger">
+                                    {{ Session::get('error') }}
+                                </div>
+                            @endif
 
-                            <div id="confirmation-message" class="alert alert-success" style="display: none;">
-                                Contraseña cambiada con éxito.
-                            </div>
+                            @if (Session::has('success'))
+                                <div class="alert alert-success">
+                                    {{ Session::get('success') }}
+                                </div>
+                                <script>
+                                    // Muestra un alert cuando la contraseña se cambia con éxito
+                                    alert('Contraseña cambiada con éxito.');
+                                </script>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
-        @endsection
-        @section('js')
+        </div>
+    </div>
+@endsection
+
+@section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (Session::has('mensaje-error-ruta'))
         <script>
             Swal.fire({
                 icon: 'error',
                 title: 'Lo sentimos',
-                text: ' Por problemas técnicos, no se puede mostrar la página en este momento.',
+                text: 'Por problemas técnicos, no se puede mostrar la página en este momento.',
             })
         </script>
     @endif
-    @section('js')
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @if (Session::has('mensaje-error-ruta'))
-        <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Lo sentimos',
-                text: ' Por problemas técnicos, no se puede mostrar la página en este momento.',
-            })
-        </script>
-    @endif
+
     <script>
         $('.form-eliminar').submit(function(e) {
             e.preventDefault();
