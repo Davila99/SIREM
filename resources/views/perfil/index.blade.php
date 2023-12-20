@@ -93,71 +93,67 @@
                 </div>
             </div>
              <!-- Modal para cambiar contraseña -->
-             <div class="modal fade" id="cambiarContraseñaModal" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Cambiar Contraseña</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="form-cambiar-contrasena" action="{{ route('change-password') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="user_id" id="user_id" value="123">
-                                <div class="form-group">
-                                    <label for="current_password">Contraseña Actual:</label>
-                                    <input type="password" id="current_password" name="current_password"
-                                        class="form-control" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="new_password">Nueva Contraseña:</label>
-                                    <input type="password" id="new_password" name="new_password" class="form-control"
-                                        required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="confirm_password">Confirmar Nueva Contraseña:</label>
-                                    <input type="password" id="confirm_password" name="confirm_password"
-                                        class="form-control" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            @if (Session::has('error'))
-                                <div class="alert alert-danger">
-                                    {{ Session::get('error') }}
-                                </div>
-                            @endif
 
-                            @if (Session::has('success'))
-                                <div class="alert alert-success">
-                                    {{ Session::get('success') }}
-                                </div>
-                                <script>
-                                    // Muestra un alert cuando la contraseña se cambia con éxito
-                                    alert('Contraseña cambiada con éxito.');
-                                </script>
-                            @endif
-                        </div>
+<div class="modal fade" id="cambiarContraseñaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cambiar Contraseña</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form-cambiar-contrasena" action="{{ route('change-password') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="user_id" id="user_id" value="{{ Auth::id() }}">
+                    <div class="form-group">
+                        <label for="current_password">Contraseña Actual:</label>
+                        <input type="password" id="current_password" name="current_password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new_password">Nueva Contraseña:</label>
+                        <input type="password" id="new_password" name="new_password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password">Confirmar Nueva Contraseña:</label>
+                        <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                @if (Session::has('error'))
+                    <div class="alert alert-danger">
+                        {{ Session::get('error') }}
+                    </div>
+                @endif
+
+                @if (Session::has('success'))
+                    <div class="alert alert-success">
+                        {{ Session::get('success') }}
+                    </div>
+                    <script>
+                        // Muestra un alert cuando la contraseña se cambia con éxito
+                        alert('Contraseña cambiada con éxito.');
+                    </script>
+                @endif
+                </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
-
-@section('js')
+    @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (Session::has('mensaje-error-ruta'))
         <script>
             Swal.fire({
                 icon: 'error',
                 title: 'Lo sentimos',
-                text: 'Por problemas técnicos, no se puede mostrar la página en este momento.',
-            })
+                text: ' Por problemas técnicos, no se puede mostrar la página en este momento.',
+            });
         </script>
     @endif
 
@@ -181,7 +177,6 @@
 
         $('#form-cambiar-contrasena').submit(function(e) {
             e.preventDefault();
-            // Agrega la validación de la contraseña y su confirmación
             var newPassword = $('#new_password').val();
             var confirmPassword = $('#confirm_password').val();
 
@@ -194,12 +189,39 @@
                 return;
             }
 
-            // Si las contraseñas coinciden, puedes continuar con el envío del formulario
-            // Aquí puedes agregar código adicional o enviar el formulario mediante AJAX si es necesario
-            // ...
-
-            // Ejemplo de envío del formulario
-            // $('#form-cambiar-contrasena').unbind('submit').submit();
+            // Usar AJAX para enviar la solicitud al servidor
+            $.ajax({
+                type: 'POST',
+                url: $('#form-cambiar-contrasena').attr('action'),
+                data: $('#form-cambiar-contrasena').serialize(),
+                success: function(response) {
+                    if (response.success) {
+                        // Si la respuesta es exitosa, mostrar un mensaje y cerrar el modal
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Contraseña cambiada con éxito.',
+                        });
+                        $('#cambiarContraseñaModal').modal('hide');
+                    } else {
+                        // Si hay un error, mostrar un mensaje de error
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: response.errors
+                                ? Object.values(response.errors).flat().join('<br>')
+                                : response.error || 'Hubo un problema al cambiar la contraseña. Por favor, inténtalo de nuevo.',
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // En caso de error, mostrar un mensaje de error
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Hubo un problema al cambiar la contraseña. Por favor, inténtalo de nuevo.',
+                    });
+                }
+            });
         });
     </script>
 @endsection

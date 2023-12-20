@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,8 +16,8 @@ class ChangePasswordController extends Controller
             return redirect()->back()->with('error', 'Usuario no autenticado.');
         }
 
-        $user = Auth::user();
-
+        // Obtén al usuario actual utilizando el modelo User
+        $user = User::find(Auth::id());
         // Validar la contraseña actual
         if (!Hash::check($request->current_password, $user->password)) {
             return redirect()->back()->with('error', 'La contraseña actual es incorrecta.');
