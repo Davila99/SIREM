@@ -1,8 +1,10 @@
 
 import React, { useEffect, useState } from "react";
-import PivotTable from "./PivotTable";
+import PivotTableUI from "react-pivottable/PivotTableUI";
+import "react-pivottable/pivottable.css";
 
 const ReporteMatriculas = () => {
+  const [state, setState] = useState([]);
   const [estudiantes, setEstudiantes] = useState([]);
   const [search, setSearch] = useState("");
 
@@ -25,7 +27,17 @@ const ReporteMatriculas = () => {
           <h1>Reporte de Matriculas</h1>
         </div>
       </div>
-      <PivotTable data={estudiantes} />
+      <div className="row">
+                    <div className="col-md-12">
+                        <PivotTableUI
+                            data={estudiantes}
+                            onChange={(s) => {
+                                setState(s);
+                            }}
+                            {...state}
+                        />
+                    </div>
+                </div>
     </div>
   );
 };
