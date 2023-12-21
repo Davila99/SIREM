@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Matricula;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReporteMatriculaController extends Controller
 {
@@ -103,5 +104,9 @@ class ReporteMatriculaController extends Controller
 
             ->get();
         return response()->json($datos);
+    }
+    public function exportMatricula()
+    {
+        return Excel::download(new Matricula(), 'matriculas.xlsx');
     }
 }

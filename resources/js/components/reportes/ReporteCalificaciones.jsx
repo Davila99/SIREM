@@ -15,19 +15,23 @@ const ReporteMatriculas = () => {
         setCalificaciones(data.calificaciones);
     };
 
+    const handleDownload = async () => {
+        console.log("Descargando...");
+    };
     useEffect(() => {
         getCalificaciones();
+        // handleDownload();
     }, []);
-
     return (
         <div className="container">
             <div className="row">
                 <div className="col-md-12">
-                    <h1>Reporte de calificaciones</h1>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-md-12">
+                    <div className="mb-3">
+                        <h1>Reporte de calificaciones</h1>
+                        <button className="btn btn-primary" onClick={handleDownload}>
+                            Descargar Reporte
+                        </button>
+                    </div>
                     <PivotTableUI
                         data={calificaciones}
                         onChange={(s) => {

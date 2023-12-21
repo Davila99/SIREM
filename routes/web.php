@@ -139,6 +139,7 @@ Route::middleware(['auth'])->group(function () {
     ]);
 
     Route::get('/reporte-matricula', [EstudianteController::class, 'busqueda']);
+    Route::get('/export-matriculas-excel', [ReporteMatriculaController::class, 'exportMatricula']);
     Route::get('/data-reporte-matricula', [ReporteMatriculaController::class, 'index']);
 
     Route::controller(BuscadorEstudiante::class)->group(function () {
