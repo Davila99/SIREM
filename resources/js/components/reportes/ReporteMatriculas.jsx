@@ -13,7 +13,25 @@ const ReporteMatriculas = () => {
         setEstudiantes(data.matriculas);
     };
     const handleDownload = async () => {
-        window.open("http://127.0.0.1:8000/export-matriculas-excel", "_blank");
+
+
+
+        const response = await fetch("http://127.0.0.1:8000/export-matriculas-excel", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: state,
+
+        });
+
+        if (response.ok) {
+            window.open("http://127.0.0.1:8000/export-matriculas-excel", "_blank");
+        } else {
+            console.error("Error al descargar el reporte");
+            console.error(state);
+        }
+
         console.log("Descargando...");
     };
     useEffect(() => {
