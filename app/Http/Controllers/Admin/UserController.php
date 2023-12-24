@@ -49,11 +49,11 @@ class UserController extends Controller
 
             $user = User::find(Auth::id());
             if (!Hash::check($request->current_password, $user->password)) {
-                return redirect()->back()->with('error', 'La contraseña actual es incorrecta.');
+                return redirect()->back()->with('error-current_password', 'ok');
             }
     
             if ($request->new_password !== $request->confirm_password) {
-                return redirect()->back()->with('error', 'Las contraseñas no coinciden.');
+                return redirect()->back()->with('error-validatio-password', 'ok');
             }
     
 
