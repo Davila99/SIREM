@@ -36,13 +36,23 @@ class UserController extends Controller
         $roles = Role::all();
 
         return view('user/create', compact('empleados', 'roles'));
-        // return view('user/create');
     }
 
     public function Changepassword(Request $request)
     {
+        $request->validate(
+            [
+                'current_password' => 'required|string|max:100',
+                'new_password' => 'required|string|max:100',
+                'confirm_password' => 'required|string|max:100',
+            ],
 
-
+            [
+                'current_password.required' => 'La contraseña actual es obligatoria.',
+                'new_password.required' => 'La nueva contraseña es obligatoria.',
+                'confirm_password.required' => 'La confirmación de la contraseña es obligatoria.',
+            ]       
+        );
             if (!Auth::check()) {
                 return redirect()->back()->with('error', 'Usuario no autenticado.');
             }
@@ -61,7 +71,7 @@ class UserController extends Controller
                 'password' => Hash::make($request->new_password),
             ]);
     
-            return redirect()->back()->with('success', 'Contraseña cambiada con éxito.');
+            return redirect()->back()->with('mensaje', 'ok');
     }
     /**
      * Store a newly created resource in storage.
