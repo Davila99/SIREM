@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Empleado;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -40,19 +41,27 @@ class UserController extends Controller
 
     public function Changepassword(Request $request)
     {
-        // Validación de datos
-        $request->validate([
-            'current_password' => 'required',
-            'new_password' => 'required|min:6|confirmed', // Debe coincidir con confirm_password
-        ]);
 
-        // Aquí puedes realizar la lógica para cambiar la contraseña
-        // Normalmente, actualizarías la contraseña en la base de datos.
 
-        // Mostrar un mensaje de éxito
-        return redirect()
-            ->back()
-            ->with('success', 'Contraseña cambiada con éxito.');
+            if (!Auth::check()) {
+                return redirect()->back()->with('error', 'Usuario no autenticado.');
+            }
+
+            $user = User::find(Auth::id());
+            if (!Hash::check($request->current_password, $user->password)) {
+                return redirect()->back()->with('error', 'La contraseña actual es incorrecta.');
+            }
+    
+            if ($request->new_password !== $request->confirm_password) {
+                return redirect()->back()->with('error', 'Las contraseñas no coinciden.');
+            }
+    
+
+            $user->update([
+                'password' => Hash::make($request->new_password),
+            ]);
+    
+            return redirect()->back()->with('success', 'Contraseña cambiada con éxito.');
     }
     /**
      * Store a newly created resource in storage.

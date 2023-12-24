@@ -88,7 +88,7 @@
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{ $perfil->empleado->cargos->descripcion ?? 'N/A' }}</p>
                             </div>
-                        </div>
+                        </div>  
                     </div>
                 </div>
             </div>
@@ -175,53 +175,53 @@
             });
         });
 
-        $('#form-cambiar-contrasena').submit(function(e) {
-            e.preventDefault();
-            var newPassword = $('#new_password').val();
-            var confirmPassword = $('#confirm_password').val();
+        // $('#form-cambiar-contrasena').submit(function(e) {
+        //     e.preventDefault();
+        //     var newPassword = $('#new_password').val();
+        //     var confirmPassword = $('#confirm_password').val();
 
-            if (newPassword !== confirmPassword) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Contraseña no coincide',
-                    text: 'La nueva contraseña y la confirmación no coinciden. Por favor, inténtalo de nuevo.',
-                });
-                return;
-            }
+        //     if (newPassword !== confirmPassword) {
+        //         Swal.fire({
+        //             icon: 'error',
+        //             title: 'Contraseña no coincide',
+        //             text: 'La nueva contraseña y la confirmación no coinciden. Por favor, inténtalo de nuevo.',
+        //         });
+        //         return;
+        //     }
 
-            // Usar AJAX para enviar la solicitud al servidor
-            $.ajax({
-                type: 'POST',
-                url: $('#form-cambiar-contrasena').attr('action'),
-                data: $('#form-cambiar-contrasena').serialize(),
-                success: function(response) {
-                    if (response.success) {
-                        // Si la respuesta es exitosa, mostrar un mensaje y cerrar el modal
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Contraseña cambiada con éxito.',
-                        });
-                        $('#cambiarContraseñaModal').modal('hide');
-                    } else {
-                        // Si hay un error, mostrar un mensaje de error
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: response.errors
-                                ? Object.values(response.errors).flat().join('<br>')
-                                : response.error || 'Hubo un problema al cambiar la contraseña. Por favor, inténtalo de nuevo.',
-                        });
-                    }
-                },
-                error: function(xhr, status, error) {
-                    // En caso de error, mostrar un mensaje de error
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Hubo un problema al cambiar la contraseña. Por favor, inténtalo de nuevo.',
-                    });
-                }
-            });
-        });
+        //     // Usar AJAX para enviar la solicitud al servidor
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: $('#form-cambiar-contrasena').attr('action'),
+        //         data: $('#form-cambiar-contrasena').serialize(),
+        //         success: function(response) {
+        //             if (response.success) {
+        //                 // Si la respuesta es exitosa, mostrar un mensaje y cerrar el modal
+        //                 Swal.fire({
+        //                     icon: 'success',
+        //                     title: 'Contraseña cambiada con éxito.',
+        //                 });
+        //                 $('#cambiarContraseñaModal').modal('hide');
+        //             } else {
+        //                 // Si hay un error, mostrar un mensaje de error
+        //                 Swal.fire({
+        //                     icon: 'error',
+        //                     title: 'Error',
+        //                     text: response.errors
+        //                         ? Object.values(response.errors).flat().join('<br>')
+        //                         : response.error || 'Hubo un problema al cambiar la contraseña. Por favor, inténtalo de nuevo.',
+        //                 });
+        //             }
+        //         },
+        //         error: function(xhr, status, error) {
+        //             // En caso de error, mostrar un mensaje de error
+        //             Swal.fire({
+        //                 icon: 'error',
+        //                 title: 'Error',
+        //                 text: 'Hubo un problema al cambiar la contraseña. Por favor, inténtalo de nuevo.',
+        //             });
+        //         }
+        //     });
+        // });
     </script>
 @endsection
