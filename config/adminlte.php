@@ -423,7 +423,7 @@ return [
         ],
         [
             'text' => 'Cambio de Contraseña',
-            'url' => 'admin/settings',
+            'url' => '/home',
             'icon' => 'fas fa-fw fa-lock',
         ],
     ],
