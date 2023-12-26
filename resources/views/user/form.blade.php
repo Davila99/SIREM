@@ -45,50 +45,53 @@
             </div>
         @enderror
     </div>
-
-    <div class="form-group">
-        <label for="email">
-            <h5>Constraseña</h5>
-        </label>
-        <div class="d-flex bd-highlight">
-            <div class="p-2 flex-grow-1 bd-highlight"><input id="password" type="password"
-                    class="form-control @error('password') is-invalid @enderror" name="password" required
-                    autocomplete="new-password" placeholder="Contraseña"></div>
-            <div class="p-2 bd-highlight">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-success" type="button" id="togglePassword">
-                        <i id="togglePassword" class="fa fa-eye"></i>
-                    </button>
-                </div>
+@if (Request::is('users/create'))
+<div class="form-group">
+    <label for="email">
+        <h5>Constraseña</h5>
+    </label>
+    <div class="d-flex bd-highlight">
+        <div class="p-2 flex-grow-1 bd-highlight"><input id="password" type="password"
+                class="form-control @error('password') is-invalid @enderror" name="password" required
+                autocomplete="new-password" placeholder="Contraseña"></div>
+        <div class="p-2 bd-highlight">
+            <div class="input-group-append">
+                <button class="btn btn-outline-success" type="button" id="togglePassword">
+                    <i id="togglePassword" class="fa fa-eye"></i>
+                </button>
             </div>
-        </div>
-
-        <div class="invalid-feedback">
-            <h5>Las contraseñas no coinciden.</h5>
         </div>
     </div>
 
-    <div class="form-group">
-        <label for="passwordConfirmation">
-            <h5>Confirmar contraseña</h5>
-        </label>
-        <div class="d-flex bd-highlight">
-            <div class="p-2 flex-grow-1 bd-highlight"><input id="passwordConfirmation" type="password"
-                    class="form-control @error('passwordConfirmation') is-invalid @enderror" name="passwordConfirmation"
-                    required autocomplete="new-passwordConfirmation" placeholder="Confirmacion de contraseña"></div>
-            <div class="p-2 bd-highlight">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-success" type="button" id="passwordConfirmation">
-                        <i id="toggleConfirmPassword" class="fa fa-eye"></i>
-                    </button>
-                </div>
+    <div class="invalid-feedback">
+        <h5>Las contraseñas no coinciden.</h5>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="passwordConfirmation">
+        <h5>Confirmar contraseña</h5>
+    </label>
+    <div class="d-flex bd-highlight">
+        <div class="p-2 flex-grow-1 bd-highlight"><input id="passwordConfirmation" type="password"
+                class="form-control @error('passwordConfirmation') is-invalid @enderror" name="passwordConfirmation"
+                required autocomplete="new-passwordConfirmation" placeholder="Confirmacion de contraseña"></div>
+        <div class="p-2 bd-highlight">
+            <div class="input-group-append">
+                <button class="btn btn-outline-success" type="button" id="passwordConfirmation">
+                    <i id="toggleConfirmPassword" class="fa fa-eye"></i>
+                </button>
             </div>
         </div>
-
-        <div class="invalid-feedback">
-            <h5>Las contraseñas no coinciden.</h5>
-        </div>
     </div>
+
+    <div class="invalid-feedback">
+        <h5>Las contraseñas no coinciden.</h5>
+    </div>
+</div>
+@endif
+
+
 </fieldset>
 
 <div class="mt-2 row justify-content-center">
