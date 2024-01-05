@@ -24,7 +24,7 @@
                     @foreach ($grupos as $grupo)
                         <tr>
                             <td>{{ $grupo->grado->descripcion ?? 'N/A'}}</td>
-                            <td>{{ $grupo->fecha ?? 'N/A'}}</td>
+                            <td>{{ $grupo->anio_lectivo ?? 'N/A'}}</td>
                             <td>{{ $grupo->empleado->nombres ?? 'N/A' }}</td>
                             <td>{{ $grupo->seccion->descripcion ?? 'N/A' }}</td>
                             <td>{{ $grupo->turno->descripcion ?? 'N/A'}}</td>

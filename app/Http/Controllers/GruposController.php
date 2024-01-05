@@ -63,23 +63,19 @@ class GruposController extends Controller
      */
     public function store(StoreGruposRequest $request)
     {
-        $datos = request()->except('_token');
-        $existeDato = Grupos::where('grado_id', $datos['grado_id'])
-            ->where('seccion_id', $datos['seccion_id'])
-            ->where('turno_id', $datos['turno_id'])
+        $existeDato = Grupos::where('grado_id', $request->grado_id)
+            ->where('anio_lectivo', $request->anio_lectivo)
             ->exists();
         if ($existeDato) {
             return redirect('grupos/create')->with('mensaje-error', 'ok');
         } else {
-            $fecha = date('d-m-Y');
             $grupo = new Grupos();
             $grupo->grado_id = $request->grado_id;
-            $grupo->fecha = $fecha;
+            $grupo->anio_lectivo = $request->anio_lectivo;
             $grupo->empleado_id = $request->empleado_id;
             $grupo->seccion_id = $request->seccion_id;
             $grupo->turno_id = $request->turno_id;
             $grupo->save();
-            // Grupos::insert($datos);
             return redirect('grupos/')->with('mensaje', 'ok');
         }
     }
@@ -128,9 +124,9 @@ class GruposController extends Controller
     public function update(StoreGruposRequest $request, $id)
     {
         $existeDato = Grupos::where('grado_id', $request->grado_id)
-            ->where('seccion_id', $request->seccion_id)
-            ->where('turno_id', $request->turno_id)
+            ->where('anio_lectivo', $request->anio_lectivo)
             ->exists();
+
         if ($existeDato) {
             return redirect('grupos/' . $id . '/edit')->with(
                 'mensaje-error',

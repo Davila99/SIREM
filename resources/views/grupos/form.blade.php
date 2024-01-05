@@ -1,5 +1,32 @@
 <fieldset class="border p-4">
     <div class="form-group">
+        <div class="form-group">
+            <label for="anio_lectivo">
+                <h5>Año Lectivo:</h5>
+            </label>
+            <select class="form-control @error('anio_lectivo') is-invalid @enderror" name="anio_lectivo">
+                <option value="" selected disabled>--Seleccione--</option>
+            
+                @php
+                    $anio_actual = date('Y');
+                @endphp
+            
+                @for ($anio = 2000; $anio <= 2100; $anio++)
+                    <option value="{{ $anio }}"
+                        @if (!empty($datos->anio_lectivo)) {{ $datos->anio_lectivo == $anio ? 'selected' : '' }}
+                        @else {{ old('anio_lectivo') == $anio ? 'selected' : '' }}
+                        @endif>
+                        {{ $anio }}
+                    </option>
+                @endfor
+            </select>
+            
+            @error('anio_lectivo')
+                <div class="invalid-feedback">
+                    <h5> {{ $message }}</h5>
+                </div>
+            @enderror
+        </div>
         <label for="seccion">
             <h5>Grado:</h5>
         </label>
@@ -99,7 +126,7 @@
         <script>
             Swal.fire({
                 icon: 'error',
-                title: 'Registro existente con el mismo grado, seccion y turno ',
+                title: 'No pueden existir dos grupos con el mismo grado del mismo año lectivo',
             })
         </script>
     @endif
