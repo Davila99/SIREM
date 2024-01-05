@@ -2,6 +2,7 @@
     <br>
     <a href="{{ url('users/create') }}" class="btn btn-success"> Nuevo Usuario </a>
     <br>
+    <br>
     <div class="card">
         <div class="card-header">
             <input wire:model='search' class="form-control" placeholder="Ingrese su nombre o su correo electronico">
@@ -38,6 +39,12 @@
                                                 @csrf
                                                 {{ method_field('DELETE') }}
                                                 <button type="submit" class="btn btn-danger">Eliminar</button>
+                                            </form>|
+                                            <form class="form-eliminar" method="POST">
+                                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                                    data-target="#cambiarContraseñaModal">
+                                                    Cambiar contraseña
+                                                </button>
                                             </form>
                                         </div>
                                     </td>
@@ -56,6 +63,40 @@
                 <strong>No hay registro</strong>
             </div>
         @endif
+        <div class="modal fade" id="cambiarContraseñaModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cambiar Contraseña</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-cambiar-contrasena" action="{{ route('change-password') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="user_id" id="user_id" value="{{ Auth::id() }}">
+                        <div class="form-group">
+                            <label for="current_password">Contraseña Actual:</label>
+                            <input type="password" id="current_password" name="current_password"
+                                class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new_password">Nueva Contraseña:</label>
+                            <input type="password" id="new_password" name="new_password" class="form-control"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirmar Nueva Contraseña:</label>
+                            <input type="password" id="confirm_password" name="confirm_password"
+                                class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     @section('js')
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
