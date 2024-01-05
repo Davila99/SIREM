@@ -17,7 +17,7 @@ class GruposSeeder extends Seeder
     {
         DB::table('grupos')->insert([
             'grado_id' => 1,
-            'fecha' => '2023-01-01',
+            'anio_lectivo' => '2023',
             'empleado_id' => 1,
             'seccion_id' => 1,
             'turno_id' => 1,
@@ -26,7 +26,7 @@ class GruposSeeder extends Seeder
         ]);
         DB::table('grupos')->insert([
             'grado_id' => 2,
-            'fecha' => '2023-01-01',
+            'anio_lectivo' => '2024',
             'empleado_id' => 1,
             'seccion_id' => 1,
             'turno_id' => 1,

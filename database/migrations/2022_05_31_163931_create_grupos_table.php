@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->foreignId('grado_id')->constrained()
             ->references('id')->on('grados')
             ->restrictOnDelete();
-            $table->string('fecha');
+            $table->string('anio_lectivo',5);
             $table->foreignId('empleado_id')->constrained()
             ->references('id')->on('empleados')
             ->restrictOnDelete();   
