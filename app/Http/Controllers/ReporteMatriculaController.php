@@ -19,12 +19,21 @@ class ReporteMatriculaController extends Controller
                 'estudiantes.id'
             )
             ->select('matriculas.fecha as FechaMatricula')
+            ->leftJoin('grupos', 'matriculas.grupo_id', '=', 'grupos.id')
             ->selectRaw(
                 '
-        CASE
+            CASE
+            WHEN grupos.anio_lectivo IS NULL THEN "No definidio"
+            ELSE grupos.anio_lectivo
+            END as AnioLectivo
+    '
+            )
+            ->selectRaw(
+                '
+            CASE
             WHEN matriculas.partida_nacimiento IS NULL THEN "No"
             ELSE "Si"
-        END as PartidaNacimiento
+            END as PartidaNacimiento
             '
             )
             ->selectRaw(
@@ -124,7 +133,7 @@ class ReporteMatriculaController extends Controller
         END as Sexo
     '
             )
-            ->leftJoin('grupos', 'matriculas.grupo_id', '=', 'grupos.id')
+
             ->leftJoin('grados', 'grupos.grado_id', '=', 'grados.id')
             ->selectRaw(
                 '
@@ -149,7 +158,6 @@ class ReporteMatriculaController extends Controller
             ELSE turnos.descripcion
         END as Turno'
             )
-
             ->get();
         return $datos;
     }
