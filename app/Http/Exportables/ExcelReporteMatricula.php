@@ -10,9 +10,22 @@ class ExcelReporteMatricula implements FromCollection,  WithHeadings
     public function headings(): array
     {
         return [
-            'Fecha',
-            'User',
-            'Date',
+            'FechaMatricula',
+            'PartidaNacimiento',
+            'TarjetaVacuna',
+            'DiplomaPrescolar',
+            'CedulaPadres',
+            'HojaTraslado',
+            'DiplomaSecundaria',
+            'NombreEstudiante',
+            'ApellidoEstudiante',
+            'CodigoEstudiante',
+            'FechaNacimiento',
+            'Direccion',
+            'Sexo',
+            'Grado',
+            'Seccion',
+            'Turno',
         ];
     }
     public function collection()
