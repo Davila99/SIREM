@@ -24,6 +24,7 @@ use App\Http\Controllers\MatriculaRowController;
 use App\Http\Controllers\NivelesAcademicoController;
 use App\Http\Controllers\OrganizacionAcademicaController;
 use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\ReporteAcademiaController;
 use App\Http\Controllers\ReporteCalificacionesController;
 use App\Http\Controllers\ReporteMatriculaController;
 use App\Http\Controllers\RolController;
@@ -147,6 +148,9 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::get('/reporte-calificaciones', [ReporteCalificacionesController::class, 'busqueda']);
     Route::get('/data-reporte-calificaciones', [ReporteCalificacionesController::class, 'index']);
+
+    Route::get('/reporte-academia', [ReporteAcademiaController::class, 'busqueda']);
+    Route::get('/data-reporte-academia', [ReporteAcademiaController::class, 'index']);
 
 
     Route::get('/search-empleado', [EmpleadoController::class, 'busqueda']);

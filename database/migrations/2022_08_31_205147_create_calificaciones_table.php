@@ -21,7 +21,7 @@ return new class extends Migration {
                 ->restrictOnDelete();
             $table->foreignId('corte_evaluativo_id')->constrained('cortes_evaluativos')
                 ->restrictOnDelete();
-            $table->foreignId('grupo_id')->constrained('cortes_evaluativos')
+            $table->foreignId('grupo_id')->constrained('grupos')
                 ->restrictOnDelete();
             $table->string('observaciones')->nullable();
             $table->string('promedio')->nullable();

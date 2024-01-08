@@ -376,6 +376,11 @@ return [
                     'icon' => 'fas fa-solid fa-users',
                     'can' => 'grupos.index',
                 ],
+                [
+                    'text' => 'Reportes Academia',
+                    'url' => '/reporte-academia',
+                    'icon' => 'fas fa-solid fa-clipboard-list',
+                ],
             ],
         ],
         [
