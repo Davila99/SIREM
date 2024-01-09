@@ -351,6 +351,11 @@ return [
                     'url' => '/reporte-matricula',
                     'icon' => 'fas fa-solid fa-clipboard-list',
                 ],
+                [
+                    'text' => 'Reportes Estudiantes',
+                    'url' => '/reporte-estudiantes',
+                    'icon' => 'fas fa-solid fa-clipboard-list',
+                ],
             ],
         ],
         [

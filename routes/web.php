@@ -26,6 +26,7 @@ use App\Http\Controllers\OrganizacionAcademicaController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ReporteAcademiaController;
 use App\Http\Controllers\ReporteCalificacionesController;
+use App\Http\Controllers\ReporteEstudianteController;
 use App\Http\Controllers\ReporteMatriculaController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SeccionController;
@@ -52,7 +53,7 @@ Route::get('/', function () {
 Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
-// Rutas de restablecimiento de contraseña
+
 Route::get('/password/reset', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('/password/email', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::get('/password/reset/{token}', [App\Http\Controllers\Auth\ResetPasswordController::class, 'showResetForm'])->name('password.reset');
@@ -73,11 +74,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('detalle-acta/{actaId}', [CalificacionesController::class, 'detalleActa'])->name('detalle-acta');
     Route::post('generar-acta/{grupoId}/{asignaturaId}/{corteId}', [CalificacionesController::class, 'generarActa'])->name('generar-acta');
     Route::post('imprimir-acta', [CalificacionesController::class, 'imprimirActa'])->name('imprimir-acta');
-    // Rutas de registro
+
     Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 
-    //Rutas para actualizar Roles usuarios
+
     Route::get('/users/{user}/editRoles', [UserController::class, 'editRoles'])->name('users.editRoles');
     Route::get('/users/{user}/editUser', [UserController::class, 'editUser'])->name('users.editUser');
     Route::patch('/users/{user}/updateUser', [UserController::class, 'updateUser'])->name('users.updateUser');
@@ -109,13 +110,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('grupos', GruposController::class);
     Route::resource('calificaciones', CalificacionesController::class);
     Route::get('historial-academico/{estudiante}', [HistorialAcademicoController::class, 'index'])->name('index');
-    //Route::get('descargar-acta', [HistorialAcademicoController::class, 'index'])->name('index');
 
-    // Route::resource('calificaciones-final', ActaCalificacionFinalController::class)->only(['index']);
     Route::get('calificaciones-final/{asignatura_id}/{grupo_id}', [ActaCalificacionFinalController::class, 'index'])->name('index');
     Route::post('/generate-pdf', [ActaCalificacionFinalController::class, 'generatePDF'])->name('generate-pdf');
     Route::post('/download-excel', [ActaCalificacionFinalController::class, 'downloadExcel'])->name('download-excel');
-    // Route::get('calificaciones-final-pdf/{asignatura_id}/{grupo_id}', [PdfActaCalificacionFinalController::class, 'index'])->name('index');
+
     Route::resource('calificaciones-final-pdf', PdfActaCalificacionFinalController::class)->only(['index']);
     Route::resource('calificacionesDetalles', CalificacionDetalleController::class);
     Route::resource('tutorestudiante', EstudiantesTutoresController::class);
@@ -154,6 +153,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/export-academia-excel', [ReporteAcademiaController::class, 'exportAcademia']);
     Route::get('/data-reporte-academia', [ReporteAcademiaController::class, 'index']);
 
+    Route::get('/reporte-estudiantes', [ReporteEstudianteController::class, 'busqueda']);
+    Route::get('/export-estudiantes-excel', [ReporteEstudianteController::class, 'exportEstudiante']);
+    Route::get('/data-reporte-estudiantes', [ReporteEstudianteController::class, 'index']);
 
     Route::get('/search-empleado', [EmpleadoController::class, 'busqueda']);
     Route::get('/search-empleados', [BuscadorEmpledado::class, 'index']);
