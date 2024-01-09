@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Exportables\ExcelReporteCalificaciones;
 use App\Models\Calificaciones;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReporteCalificacionesController extends Controller
 {
@@ -92,5 +94,10 @@ class ReporteCalificacionesController extends Controller
     public function busqueda()
     {
         return view('calificaciones.reportes');
+    }
+ 
+    public function exportCalificaciones()
+    {
+        return Excel::download(new ExcelReporteCalificaciones(), 'matriculas.xlsx');
     }
 }

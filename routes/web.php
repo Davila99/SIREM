@@ -147,9 +147,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/search-estudiantes', 'index');
     });
     Route::get('/reporte-calificaciones', [ReporteCalificacionesController::class, 'busqueda']);
+    Route::get('/export-calificaciones-excel', [ReporteCalificacionesController::class, 'exportCalificaciones']);
     Route::get('/data-reporte-calificaciones', [ReporteCalificacionesController::class, 'index']);
 
     Route::get('/reporte-academia', [ReporteAcademiaController::class, 'busqueda']);
+    Route::get('/export-academia-excel', [ReporteAcademiaController::class, 'exportAcademia']);
     Route::get('/data-reporte-academia', [ReporteAcademiaController::class, 'index']);
 
 

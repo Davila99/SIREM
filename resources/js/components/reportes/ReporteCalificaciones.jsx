@@ -26,12 +26,15 @@ const ReporteMatriculas = () => {
         <div className="container">
             <div className="row">
                 <div className="col-md-12">
-                    <div className="mb-3">
-                        <h1>Reporte de calificaciones</h1>
-                        <button className="btn btn-primary" onClick={handleDownload}>
-                            Descargar Reporte
-                        </button>
-                    </div>
+                <div className="col-md-12">
+                    <h1>Reporte de Calificaciones</h1>
+                    <a 
+                        className="btn btn-primary"
+                      href="/export-calificaciones-excel" target="_blank"
+                    >
+                        Descargar Reporte
+                    </a>
+                </div>
                     <PivotTableUI
                         data={calificaciones}
                         onChange={(s) => {
