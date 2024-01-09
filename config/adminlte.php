@@ -351,6 +351,11 @@ return [
                     'url' => '/reporte-matricula',
                     'icon' => 'fas fa-solid fa-clipboard-list',
                 ],
+                [
+                    'text' => 'Reportes Estudiantes',
+                    'url' => '/reporte-estudiantes',
+                    'icon' => 'fas fa-solid fa-clipboard-list',
+                ],
             ],
         ],
         [
@@ -375,6 +380,11 @@ return [
                     'route' => 'grupos.index',
                     'icon' => 'fas fa-solid fa-users',
                     'can' => 'grupos.index',
+                ],
+                [
+                    'text' => 'Reportes Academia',
+                    'url' => '/reporte-academia',
+                    'icon' => 'fas fa-solid fa-clipboard-list',
                 ],
             ],
         ],
