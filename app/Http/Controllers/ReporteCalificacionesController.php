@@ -12,7 +12,33 @@ class ReporteCalificacionesController extends Controller
     public function index()
     {
         $datos['calificaciones'] = Calificaciones::query()
-            ->select('calificaciones.fecha as FechaRegistroCalificacion')
+
+            ->leftJoin('calificacion_detalles', 'calificaciones.id', '=', 'calificacion_detalles.calificacion_id')
+            ->leftJoin('estudiantes', 'calificacion_detalles.id', '=', 'calificacion_detalles.estudiante_id')
+            ->select('estudiantes.nombres as Estudiante')
+            ->selectRaw(        '
+           CASE
+           WHEN estudiantes.nombre IS NULL THEN "No definidio"
+           ELSE CONCAT(estudiantes.nombres, " ", estudiantes.apellidos ) 
+           END as Estudiante
+           '
+            )
+            ->select('calificacion_detalles.calificacion as Calificacion')
+            ->selectRaw(        '
+            calificacion_detalles.calificacion as Calificacion
+            '
+             )
+            ->selectRaw(        '
+            calificacion_detalles.calificacion_cualitativa as CalificacionCualitativa
+            '
+             )
+            ->selectRaw(        '
+            CASE
+            WHEN calificacion_detalles.observaciones IS NULL THEN "No hay observaciones"
+            ELSE calificacion_detalles.observaciones
+            END as Observaciones
+            '
+             )
             ->leftJoin('grupos', 'calificaciones.grupo_id', '=', 'grupos.id')
             ->leftJoin('grados', 'grupos.grado_id', '=', 'grados.id')
             ->selectRaw(
@@ -44,7 +70,7 @@ class ReporteCalificacionesController extends Controller
             WHEN grupos.anio_lectivo IS NULL THEN "No definidio"
             ELSE grupos.anio_lectivo
             END as AnioLectivo
-    '
+            '
             )
             ->leftJoin(
                 'asignaturas',
@@ -72,20 +98,6 @@ class ReporteCalificacionesController extends Controller
             WHEN cortes_evaluativos.descripcion IS NULL THEN "No definidio"
             ELSE cortes_evaluativos.descripcion
         END as Corte
-    '
-            )
-            ->leftJoin(
-                'calificacion_detalles',
-                'calificacion_detalles.calificacion_id',
-                '=',
-                'calificacion_detalles.id'
-            )
-            ->selectRaw(
-                '
-        CASE
-            WHEN calificacion_detalles.calificacion IS NULL THEN "No definidio"
-            ELSE calificacion_detalles.calificacion
-        END as Calificacion
     '
             )
             ->get();
