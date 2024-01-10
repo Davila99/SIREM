@@ -34,15 +34,14 @@ class ExcelReporteEstudiante implements FromCollection,  WithHeadings, ShouldAut
     public function headings(): array
     {
         return [
-            'OrganizacionAcademica',
-            'Fecha',
-            'Autorizado',
-            'Asignatura',
-            'Empleado',
-            'Grado',
-            'Seccion',
-            'Turno',
-            'AnioLectivo',
+            'EstudianteMatriculado',
+            'Estudiante',
+            'CodigoEstudiante',
+            'FechaNacimiento',
+            'Dirección',
+            'Tutor',
+            'CedulaTutor',
+            'TelefonoTutor',
         ];
     }
     public function collection()
