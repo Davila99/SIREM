@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Exportables\ExcelReporteEstudiante;
 use App\Models\Estudiante;
-use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ReporteEstudianteController extends Controller

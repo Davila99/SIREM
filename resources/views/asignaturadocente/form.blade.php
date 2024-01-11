@@ -2,28 +2,6 @@
     <fieldset class="border p-4">
         <div class="form-group">
             <label for="asignaturaasignatura">
-                <h5>Organización Academica:</h5>
-            </label>
-            <select class="form-control @error('organizacion_academica_id') is-invalid @enderror"
-                name="organizacion_academica_id" id="organizacion_academica">
-                <option value="" selected disabled>--Seleccione--</option>
-                @isset($organizacion_academicas)
-                    @foreach ($organizacion_academicas as $organizacion_academica)
-                        <option value="{{ $organizacion_academica->id }}"
-                            @if (!empty($datos->organizacion_academica_id)) {{ $datos->organizacion_academica_id == $organizacion_academica->id ? 'selected' : '' }} @else {{ old('organizacion_academica_id') == $organizacion_academica->id ? 'selected' : '' }} @endif>
-                            {{ $organizacion_academica->descripcion }} </option>
-                    @endforeach
-                @endisset
-            </select>
-            @error('organizacion_academica_id')
-                <div class="invalid-feedback">
-                    <h5> {{ $message }}</h5>
-                </div>
-            @enderror
-
-        </div>
-        <div class="form-group">
-            <label for="asignaturaasignatura">
                 <h5>Asignatura:</h5>
             </label>
             <select class="form-control @error('asignatura_id') is-invalid @enderror" name="asignatura_id"
