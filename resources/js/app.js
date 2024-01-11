@@ -9,6 +9,8 @@ import "sweetalert2/src/sweetalert2.scss";
 import { initializeDataTable } from "./funciones";
 import ReporteMatriculas from "./components/reportes/ReporteMatriculas";
 import ReporteCalificaciones from './components/reportes/ReporteCalificaciones';
+import ReporteAcademia from './components/reportes/ReporteAcademia';
+import ReporteEstudiante from './components/reportes/ReporteEstudiante';
 
 initializeDataTable();
 window.Swal = require("sweetalert2");
@@ -22,4 +24,14 @@ if (document.getElementById('reporteCalificaciones')) {
     const appReact = document.getElementById('reporteCalificaciones');
     const root = ReactDOM.createRoot(appReact);
     root.render(<ReporteCalificaciones />);
+  }
+  if (document.getElementById('reporteAcademia')) {
+    const appReact = document.getElementById('reporteAcademia');
+    const root = ReactDOM.createRoot(appReact);
+    root.render(<ReporteAcademia/>);
+  }
+  if (document.getElementById('reporteEstudiante')) {
+    const appReact = document.getElementById('reporteEstudiante');
+    const root = ReactDOM.createRoot(appReact);
+    root.render(<ReporteEstudiante/>);
   }
