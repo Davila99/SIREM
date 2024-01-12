@@ -1,7 +1,7 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
 @section('content')
-    @include('layouts.app') {{-- Incluir el contenido del segundo layout --}}
+    @extends('adminlte::page')
 
     <div class="container">
         <legend class="text">Registrar Matricula</legend>
@@ -10,4 +10,6 @@
             @include('matriculas.form')
         </form>
     </div>
+    
+
 @endsection
