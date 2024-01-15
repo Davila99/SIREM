@@ -1,3 +1,4 @@
+@extends('1Layouts.app')
 <div class="mt-5 row justify-content-center ">
     <fieldset class="border p-4">
         <div class="form-group">
