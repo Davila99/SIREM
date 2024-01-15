@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('content')
-    @extends('adminlte::page')
 
     <div class="container">
         <legend class="text">Registrar Matricula</legend>
@@ -11,5 +10,4 @@
         </form>
     </div>
     
-
 @endsection

@@ -1,3 +1,5 @@
+@extends('1Layouts.app')
+
 <div class="container">
     <fieldset class="border p-4">
         @if (request()->route()->getName() == 'matriculas.create')
@@ -14,14 +16,13 @@
             @enderror
         </div> 
         @endif
+        
 
-    
         <div class="form-group">
             <label for="professions">
                 <h5>Tipo Matricula:</h5>
             </label>
-            <select class="form-control @error('tipo_matricula_id') is-invalid @enderror" name="tipo_matricula_id"
-                id="professions">
+            <select class="form-control @error('tipo_matricula_id') is-invalid @enderror" name="tipo_matricula_id" id="professions">
                 <option value="" selected disabled>--Seleccione--</option>
     
                 @isset($tipoMatriculas)
@@ -38,12 +39,12 @@
                 </div>
             @enderror
         </div>
+        
         <div class="form-group">
             <label for="professions">
                 <h5>Grupo:</h5>
             </label>
-            <select class="form-control @error('grupo_id') is-invalid @enderror" name="grupo_id"
-                id="grupos">
+            <select class="form-control @error('grupo_id') is-invalid @enderror" name="grupo_id" id="grupos">
                 <option value="" selected disabled>--Seleccione--</option>
     
                 @isset($grupos)
@@ -107,15 +108,15 @@
 
     </fieldset>
 
-    <div class="mt-2 row justify-content-center ">
-        <div class=" d-grid mt-2 col-sm-4">
+    <div class="mt-2 row justify-content-center">
+        <div class="d-grid mt-2 col-sm-4">
             <input type="submit" value="Guardar" class="btn btn-success">
         </div>
-    
+
         <div class="d-grid mt-2 col-sm-4">
             <a type="button" class="btn btn-primary mt-2" href="{{ url('matriculas/') }}">Regresar</a>
+        </div>
     </div>
-    
 </div>
 
 @section('scripts')
@@ -147,5 +148,5 @@
             });
         });
     </script>
-
+    
 @endsection
