@@ -101,7 +101,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('empleados', EmpleadoController::class);
     Route::post('estudiantes-importar', [EstudianteController::class, 'importarEstudiante']);
     Route::resource('estudiantes', EstudianteController::class);
-    Route::resource('estudianteTutores', EstudiantesTutoresController::class);
     Route::resource('empleados', EmpleadoController::class);
     Route::resource('tutores', TutoreController::class);
     Route::resource('consanguiniedades', ConsanguiniedadeController::class);
@@ -117,7 +116,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('calificaciones-final-pdf', PdfActaCalificacionFinalController::class)->only(['index']);
     Route::resource('calificacionesDetalles', CalificacionDetalleController::class);
-    Route::resource('tutorestudiante', EstudiantesTutoresController::class);
     Route::resource(
         'organizacionacademica',
         OrganizacionAcademicaController::class
