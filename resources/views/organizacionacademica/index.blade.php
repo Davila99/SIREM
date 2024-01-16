@@ -34,7 +34,7 @@
                                     @include('components.buttons.edit-button')</a>|
                                 <a href="{{ url('/organizacionacademica/' . $organizacionacademica->id) }}"
                                     class="btn btn-warning">
-                                  Asignaturas Docentes</a>|
+                                    @include('components.buttons.details-button')</a>|
                                 <form class="form-eliminar"
                                     action="{{ url('/organizacionacademica/' . $organizacionacademica->id) }}"
                                     method="post" class="d-inline">

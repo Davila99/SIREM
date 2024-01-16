@@ -39,7 +39,7 @@
                                         data-cedula="{{ $tutore->cedula }}"
                                         data-telefono="{{ $tutore->telefono }}"
                                     >
-                                        Perfil @include('components.buttons.details-button')
+                                        @include('components.buttons.details-button')
                                     </a>
                                     |
                                     <form class="form-eliminar" action="{{ url('/tutores/' . $tutore->id) }}" method="post"

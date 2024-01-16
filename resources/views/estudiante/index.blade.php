@@ -73,7 +73,7 @@
                                     |
                                     <div class="d-inline">
                                         <a href="{{ url('/historial-academico/' . $estudiante->id) }}" class="btn btn-warning btn-block me-1">
-                                            Historial Académico
+                                            @include('components.buttons.details-button')
                                         </a>
                                     </div>
                                     |
