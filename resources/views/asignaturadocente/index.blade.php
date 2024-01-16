@@ -3,7 +3,7 @@
     <div class="container">
 
         <br>
-        <a href="{{ url('asignaturadocente/create') }}" class="btn btn-success"> Nueva Asignatura Docente </a>
+        <a href="{{ url()->current() }}/asignaturadocente/create" class="btn btn-success">Nueva Asignatura Docente</a>
         <br>
         <br>
         <div class="table-responsive">

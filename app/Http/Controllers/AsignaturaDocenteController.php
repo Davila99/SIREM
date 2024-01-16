@@ -31,13 +31,14 @@ class AsignaturaDocenteController extends Controller
      */
     public function index()
     {
-        $datos['asignaturadocentes'] = AsignaturaDocente::query()
-            ->with(['asignatura'])
-            ->with(['empleado'])
-            ->with(['grado'])
-            ->with(['organizacionAcademica'])
-            ->get();
-        return view('asignaturadocente/index', $datos);
+        dd('prueba');
+        // $datos['asignaturadocentes'] = AsignaturaDocente::query()
+        //     ->with(['asignatura'])
+        //     ->with(['empleado'])
+        //     ->with(['grado'])
+        //     ->with(['organizacionAcademica'])
+        //     ->get();
+        // return view('asignaturadocente/index', $datos);
     }
 
     /**
@@ -45,20 +46,19 @@ class AsignaturaDocenteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create($organizacionacademica)
+    { 
         $asignaturas = Asignatura::all();
         $grupos = Grupos::all();
-        $organizacion_academicas = OrganizacionAcademica::all();
         $empleados = Empleado::where('cargos_id', 1)->get();
-
+   
         return view(
             'asignaturadocente/create',
             compact(
                 'asignaturas',
                 'empleados',
                 'grupos',
-                'organizacion_academicas'
+                'organizacionacademica'
             )
         );
     }
@@ -71,7 +71,9 @@ class AsignaturaDocenteController extends Controller
      */
     public function store(StoreAsignaturaDocenteRequest $request)
     {
+        dd(request()->all());
         $datos = request()->except('_token');
+       
        
         $organizacionDocente =   AsignaturaDocente::create($datos);
       
