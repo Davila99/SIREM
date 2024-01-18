@@ -169,6 +169,15 @@
             )
         </script>
     @endif
+    @if (Session::has('mensaje-error-eliminar'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Lo sentimos',
+            text: 'Registro no puede ser eliminado, ya que tiene registros asociados',
+        })
+    </script>
+@endif
     <script>
         $('.form-eliminar').submit(function(e) {
             e.preventDefault();
