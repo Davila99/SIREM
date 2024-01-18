@@ -31,8 +31,11 @@
                             <td>{{ $tutore->professions->descripcion ?? 'N/A' }}</td>
                             <td>
                                 <div class="d-flex flex-row bd-highlight mb-6">
+                                <div class="class=d-inline">
                                     <a href="{{ url('/tutores/' . $tutore->id . '/edit') }}" class="btn btn-info">
                                         @include('components.buttons.edit-button') </a>|
+                                        </div>
+                                        <div class="class=d-inline">
                                         <a href="#" class="btn btn-warning view-profile" data-toggle="modal" data-target="#infoTutorModal"
                                         data-nombre="{{ $tutore->nombre }}"
                                         data-apellido="{{ $tutore->apellido }}"
@@ -42,14 +45,15 @@
                                     >
                                         @include('components.buttons.details-button')
                                     </a>
+                                    </div>
                                     |
-                                    <form class="form-eliminar" action="{{ url('/tutores/' . $tutore->id) }}" method="post"
-                                        class="d-inline">
+                                    <form class="form-eliminar" action="{{ url('/tutores/' . $tutore->id) }}"
+                                        method="post" class="d-inline">
                                         @csrf
                                         {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger btn-sm" style="font-size: 12px;"> @include('components.buttons.delete-button')</button>
-
+                                        <button type="submit" class="btn btn-danger"> @include('components.buttons.delete-button')</button>
                                     </form>
+                                    
                                 </div>
                             </td>
                         </tr>
