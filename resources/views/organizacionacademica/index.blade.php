@@ -29,12 +29,14 @@
                         </td>
                         <td>
                             <div class="d-flex flex-row bd-highlight mb-6">
+                            <div class="class=d-inline">
                                 <a href="{{ url('/organizacionacademica/' . $organizacionacademica->id . '/edit') }}"
                                     class="btn btn-info">
-                                    @include('components.buttons.edit-button')</a>|
+                                    @include('components.buttons.edit-button')</a>|</div>
+                                    <div class="class=d-inline">
                                 <a href="{{ url('/organizacionacademica/' . $organizacionacademica->id) }}"
                                     class="btn btn-warning">
-                                    @include('components.buttons.details-button')</a>|
+                                    @include('components.buttons.details-button')</a>|</div>
                                 <form class="form-eliminar"
                                     action="{{ url('/organizacionacademica/' . $organizacionacademica->id) }}"
                                     method="post" class="d-inline">
