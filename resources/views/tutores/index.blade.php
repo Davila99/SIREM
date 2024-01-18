@@ -38,6 +38,7 @@
                                         data-apellido="{{ $tutore->apellido }}"
                                         data-cedula="{{ $tutore->cedula }}"
                                         data-telefono="{{ $tutore->telefono }}"
+                                        data-profession="{{ $tutore->professions }}"
                                     >
                                         @include('components.buttons.details-button')
                                     </a>
@@ -46,7 +47,8 @@
                                         class="d-inline">
                                         @csrf
                                         {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger">@include('components.buttons.delete-button')</button>
+                                        <button type="submit" class="btn btn-danger btn-sm" style="font-size: 12px;"> @include('components.buttons.delete-button')</button>
+
                                     </form>
                                 </div>
                             </td>
@@ -60,12 +62,17 @@
         
    
     </div>
-    <div class="modal fade" id="infoTutorModal" tabindex="-1" aria-labelledby="infoTutorModalLabel" aria-hidden="true">
+    <div class="modal fade" id="infoTutorModal"   tabindex="-1" aria-labelledby="infoTutorModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        
+
             <div class="modal-content">
+            
+
                 <div class="modal-header">
-                    <h5 class="modal-title" id="infoTutorModalLabel">Información del tutor</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModalButton"></button>
+                    <h5 class="modal-title"  id="infoTutorModalLabel">Información del tutor</h5>
+                    
+
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
@@ -85,10 +92,14 @@
                             <div class="col-md-4 text-end"><strong>Teléfono:</strong></div>
                             <div class="col-md-8" id="modal-telefono"></div>
                         </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 text-end"><strong>Profesion:</strong></div>
+                            <div class="col-md-8" id="modal-profesion"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="cerrarModal()">Cerrar Modal</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -117,11 +128,14 @@
             var apellido = $(this).data('apellido');
             var cedula = $(this).data('cedula');
             var telefono = $(this).data('telefono');
+            var professionDescription = $(this).data('profession').descripcion;
+
 
             $('#modal-nombre').text(nombre);
             $('#modal-apellido').text(apellido);
             $('#modal-cedula').text(cedula);
             $('#modal-telefono').text(telefono);
+            $('#modal-profesion').text(professionDescription);
         });
     });
 </script>
