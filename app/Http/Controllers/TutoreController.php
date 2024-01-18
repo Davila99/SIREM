@@ -123,14 +123,17 @@ class TutoreController extends Controller
      */
     public function destroy($id)
     {
-        $estudiante = Estudiante::find($id);
-        if ($estudiante) {
+        try {
+            $estudiante = Estudiante::find($id);
+            if ($estudiante) {
+                Tutore::destroy($id);
+                return redirect('tutores/')->with('mensaje-eliminar', 'ok');
+              
+            }
+        } catch (\Throwable $th) {
             return redirect('tutores/')->with('mensaje-error-eliminar', 'ok');
-
-        } else {
-            Tutore::destroy($id);
-            return redirect('tutores/')->with('mensaje-eliminar', 'ok');
         }
+
     }
     public function search(Request $request)
     {
