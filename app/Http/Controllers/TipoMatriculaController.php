@@ -115,19 +115,4 @@ class TipoMatriculaController extends Controller
             return redirect('tmatricula')->with('mensaje-error-eliminar', 'ok');
         }
     }
-    public function search(Request $request)
-    {
-        if (!isset($request->term)) {
-            return [
-                'data' => [],
-            ];
-        }
-
-        $results = Tipo_Matricula::query()
-            ->where('descripcion', 'like', '%' . $request->term . '%')
-            ->select('id', 'descripcion')
-            ->get();
-
-        return new TipoMatriculaCollection($results);
-    }
 }

@@ -130,19 +130,15 @@ Route::middleware(['auth'])->group(function () {
     ]);
 
     Route::get('buscar-estudiantes', [EstudianteController::class, 'search']);
+    Route::get('buscar-tutores', [TutoreController::class, 'search']);
     Route::get('buscar-grupos', [GruposController::class, 'search']);
-    Route::get('buscador-tipo-matriculas', [
-        TipoMatriculaController::class,
-        'search',
-    ]);
+ 
 
     Route::get('/reporte-matricula', [EstudianteController::class, 'busqueda']);
     Route::get('/export-matriculas-excel', [ReporteMatriculaController::class, 'exportMatricula']);
     Route::get('/data-reporte-matricula', [ReporteMatriculaController::class, 'index']);
 
-    Route::controller(BuscadorEstudiante::class)->group(function () {
-        Route::get('/search-estudiantes', 'index');
-    });
+
     Route::get('/reporte-calificaciones', [ReporteCalificacionesController::class, 'busqueda']);
     Route::get('/export-calificaciones-excel', [ReporteCalificacionesController::class, 'exportCalificaciones']);
     Route::get('/data-reporte-calificaciones', [ReporteCalificacionesController::class, 'index']);
@@ -156,8 +152,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data-reporte-estudiantes', [ReporteEstudianteController::class, 'index']);
 
     Route::get('/search-empleado', [EmpleadoController::class, 'busqueda']);
-    Route::get('/search-empleados', [BuscadorEmpledado::class, 'index']);
 
     Route::get('/search-matricula', [MatriculaController::class, 'busqueda']);
-    Route::get('/search-matriculas', [BuscadorMatricula::class, 'index']);
 });

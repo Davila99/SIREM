@@ -1,3 +1,5 @@
+@extends('1Layouts.app')
+
 <fieldset class="border p-4">
     <div class="form-group">
         <label for="nombres">
@@ -12,6 +14,7 @@
             </div>
         @enderror
     </div>
+
     <div class="form-group">
         <label for="apellidos">
             <h5>Apellidos:</h5>
@@ -67,36 +70,20 @@
         @enderror
     </div>
 
+
     <div class="form-group">
-        <label for="tutor">
-            <h5>Tutor:</h5>
-        </label>
-        <div class="d-flex bd-highlight">
-            <div class="p-2 flex-grow-1 bd-highlight">
-                <select class="form-control @error('tutor_id') is-invalid @enderror" name="tutor_id" id="tutor">
-                    <option value="" selected disabled>--Seleccione--</option>
-
-                    @isset($tutores)
-                        @foreach ($tutores as $tutor)
-                            <option value="{{ $tutor->id }}"
-                                @if (!empty($datos->tutor_id)) {{ $datos->tutor_id == $tutor->id ? 'selected' : '' }} @else {{ old('tutor_id') == $tutor->id ? 'selected' : '' }} @endif>
-                                {{ $tutor->nombre }} </option>
-                        @endforeach
-                    @endisset
-
-                </select>
-                @error('tutor_id')
-                    <div class="invalid-feedback">
-                        <h5> {{ $message }}</h5>
-                    </div>
-                @enderror
+        <label for="descripcion">
+            <h5>Tutor</h5>
+        </label><br>
+        <select name="tutor_id" class="buscador-tutores col-12 @error('tutor_id') is-invalid @enderror">
+        </select>
+        @error('tutor_id')
+            <div class="invalid-feedback">
+                <h5> {{ $message }}</h5>
             </div>
-            <div class="p-2 bd-highlight"><a href="{{ url('tutores/create') }}" class="btn btn-success"> Agregar </a>
-            </div>
-
-        </div>
-
-    </div>
+        @enderror
+    </div> 
+    
     <br>
     <div class="form-group">
         <label for="sexo">
@@ -135,6 +122,35 @@
 
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.buscador-tutores').select2({
+                ajax: {
+                    url: '/buscar-tutores',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data, params) {
+                        let results = [];
+                        if (data) {
+                            results = data.data.map(item => {
+                                return {
+                                    id: item.id,
+                                    text: item.nombre,
+
+                                }
+                            })
+                        }
+
+                        console.log(results);
+
+                        return {
+                            results: results
+                        };
+                    },
+                }
+            });
+        });
+    </script>
     @if (Session::has('mensaje-error'))
         <script>
             Swal.fire({
