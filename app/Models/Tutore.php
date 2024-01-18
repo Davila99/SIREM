@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tutore extends Model
 {
+    protected $fillable = [
+        'nombre',
+        'apellido',
+        'cedula',
+        'telefono',
+        'direccion',
+        'professions_id',
+    ];
     use HasFactory;
     public function professions()
     {

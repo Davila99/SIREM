@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTutorRequest;
+use App\Http\Resources\TutorCollection;
 use App\Models\Estudiante;
 use App\Models\Profession;
 use App\Models\Tutore;
@@ -130,5 +131,21 @@ class TutoreController extends Controller
             Tutore::destroy($id);
             return redirect('tutores/')->with('mensaje-eliminar', 'ok');
         }
+    }
+    public function search(Request $request)
+    {
+        if (!isset($request->term)) {
+            return [
+                'data' => [],
+            ];
+        }
+
+        $results = Tutore::query()
+            ->where('nombre', 'like', '%' . $request->term . '%')
+            ->orWhere('apellido', 'like', '%' . $request->term . '%')
+            ->select('id', 'nombre', 'apellido')
+            ->get();
+
+        return new TutorCollection($results);
     }
 }
