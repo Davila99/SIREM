@@ -125,8 +125,14 @@ class EstudianteController extends Controller
      */
     public function destroy($id)
     {
-        Estudiante::destroy($id);
-        return redirect('estudiantes/')->with('mensaje-eliminar', 'ok');
+        try {
+            $estudiante = Estudiante::find($id);
+            $estudiante->delete();
+            return redirect('estudiantes/')->with('mensaje-eliminar', 'ok');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect('estudiantes/')->with('mensaje-error-eliminar', 'ok');
+        }
+       
     }
 
     public function search(Request $request)
