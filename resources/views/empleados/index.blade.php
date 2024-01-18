@@ -47,6 +47,7 @@
                                         @include('components.buttons.details-button')
                                     </a>
                                 </div>
+                                |
                                 <form class="form-eliminar" action="{{ url('/empleados/' . $empleado->id) }}" method="post"
                                     class="d-inline">
                                     @csrf
