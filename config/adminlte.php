@@ -224,17 +224,10 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
-        [
-            'type' => 'navbar-search',
-            'text' => 'Busqueda',
-            'topnav_right' => true,
-        ],
         [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-
         [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
@@ -357,12 +350,7 @@ return [
             'icon' => 'fas fa-solid fa-school',
             'can' => 'asignaturadocente.index',
             'submenu' => [
-                // [
-                //     'text'        => 'Asignturas Docentes',
-                //     'route'         => 'asignaturadocente.index',
-                //     'icon' => 'fas fa-solid fa-signature',
-                //     'can' =>'asignaturadocente.index'
-                // ],
+ 
                 [
                     'text' => 'Organización Academica',
                     'route' => 'organizacionacademica.index',
@@ -393,11 +381,7 @@ return [
                     'icon' => 'fas fa-solid fa-layer-group',
                     'can' => 'empleados.index',
                 ],
-                // [
-                //     'text'        => 'Buscador Empleados',
-                //     'url'         => 'search-empleado/',
-                //     'icon'        => 'fas fa-search ',
-                // ],
+
             ],
         ],
 
