@@ -118,12 +118,13 @@ class EmpleadoController extends Controller
      */
     public function destroy($id)
     {
-        $esxiteDato = Grupos::exists($id);
+        $esxiteDato = Grupos::where('id_tutor', $id)->find();
+        dd($esxiteDato);
         if ($esxiteDato) {
-            return redirect('tutores/')->with('mensaje-error-eliminar', 'ok');
+            return redirect('empleados/')->with('mensaje-error-eliminar', 'ok');
         } else {
             Empleado::destroy($id);
-            return redirect('tutores/')->with('mensaje-eliminar', 'ok');
+            return redirect('empleados/')->with('mensaje-eliminar', 'ok');
         }
 
     }
