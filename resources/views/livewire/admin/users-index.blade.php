@@ -28,22 +28,24 @@
                                     <td>{{ $user->email }}</td>
                                     <td>
                                         <div class="d-flex flex-row bd-highlight mb-6">
-                                            <a href="{{ url('/users/' . $user->id . '/editUser') }}"
-                                                class="btn btn-info">
-                                                Editar Perfil </a>|
-                                            <a href="{{ url('/users/' . $user->id . '/edit') }}"
-                                                class="btn btn-warning">
-                                                Asignar Rol</a>|
+                                        <a href="{{ url('/users/' . $user->id . '/editUser') }}"
+                                         class="btn btn-info">
+                                            @include('components.buttons.edit-button')</a>
+                                           |
+                                           <a href="{{ url('/users/' . $user->id . '/edit') }}"
+                                            class="btn btn-info">
+                                            @include('components.buttons.Asignar-button')</a>
+                                           |
                                             <form class="form-eliminar" action="{{ url('/users/' . $user->id) }}"
-                                                method="post" class="d-inline">
+                                                method="post" class="btn btn-info">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                <button type="submit" class="btn btn-danger">@include('components.buttons.delete-button')</button>
                                             </form>|
                                             <form class="form-eliminar" method="POST">
                                                 <button type="button" class="btn btn-success" data-toggle="modal"
                                                     data-target="#cambiarContraseñaModal">
-                                                    Cambiar contraseña
+                                                    @include('components.buttons.pass-button')
                                                 </button>
                                             </form>
                                         </div>
