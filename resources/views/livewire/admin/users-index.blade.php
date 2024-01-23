@@ -29,21 +29,23 @@
                                     <td>
                                         <div class="d-flex flex-row bd-highlight mb-6">
                                         <a href="{{ url('/users/' . $user->id . '/editUser') }}"
-                                         class="btn btn-info">
+                                        title="Editar" class="btn btn-info" >
                                             @include('components.buttons.edit-button')</a>
                                            |
-                                           <a href="{{ url('/users/' . $user->id . '/edit') }}"
-                                            class="btn btn-info">
+                                           
+                                           <a href="{{ url('/users/' . $user->id . '/edit') }}"class="btn btn-secondary" title="Asignar Rol"
+                                           >
+                                            
                                             @include('components.buttons.Asignar-button')</a>
                                            |
                                             <form class="form-eliminar" action="{{ url('/users/' . $user->id) }}"
-                                                method="post" class="btn btn-info">
+                                                method="post" class="btn btn-info" title="Eliminar">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
                                                 <button type="submit" class="btn btn-danger">@include('components.buttons.delete-button')</button>
                                             </form>|
                                             <form class="form-eliminar" method="POST">
-                                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                                <button type="button" class="btn btn-success" title="Cambiar contraseña" data-toggle="modal"
                                                     data-target="#cambiarContraseñaModal">
                                                     @include('components.buttons.pass-button')
                                                 </button>
