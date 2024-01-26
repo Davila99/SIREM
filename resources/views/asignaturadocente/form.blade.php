@@ -4,6 +4,10 @@
         <div class="form-group">
             <label for="asignaturaasignatura">
 
+
+        </div>
+        <div class="form-group">
+            <label for="asignaturaasignatura">
                 <h5>Asignatura:</h5>
             </label>
             <select class="form-control @error('asignatura_id') is-invalid @enderror" name="asignatura_id"

@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\Asignatura;
 use App\Models\Empleado;
 use App\Models\Grupos;
-
 use App\Models\OrganizacionAcademica;
-
+use Illuminate\Support\Facades\Redirect; // Agregado
 
 class AsignaturaDocenteController extends Controller
 {
@@ -24,6 +23,15 @@ class AsignaturaDocenteController extends Controller
         );
         $this->middleware('can:asignaturadocente.destroy')->only('destroy');
     }
+
+    // Nueva función para obtener organizacion_academica_id
+    protected function obtenerOrganizacionAcademicaId()
+    {
+        // Implementa la lógica para obtener el valor correcto de organizacion_academica_id
+        // Puede ser desde una relación, consulta a la base de datos, u otra fuente de datos.
+        // Retorna el valor adecuado para tu aplicación.
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -47,11 +55,11 @@ class AsignaturaDocenteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create($organizacionacademica)
-    { 
+    {
         $asignaturas = Asignatura::all();
         $grupos = Grupos::all();
         $empleados = Empleado::where('cargos_id', 1)->get();
-   
+
         return view(
             'asignaturadocente/create',
             compact(
@@ -71,12 +79,31 @@ class AsignaturaDocenteController extends Controller
      */
     public function store(StoreAsignaturaDocenteRequest $request)
     {
-        dd(request()->all());
-        $datos = request()->except('_token');
-       
-       
-        $organizacionDocente =   AsignaturaDocente::create($datos);
-      
+        // Validar y obtener los datos del formulario
+        $datos = $request->validated();
+
+        // Obtener el valor de organizacion_academica_id (ajusta según tus necesidades)
+        $organizacionAcademicaId ='2'; // Corregido
+        
+        // dd($organizacionAcademicaId); 
+        $existe = AsignaturaDocente::where('asignatura_id', $datos['asignatura_id'])
+            ->where('empleado_id', $datos['empleado_id'])
+            ->exists();
+
+        if ($existe) {
+            // Redireccionar con un mensaje de error
+            return redirect()->back()->with('mensaje', 'Ya existe una asignatura para este empleado en la organización académica.');
+        }
+
+        // Crear la instancia de AsignaturaDocente con organizacion_academica_id
+        $organizacionDocente = AsignaturaDocente::create([ // Corregido
+            'asignatura_id' => $datos['asignatura_id'],
+            'empleado_id' => $datos['empleado_id'],
+            'grupo_id' => $datos['grupo_id'],
+            'organizacion_academica_id' => $organizacionAcademicaId,
+        ]);
+
+        // Redireccionar a la vista o ruta deseada
         return redirect()->route('organizacionacademica.show', $organizacionDocente->organizacion_academica_id);
     }
 
@@ -141,4 +168,4 @@ class AsignaturaDocenteController extends Controller
         AsignaturaDocente::destroy($id);
         return redirect('asignaturadocente/')->with('mensaje-eliminar', 'ok');
     }
-}
+ }
