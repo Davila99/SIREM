@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEmpleadoRequest;
 use App\Http\Requests\UpdateEmpleadoRequest;
+use App\Http\Resources\EmpleadoCollection;
 use App\Models\Cargo;
 use App\Models\Empleado;
 use App\Models\Grupos;
@@ -127,5 +128,21 @@ class EmpleadoController extends Controller
             return redirect('empleados/')->with('mensaje-eliminar', 'ok');
         }
 
+    }
+    public function search(Request $request)
+    {
+        if (!isset($request->term)) {
+            return [
+                'data' => [],
+            ];
+        }
+
+        $results = Empleado::query()
+        ->where('nombres', 'like', '%' . $request->term . '%')
+        ->orWhere('apellidos', 'like', '%' . $request->term . '%')
+        ->select('id', 'nombres', 'apellidos')
+        ->get();
+
+        return new EmpleadoCollection($results);
     }
 }
