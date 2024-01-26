@@ -13,6 +13,6 @@
 
 @section('js')
     <script>
-        console.log('HI veificando prueba de la plataforma')
+        console.log('HI verificando prueba de la plataforma')
     </script>
 @endsection
