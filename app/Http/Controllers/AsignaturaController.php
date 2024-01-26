@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AsignaturaRequest;
+use App\Http\Resources\AsignaturaCollection;
 use App\Models\Asignatura;
 use Illuminate\Http\Request;
 
@@ -114,5 +115,19 @@ class AsignaturaController extends Controller
             return redirect('asignaturas/')->with('mensaje-error-eliminar', 'ok');
         }
 
+    }
+    public function search(Request $request)
+    {
+        if (!isset($request->term)) {
+            return [
+                'data' => [],
+            ];
+        }
+        $results = Asignatura::query()
+            ->where('descripcion', 'like', '%' . $request->term . '%')
+            ->select('id', 'descripcion')
+            ->get();
+
+        return new AsignaturaCollection($results);
     }
 }

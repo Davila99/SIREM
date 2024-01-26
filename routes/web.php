@@ -133,6 +133,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('buscar-tutores', [TutoreController::class, 'search']);
     Route::get('buscar-grupos', [GruposController::class, 'search']);
     Route::get('buscar-empleados', [EmpleadoController::class, 'search']);
+    Route::get('buscar-asignaturas', [AsignaturaController::class, 'search']);
  
 
     Route::get('/reporte-matricula', [EstudianteController::class, 'busqueda']);
