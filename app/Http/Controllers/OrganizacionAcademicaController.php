@@ -87,7 +87,8 @@ class OrganizacionAcademicaController extends Controller
             ->with(['organizacionAcademica'])
             ->where('organizacion_academica_id', $id)
             ->get();
-            return view('asignaturadocente/index', $datos);
+            $organizacionacademica = OrganizacionAcademica::findOrFail($id);
+            return view('asignaturadocente/index', $datos, compact('organizacionacademica'));
 
     }
 

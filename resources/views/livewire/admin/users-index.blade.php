@@ -124,6 +124,17 @@
                 })
             </script>
         @endif
+        @if (Session::has('mensaje-changue'))
+        <script>
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Cambios realizados con exito',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        </script>
+    @endif
         @if (Session::has('mensaje-editar'))
             <script>
                 Swal.fire({

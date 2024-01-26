@@ -170,7 +170,7 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
             $user->empleado_id = $request->empleado_id;
             $user->save();
-            return redirect('users/')->with('mensaje', 'ok');
+            return redirect('users/')->with('mensaje-changue', 'ok');
         }
     }
     /**
