@@ -334,15 +334,23 @@ return [
                     'can' => 'matriculas.index',
                 ],
                 [
-                    'text' => 'Reportes Matriculas',
-                    'url' => '/reporte-matricula',
-                    'icon' => 'fas fa-solid fa-clipboard-list',
+                    'text' => 'Reportes',
+                    'icon' => 'fas fa-solid fa-hand-holding',
+                    'submenu' => [
+                        [
+                            'text' => 'Reportes Matriculas',
+                            'url' => '/reporte-matricula',
+                            'icon' => 'fas fa-solid fa-clipboard-list',
+                        ],
+                        [
+                            'text' => 'Reportes Estudiantes',
+                            'url' => '/reporte-estudiantes',
+                            'icon' => 'fas fa-solid fa-clipboard-list',
+                        ],
+                        
+                    ],
                 ],
-                [
-                    'text' => 'Reportes Estudiantes',
-                    'url' => '/reporte-estudiantes',
-                    'icon' => 'fas fa-solid fa-clipboard-list',
-                ],
+                
             ],
         ],
         [
@@ -364,10 +372,17 @@ return [
                     'can' => 'grupos.index',
                 ],
                 [
-                    'text' => 'Reportes Academia',
-                    'url' => '/reporte-academia',
-                    'icon' => 'fas fa-solid fa-clipboard-list',
+                    'text' => 'Reportes',
+                    'icon' => 'fas fa-solid fa-hand-holding',
+                    'submenu' => [
+                        [
+                            'text' => 'Reportes Academia',
+                            'url' => '/reporte-academia',
+                            'icon' => 'fas fa-solid fa-clipboard-list',
+                        ],                      
+                    ],
                 ],
+                
             ],
         ],
         [
@@ -395,10 +410,17 @@ return [
                     'icon' => 'fas fa-solid fa-book',
                 ],
                 [
-                    'text' => 'Reportes Calificaciones',
-                    'url' => '/reporte-calificaciones',
-                    'icon' => 'fas fa-solid fa-clipboard-list',
+                    'text' => 'Reportes',
+                    'icon' => 'fas fa-solid fa-hand-holding',
+                    'submenu' => [
+                        [
+                            'text' => 'Reportes Calificaciones',
+                            'url' => '/reporte-calificaciones',
+                            'icon' => 'fas fa-solid fa-clipboard-list',
+                        ],                       
+                    ],
                 ],
+                
             ],
         ],
 
