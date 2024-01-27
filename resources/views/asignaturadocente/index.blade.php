@@ -76,8 +76,8 @@
                     "search": "Buscar:",
                     "paginate": {
                         first: '<i class="fas fa-angle-double-left"></i>',
-                        previous: '<i class="fas fa-angle-left"></i>', 
-                        next: '<i class="fas fa-angle-right"></i>', 
+                        previous: '<i class="fas fa-angle-left"></i>',
+                        next: '<i class="fas fa-angle-right"></i>',
                         last: '<i class="fas fa-angle-double-right"></i>'
                     },
                 }

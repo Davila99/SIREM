@@ -12,7 +12,7 @@
                     <h5> {{ $message }}</h5>
                 </div>
             @enderror
-        </div>   
+        </div>
         <div class="form-group">
             <label for="descripcion">
                 <h5>Empleados</h5>
@@ -24,7 +24,7 @@
                     <h5> {{ $message }}</h5>
                 </div>
             @enderror
-        </div> 
+        </div>
 
         <div class="form-group">
             <label for="grupo_id">
@@ -106,7 +106,7 @@
             });
         });
     </script>
-      <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function() {
             $('.buscador-asignaturas').select2({
                 ajax: {

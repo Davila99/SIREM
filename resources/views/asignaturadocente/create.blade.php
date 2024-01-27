@@ -10,7 +10,8 @@
         <legend class="text">Crear Asignatura de Docentes</legend>
         <form action="{{ url('/asignaturadocente') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" id="organizacion_academica_id" name="organizacion_academica_id" value="{{ $organizacionAcademicaId }}">
+            <input type="hidden" id="organizacion_academica_id" name="organizacion_academica_id"
+                value="{{ $organizacionAcademicaId }}">
             @include('asignaturadocente.form')
         </form>
     </div>
