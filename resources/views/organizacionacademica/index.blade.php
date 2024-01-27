@@ -1,10 +1,28 @@
 @extends('layouts.custom-layout')
 @section('content')
+<div class="container">
+<div class="d-flex justify-content-between align-items-center">
+    
+    <a href="{{ url('organizacionacademica/create') }}" class="btn btn-success">Nuevo Organizacion Academica</a>
+    <form method="get" action="{{ route('organizacionacademica.index') }}" class="form-inline">
+        <div class="form-group mr-2">
+            <label for="year" class="mr-2">Filtrar por año:</label>
+            <select class="form-control" name="year" id="year">
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+    </form>
+</div>
+<br>
 
-    <br>
-    <a href="{{ url('organizacionacademica/create') }}" class="btn btn-success"> Nuevo Organizacion Academica</a>
-    <br>
-    <br>
     <div class="table-responsive">
         <table id="organizacionAcademica-table" class="table table-dark">
             <thead class="thead-light">
@@ -65,6 +83,7 @@
         </table>
     </div>
     </div>
+</div>
 @stop
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
