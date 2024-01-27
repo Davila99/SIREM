@@ -23,11 +23,22 @@
                         <td>{{ $organizacionacademica->descripcion ?? 'N/A'}}</td>
                         <td>{{ $organizacionacademica->fecha ?? 'N/A' }}</td>
                         <td>
-                            <input data-id="{{ $organizacionacademica->id }}" class="toggle-class" type="checkbox"
-                                data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active"
-                                data-off="InActive" {{ $organizacionacademica->confirmed ? 'checked' : '' }}>
+                            <div class="d-flex align-items-center">
+                                <input data-id="{{ $organizacionacademica->id }}" class="toggle-class" type="checkbox"
+                                    data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active"
+                                    data-off="InActive" {{ $organizacionacademica->confirmed ? 'checked' : '' }}>
+                                <span class="mx-2">|</span> <!-- Add some margin between checkbox and status bar -->
+                                <div class="status-bar">
+                                    @if ($organizacionacademica->confirmed == true)
+                                        <i class="far fa-thumbs-up text-success fa-2x"></i>
+                                    @else
+                                        <i class="far fa-thumbs-down text-danger fa-2x"></i>
+                                    @endif
+                                </div>
+                            </div>
                         </td>
                         <td>
+                        
                             <div class="d-flex flex-row bd-highlight mb-6">
                             <div class="class=d-inline">
                                 <a href="{{ url('/organizacionacademica/' . $organizacionacademica->id . '/edit') }}"
