@@ -25,14 +25,17 @@ class GruposController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request  $request)
     {
+        $yearFilter = $request->input('year');
         $datos['grupos'] = Grupos::query()
             ->with(['grado'])
             ->with(['empleado'])
             ->with(['seccion'])
             ->with(['turno'])
-            ->get();
+            ->when($yearFilter, function ($query) use ($yearFilter) {
+                return $query->where('anio_lectivo', $yearFilter);
+            })->get();
         //  dd($datos);
         return view('grupos/index', $datos);
     }

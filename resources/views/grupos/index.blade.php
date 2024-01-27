@@ -2,10 +2,28 @@
 
 @section('content')
     <div class="container">
-        <br>
-        <a href="{{ url('grupos/create') }}" class="btn btn-success"> Nuevo Grupo </a>
-        <br>
-        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <form method="get" action="{{ route('grupos.index') }}" class="form-inline">
+                    <label class="mr-2" for="year">Filtrar por año:</label>
+                    <select class="form-control mr-2" name="year" id="year">
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Filtrar</button>
+                </form>
+            </div>
+            <div class="col-md-6 mt-3">
+                <a href="{{ url('grupos/create') }}" class="btn btn-success">Nuevo Grupo</a>
+            </div>
+        </div>
+        
         <div class="table-responsive">
             <table id="grupo-table" class="table table-dark">
                 <thead class="thead-light">

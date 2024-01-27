@@ -1,6 +1,22 @@
 @extends('layouts.custom-layout')
 @section('content')
     <div class="container">
+          <div class="col-md-6">
+            <form method="get" action="{{ route('matriculas.index') }}" class="form-inline">
+                <label class="mr-2" for="year">Filtrar por año de matricula:</label>
+                <select class="form-control mr-2" name="year" id="year">
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                    <option value="2028">2028</option>
+                    <option value="2029">2029</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Filtrar</button>
+            </form>
+        </div>
         <br>
         <a href="{{ url('matriculas/create') }}" class="btn btn-success"> Nueva Matricula </a>
         <br>
