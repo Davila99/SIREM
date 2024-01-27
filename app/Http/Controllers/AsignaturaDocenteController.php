@@ -9,6 +9,7 @@ use App\Models\Asignatura;
 use App\Models\Empleado;
 use App\Models\Grupos;
 use App\Models\OrganizacionAcademica;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect; // Agregado
 
 class AsignaturaDocenteController extends Controller
@@ -77,11 +78,8 @@ class AsignaturaDocenteController extends Controller
     {
         $datos = request()->except('_token');
         AsignaturaDocente::insert($datos);
-        $organizacionDocente = AsignaturaDocente::findOrFail(
-            $request->organizacion_academica_id
-        );
-        
-
+        $ultimoInsertId = DB::getPdo()->lastInsertId();
+        $organizacionDocente = AsignaturaDocente::findOrFail($ultimoInsertId);
         return redirect()->route('organizacionacademica.show', $organizacionDocente->organizacion_academica_id);
     }
 

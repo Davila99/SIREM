@@ -412,6 +412,7 @@ return [
                 [
                     'text' => 'Reportes',
                     'icon' => 'fas fa-solid fa-hand-holding',
+                    'can' => 'asignaturadocente.index',
                     'submenu' => [
                         [
                             'text' => 'Reportes Calificaciones',
