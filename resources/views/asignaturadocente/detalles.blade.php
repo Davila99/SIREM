@@ -16,35 +16,35 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Nombres:</th>
-                                                <td>{{ $asignaturaDocente->empleado->nombres }}</td>
+                                                <td>{{ $asignaturaDocente->empleado->nombres ?? 'N/A'  }}</td>
                                                 <th>Apellidos:</th>
-                                                <td>{{ $asignaturaDocente->empleado->apellidos }}</td>
+                                                <td>{{ $asignaturaDocente->empleado->apellidos ?? 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Telefono:</th>
-                                                <td>{{ $asignaturaDocente->empleado->telefono }}</td>
+                                                <td>{{ $asignaturaDocente->empleado->telefono ?? 'N/A' }}</td>
                                                 <th scope="row">Cedula:</th>
-                                                <td>{{ $asignaturaDocente->empleado->cedula }}</td>
+                                                <td>{{ $asignaturaDocente->empleado->cedula ?? 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Fecha de Nacimiento:</th>
-                                                <td>{{ $asignaturaDocente->empleado->fecha_nacimiento }}</td>
+                                                <td>{{ $asignaturaDocente->empleado->fecha_nacimiento ?? 'N/A' }}</td>
                                                 <th>Nivel Academico:</th>
-                                                <td>{{ $asignaturaDocente->empleado->nivel_academico->descripcion }}</td>
+                                                <td>{{ $asignaturaDocente->empleado->nivel_academico->descripcion ?? 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Direccion:</th>
-                                                <td>{{ $asignaturaDocente->empleado->direccion }}</td>
+                                                <td>{{ $asignaturaDocente->empleado->direccion ?? 'N/A' }}</td>
                                                 <th>Email:</th>
-                                                <td>{{ $asignaturaDocente->empleado->email }}</td>
+                                                <td>{{ $asignaturaDocente->empleado->email ?? 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Fecha de ingreso</th>
-                                                <td>{{ $asignaturaDocente->empleado->fecha_ingreso }}</td>
+                                                <td>{{ $asignaturaDocente->empleado->fecha_ingreso ?? 'N/A' }}</td>
                                                 <th>Cargo:</th>
-                                                <td>{{ $asignaturaDocente->empleado->cargos->descripcion }}</td>
+                                                <td>{{ $asignaturaDocente->empleado->cargos->descripcion ?? 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                             </tr>
@@ -60,21 +60,21 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Seccion:</th>
-                                                <td>{{ $asignaturaDocente->seccion->descripcion }}</td>
+                                                <td>{{ $asignaturaDocente->seccion->descripcion ?? 'N/A'}}</td>
                                                 <th>Turno:</th>
-                                                <td>{{ $asignaturaDocente->turno->descripcion }}</td>
+                                                <td>{{ $asignaturaDocente->turno->descripcion ?? 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Asignatura:</th>
-                                                <td>{{ $asignaturaDocente->asignatura->descripcion }}</td>
+                                                <td>{{ $asignaturaDocente->asignatura->descripcion ?? 'N/A' }}</td>
                                                 <th scope="row">Empleado:</th>
-                                                <td>{{ $asignaturaDocente->empleado->descripcion }}</td>
+                                                <td>{{ $asignaturaDocente->empleado->descripcion  ?? 'N/A'}}</td>
                                                 <th scope="row">Grado:</th>
-                                                <td>{{ $asignaturaDocente->grado->descripcion }}</td>
+                                                <td>{{ $asignaturaDocente->grado->descripcion ?? 'N/A' }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Empleado:</th>
-                                                <td>{{ $asignaturaDocente->empleado->descripcion }}</td>
+                                                <td>{{ $asignaturaDocente->empleado->descripcion  ?? 'N/A'}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -87,9 +87,9 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Organizacion:</th>
-                                                <td>{{ $asignaturaDocente->organizacionAcademica->descripcion }}</td>
+                                                <td>{{ $asignaturaDocente->organizacionAcademica->descripcion ?? 'N/A'}}</td>
                                                 <th>Fecha:</th>
-                                                <td>{{ $asignaturaDocente->organizacionAcademica->fecha }}</td>
+                                                <td>{{ $asignaturaDocente->organizacionAcademica->fecha ?? 'N/A'}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Estado:</th>
