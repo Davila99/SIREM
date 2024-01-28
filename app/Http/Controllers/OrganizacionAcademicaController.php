@@ -11,21 +11,33 @@ class OrganizacionAcademicaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:organizacionacademica.index')->only('index', 'show');
-        $this->middleware('can:organizacionacademica.edit')->only('edit', 'update');
-        $this->middleware('can:organizacionacademica.create')->only('create', 'store');
+        $this->middleware('can:organizacionacademica.index')->only(
+            'index',
+            'show'
+        );
+        $this->middleware('can:organizacionacademica.edit')->only(
+            'edit',
+            'update'
+        );
+        $this->middleware('can:organizacionacademica.create')->only(
+            'create',
+            'store'
+        );
         $this->middleware('can:organizacionacademica.destroy')->only('destroy');
-
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $datos['organizacionacademicas'] = OrganizacionAcademica::get();
-        // dd($datos);
+        $yearFilter = $request->input('year');
+        $datos['organizacionacademicas'] = OrganizacionAcademica::query()
+            ->when($yearFilter, function ($query) use ($yearFilter) {
+                return $query->where('fecha', $yearFilter);
+            })
+            ->get();
         return view('organizacionacademica/index', $datos);
     }
 
@@ -55,7 +67,7 @@ class OrganizacionAcademicaController extends Controller
                 'descripcion.required' => 'El campo es obligatorio.',
             ]
         );
-        $fecha = date('Y-m-d');
+        $fecha = date('Y');
         $organizacionacademica = new OrganizacionAcademica();
         $organizacionacademica->fecha = $fecha;
         $organizacionacademica->descripcion = $request->descripcion;
@@ -65,7 +77,9 @@ class OrganizacionAcademicaController extends Controller
     }
     public function changeStatus(Request $request)
     {
-        $organizacionacademica = OrganizacionAcademica::find($request->organizacionacademica);
+        $organizacionacademica = OrganizacionAcademica::find(
+            $request->organizacionacademica
+        );
         $organizacionacademica->confirmed = $request->confirmed;
         $organizacionacademica->save();
         return response()->json(['success' => 'Cambio de estado con éxito.']);
@@ -77,9 +91,7 @@ class OrganizacionAcademicaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
-     
-    
+    {
         $datos['asignaturadocentes'] = AsignaturaDocente::query()
             ->with(['asignatura'])
             ->with(['empleado'])
@@ -87,8 +99,12 @@ class OrganizacionAcademicaController extends Controller
             ->with(['organizacionAcademica'])
             ->where('organizacion_academica_id', $id)
             ->get();
-            return view('asignaturadocente/index', $datos);
-
+        $organizacionacademica = OrganizacionAcademica::findOrFail($id);
+        return view(
+            'asignaturadocente/index',
+            $datos,
+            compact('organizacionacademica')
+        );
     }
 
     /**

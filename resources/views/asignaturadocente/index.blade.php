@@ -1,7 +1,7 @@
 @extends('layouts.custom-layout')
 @section('content')
-    <div class="container">
-
+    <div class="container text-center">
+        <h1 class="display-7 text-primary font-weight-bold">{{ $organizacionacademica->descripcion ?? 'N/A' }}</h1>
         <br>
         <a href="{{ url()->current() }}/asignaturadocente/create" class="btn btn-success">Nueva Asignatura Docente</a>
         <br>
@@ -13,7 +13,6 @@
                         <th>Asignatura</th>
                         <th>Docente</th>
                         <th>Grado</th>
-                        <th>Organización Docente</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -25,7 +24,6 @@
                             <td>{{ $asignaturadocente->asignatura->descripcion ?? 'N/A' }}</td>
                             <td>{{ $asignaturadocente->empleado->nombres ?? 'N/A' }}</td>
                             <td>{{ $asignaturadocente->grado->descripcion ?? 'N/A' }}</td>
-                            <td>{{ $asignaturadocente->organizacionAcademica->descripcion ?? 'N/A'}}</td>
                             <td>
                                 <div class="d-flex flex-row bd-highlight mb-6">
                                     <div class="d-inline">
@@ -78,8 +76,8 @@
                     "search": "Buscar:",
                     "paginate": {
                         first: '<i class="fas fa-angle-double-left"></i>',
-                        previous: '<i class="fas fa-angle-left"></i>', 
-                        next: '<i class="fas fa-angle-right"></i>', 
+                        previous: '<i class="fas fa-angle-left"></i>',
+                        next: '<i class="fas fa-angle-right"></i>',
                         last: '<i class="fas fa-angle-double-right"></i>'
                     },
                 }

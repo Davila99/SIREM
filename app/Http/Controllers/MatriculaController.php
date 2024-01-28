@@ -24,14 +24,16 @@ class MatriculaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index(Request  $request)
+    {  $yearFilter = $request->input('year');
         $datos['matriculas'] = Matricula::query()
             ->with(['estudiante'])
             ->with(['tipo_matricula'])
             ->with(['grupo'])
             ->with(['user'])
-            ->get();
+            ->when($yearFilter, function ($query) use ($yearFilter) {
+                return $query->where('fecha', $yearFilter);
+            })->get();
 
         // dd($datos);
         return view('matriculas/index', $datos);
@@ -73,7 +75,7 @@ class MatriculaController extends Controller
      */
     public function store(StoreMatriculaRequest $request)
     {  
-        $fecha = date('d-m-Y');
+        $fecha = date('Y');
         $existe = Matricula::where('estudiante_id', $request->estudiante_id)
         ->where('fecha', '=', $fecha)
         ->where('tipo_matricula_id', '=',  $request->tipo_matricula_id) 

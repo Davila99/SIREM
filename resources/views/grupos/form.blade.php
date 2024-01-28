@@ -49,27 +49,19 @@
         @enderror
 
     </div>
-    <div class="form-group">
-        <label for="seccion">
-            <h5>Empleados:</h5>
-        </label>
-        <select class="form-control @error('empleado_id') is-invalid @enderror" name="empleado_id" id="empleados">
 
-            <option value="" selected disabled>--Seleccione--</option>
-            @isset($empleados)
-                @foreach ($empleados as $empleado)
-                    <option value="{{ $empleado->id }}"
-                        @if (!empty($datos->empleado_id)) {{ $datos->empleado_id == $empleado->id ? 'selected' : '' }} @else {{ old('empleado_id') == $empleado->id ? 'selected' : '' }} @endif>
-                        {{ $empleado->nombres }} {{ $empleado->apellidos }} </option>
-                @endforeach
-            @endisset
+    <div class="form-group">
+        <label for="descripcion">
+            <h5>Empleados</h5>
+        </label><br>
+        <select name="empleado_id" class="buscador-empleados col-12 @error('empleado_id') is-invalid @enderror">
         </select>
         @error('empleado_id')
             <div class="invalid-feedback">
                 <h5> {{ $message }}</h5>
             </div>
         @enderror
-    </div>
+    </div> 
     <div class="form-group">
         <label for="seccion">
             <h5>Seccion:</h5>
@@ -122,6 +114,34 @@
 </div>
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.buscador-empleados').select2({
+                ajax: {
+                    url: '/buscar-empleados',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data, params) {
+                        let results = [];
+                        if (data) {
+                            results = data.data.map(item => {
+                                return {
+                                    id: item.id,
+                                    text: item.nombres + ' ' + item.apellidos
+                                }
+                            })
+                        }
+
+                        console.log(results);
+
+                        return {
+                            results: results
+                        };
+                    },
+                }
+            });
+        });
+    </script>
     @if (Session::has('mensaje-error'))
         <script>
             Swal.fire({

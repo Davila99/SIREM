@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\Asignatura;
 use App\Models\Empleado;
 use App\Models\Grupos;
-
 use App\Models\OrganizacionAcademica;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect; // Agregado
 
 class AsignaturaDocenteController extends Controller
 {
@@ -24,6 +24,15 @@ class AsignaturaDocenteController extends Controller
         );
         $this->middleware('can:asignaturadocente.destroy')->only('destroy');
     }
+
+    protected function obtenerOrganizacionAcademicaId()
+    {
+        $organizacionAcademicaId = OrganizacionAcademica::select(
+            'id'
+        )->latest('id')->first();
+        return $organizacionAcademicaId;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -32,14 +41,7 @@ class AsignaturaDocenteController extends Controller
     public function index()
     {
         dd('prueba');
-        // $datos['asignaturadocentes'] = AsignaturaDocente::query()
-        //     ->with(['asignatura'])
-        //     ->with(['empleado'])
-        //     ->with(['grado'])
-        //     ->with(['organizacionAcademica'])
-        //     ->get();
-        // return view('asignaturadocente/index', $datos);
-    }
+    }   
 
     /**
      * Show the form for creating a new resource.
@@ -47,21 +49,24 @@ class AsignaturaDocenteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create($organizacionacademica)
-    { 
+    {
         $asignaturas = Asignatura::all();
         $grupos = Grupos::all();
         $empleados = Empleado::where('cargos_id', 1)->get();
-   
+        $organizacionAcademicaId = $organizacionacademica;
+        $organizacionAcademica = OrganizacionAcademica::findOrFail($organizacionacademica);
         return view(
             'asignaturadocente/create',
             compact(
                 'asignaturas',
                 'empleados',
                 'grupos',
-                'organizacionacademica'
+                'organizacionAcademicaId',
+                'organizacionAcademica'
             )
         );
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -71,12 +76,10 @@ class AsignaturaDocenteController extends Controller
      */
     public function store(StoreAsignaturaDocenteRequest $request)
     {
-        dd(request()->all());
         $datos = request()->except('_token');
-       
-       
-        $organizacionDocente =   AsignaturaDocente::create($datos);
-      
+        AsignaturaDocente::insert($datos);
+        $ultimoInsertId = DB::getPdo()->lastInsertId();
+        $organizacionDocente = AsignaturaDocente::findOrFail($ultimoInsertId);
         return redirect()->route('organizacionacademica.show', $organizacionDocente->organizacion_academica_id);
     }
 
@@ -141,4 +144,4 @@ class AsignaturaDocenteController extends Controller
         AsignaturaDocente::destroy($id);
         return redirect('asignaturadocente/')->with('mensaje-eliminar', 'ok');
     }
-}
+ }
