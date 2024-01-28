@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ReporteCalificacionesController extends Controller
 {
-    public function index()
+    public function getData()
     {
         $datos['calificaciones'] = Calificaciones::query()
 
@@ -101,6 +101,11 @@ class ReporteCalificacionesController extends Controller
     '
             )
             ->get();
+            return $datos;
+    }
+    public function index()
+    {
+        $datos = $this->getData();
         return response()->json($datos);
     }
     public function busqueda()
@@ -110,6 +115,6 @@ class ReporteCalificacionesController extends Controller
  
     public function exportCalificaciones()
     {
-        return Excel::download(new ExcelReporteCalificaciones(), 'matriculas.xlsx');
+        return Excel::download(new ExcelReporteCalificaciones(), 'Calificaciones.xlsx');
     }
 }

@@ -33,7 +33,8 @@
                                 <a href="{{ url('/organizacionacademica/' . $organizacionacademica->id . '/edit') }}"
                                     class="btn btn-info">
                                     @include('components.buttons.edit-button')</a>|</div>
-                                    <div class="class=d-inline">
+                                    <div 
+                                    class="class=d-inline">
                                 <a href="{{ url('/organizacionacademica/' . $organizacionacademica->id) }}"
                                     class="btn btn-warning">
                                     @include('components.buttons.details-button')</a>|</div>

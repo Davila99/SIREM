@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PivotTableUI from "react-pivottable/PivotTableUI";
 import "react-pivottable/pivottable.css";
 
-const ReporteMatriculas = () => {
+const ReporteCalificaciones = () => {
     const [state, setState] = useState([]);
     const [calificaciones, setCalificaciones] = useState([]);
     const [search, setSearch] = useState("");
@@ -48,4 +48,4 @@ const ReporteMatriculas = () => {
     );
 };
 
-export default ReporteMatriculas;
+export default ReporteCalificaciones;

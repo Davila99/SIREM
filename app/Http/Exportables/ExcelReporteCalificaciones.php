@@ -34,23 +34,18 @@ class ExcelReporteCalificaciones implements FromCollection,  WithHeadings, Shoul
     public function headings(): array
     {
         return [
-            'FechaMatricula',
-            'AñoLectivo',
-            'PartidaNacimiento',
-            'TarjetaVacuna',
-            'DiplomaPrescolar',
-            'CedulaPadres',
-            'HojaTraslado',
-            'DiplomaSecundaria',
-            'NombreEstudiante',
-            'ApellidoEstudiante',
-            'CodigoEstudiante',
-            'FechaNacimiento',
-            'Direccion',
-            'Sexo',
+           
+            
+            'Calificacion',
+            'CalificacionCualitativa',
+            'Observacion',
             'Grado',
             'Seccion',
             'Turno',
+            'AñoLectivo',
+            'Asignatura',
+            
+            'Corte',
         ];
     }
     public function collection()
