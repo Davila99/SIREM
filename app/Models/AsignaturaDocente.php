@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class AsignaturaDocente extends Model
+
 {
     use HasFactory;
     protected $guarded = [];
@@ -29,5 +30,6 @@ class AsignaturaDocente extends Model
     {
         return $this->belongsTo(OrganizacionAcademica::class, 'organizacion_academica_id');
     }
+    
 
 }

@@ -40,7 +40,7 @@ class AsignaturaDocenteController extends Controller
      */
     public function index()
     {
-        dd('prueba');
+        
     }   
 
     /**

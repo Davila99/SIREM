@@ -8,6 +8,7 @@ use App\Http\Resources\EmpleadoCollection;
 use App\Models\Cargo;
 use App\Models\Empleado;
 use App\Models\Grupos;
+use App\Models\AsignaturaDocente;
 use App\Models\Niveles_academico;
 use Illuminate\Http\Request;
 
@@ -118,17 +119,20 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        $esxiteDato = Grupos::where('id_tutor', $id)->find();
-        dd($esxiteDato);
-        if ($esxiteDato) {
-            return redirect('empleados/')->with('mensaje-error-eliminar', 'ok');
-        } else {
-            Empleado::destroy($id);
-            return redirect('empleados/')->with('mensaje-eliminar', 'ok');
-        }
+{
+    $existeDatoEnGrupos = Grupos::where('empleado_id', $id)->exists();
+    $existeDatoEnAsignaturaDocente = AsignaturaDocente::where('empleado_id', $id)->exists();
 
+    if ($existeDatoEnGrupos || $existeDatoEnAsignaturaDocente) {
+        return redirect('empleados/')->with('mensaje-error-eliminar', 'ok');
+    } else {
+        Empleado::destroy($id);
+        return redirect('empleados/')->with('mensaje-eliminar', 'ok');
     }
+}
+
+
+
     public function search(Request $request)
     {
         if (!isset($request->term)) {

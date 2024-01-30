@@ -12,6 +12,7 @@
                 </tr>
             </thead>
             <tbody>
+                
                 @foreach ($cursos as $curso)
                     <tr>
                         <td>{{ $curso->asignatura->descripcion }}</td>

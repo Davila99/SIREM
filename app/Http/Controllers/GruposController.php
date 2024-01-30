@@ -151,8 +151,13 @@ class GruposController extends Controller
      */
     public function destroy($id)
     {
-        Grupos::destroy($id);
-        return redirect('grupos/')->with('mensaje-eliminar', 'ok');
+        try {
+            Grupos::destroy($id);
+            return redirect('grupos/')->with('mensaje-eliminar', 'ok');
+        } catch (\Throwable $th) {
+            return redirect('grupos')->with('mensaje-error-eliminar', 'ok');
+        }
+        
     }
 
     public function search(Request $request)
