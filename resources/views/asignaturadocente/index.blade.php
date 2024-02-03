@@ -27,26 +27,20 @@
                             <td>
                                 <div class="d-flex flex-row bd-highlight mb-6">
                                     <div class="d-inline">
-                                        <a href="{{ url('/asignaturadocente/' . $asignaturadocente->id . '/edit') }}"
-                                            class="btn btn-info">
-                                            @include('components.buttons.edit-button') </a>
+                                        <a href="{{ url('/asignaturadocente/' . $asignaturadocente->id . '/edit') }}" class="btn btn-info">
+                                            @include('components.buttons.edit-button')
+                                        </a>
                                     </div>
                                     |
                                     <div class="d-inline">
-                                        <a href="{{ url('/asignaturadocente/' . $asignaturadocente->id) }}"
-                                            class="btn btn-warning">
-                                            @include('components.buttons.details-button') </a>
+                                        <a href="{{ url('/asignaturadocente/' . $asignaturadocente->id) }}" class="btn btn-warning">
+                                            @include('components.buttons.details-button')
+                                        </a>
                                     </div>
                                     |
-                                    <form class="form-eliminar"
-                                        action="{{ url('/asignaturadocente/' . $asignaturadocente->id) }}" method="post"
-                                        class="d-inline">
-                                        @csrf
-                                        {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger">@include('components.buttons.delete-button')</button>
-                                    </form>
-                                </div>
+                                    
 
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -55,7 +49,6 @@
         </div>
     </div>
 @endsection
-
 
 @section('js')
     <script>
@@ -70,7 +63,7 @@
                     "lengthMenu": "Mostrar _MENU_ registros por pagina",
                     "zeroRecords": "No se encontraron resultados en su busqueda",
                     "searchPlaceholder": "Buscar registros",
-                    "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+                    "info": "Mostrando registros de _START_ al _END_ de un total de _TOTAL_ registros",
                     "infoEmpty": "No existen registros",
                     "infoFiltered": "(filtrado de un total de _MAX_ registros)",
                     "search": "Buscar:",
@@ -119,23 +112,25 @@
         </script>
     @endif
     <script>
-        $('.form-eliminar').submit(function(e) {
-            e.preventDefault();
-            Swal.fire({
-                title: '¿Estas seguro?',
-                text: "No podrás revertir esto.!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si eliminar',
-                cancelButtonText: 'Calcelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    this.submit();
-                }
-            })
+    $('.form-eliminar').submit(function(e) {
+        e.preventDefault();
+        var form = this;
 
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "No podrás revertir esto.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
         });
-    </script>
+    });
+</script>
+
 @endsection

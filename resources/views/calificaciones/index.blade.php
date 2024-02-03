@@ -3,6 +3,7 @@
 
     @csrf
     <div class="table-responsive" style="min-height: 250px">
+           
         <table id="calificaciones-table" class="table table-dark">
             <thead class="thead-light">
                 <tr>

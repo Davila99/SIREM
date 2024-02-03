@@ -64,6 +64,7 @@ Route::get('/export-calificaciones', 'ReporteCalificacionesController@exportCali
 
 
 
+
 Route::get('/home', [
     App\Http\Controllers\HomeController::class,
     'index',
@@ -107,6 +108,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('tutores', TutoreController::class);
     Route::resource('consanguiniedades', ConsanguiniedadeController::class);
     Route::resource('asignaturadocente', AsignaturaDocenteController::class);
+   
+
     Route::resource('matriculas', MatriculaController::class);
     Route::resource('grupos', GruposController::class);
     Route::resource('calificaciones', CalificacionesController::class);
@@ -158,4 +161,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/search-empleado', [EmpleadoController::class, 'busqueda']);
 
     Route::get('/search-matricula', [MatriculaController::class, 'busqueda']);
+    
 });

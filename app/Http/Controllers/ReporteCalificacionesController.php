@@ -13,7 +13,10 @@ class ReporteCalificacionesController extends Controller
     {
         $datos['calificaciones'] = Calificaciones::query()
 
-            ->leftJoin('calificacion_detalles', 'calificaciones.id', '=', 'calificacion_detalles.calificacion_id')
+            ->leftJoin('calificacion_detalles', 'calificaciones.id',
+             '=', 
+             'calificacion_detalles.calificacion_id')
+             
             ->leftJoin('estudiantes', 'calificacion_detalles.id', '=', 'calificacion_detalles.estudiante_id')
             ->select('estudiantes.nombres as Estudiante')
             ->selectRaw(        '

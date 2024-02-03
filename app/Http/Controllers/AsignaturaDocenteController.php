@@ -140,8 +140,9 @@ class AsignaturaDocenteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        AsignaturaDocente::destroy($id);
-        return redirect('asignaturadocente/')->with('mensaje-eliminar', 'ok');
-    }
+{
+    AsignaturaDocente::destroy($id);
+    return redirect()->route('asignaturadocente.index')->with('mensaje-eliminar', 'ok');
+}
+
  }
