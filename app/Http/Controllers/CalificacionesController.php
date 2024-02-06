@@ -153,20 +153,21 @@ class CalificacionesController extends Controller
     public function index()
     {
         $cursos = AsignaturaDocente::query()
-            ->with(['asignatura'])
-            ->with(['grupo'])
-            ->where('empleado_id', auth()->id())
+            ->join('organizacion_academicas', 'asignatura_docentes.organizacion_academica_id', '=', 'organizacion_academicas.id')
+            ->with(['asignatura', 'grupo'])
+            ->where('asignatura_docentes.empleado_id', auth()->id())
+            ->where('organizacion_academicas.confirmed', true)
             ->get();
+    
         $cortes = Cortes_evaluativo::all();
+    
         if ($cursos->isEmpty()) {
             return view('calificaciones.mensaje')->with('mensaje', 'ok');
-
         } else {
             return view('calificaciones.index', compact('cursos', 'cortes'));
         }
-
-
     }
+    
     /**
      * Show the form for creating a new resource.
      *
