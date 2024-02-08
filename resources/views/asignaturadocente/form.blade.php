@@ -25,6 +25,8 @@
                 </div>
             @enderror
         </div>
+        
+     
 
         <div class="form-group">
             <label for="grupo_id">
@@ -39,12 +41,12 @@
             @enderror
         </div>
     </fieldset>
-    <div class=" d-grid mt-1 col-sm-1">
+    <div class="d-grid mt-1 col-sm-1">
         <input type="submit" value="Guardar" class="btn btn-success">
     </div>
 
     <div class="d-grid mt-1 col-sm-1">
-        <a type="button" class="btn btn-primary" href="{{ url('asignaturadocente/') }}"> Regresar </a>
+        <a type="button" class="btn btn-primary" href="{{ url('organizacionacademica/1') }}"> Regresar </a>
     </div>
 
 </div>

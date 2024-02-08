@@ -38,7 +38,12 @@
                                         </a>
                                     </div>
                                     |
-                                    
+                                    <form class="form-eliminar" action="{{ url('/asignaturadocente/' . $asignaturadocente->id) }}"
+                                        method="post" class="d-inline">
+                                        @csrf
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-danger"> @include('components.buttons.delete-button')</button>
+                                    </form>
 
                                 </div>
                             </td>
