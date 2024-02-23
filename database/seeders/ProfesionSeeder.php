@@ -33,5 +33,24 @@ class ProfesionSeeder extends Seeder
             'updated_at' => Carbon::now(),
 
         ]);
+        DB::table('professions')->insert([
+            'descripcion' => 'Ingeniero Civil',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+
+        ]);
+        DB::table('professions')->insert([
+            'descripcion' => 'Ingeniero Electrico',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+
+        ]);
+        DB::table('professions')->insert([
+            'descripcion' => 'Ingeniero Mecanico',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+
+        ]);
+
     }
 }

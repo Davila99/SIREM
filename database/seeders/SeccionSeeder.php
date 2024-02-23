@@ -27,5 +27,31 @@ class SeccionSeeder extends Seeder
             'updated_at' => Carbon::now(),
 
         ]);
+        DB::table('seccions')->insert([
+            'descripcion' => 'Secccion C',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+
+        ]);
+
+        DB::table('seccions')->insert([
+            'descripcion' => 'Secccion D',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+
+        ]);
+        DB::table('seccions')->insert([
+            'descripcion' => 'Secccion E',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+
+        ]);
+        DB::table('seccions')->insert([
+            'descripcion' => 'Secccion F',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+
+        ]);
+
     }
 }

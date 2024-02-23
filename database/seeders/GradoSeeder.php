@@ -30,5 +30,51 @@ class GradoSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+        DB::table('grados')->insert([
+            'descripcion' => 'Cuarto',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('grados')->insert([
+            'descripcion' => 'Quinto',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('grados')->insert([
+            'descripcion' => 'Sexto',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('grados')->insert([
+            'descripcion' => 'Septimo',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('grados')->insert([
+            'descripcion' => 'Octavo',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('grados')->insert([
+            'descripcion' => 'Noveno',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('grados')->insert([
+            'descripcion' => 'Decimo',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('grados')->insert([
+            'descripcion' => 'Undecimo',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('grados')->insert([
+            'descripcion' => 'Duodecimo',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
     }
 }

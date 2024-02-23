@@ -104,7 +104,7 @@ class TutoreController extends Controller
     {
 
         $datos = request()->except(['_token', '_method']);
-        $existeDato = Tutore::where('cedula', $datos['cedula'])->where('id', '!=', $id)->exists();
+        $existeDato = Tutore::where('apellido', $datos['apellido'])->where('id', '!=', $id)->exists();
         if ($existeDato) {
             return redirect('tutores/' . $id . '/edit')->with('mensaje-error', 'ok');
         } else {
