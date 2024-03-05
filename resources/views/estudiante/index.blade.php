@@ -5,8 +5,8 @@
         <br>
         <div class="row mb-3">
             <div class="col">
-                <a href="{{ url('estudiantes/create') }}" class="btn btn-success btn-block">Nuevo Estudiante</a>
-            </div>
+                <a href="{{ url('estudiantes/create') }}" class="btn btn-success ">Nuevo Estudiante</a>
+            </div>            
             @if (auth()->user()->hasRole('super-admin'))
                 <div class="col">
                     <form action="{{ url('estudiantes-importar/') }}" method="POST" enctype="multipart/form-data"
