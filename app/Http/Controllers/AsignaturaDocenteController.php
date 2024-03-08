@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAsignaturaDocenteRequest;
 use App\Models\AsignaturaDocente;
-use Illuminate\Http\Request;
 use App\Models\Asignatura;
 use App\Models\Empleado;
 use App\Models\Grupos;
 use App\Models\OrganizacionAcademica;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect; // Agregado
+
 
 class AsignaturaDocenteController extends Controller
 {
@@ -76,11 +75,21 @@ class AsignaturaDocenteController extends Controller
      */
     public function store(StoreAsignaturaDocenteRequest $request)
     {
-        $datos = request()->except('_token');
-        AsignaturaDocente::insert($datos);
-        $ultimoInsertId = DB::getPdo()->lastInsertId();
-        $organizacionDocente = AsignaturaDocente::findOrFail($ultimoInsertId);
-        return redirect()->route('organizacionacademica.show', $organizacionDocente->organizacion_academica_id);
+        $organizacionAcademicaCofirmed = OrganizacionAcademica::findOrFail($request->organizacion_academica_id);
+        $confirmed = $organizacionAcademicaCofirmed->confirmed;
+        if ($confirmed == 1) {
+            $datos = request()->except('_token');
+            return redirect()->route('organizacionacademica.index')->with('mensaje-alerta', 'ok');
+        }
+        elseif ($confirmed == 0) {
+            $datos = request()->except('_token');
+            AsignaturaDocente::insert($datos);
+            $ultimoInsertId = DB::getPdo()->lastInsertId();
+            $organizacionDocente = AsignaturaDocente::findOrFail($ultimoInsertId);
+            return redirect()->route('organizacionacademica.show', $organizacionDocente->organizacion_academica_id);
+        }
+
+    
     }
 
     /**

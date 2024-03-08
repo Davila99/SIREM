@@ -147,6 +147,15 @@
             )
         </script>
     @endif
+    @if (Session::has('mensaje-alerta'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Organización Academica autorizada!, no se permite realizar cambios.',
+        })
+    </script>
+@endif
 
     @if (Session::has('mensaje-error-eliminar'))
         <script>
