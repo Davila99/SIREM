@@ -10,7 +10,6 @@ use App\Models\Grupos;
 use App\Models\OrganizacionAcademica;
 use Illuminate\Support\Facades\DB;
 
-
 class AsignaturaDocenteController extends Controller
 {
     public function __construct()
@@ -26,9 +25,9 @@ class AsignaturaDocenteController extends Controller
 
     protected function obtenerOrganizacionAcademicaId()
     {
-        $organizacionAcademicaId = OrganizacionAcademica::select(
-            'id'
-        )->latest('id')->first();
+        $organizacionAcademicaId = OrganizacionAcademica::select('id')
+            ->latest('id')
+            ->first();
         return $organizacionAcademicaId;
     }
 
@@ -39,8 +38,7 @@ class AsignaturaDocenteController extends Controller
      */
     public function index()
     {
-        
-    }   
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -53,7 +51,9 @@ class AsignaturaDocenteController extends Controller
         $grupos = Grupos::all();
         $empleados = Empleado::where('cargos_id', 1)->get();
         $organizacionAcademicaId = $organizacionacademica;
-        $organizacionAcademica = OrganizacionAcademica::findOrFail($organizacionacademica);
+        $organizacionAcademica = OrganizacionAcademica::findOrFail(
+            $organizacionacademica
+        );
         return view(
             'asignaturadocente/create',
             compact(
@@ -65,7 +65,6 @@ class AsignaturaDocenteController extends Controller
             )
         );
     }
-    
 
     /**
      * Store a newly created resource in storage.
@@ -75,21 +74,29 @@ class AsignaturaDocenteController extends Controller
      */
     public function store(StoreAsignaturaDocenteRequest $request)
     {
-        $organizacionAcademicaCofirmed = OrganizacionAcademica::findOrFail($request->organizacion_academica_id);
+        $organizacionAcademicaCofirmed = OrganizacionAcademica::findOrFail(
+            $request->organizacion_academica_id
+        );
         $confirmed = $organizacionAcademicaCofirmed->confirmed;
         if ($confirmed == 1) {
             $datos = request()->except('_token');
-            return redirect()->route('organizacionacademica.index')->with('mensaje-alerta', 'ok');
-        }
-        elseif ($confirmed == 0) {
+            return redirect()
+                ->route('organizacionacademica.index')
+                ->with('mensaje-alerta', 'ok');
+        } elseif ($confirmed == 0) {
             $datos = request()->except('_token');
             AsignaturaDocente::insert($datos);
             $ultimoInsertId = DB::getPdo()->lastInsertId();
-            $organizacionDocente = AsignaturaDocente::findOrFail($ultimoInsertId);
-            return redirect()->route('organizacionacademica.show', $organizacionDocente->organizacion_academica_id);
+            $organizacionDocente = AsignaturaDocente::findOrFail(
+                $ultimoInsertId
+            );
+            
+            return redirect()->route(
+                'organizacionacademica.show',
+                $organizacionDocente->organizacion_academica_id
+            );
+            session()->flash('mensaje', 'ok');
         }
-
-    
     }
 
     /**
@@ -150,11 +157,17 @@ class AsignaturaDocenteController extends Controller
      */
     public function destroy($id)
     {
-    try {
-        AsignaturaDocente::destroy($id);
-        return redirect('asignaturadocente/')->with('mensaje-eliminar', 'ok');
-    } catch (\Throwable $th) {
-        return redirect('asignaturadocente/')->with('mensaje-error-eliminar', 'ok');
+        try {
+            AsignaturaDocente::destroy($id);
+            return redirect('asignaturadocente/')->with(
+                'mensaje-eliminar',
+                'ok'
+            );
+        } catch (\Throwable $th) {
+            return redirect('asignaturadocente/')->with(
+                'mensaje-error-eliminar',
+                'ok'
+            );
+        }
     }
-    }
- }
+}
