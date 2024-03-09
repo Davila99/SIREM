@@ -9,15 +9,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            font-size: 14px;
+            font-size: 12px; /* Reducir el tamaño de la fuente */
         }
 
         .container {
-            max-width: 95%;
+            max-width: 100%; /* Utilizar el ancho completo */
             margin: 0;
-            padding: 20px;
-            border: 1px solid #ccc;
-
+            padding: 10px; /* Reducir el relleno */
         }
 
         table {
@@ -26,13 +24,23 @@
 
         .footer {
             position: absolute;
-            bottom: 20px;
+            bottom: 10px; /* Reducir el espacio inferior */
+            width: 100%;
         }
 
         .imagen-arriba {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 5px;
+            left: 5px;
+            width: 100px; /* Ajustar el tamaño de la imagen */
+        }
+
+        .section {
+            margin-bottom: 10px; /* Reducir el espacio entre secciones */
+        }
+
+        .table th, .table td {
+            padding: 0.25rem; /* Reducir el espacio en las celdas de la tabla */
         }
     </style>
 </head>
@@ -41,10 +49,8 @@
     <div class="container">
         <h4 class="text-center mb-3">Hoja de Matrícula</h4>
         <div class="imagen-container">
-            <img src="images/logo.jpeg" alt="Imagen de Matrícula" width="113px" class="imagen-arriba">
-
+            <img src="images/logo.jpeg" alt="Imagen de Matrícula" class="imagen-arriba">
         </div>
-
         <div class="section mt-5 mb-3 bg-white">
             <h4>Información del Estudiante</h4>
             <table class="table table-bordered">
@@ -129,35 +135,34 @@
                 </tbody>
             </table>
         </div>
-
-        <div class="section mb-4">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td class="text-center">
-                            <div class="signature-box p-3">
-                                <h6 class="mb-0">Firma del Tutor</h6>
-                                <hr>
-                            </div>
-                        </td>
-                        <td class="text-center">
-                            <div class="signature-box p-3">
-                                <h6 class="mb-0">Firma del Director</h6>
-                                <hr>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="footer mt-4">
-            <p class="text-center font-weight-bold text-primary">Colegio Cristiano Manto de Gracia</p>
-        </div>
     </div>
 
+    <!-- Firmas como pie de página -->
+    <div class="footer mt-4">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td class="text-center">
+                        <div class="signature-box p-3">
+                            <h6 class="mb-0">Firma del Tutor</h6>
+                            <hr>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <div class="signature-box p-3">
+                            <h6 class="mb-0">Firma del Director</h6>
+                            <hr>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="text-center font-weight-bold text-primary">Colegio Cristiano Manto de Gracia</p>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 </body>
 
 </html>
+
+
