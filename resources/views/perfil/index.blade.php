@@ -8,8 +8,8 @@
                     <div class="card-body text-center">
                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                             class="rounded-circle img-fluid" style="width: 150px;">
-                        <h5 class="my-3">{{ $perfil->name }}</h5>
-                        <p class="text-muted mb-1">{{ $perfil->email }}</p>
+                        <h5 class="my-3">{{ $perfil->name ?? 'N/A' }}</h5>
+                        <p class="text-muted mb-1">{{ $perfil->email ?? 'N/A' }}</p>
                         <p class="text-muted mb-4">Cuenta de Usuario</p>
                         <div class="d-flex justify-content-center mb-2">
                             <form class="form-eliminar" method="POST">

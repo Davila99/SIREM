@@ -31,11 +31,11 @@
                                             @include('calificaciones.dropdown-cortes')
                                         </div>
                                     </div>
-                                    | <div class="d-inline">
+                                    {{-- | <div class="d-inline">
                                         <a type="button" href="{{ url('calificaciones-final', ['asignatura_id' => $curso->asignatura->id, 'grupo_id' => $curso->grupo->id]) }}" target="blank">
                                             <input type="submit" value="Imprimir Acta General" class="btn btn-warning" />
                                         </a>
-                                    </div>
+                                    </div> --}}
                                     
 
                                 </div>
