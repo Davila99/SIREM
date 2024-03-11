@@ -255,7 +255,7 @@ return [
                     'can' => 'cargos.index',
                 ],
                 [
-                    'text' => 'Consanguiniedad',
+                    'text' => 'Consanguinidad',
                     'route' => 'consanguiniedades.index',
                     'icon' => 'fab fa-adn',
                     'can' => 'consanguiniedades.index',

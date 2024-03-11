@@ -3,14 +3,14 @@
     <div class="container">
  
         <br>
-        <a href="{{ url('nivelacademic/create') }}" class="btn btn-success"> Nuevo Nivel academico </a>
+        <a href="{{ url('nivelacademic/create') }}" class="btn btn-success"> Nuevo Nivel académico </a>
         <br>
         <br>
         <div class="table-responsive">
             <table class="table table-dark">
                 <thead class="thead-light">
                     <tr>
-                        <th>Niveles Academicos</th>
+                        <th>Niveles Académicos</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>

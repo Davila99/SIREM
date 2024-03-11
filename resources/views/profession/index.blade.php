@@ -2,7 +2,7 @@
 @section('content')
 
     <br>
-    <a href="{{ url('profession/create') }}" class="btn btn-success"> Nueva Profesion </a>
+    <a href="{{ url('profession/create') }}" class="btn btn-success"> Nueva Profesión </a>
     <br>
     <br>
     <table id="profesiones-table" class="table table-dark">
