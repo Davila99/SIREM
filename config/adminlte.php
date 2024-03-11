@@ -327,11 +327,28 @@ return [
                     'icon' => 'fas fa-user-friends',
                     'can' => 'tutores.index',
                 ],
+                // [
+                //     'text' => 'Matriculas',
+                //     'route' => 'matriculas.index',
+                //     'icon' => 'fas fa-solid fa-briefcase',
+                //     'can' => 'matriculas.index',
+                // ],
                 [
                     'text' => 'Matriculas',
-                    'route' => 'matriculas.index',
                     'icon' => 'fas fa-solid fa-briefcase',
-                    'can' => 'matriculas.index',
+                    'submenu' => [
+                        [
+                            'text' => 'Reingreso',
+                            'route' => 'matriculas.index',
+                            'icon' => 'fas fa-solid fa-clipboard-list',
+                        ],
+                        [
+                            'text' => 'Nuevo Ingreso',
+                            'route' => 'matriculas.index2',
+                            'icon' => 'fas fa-solid fa-clipboard-list',
+                        ],
+                        
+                    ],
                 ],
                 [
                     'text' => 'Reportes',

@@ -110,6 +110,7 @@ Route::middleware(['auth'])->group(function () {
    
 
     Route::resource('matriculas', MatriculaController::class);
+    Route::get('matriculas-nuevo-ingreso', [MatriculaController::class, 'index2'])->name('matriculas.index2');
     Route::resource('grupos', GruposController::class);
     Route::resource('calificaciones', CalificacionesController::class);
     Route::get('historial-academico/{estudiante}', [HistorialAcademicoController::class, 'index'])->name('index');

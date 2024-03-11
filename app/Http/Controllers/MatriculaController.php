@@ -25,18 +25,37 @@ class MatriculaController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request  $request)
-    {  $yearFilter = $request->input('year');
+    { 
+        $yearFilter = $request->input('year');
         $datos['matriculas'] = Matricula::query()
             ->with(['estudiante'])
-            ->with(['tipo_matricula'])
+            ->with(['tipo_matricula' => function ($query) {
+                $query->where('descripcion', 'Reingreso');
+            }])
+            ->with(['grupo'])
+            ->with(['user'])
+            ->when($yearFilter, function ($query) use ($yearFilter) {
+                return $query->where('fecha', $yearFilter);
+            })->get();
+        
+        return view('matriculas/index', $datos);
+        
+    }
+    public function index2(Request  $request)
+    {  
+        $yearFilter = $request->input('year');
+        $datos['matriculas'] = Matricula::query()
+            ->with(['estudiante'])
+            ->with(['tipo_matricula' => function ($query) {
+                $query->where('descripcion', 'Primer ingreso');
+            }])
             ->with(['grupo'])
             ->with(['user'])
             ->when($yearFilter, function ($query) use ($yearFilter) {
                 return $query->where('fecha', $yearFilter);
             })->get();
 
-        // dd($datos);
-        return view('matriculas/index', $datos);
+        return view('matriculas/index2', $datos);
     }
     public function busqueda()
     {
