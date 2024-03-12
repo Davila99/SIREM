@@ -2,7 +2,7 @@
 @section('content')
 
     <br>
-    <a href="{{ url('seccion/create') }}" class="btn btn-success"> Nueva Seccion </a>
+    <a href="{{ url('seccion/create') }}" class="btn btn-success"> Nueva Sección </a>
     <br>
     <br>
     <table class="table table-dark">

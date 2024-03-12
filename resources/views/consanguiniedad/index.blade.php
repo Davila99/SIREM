@@ -3,14 +3,14 @@
     <div class="container">
 
         <br>
-        <a href="{{ url('consanguiniedades/create') }}" class="btn btn-success"> Nuevo Consanguiniedad </a>
+        <a href="{{ url('consanguiniedades/create') }}" class="btn btn-success"> Nuevo Consanguinidad </a>
         <br>
         <br>
         <div class="table-responsive">
             <table class="table table-dark">
                 <thead class="thead-light">
                     <tr>
-                        <th> Consanguiniedades</th>
+                        <th>Consanguinidades</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>

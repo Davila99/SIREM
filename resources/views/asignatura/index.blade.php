@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <br>
-        <a href="{{ url('asignaturas/create') }}" class="btn btn-success"> Nuevo Asignatura </a>
+        <a href="{{ url('asignaturas/create') }}" class="btn btn-success"> Nueva Asignatura </a>
         <br>
         <br>
         <div class="table-responsive">
