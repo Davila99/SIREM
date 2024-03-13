@@ -31,7 +31,7 @@
 
     <div class="form-group">
         <label for="codigo_estudiante">
-            <h5>Codigo Estudiante:</h5>
+            <h5>Código Estudiante:</h5>
         </label>
         <input id="codigo_estudiante" name="codigo_estudiante" type="text" placeholder="codigo_estudiante"
             class="form-control @error('codigo_estudiante') is-invalid @enderror"
@@ -58,10 +58,10 @@
     </div>
     <div class="form-group">
         <label for="direccion">
-            <h5>Direccion:</h5>
+            <h5>Dirección:</h5>
         </label>
         <input id="direccion" name="direccion" type="text"
-            class="form-control @error('direccion') is-invalid @enderror" placeholder="Direccón"
+            class="form-control @error('direccion') is-invalid @enderror" placeholder="Dirección"
             value="{{ isset($datos->direccion) ? $datos->direccion : old('direccion') }}">
         @error('direccion')
             <div class="invalid-feedback">
