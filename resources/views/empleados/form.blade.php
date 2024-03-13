@@ -30,10 +30,10 @@
 
     <div class="form-group">
         <label for="telefono">
-            <h5>Telefono:</h5>
+            <h5>Teléfono:</h5>
         </label><br>
         <input type="text" class="form-control @error('telefono') is-invalid @enderror"
-            placeholder="Numero de Telefono" id="telefono" name="telefono"
+            placeholder="Numero de Teléfono" id="telefono" name="telefono"
             value="{{ isset($datos->telefono) ? $datos->telefono : old('telefono') }}"><br>
         @error('telefono')
             <div class="invalid-feedback">
@@ -72,7 +72,7 @@
 
     <div class="form-group">
         <label for="nivel_academico_id">
-            <h5>Nivel Academico:</h5>
+            <h5>Nivel Académico:</h5>
         </label>
         <select class="form-control @error('nivel_academico_id') is-invalid @enderror" name="nivel_academico_id"
             id="professions">
@@ -96,7 +96,7 @@
     <div class="form-group">
 
         <label for="direccion">
-            <h5>Direccion:</h5>
+            <h5>Dirección:</h5>
         </label>
         <input type="text" id="direccion" name="direccion"
             class="form-control @error('direccion') is-invalid @enderror" placeholder="Dirección"

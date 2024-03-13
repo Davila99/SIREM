@@ -14,10 +14,10 @@
 
     <div class="form-group">
         <label for="email">
-            <h5>Correo Electronico:</h5>
+            <h5>Correo Electrónico:</h5>
         </label>
         <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror"
-            placeholder="Correo electronico" value="{{ isset($datos->email) ? $datos->email : old('email') }}">
+            placeholder="Correo electrónico" value="{{ isset($datos->email) ? $datos->email : old('email') }}">
         @error('email')
             <div class="invalid-feedback">
                 <h5> {{ $message }}</h5>

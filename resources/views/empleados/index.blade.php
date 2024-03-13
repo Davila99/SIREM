@@ -11,10 +11,10 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>Telefono</th>
-                        <th>Nivel Academico</th>
+                        <th>Teléfono  </th>
+                        <th>Nivel Académico</th>
                         <th>Fecha ingreso</th>
-                        <th>Antiguedad</th>
+                        <th>Antigüedad</th>
                         <th>Cargo</th>
                         <th>Acciones</th>
                     </tr>

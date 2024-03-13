@@ -31,7 +31,7 @@
                         <th>Grado</th>
                         <th>Año Lectivo</th>
                         <th>Docente</th>
-                        <th>Seccion</th>
+                        <th>Sección</th>
                         <th>Turno</th>
                         <th>Acciones</th>
                     </tr>
