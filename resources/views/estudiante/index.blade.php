@@ -35,7 +35,7 @@
                         <th>Apellidos</th>
                         <th>Fecha Nacimiento</th>
                         <th>Edad</th>
-                        <th>Direccion</th>
+                        <th>Dirección</th>
                         <th>Tutor</th>
                         <th>Sexo</th>
                         <th>Acciones</th>
