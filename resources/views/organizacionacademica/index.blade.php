@@ -3,7 +3,7 @@
 <div class="container">
 <div class="d-flex justify-content-between align-items-center">
     
-    <a href="{{ url('organizacionacademica/create') }}" class="btn btn-success">Nuevo Organizacion Academica</a>
+    <a href="{{ url('organizacionacademica/create') }}" class="btn btn-success">Nuevo Organización Académica</a>
     <form method="get" action="{{ route('organizacionacademica.index') }}" class="form-inline">
         <div class="form-group mr-2">
             <label for="year" class="mr-2">Filtrar por año:</label>

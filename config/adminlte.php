@@ -244,18 +244,18 @@ return [
             'label_color' => 'primary',
         ],
         [
-            'text' => 'Catalogos',
+            'text' => 'Catálogos',
             'icon' => 'fas fa-solid fa-bars',
             'can' => 'cargos.index',
             'submenu' => [
                 [
-                    'text' => 'Cargo',
+                    'text' => 'Cargos',
                     'route' => 'cargos.index',
                     'icon' => 'fas fa-solid fa-address-book',
                     'can' => 'cargos.index',
                 ],
                 [
-                    'text' => 'Consanguinidad',
+                    'text' => 'Consanguinidades',
                     'route' => 'consanguiniedades.index',
                     'icon' => 'fab fa-adn',
                     'can' => 'consanguiniedades.index',
@@ -291,19 +291,19 @@ return [
                     'can' => 'cevaluativos.index',
                 ],
                 [
-                    'text' => 'Nivel Academico',
+                    'text' => 'Nivel Académico',
                     'route' => 'nivelacademic.index',
                     'icon' => 'fas fa-graduation-cap',
                     'can' => 'nivelacademic.index',
                 ],
                 [
-                    'text' => 'Profesion',
+                    'text' => 'Profesión',
                     'route' => 'profession.index',
                     'icon' => 'fas fa-solid fa-user-tie',
                     'can' => 'profession.index',
                 ],
                 [
-                    'text' => 'Tipo de Matricula',
+                    'text' => 'Tipo de Matriculas',
                     'route' => 'tmatricula.index',
                     'icon' => 'fas fa-solid fa-file-signature',
                     'can' => 'tmatricula.index',
@@ -360,7 +360,7 @@ return [
             'submenu' => [
  
                 [
-                    'text' => 'Organización Academica',
+                    'text' => 'Organización Académica ',
                     'route' => 'organizacionacademica.index',
                     'icon' => 'fas fa-sitemap',
                     'can' => 'organizacionacademica.index',
