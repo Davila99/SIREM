@@ -38,7 +38,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Correo Electronico</p>
+                                <p class="mb-0">Correo Electrónico</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{ $perfil->empleado->email ?? 'N/A' }}</p>
@@ -47,7 +47,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Numero de Telefono</p>
+                                <p class="mb-0">Numero de Teléfono</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{ $perfil->empleado->telefono ?? 'N/A' }}</p>
@@ -65,7 +65,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Direccion</p>
+                                <p class="mb-0">Dirección</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{ $perfil->empleado->direccion ?? 'N/A' }}</p>
@@ -74,7 +74,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Nivel Academico</p>
+                                <p class="mb-0">Nivel Académico</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{ $perfil->empleado->nivel_academico->descripcion ?? 'N/A' }}

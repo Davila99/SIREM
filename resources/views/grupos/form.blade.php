@@ -6,21 +6,20 @@
             </label>
             <select class="form-control @error('anio_lectivo') is-invalid @enderror" name="anio_lectivo">
                 <option value="" selected disabled>--Seleccione--</option>
-            
+
                 @php
                     $anio_actual = date('Y');
                 @endphp
-            
+
                 @for ($anio = 2000; $anio <= 2100; $anio++)
                     <option value="{{ $anio }}"
                         @if (!empty($datos->anio_lectivo)) {{ $datos->anio_lectivo == $anio ? 'selected' : '' }}
-                        @else {{ old('anio_lectivo') == $anio ? 'selected' : '' }}
-                        @endif>
+                        @else {{ old('anio_lectivo') == $anio ? 'selected' : '' }} @endif>
                         {{ $anio }}
                     </option>
                 @endfor
             </select>
-            
+
             @error('anio_lectivo')
                 <div class="invalid-feedback">
                     <h5> {{ $message }}</h5>
@@ -61,10 +60,10 @@
                 <h5> {{ $message }}</h5>
             </div>
         @enderror
-    </div> 
+    </div>
     <div class="form-group">
         <label for="seccion">
-            <h5>Seccion:</h5>
+            <h5>Sección:</h5>
         </label>
         <select class="form-control @error('seccion_id') is-invalid @enderror" name="seccion_id" id="seccion">
             <option value="" selected disabled>--Seleccione--</option>
